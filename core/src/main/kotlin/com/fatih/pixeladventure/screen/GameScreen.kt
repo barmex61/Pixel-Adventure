@@ -61,12 +61,12 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)){
             world.family { all(EntityTag.PLAYER) }.forEach { entity ->
                 val body = entity[Physic].body
-                entity[Physic].body.applyForce(vec2(-100f,0f),body.worldCenter,true)
+                entity[Physic].body.applyLinearImpulse(vec2(-4f,0f),body.worldCenter,true)
             }
         }else if (Gdx.input.isKeyJustPressed(Input.Keys.D)){
             world.family { all(EntityTag.PLAYER) }.forEach { entity ->
                 val body = entity[Physic].body
-                entity[Physic].body.applyForce(vec2(100f,0f),body.worldCenter,true)
+                entity[Physic].body.applyLinearImpulse(vec2(4f,0f),body.worldCenter,true)
             }
         }
     }

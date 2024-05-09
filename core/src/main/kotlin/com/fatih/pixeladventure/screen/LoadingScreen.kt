@@ -23,7 +23,6 @@ class LoadingScreen(private val pixelAdventure: PixelAdventure,private val asset
         pixelAdventure.removeScreen<LoadingScreen>()
         dispose()
         pixelAdventure.setScreen<GameScreen>()
-        println("")
     }
 
     private fun parseObjectCollisionShapes(tiledMap: TiledMap){
