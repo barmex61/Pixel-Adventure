@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
+import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MapChangeEvent
@@ -111,6 +112,7 @@ class SpawnSystem (
 
             it += Physic(body)
             it += Graphic(sprite(gameObjectId,"idle"))
+            it += Move(timeToMax = 2.5f, max = 7f)
 
             if (gameObjectId == GameObject.FROG ){
                 it += EntityTag.PLAYER

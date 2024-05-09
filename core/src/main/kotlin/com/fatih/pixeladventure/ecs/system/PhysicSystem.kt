@@ -2,6 +2,7 @@ package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.math.MathUtils
 import com.fatih.pixeladventure.ecs.component.Graphic
+import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.github.quillraven.fleks.Entity
@@ -32,7 +33,9 @@ class PhysicSystem(
     override fun onTickEntity(entity: Entity) {
         val (body,previousPosition) = entity[Physic]
         previousPosition.set(body.position)
-
+        entity.getOrNull(Move)?.let {moveComp ->
+            body.setLinearVelocity(moveComp.current ,body.linearVelocity.y)
+        }
     }
 
     override fun onAlphaEntity(entity: Entity, alpha: Float) {

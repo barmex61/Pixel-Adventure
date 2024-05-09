@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Physic
@@ -15,15 +14,17 @@ import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
+import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.SpawnSystem
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.game.inputMultiplexer
+import com.fatih.pixeladventure.input.KeyboardInputProcessor
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
-import ktx.box2d.earthGravity
 import ktx.math.vec2
 
 class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,private val assets: Assets): KtxScreen {
@@ -40,20 +41,30 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
         }
         systems {
             add(SpawnSystem())
+            add(MoveSystem())
             add(PhysicSystem())
             add(RenderSystem())
             add(PhysicDebugRenderSystem())
             add(GlProfilerSystem())
         }
     }
+    private val keyboardInputProcessor = KeyboardInputProcessor(world)
 
     override fun show() {
+        inputMultiplexer.addProcessor(keyboardInputProcessor)
         world.systems
             .filterIsInstance<GameEventListener>()
             .forEach { GameEventDispatcher.register(it) }
         val map = assets[MapAsset.TEST]
         world.system<RenderSystem>().fireEvent(MapChangeEvent(map))
         world.system<SpawnSystem>().fireEvent(MapChangeEvent(map))
+    }
+
+    override fun hide() {
+        inputMultiplexer.removeProcessor(keyboardInputProcessor)
+        world.systems
+            .filterIsInstance<GameEventListener>()
+            .forEach { GameEventDispatcher.unregister(it) }
     }
 
     override fun render(delta: Float) {

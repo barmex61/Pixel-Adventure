@@ -11,15 +11,6 @@
    <object id="4" x="8" y="15" width="17" height="17">
     <ellipse/>
    </object>
-   <object id="15" x="2" y="7">
-    <polygon points="0,0 -2,6 1,10"/>
-   </object>
-   <object id="16" x="29" y="6">
-    <polygon points="0,0 -2,11 2,6"/>
-   </object>
-   <object id="18" x="8" y="3" width="17" height="6">
-    <ellipse/>
-   </object>
   </objectgroup>
  </tile>
 </tileset>

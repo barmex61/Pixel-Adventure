@@ -1,8 +1,8 @@
 package com.fatih.pixeladventure.game
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.maps.MapObject
-import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.badlogic.gdx.physics.box2d.World
 import com.fatih.pixeladventure.screen.GameScreen
@@ -16,6 +16,9 @@ import ktx.box2d.earthGravity
 
 typealias PhysicWorld = World
 
+val inputMultiplexer : InputMultiplexer
+    get() = Gdx.input.inputProcessor as InputMultiplexer
+
 class PixelAdventure : KtxGame<KtxScreen>() {
 
     private val spriteBatch : SpriteBatch by lazy { SpriteBatch() }
@@ -23,6 +26,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     private val physicWorld : PhysicWorld = World(earthGravity,true).apply { autoClearForces = false }
 
     override fun create() {
+        Gdx.input.inputProcessor = InputMultiplexer()
         addScreen(GameScreen(spriteBatch,physicWorld,assets))
         addScreen(LoadingScreen(this,assets))
         setScreen<LoadingScreen>()
