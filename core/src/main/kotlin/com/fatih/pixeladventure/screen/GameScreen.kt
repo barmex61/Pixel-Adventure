@@ -1,9 +1,13 @@
 package com.fatih.pixeladventure.screen
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventDispatcher.fireEvent
@@ -12,6 +16,7 @@ import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
+import com.fatih.pixeladventure.ecs.system.PhysicSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.SpawnSystem
 import com.fatih.pixeladventure.game.PhysicWorld
@@ -19,6 +24,7 @@ import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
 import ktx.box2d.earthGravity
+import ktx.math.vec2
 
 class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,private val assets: Assets): KtxScreen {
 
@@ -34,6 +40,7 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
         }
         systems {
             add(SpawnSystem())
+            add(PhysicSystem())
             add(RenderSystem())
             add(PhysicDebugRenderSystem())
             add(GlProfilerSystem())
@@ -51,6 +58,17 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
 
     override fun render(delta: Float) {
         world.update(delta)
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)){
+            world.family { all(EntityTag.PLAYER) }.forEach { entity ->
+                val body = entity[Physic].body
+                entity[Physic].body.applyForce(vec2(-100f,0f),body.worldCenter,true)
+            }
+        }else if (Gdx.input.isKeyJustPressed(Input.Keys.D)){
+            world.family { all(EntityTag.PLAYER) }.forEach { entity ->
+                val body = entity[Physic].body
+                entity[Physic].body.applyForce(vec2(100f,0f),body.worldCenter,true)
+            }
+        }
     }
 
     override fun resize(width: Int, height: Int) {

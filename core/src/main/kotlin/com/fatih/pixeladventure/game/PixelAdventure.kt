@@ -20,7 +20,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
 
     private val spriteBatch : SpriteBatch by lazy { SpriteBatch() }
     private val assets : Assets by lazy { Assets() }
-    private val physicWorld : PhysicWorld = World(earthGravity,true)
+    private val physicWorld : PhysicWorld = World(earthGravity,true).apply { autoClearForces = false }
 
     override fun create() {
         addScreen(GameScreen(spriteBatch,physicWorld,assets))

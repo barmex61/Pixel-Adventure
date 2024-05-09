@@ -10,6 +10,7 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject
 import com.badlogic.gdx.math.Ellipse
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.physics.box2d.BodyDef
+import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MapChangeEvent
@@ -81,10 +82,10 @@ class SpawnSystem (
             gdxError("Unsupported mapObject $mapObject")
         }
         val gameObjectStr = mapObject.tile.property<String>("GameObject")
-        val fixtureDefs = OBJECT_FIXTURES[GameObject.valueOf(gameObjectStr)]?: gdxError("No fixture definitions for ${gameObjectStr}")
+        val gameObjectId = GameObject.valueOf(gameObjectStr)
+        val fixtureDefs = OBJECT_FIXTURES[gameObjectId]?: gdxError("No fixture definitions for ${gameObjectStr}")
         val x = mapObject.x * UNIT_SCALE
         val y = mapObject.y * UNIT_SCALE
-
 
         val body = physicWorld.body(BodyDef.BodyType.DynamicBody){
             position.set(x ,y )
@@ -93,6 +94,13 @@ class SpawnSystem (
         fixtureDefs.forEach { fixtureDef ->
             body.createFixture(fixtureDef)
             fixtureDef.shape.dispose()
+        }
+        world.entity {
+            body.userData = it
+            it += Physic(body)
+            if (gameObjectId == GameObject.PLAYER ){
+                it += EntityTag.PLAYER
+            }
         }
 
     }
@@ -104,7 +112,6 @@ class SpawnSystem (
                     position.set(x.toFloat() ,y.toFloat() )
                     fixedRotation = true
                 }
-
                 val fixtureDef = fixtureDefinitionOf(collObj)
                 body.createFixture(fixtureDef)
                 fixtureDef.shape.dispose()
