@@ -1,4 +1,4 @@
-package com.fatih.pixeladventure
+package com.fatih.pixeladventure.util
 
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.maps.tiled.TiledMap
@@ -7,7 +7,8 @@ import ktx.assets.disposeSafely
 import ktx.assets.load
 
 enum class MapAsset(val path : String){
-    MAP1("map/map1.tmx")
+    TEST("map/map1.tmx"),
+    OBJECT("map/object.tmx")
 }
 
 class Assets {

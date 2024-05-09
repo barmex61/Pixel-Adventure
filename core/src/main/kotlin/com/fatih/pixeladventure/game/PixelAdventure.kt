@@ -1,8 +1,9 @@
-package com.fatih.pixeladventure
+package com.fatih.pixeladventure.game
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.World
-import com.fatih.pixeladventure.screen.GameScreen
+import com.fatih.pixeladventure.screen.LoadingScreen
+import com.fatih.pixeladventure.util.Assets
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
@@ -15,8 +16,8 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     private val assets : Assets by lazy { Assets() }
 
     override fun create() {
-        addScreen(GameScreen(spriteBatch,assets))
-        setScreen<GameScreen>()
+        addScreen(LoadingScreen(spriteBatch, assets))
+        setScreen<LoadingScreen>()
     }
 
     override fun dispose() {
@@ -28,4 +29,3 @@ class PixelAdventure : KtxGame<KtxScreen>() {
         const val UNIT_SCALE = 1/16f
     }
 }
-

@@ -1,4 +1,4 @@
-package com.fatih.pixeladventure
+package com.fatih.pixeladventure.event
 
 import com.badlogic.gdx.maps.tiled.TiledMap
 

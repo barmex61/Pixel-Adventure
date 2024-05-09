@@ -4,7 +4,7 @@ package com.fatih.pixeladventure.teavm
 
 import com.github.xpenatan.gdx.backends.teavm.TeaApplicationConfiguration
 import com.github.xpenatan.gdx.backends.teavm.TeaApplication
-import com.fatih.pixeladventure.PixelAdventure
+import com.fatih.pixeladventure.game.PixelAdventure
 
 /** Launches the TeaVM/HTML application. */
 fun main() {

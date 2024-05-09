@@ -6,15 +6,15 @@ import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell
 import com.badlogic.gdx.physics.box2d.BodyDef
-import com.fatih.pixeladventure.GameEvent
-import com.fatih.pixeladventure.GameEventListener
-import com.fatih.pixeladventure.MapChangeEvent
+import com.fatih.pixeladventure.event.GameEvent
+import com.fatih.pixeladventure.event.GameEventListener
+import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.PhysicWorld
-import com.fatih.pixeladventure.PixelAdventure.Companion.UNIT_SCALE
-import com.fatih.pixeladventure.component1
-import com.fatih.pixeladventure.component2
-import com.fatih.pixeladventure.component3
-import com.fatih.pixeladventure.component4
+import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
+import com.fatih.pixeladventure.util.component1
+import com.fatih.pixeladventure.util.component2
+import com.fatih.pixeladventure.util.component3
+import com.fatih.pixeladventure.util.component4
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.github.quillraven.fleks.IntervalSystem
 import com.github.quillraven.fleks.World.Companion.inject
@@ -22,7 +22,6 @@ import ktx.box2d.body
 import ktx.box2d.box
 import ktx.math.vec2
 import ktx.tiled.height
-import ktx.tiled.isNotEmpty
 import ktx.tiled.width
 
 class SpawnSystem (

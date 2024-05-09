@@ -7,7 +7,7 @@ import org.robovm.apple.uikit.UIApplication
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration
-import com.fatih.pixeladventure.PixelAdventure
+import com.fatih.pixeladventure.game.PixelAdventure
 
 /** Launches the iOS (RoboVM) application. */
 class IOSLauncher : IOSApplication.Delegate() {

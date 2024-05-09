@@ -4,17 +4,17 @@
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
   <tile id="6">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="1.01304" y="2.04748" width="14.9758" height="11.9787"/>
+    <object id="1" x="2" y="2" width="13.9889" height="11"/>
    </objectgroup>
   </tile>
   <tile id="7">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="2.04348" width="16" height="12"/>
+    <object id="1" x="0" y="2" width="16" height="11"/>
    </objectgroup>
   </tile>
   <tile id="8">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="2.03465" width="15.087" height="12.0088"/>
+    <object id="1" x="0" y="2" width="14" height="11"/>
    </objectgroup>
   </tile>
  </tileset>

@@ -4,7 +4,7 @@ package com.fatih.pixeladventure.lwjgl3
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
-import com.fatih.pixeladventure.PixelAdventure
+import com.fatih.pixeladventure.game.PixelAdventure
 
 /** Launches the desktop (LWJGL3) application. */
 fun main() {

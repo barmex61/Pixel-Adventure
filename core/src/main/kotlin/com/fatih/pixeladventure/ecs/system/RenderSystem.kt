@@ -3,15 +3,14 @@ package com.fatih.pixeladventure.ecs.system
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.maps.MapLayer
-import com.badlogic.gdx.maps.MapLayers
 import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
 import com.badlogic.gdx.utils.viewport.FitViewport
-import com.fatih.pixeladventure.GameEvent
-import com.fatih.pixeladventure.GameEventListener
-import com.fatih.pixeladventure.MapChangeEvent
-import com.fatih.pixeladventure.PixelAdventure
+import com.fatih.pixeladventure.event.GameEvent
+import com.fatih.pixeladventure.event.GameEventListener
+import com.fatih.pixeladventure.event.MapChangeEvent
+import com.fatih.pixeladventure.game.PixelAdventure
 import com.github.quillraven.fleks.IntervalSystem
 import com.github.quillraven.fleks.World.Companion.inject
 import ktx.assets.disposeSafely
@@ -21,7 +20,7 @@ class RenderSystem(
     private val spriteBatch: SpriteBatch = inject(),
     private val gameViewport: FitViewport = inject("gameViewport"),
     private val gameCamera : OrthographicCamera = inject()
-) : IntervalSystem() , GameEventListener{
+) : IntervalSystem() , GameEventListener {
 
     private val mapRenderer = OrthogonalTiledMapRenderer(null, PixelAdventure.UNIT_SCALE,spriteBatch).apply { setView(gameCamera) }
     private val backgroundLayers = mutableListOf<TiledMapTileLayer>()

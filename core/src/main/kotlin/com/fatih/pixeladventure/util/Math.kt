@@ -1,4 +1,4 @@
-package com.fatih.pixeladventure
+package com.fatih.pixeladventure.util
 
 import com.badlogic.gdx.math.Rectangle
 

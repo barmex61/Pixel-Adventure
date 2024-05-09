@@ -2,18 +2,14 @@ package com.fatih.pixeladventure.screen
 
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
 import com.badlogic.gdx.physics.box2d.World
-import com.badlogic.gdx.utils.viewport.ExtendViewport
 import com.badlogic.gdx.utils.viewport.FitViewport
-import com.badlogic.gdx.utils.viewport.StretchViewport
-import com.badlogic.gdx.utils.viewport.Viewport
-import com.fatih.pixeladventure.Assets
-import com.fatih.pixeladventure.GameEventDispatcher
-import com.fatih.pixeladventure.GameEventDispatcher.fireEvent
-import com.fatih.pixeladventure.GameEventListener
-import com.fatih.pixeladventure.MapAsset
-import com.fatih.pixeladventure.MapChangeEvent
+import com.fatih.pixeladventure.util.Assets
+import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.GameEventDispatcher.fireEvent
+import com.fatih.pixeladventure.event.GameEventListener
+import com.fatih.pixeladventure.util.MapAsset
+import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.PhysicWorld
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
@@ -23,7 +19,6 @@ import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
 import ktx.box2d.earthGravity
-import ktx.math.vec2
 
 class GameScreen (spriteBatch: SpriteBatch,private val assets: Assets): KtxScreen {
 
@@ -50,7 +45,7 @@ class GameScreen (spriteBatch: SpriteBatch,private val assets: Assets): KtxScree
         world.systems
             .filterIsInstance<GameEventListener>()
             .forEach { GameEventDispatcher.register(it) }
-        val map = assets[MapAsset.MAP1]
+        val map = assets[MapAsset.TEST]
         world.system<RenderSystem>().fireEvent(MapChangeEvent(map))
         world.system<SpawnSystem>().fireEvent(MapChangeEvent(map))
     }
