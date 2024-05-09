@@ -2,6 +2,21 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
  <tileset firstgid="1" name="terrain-extruded" tilewidth="16" tileheight="16" spacing="8" margin="4" tilecount="242" columns="22">
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
+  <tile id="6">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="1.01304" y="2.04748" width="14.9758" height="11.9787"/>
+   </objectgroup>
+  </tile>
+  <tile id="7">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="2.04348" width="16" height="12"/>
+   </objectgroup>
+  </tile>
+  <tile id="8">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="2.03465" width="15.087" height="12.0088"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <layer id="1" name="ground" width="10" height="10">
   <data encoding="base64" compression="zlib">
