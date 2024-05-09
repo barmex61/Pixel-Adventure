@@ -10,21 +10,20 @@ import com.fatih.pixeladventure.event.GameEventDispatcher.fireEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.event.MapChangeEvent
-import com.fatih.pixeladventure.PhysicWorld
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.SpawnSystem
+import com.fatih.pixeladventure.game.PhysicWorld
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
 import ktx.box2d.earthGravity
 
-class GameScreen (spriteBatch: SpriteBatch,private val assets: Assets): KtxScreen {
+class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,private val assets: Assets): KtxScreen {
 
     private val gameViewPort : FitViewport = FitViewport(10f,10f)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
-    private val physicWorld : PhysicWorld = World(earthGravity,true)
     private val world = configureWorld {
         injectables {
             add("gameViewport",gameViewPort)

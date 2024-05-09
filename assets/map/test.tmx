@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="10" height="10" tilewidth="16" tileheight="16" infinite="0" nextlayerid="6" nextobjectid="2">
  <tileset firstgid="1" name="terrain-extruded" tilewidth="16" tileheight="16" spacing="8" margin="4" tilecount="242" columns="22">
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
   <tile id="6">
@@ -18,6 +18,7 @@
    </objectgroup>
   </tile>
  </tileset>
+ <tileset firstgid="243" source="objects.tsx"/>
  <layer id="1" name="ground" width="10" height="10">
   <data encoding="base64" compression="zlib">
    eJxjYBhZgB2IOQhgTiCWBWI5AlgeSR0MyGHhg9QZA7EJAWwKxAD9MAQ5
@@ -28,7 +29,9 @@
    eJxjYBgF1AAKQKyIh08sAAAhCACD
   </data>
  </layer>
- <objectgroup id="3" name="objects"/>
+ <objectgroup id="3" name="objects">
+  <object id="1" gid="243" x="22" y="96" width="10" height="10"/>
+ </objectgroup>
  <layer id="4" name="foreground" width="10" height="10">
   <data encoding="base64" compression="zlib">
    eJzbyMDAsIkA3gzEd4H4HgF8H4g3Utm8kQYADQkfQQ==

@@ -4,10 +4,9 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer
 import com.badlogic.gdx.utils.viewport.FitViewport
-import com.fatih.pixeladventure.PhysicWorld
+import com.fatih.pixeladventure.game.PhysicWorld
 import com.github.quillraven.fleks.IntervalSystem
 import com.github.quillraven.fleks.World.Companion.inject
-import ktx.graphics.color
 
 class PhysicDebugRenderSystem(
     private val physicWorld: PhysicWorld = inject(),
