@@ -11,8 +11,10 @@ import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
 import ktx.app.KtxGame
 import ktx.app.KtxScreen
+import ktx.app.clearScreen
 import ktx.assets.disposeSafely
 import ktx.box2d.earthGravity
+import ktx.math.vec2
 
 typealias PhysicWorld = World
 
@@ -23,7 +25,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
 
     private val spriteBatch : SpriteBatch by lazy { SpriteBatch() }
     private val assets : Assets by lazy { Assets() }
-    private val physicWorld : PhysicWorld = World(earthGravity,true).apply { autoClearForces = false }
+    private val physicWorld : PhysicWorld = World(vec2(0f,-30f),true).apply { autoClearForces = false }
 
     override fun create() {
         Gdx.input.inputProcessor = InputMultiplexer()
@@ -32,9 +34,14 @@ class PixelAdventure : KtxGame<KtxScreen>() {
         setScreen<LoadingScreen>()
     }
 
+    override fun render() {
+        clearScreen(0f,0f,0f,0f)
+        currentScreen.render(Gdx.graphics.deltaTime.coerceAtMost(0.25f))
+    }
+
     override fun dispose() {
         spriteBatch.disposeSafely()
-        assets.dispose()
+        assets.disposeSafely()
     }
 
     companion object{

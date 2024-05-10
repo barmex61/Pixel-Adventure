@@ -2,11 +2,13 @@ package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.math.MathUtils
 import com.fatih.pixeladventure.ecs.component.Graphic
+import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
+import com.github.quillraven.fleks.Interval
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
@@ -14,8 +16,9 @@ import ktx.math.component1
 import ktx.math.component2
 
 class PhysicSystem(
-    private val physicWorld: PhysicWorld = inject()
-) : IteratingSystem(family = family {all(Physic,Graphic)}, interval = Fixed(1/45f)) {
+    private val physicWorld: PhysicWorld = inject(),
+    interval : Interval = Fixed(1/300f)
+) : IteratingSystem(family = family {all(Physic,Graphic)}, interval = interval) {
 
     override fun onUpdate() {
         if (physicWorld.autoClearForces){
@@ -34,7 +37,7 @@ class PhysicSystem(
         val (body,previousPosition) = entity[Physic]
         previousPosition.set(body.position)
         entity.getOrNull(Move)?.let {moveComp ->
-            body.setLinearVelocity(moveComp.current ,body.linearVelocity.y)
+            body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
         }
     }
 

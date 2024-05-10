@@ -2,6 +2,8 @@ package com.fatih.pixeladventure.input
 
 import com.badlogic.gdx.Input
 import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.component.Jump
+import com.fatih.pixeladventure.ecs.component.Jump.Companion.JUMP_BUFFER_TIME
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.github.quillraven.fleks.World
@@ -21,6 +23,7 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter {
         when(keycode){
             Input.Keys.D -> updatePlayerMovement(1)
             Input.Keys.A -> updatePlayerMovement(-1)
+            Input.Keys.SPACE -> playerEntities.forEach { it[Jump].buffer = JUMP_BUFFER_TIME }
         }
 
         return false

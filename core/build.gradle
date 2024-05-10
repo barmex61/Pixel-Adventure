@@ -18,4 +18,11 @@ dependencies {
   api "io.github.libktx:ktx-tiled:$ktxVersion"
   api "io.github.quillraven.fleks:Fleks:$fleksVersion"
   api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+  testImplementation 'org.jetbrains.kotlin:kotlin-test'
+  testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+
+}
+
+test{
+  useJUnitPlatform()
 }

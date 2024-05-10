@@ -20,6 +20,7 @@ class LoadingScreen(private val pixelAdventure: PixelAdventure,private val asset
     override fun show() {
         val tiledMap = assets[MapAsset.OBJECT]
         parseObjectCollisionShapes(tiledMap)
+        assets - MapAsset.OBJECT
         pixelAdventure.removeScreen<LoadingScreen>()
         dispose()
         pixelAdventure.setScreen<GameScreen>()
@@ -36,5 +37,8 @@ class LoadingScreen(private val pixelAdventure: PixelAdventure,private val asset
             val gameObjectStr : String = tile.propertyOrNull("GameObject") ?: gdxError("Missing property 'GameObject' on tile ${tile.id} ")
             OBJECT_FIXTURES[GameObject.valueOf(gameObjectStr)] = objectFixtureDefinitions
         }
+    }
+
+    override fun dispose() {
     }
 }

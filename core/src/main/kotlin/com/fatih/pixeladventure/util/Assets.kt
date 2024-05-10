@@ -4,6 +4,7 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TmxMapLoader
+import com.badlogic.gdx.utils.Disposable
 import ktx.assets.disposeSafely
 import ktx.assets.load
 
@@ -16,9 +17,7 @@ enum class TextureAtlasAsset(val path : String){
     GAMEOBJECT("graphics/gameObject.atlas")
 }
 
-class Assets {
-
-
+class Assets : Disposable{
 
     private val assetManager = AssetManager().apply {
         setLoader(TiledMap::class.java,TmxMapLoader())
@@ -35,7 +34,15 @@ class Assets {
         assetManager.finishLoading()
         return assetManager.get(mapAsset.path)
     }
-    fun dispose(){
+
+    operator fun minus(mapAsset: MapAsset){
+        assetManager.unload(mapAsset.path)
+
+    }
+
+    override fun dispose() {
         assetManager.disposeSafely()
     }
+
+
 }

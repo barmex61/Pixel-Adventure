@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
+import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
@@ -113,6 +114,7 @@ class SpawnSystem (
             it += Physic(body)
             it += Graphic(sprite(gameObjectId,"idle"))
             it += Move(timeToMax = 2.5f, max = 7f)
+            it += Jump(maxHeight = 2f)
 
             if (gameObjectId == GameObject.FROG ){
                 it += EntityTag.PLAYER
@@ -123,7 +125,7 @@ class SpawnSystem (
 
     private fun sprite(gameObjectId: GameObject, animationType: String): Sprite {
         val atlas = assets[TextureAtlasAsset.GAMEOBJECT]
-        val regions = atlas.findRegions("${gameObjectId.name.lowercase()}/${animationType}") ?:
+        val regions = atlas.findRegions("${gameObjectId.atlasKey}/${animationType}") ?:
             gdxError("There are no regions for $gameObjectId and $animationType")
         val firstFrame = regions.first()
         val w = firstFrame.regionWidth * UNIT_SCALE

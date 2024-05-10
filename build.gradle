@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 buildscript {
   repositories {
     mavenCentral()
@@ -32,7 +34,7 @@ allprojects {
 configure(subprojects - project(':android')) {
   apply plugin: 'java-library'
   apply plugin: 'kotlin'
-  sourceCompatibility = 11
+  sourceCompatibility = 17
   compileJava {
     options.incremental = true
   }
@@ -53,8 +55,8 @@ configure(subprojects - project(':android')) {
       assetsFile.append(it + "\n")
     }
   }
-  compileKotlin.compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-  
+  compileKotlin.compilerOptions.jvmTarget.set(JvmTarget.JVM_17)
+
 }
 
 subprojects {

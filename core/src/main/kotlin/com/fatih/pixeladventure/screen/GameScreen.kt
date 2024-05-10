@@ -14,6 +14,7 @@ import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
+import com.fatih.pixeladventure.ecs.system.JumpPhysicSystem
 import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
@@ -42,6 +43,7 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
         systems {
             add(SpawnSystem())
             add(MoveSystem())
+            add(JumpPhysicSystem())
             add(PhysicSystem())
             add(RenderSystem())
             add(PhysicDebugRenderSystem())
