@@ -24,7 +24,9 @@ object GameEventDispatcher{
         gameEventListeners -= gameEventListener
     }
 
-    fun GameEventListener.fireEvent(gameEvent: GameEvent){
-        this.onEvent(gameEvent)
+    fun fireEvent(gameEvent: GameEvent){
+        gameEventListeners.forEach {
+            it.onEvent(gameEvent)
+        }
     }
 }

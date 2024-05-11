@@ -2,25 +2,21 @@ package com.fatih.pixeladventure.screen
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
-import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
-import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.utils.viewport.ExtendViewport
-import com.badlogic.gdx.utils.viewport.FitViewport
-import com.badlogic.gdx.utils.viewport.StretchViewport
+import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.event.GameEventDispatcher
-import com.fatih.pixeladventure.event.GameEventDispatcher.fireEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
-import com.fatih.pixeladventure.ecs.system.JumpPhysicSystem
+import com.fatih.pixeladventure.ecs.system.JumpSystem
 import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
@@ -28,17 +24,21 @@ import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.SpawnSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.game.PhysicWorld
-import com.fatih.pixeladventure.game.PixelAdventure.Companion.GAME_PROPERTIES
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
-import com.fatih.pixeladventure.util.GamePropertyKey
-import com.fatih.pixeladventure.util.getOrDefault
+import com.fatih.pixeladventure.util.GameProperties
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
 import ktx.math.vec2
 
-class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,private val assets: Assets): KtxScreen {
+class GameScreen(
+    spriteBatch: SpriteBatch,
+    private val physicWorld: PhysicWorld,
+    private val assets: Assets,
+    audioService: AudioService,
+    gameProperties: GameProperties
+): KtxScreen {
 
     private val gameViewPort : ExtendViewport = ExtendViewport(16f,9f)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
@@ -49,20 +49,21 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
             add(assets)
             add(spriteBatch)
             add(physicWorld)
+            add(audioService)
         }
         systems {
             add(SpawnSystem())
             add(MoveSystem())
-            add(JumpPhysicSystem())
+            add(JumpSystem())
             add(PhysicSystem())
             add(StateSystem())
             add(AnimationSystem())
             add(CameraSystem())
             add(RenderSystem())
-            if (GAME_PROPERTIES.getOrDefault(GamePropertyKey.DEBUG_PHYSIC,false)){
+            if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
             }
-            if (GAME_PROPERTIES.getOrDefault(GamePropertyKey.ENABLE_PROFILING,false)){
+            if (gameProperties.enableProfiling){
                 add(GlProfilerSystem())
             }
         }
@@ -75,9 +76,7 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
             .filterIsInstance<GameEventListener>()
             .forEach { GameEventDispatcher.register(it) }
         val map = assets[MapAsset.TEST]
-        world.systems.filterIsInstance<GameEventListener>().forEach {
-            it.fireEvent(MapChangeEvent(map))
-        }
+        GameEventDispatcher.fireEvent(MapChangeEvent(map))
     }
 
     override fun hide() {

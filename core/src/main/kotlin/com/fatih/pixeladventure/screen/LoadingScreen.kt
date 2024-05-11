@@ -2,30 +2,36 @@ package com.fatih.pixeladventure.screen
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.maps.tiled.TiledMap
-import com.badlogic.gdx.physics.box2d.World
+import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
+import com.fatih.pixeladventure.util.GameProperties
 import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.util.fixtureDefinitionOf
 import ktx.app.KtxScreen
 import ktx.app.gdxError
-import ktx.assets.disposeSafely
-import ktx.box2d.earthGravity
 import ktx.tiled.propertyOrNull
 
-class LoadingScreen(private val spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,private val pixelAdventure: PixelAdventure,private val assets: Assets) : KtxScreen {
+class LoadingScreen(
+    private val spriteBatch: SpriteBatch,
+    private val physicWorld: PhysicWorld,
+    private val pixelAdventure: PixelAdventure,
+    private val assets: Assets,
+    private val audioService: AudioService,
+    private val gameProperties: GameProperties
+) : KtxScreen {
 
     override fun show() {
         assets.loadAll()
         val tiledMap = assets[MapAsset.OBJECT]
         parseObjectCollisionShapes(tiledMap)
-        assets - MapAsset.OBJECT
+        assets -= MapAsset.OBJECT
         pixelAdventure.removeScreen<LoadingScreen>()
         dispose()
-        pixelAdventure.addScreen(GameScreen(spriteBatch,physicWorld,assets))
+        pixelAdventure.addScreen(GameScreen(spriteBatch,physicWorld,assets,audioService,gameProperties))
         pixelAdventure.setScreen<GameScreen>()
     }
 

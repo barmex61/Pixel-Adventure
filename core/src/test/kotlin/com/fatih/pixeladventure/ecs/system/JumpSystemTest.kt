@@ -7,18 +7,17 @@ import com.github.quillraven.fleks.configureWorld
 import ktx.box2d.body
 import ktx.box2d.box
 import ktx.box2d.createWorld
-import ktx.math.vec2
 import kotlin.test.Test
 
 
-class JumpPhysicSystemTest{
+class JumpSystemTest{
     private val physicWorld = createWorld(gravity = Vector2.Zero).apply { autoClearForces = false }
     private val world = configureWorld {
         injectables {
             add(physicWorld)
         }
         systems {
-            add(JumpPhysicSystem())
+            add(JumpSystem())
             add(PhysicSystem())
         }
     }
