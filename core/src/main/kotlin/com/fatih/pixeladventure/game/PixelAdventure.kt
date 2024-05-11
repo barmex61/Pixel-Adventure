@@ -5,6 +5,8 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.badlogic.gdx.physics.box2d.World
+import com.badlogic.gdx.utils.ObjectMap
+import com.badlogic.gdx.utils.PropertiesUtils
 import com.fatih.pixeladventure.screen.GameScreen
 import com.fatih.pixeladventure.screen.LoadingScreen
 import com.fatih.pixeladventure.util.Assets
@@ -15,6 +17,7 @@ import ktx.app.clearScreen
 import ktx.assets.disposeSafely
 import ktx.box2d.earthGravity
 import ktx.math.vec2
+import java.util.Properties
 
 typealias PhysicWorld = World
 
@@ -29,6 +32,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
 
     override fun create() {
         Gdx.input.inputProcessor = InputMultiplexer()
+        Gdx.files.internal("game.properties").reader().use { PropertiesUtils.load(GAME_PROPERTIES,it) }
         addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets))
         setScreen<LoadingScreen>()
     }
@@ -46,5 +50,6 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     companion object{
         const val UNIT_SCALE = 1/16f
         val OBJECT_FIXTURES = mutableMapOf<GameObject,List<FixtureDef>>()
+        val GAME_PROPERTIES = ObjectMap<String,String>()
     }
 }

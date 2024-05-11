@@ -28,8 +28,11 @@ import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.SpawnSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.game.PixelAdventure.Companion.GAME_PROPERTIES
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
+import com.fatih.pixeladventure.util.GamePropertyKey
+import com.fatih.pixeladventure.util.getOrDefault
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
@@ -56,8 +59,12 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
             add(AnimationSystem())
             add(CameraSystem())
             add(RenderSystem())
-            add(PhysicDebugRenderSystem())
-            add(GlProfilerSystem())
+            if (GAME_PROPERTIES.getOrDefault(GamePropertyKey.DEBUG_PHYSIC,false)){
+                add(PhysicDebugRenderSystem())
+            }
+            if (GAME_PROPERTIES.getOrDefault(GamePropertyKey.ENABLE_PROFILING,false)){
+                add(GlProfilerSystem())
+            }
         }
     }
     private val keyboardInputProcessor = KeyboardInputProcessor(world)
