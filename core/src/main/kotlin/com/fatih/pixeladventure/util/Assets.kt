@@ -23,15 +23,17 @@ class Assets : Disposable{
         setLoader(TiledMap::class.java,TmxMapLoader())
     }
 
-    operator fun get(textureAtlasAsset: TextureAtlasAsset) : TextureAtlas {
-        assetManager.load<TextureAtlas>(textureAtlasAsset.path)
+    fun loadAll(){
+        MapAsset.entries.forEach { assetManager.load<TiledMap>(it.path) }
+        TextureAtlasAsset.entries.forEach { assetManager.load<TextureAtlas>(it.path) }
         assetManager.finishLoading()
+    }
+
+    operator fun get(textureAtlasAsset: TextureAtlasAsset) : TextureAtlas {
         return assetManager.get(textureAtlasAsset.path)
     }
 
     operator fun get(mapAsset: MapAsset) : TiledMap {
-        assetManager.load<TiledMap>(mapAsset.path)
-        assetManager.finishLoading()
         return assetManager.get(mapAsset.path)
     }
 

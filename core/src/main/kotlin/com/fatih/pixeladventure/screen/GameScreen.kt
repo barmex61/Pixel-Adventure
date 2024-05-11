@@ -2,11 +2,17 @@ package com.fatih.pixeladventure.screen
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
+import com.badlogic.gdx.graphics.Camera
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.physics.box2d.World
+import com.badlogic.gdx.utils.viewport.ExtendViewport
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.system.AnimationSystem
+import com.fatih.pixeladventure.ecs.system.CameraSystem
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventDispatcher.fireEvent
@@ -20,6 +26,7 @@ import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.SpawnSystem
+import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
@@ -30,7 +37,7 @@ import ktx.math.vec2
 
 class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,private val assets: Assets): KtxScreen {
 
-    private val gameViewPort : FitViewport = FitViewport(10f,10f)
+    private val gameViewPort : ExtendViewport = ExtendViewport(16f,9f)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
     private val world = configureWorld {
         injectables {
@@ -45,6 +52,9 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
             add(MoveSystem())
             add(JumpPhysicSystem())
             add(PhysicSystem())
+            add(StateSystem())
+            add(AnimationSystem())
+            add(CameraSystem())
             add(RenderSystem())
             add(PhysicDebugRenderSystem())
             add(GlProfilerSystem())
@@ -58,8 +68,9 @@ class GameScreen (spriteBatch: SpriteBatch,private val physicWorld: PhysicWorld,
             .filterIsInstance<GameEventListener>()
             .forEach { GameEventDispatcher.register(it) }
         val map = assets[MapAsset.TEST]
-        world.system<RenderSystem>().fireEvent(MapChangeEvent(map))
-        world.system<SpawnSystem>().fireEvent(MapChangeEvent(map))
+        world.systems.filterIsInstance<GameEventListener>().forEach {
+            it.fireEvent(MapChangeEvent(map))
+        }
     }
 
     override fun hide() {

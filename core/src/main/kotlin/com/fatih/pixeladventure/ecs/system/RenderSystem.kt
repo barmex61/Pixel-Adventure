@@ -7,6 +7,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
 import com.badlogic.gdx.utils.viewport.FitViewport
+import com.badlogic.gdx.utils.viewport.Viewport
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
@@ -22,7 +23,7 @@ import ktx.graphics.use
 
 class RenderSystem(
     private val spriteBatch: SpriteBatch = inject(),
-    private val gameViewport: FitViewport = inject("gameViewport"),
+    private val gameViewport: Viewport = inject("gameViewport"),
     private val gameCamera : OrthographicCamera = inject()
 ) : IteratingSystem(
     family = family { all(Graphic) },

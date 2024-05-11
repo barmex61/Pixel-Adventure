@@ -16,7 +16,6 @@ class JumpPhysicSystem(
         val jumpComps = entity[Jump]
         val (body,_) = entity[Physic]
         var (maxHeight , buffer) = entity[Jump]
-
         if (buffer == 0f ){
             return
         }

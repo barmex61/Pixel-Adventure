@@ -16,7 +16,7 @@ enum class MoveDirection(val value : Int){
     }
 }
 
-data class Move(var direction : MoveDirection = MoveDirection.NONE, var current : Float = 0f, var max : Float , var timer : Float = 0f, var timeToMax : Float) : Component <Move> {
+data class Move(var flipX : Boolean = false,var direction : MoveDirection = MoveDirection.NONE, var current : Float = 0f, var max : Float , var timer : Float = 0f, var timeToMax : Float) : Component <Move> {
 
     override fun type() = Move
 
