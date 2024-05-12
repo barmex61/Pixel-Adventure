@@ -29,6 +29,7 @@ import com.fatih.pixeladventure.ecs.component.Tiled
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
+import com.fatih.pixeladventure.util.FixtureDefUserData
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.TextureAtlasAsset
 import com.fatih.pixeladventure.util.animation
@@ -91,8 +92,8 @@ class SpawnSystem (
 
     private fun spawnGroundObject(x:Int, y:Int, collObj : MapObject){
         val body = createBody(BodyType.StaticBody, vec2(x.toFloat(),y.toFloat()),true)
-        val fixtureDef = fixtureDefinitionOf(collObj)
-        body.createFixtures(listOf(fixtureDef))
+        val fixtureDefUserData = fixtureDefinitionOf(collObj)
+        body.createFixtures(listOf(fixtureDefUserData))
     }
 
     private fun spawnGameObjectEntity(mapObject: MapObject){
@@ -101,12 +102,12 @@ class SpawnSystem (
         }
         val gameObjectStr = mapObject.tile.property<String>("GameObject")
         val gameObject = GameObject.valueOf(gameObjectStr)
-        val fixtureDefs = OBJECT_FIXTURES[gameObject]?: gdxError("No fixture definitions for $gameObjectStr")
+        val fixtureDefUserData = OBJECT_FIXTURES[gameObject]?: gdxError("No fixture definitions for ${gameObject.atlasKey}")
         val x = mapObject.x * UNIT_SCALE
         val y = mapObject.y * UNIT_SCALE
 
         val body = createBody(BodyType.DynamicBody, vec2(x,y),true)
-        body.createFixtures(fixtureDefs)
+        body.createFixtures(fixtureDefUserData)
 
         world.entity {
             body.userData = it
@@ -116,7 +117,7 @@ class SpawnSystem (
 
             if (gameObject == GameObject.FROG ){
                 it += listOf( EntityTag.PLAYER, EntityTag.CAMERA_FOCUS)
-                it += Jump(maxHeight = 2f)
+                it += Jump(maxHeight = 2.2f)
                 it += Move(timeToMax = 2.5f, max = 7f)
                 it += Animation()
                 world.animation(it,AnimationType.IDLE)
@@ -146,10 +147,10 @@ class SpawnSystem (
         }
     }
 
-    private fun Body.createFixtures(fixtureDefs : List<FixtureDef>) {
-        fixtureDefs.forEach { fixtureDef ->
-            this.createFixture(fixtureDef)
-            fixtureDef.shape.dispose()
+    private fun Body.createFixtures(fixtureDefUserData: List<FixtureDefUserData>) {
+        fixtureDefUserData.forEach { it ->
+            this.createFixture(it.fixtureDef).apply { this.userData = it.userData }
+            it.fixtureDef.shape.dispose()
         }
     }
 

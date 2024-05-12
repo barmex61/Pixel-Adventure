@@ -11,22 +11,33 @@ import com.badlogic.gdx.math.MathUtils.isEqual
 import com.badlogic.gdx.physics.box2d.ChainShape
 import com.badlogic.gdx.physics.box2d.CircleShape
 import com.badlogic.gdx.physics.box2d.FixtureDef
+import com.badlogic.gdx.physics.box2d.PolygonShape
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import ktx.app.gdxError
 import ktx.math.vec2
+import ktx.tiled.property
 import ktx.tiled.x
 import ktx.tiled.y
 import kotlin.math.sin
 
+data class FixtureDefUserData(val fixtureDef: FixtureDef , val userData : String)
 
-fun fixtureDefinitionOf(mapObject: MapObject) : FixtureDef {
-    return when(mapObject){
+fun fixtureDefinitionOf(mapObject: MapObject) : FixtureDefUserData {
+    val fixtureDef = when(mapObject){
         is RectangleMapObject -> rectangleFixtureDef(mapObject)
         is EllipseMapObject -> ellipseFixtureDef(mapObject)
         is PolygonMapObject -> polygonFixtureDef(mapObject)
         is PolylineMapObject -> polylineFixtureDef(mapObject)
         else -> gdxError("Unsupported mapobject $mapObject")
     }
+    fixtureDef.apply {
+        friction = mapObject.property("friction",0f)
+        restitution = mapObject.property("restitution",0f)
+        isSensor = mapObject.property("isSensor",false)
+        density = mapObject.property("density",0f)
+
+    }
+    return FixtureDefUserData(fixtureDef,mapObject.property("userData",""))
 }
 
 
@@ -60,20 +71,18 @@ private fun polygonFixtureDef(polyX : Float,polyY : Float,polyVertices : FloatAr
 }
 
 private fun rectangleFixtureDef(mapObject: RectangleMapObject) : FixtureDef {
-    val (rectX,rectY,rectW,rectH) = mapObject.rectangle
-    val boxX = rectX * UNIT_SCALE
-    val boxY = rectY * UNIT_SCALE
-    val boxW = rectW * UNIT_SCALE
-    val boxH = rectH * UNIT_SCALE
-    val vertices = arrayOf(
+    val(rectX,rectY,rectW,rectH) = mapObject.rectangle
+    val boxW = rectW * UNIT_SCALE / 2f
+    val boxH = rectH * UNIT_SCALE / 2f
+    /*val vertices = arrayOf(
         vec2(boxX, boxY),
         vec2(boxX + boxW, boxY),
         vec2(boxX + boxW, boxY + boxH),
         vec2(boxX, boxY + boxH)
-    )
-    return FixtureDef().apply {
-        shape = ChainShape().apply {
-            createLoop(vertices)
+    ) */
+    return  FixtureDef().apply {
+        shape = PolygonShape().apply {
+            setAsBox(boxW,boxH, vec2(rectX * UNIT_SCALE + boxW,rectY * UNIT_SCALE + boxH),0f)
         }
     }
 }

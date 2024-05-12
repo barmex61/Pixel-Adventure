@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.PropertiesUtils
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.screen.LoadingScreen
 import com.fatih.pixeladventure.util.Assets
+import com.fatih.pixeladventure.util.FixtureDefUserData
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.GameProperties
 import com.fatih.pixeladventure.util.toGameProperties
@@ -62,6 +63,6 @@ class PixelAdventure : KtxGame<KtxScreen>() {
 
     companion object{
         const val UNIT_SCALE = 1/16f
-        val OBJECT_FIXTURES = mutableMapOf<GameObject,List<FixtureDef>>()
+        val OBJECT_FIXTURES = mutableMapOf<GameObject,List<FixtureDefUserData>>()
     }
 }

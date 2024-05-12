@@ -7,17 +7,17 @@
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
   <tile id="6">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="2" y="2" width="13.9889" height="11"/>
+    <object id="2" x="2" y="2" width="14" height="11"/>
    </objectgroup>
   </tile>
   <tile id="7">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="2" width="16" height="11"/>
+    <object id="2" x="0" y="2" width="16" height="10"/>
    </objectgroup>
   </tile>
   <tile id="8">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="2" width="14" height="11"/>
+    <object id="2" x="0" y="2" width="15" height="11"/>
    </objectgroup>
   </tile>
  </tileset>
@@ -29,7 +29,7 @@
  </layer>
  <layer id="1" name="ground" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFtALsQMxJRfNkgVieDDdwUAlzQt0gRyUsj2QeDKCz0TG6OLJakHnGQGxCJWyKP2hHwSgY8QAADpgI2w==
+   eJxjYBgFxAB2IOakoh5jIDYl0TxZIJYnww0cRGAYwKeGE+oGOSIwDOBTI49kHrJ6bHoZCIjDzAOFqwkRGAbwqSE1fkbBKBhpAAD3Yghj
   </data>
  </layer>
  <layer id="2" name="decoration" width="20" height="20">
@@ -38,7 +38,7 @@
   </data>
  </layer>
  <objectgroup id="3" name="objects">
-  <object id="2" gid="243" x="0" y="96" width="32" height="32"/>
+  <object id="2" gid="243" x="0" y="98" width="32" height="32"/>
  </objectgroup>
  <layer id="4" name="foreground" width="20" height="20">
   <data encoding="base64" compression="zlib">
