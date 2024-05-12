@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.math.Interpolation
+import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection

@@ -1,13 +1,11 @@
 package com.fatih.pixeladventure.ecs.system
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.GdxAnimation
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
-import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.Tiled
 import com.fatih.pixeladventure.util.Assets
@@ -37,7 +35,7 @@ class AnimationSystem(
                 flip(true,false)
             } }
         )
-        animationComp.timer += deltaTime *  max(1f,abs(entity[Physic].body.linearVelocity.x / 4f))
+        animationComp.timer += deltaTime * max(1f,abs(entity[Physic].body.linearVelocity.x / 4f))
     }
 
     fun entityAnimation(entity: Entity, animationType: AnimationType,playMode: PlayMode) {

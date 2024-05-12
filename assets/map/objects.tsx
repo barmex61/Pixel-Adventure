@@ -4,6 +4,7 @@
  <tile id="0" type="EntityDef">
   <properties>
    <property name="animFrameDuration" type="float" value="0.065"/>
+   <property name="bodyType" propertytype="BodyType" value="DynamicBody"/>
    <property name="entityTags" propertytype="EntityTag" value="PLAYER,CAMERA_FOCUS"/>
    <property name="gameObject" propertytype="GameObject" value="FROG"/>
    <property name="gravityScale" type="float" value="1"/>
@@ -17,23 +18,36 @@
   </properties>
   <image width="32" height="32" source="../graphics/frog.png"/>
   <objectgroup draworder="index" id="2">
-   <object id="3" type="FixtureDef" x="9" y="11" width="15" height="20">
+   <object id="3" type="FixtureDef" x="9" y="11" width="15" height="21">
     <properties>
+     <property name="entityModel" propertytype="EntityModel" value="PLAYER"/>
      <property name="isSensor" type="bool" value="true"/>
      <property name="userData" value="hitbox"/>
     </properties>
    </object>
    <object id="5" type="FixtureDef" x="12" y="18">
+    <properties>
+     <property name="entityModel" propertytype="EntityModel" value="PLAYER"/>
+    </properties>
     <polyline points="0,0 0,5.5 0,11"/>
    </object>
    <object id="6" type="FixtureDef" x="24" y="18">
+    <properties>
+     <property name="entityModel" propertytype="EntityModel" value="PLAYER"/>
+    </properties>
     <polyline points="-2,0 -2,11"/>
    </object>
-   <object id="13" type="FixtureDef" x="9" y="30">
-    <polygon points="3,-1 3,2 13,2 13,-1"/>
+   <object id="13" type="FixtureDef" x="9" y="28.6667">
+    <properties>
+     <property name="entityModel" propertytype="EntityModel" value="PLAYER"/>
+     <property name="friction" type="float" value="0.25"/>
+     <property name="userData" value="player_foot"/>
+    </properties>
+    <polygon points="3,-1.66667 3,3.33333 13,3.33333 13,-1.66667"/>
    </object>
    <object id="18" type="FixtureDef" x="12" y="18">
     <properties>
+     <property name="entityModel" propertytype="EntityModel" value="PLAYER"/>
      <property name="restitution" type="float" value="1"/>
     </properties>
     <polygon points="0,0 4,-5 6,-5 10,0"/>
@@ -43,6 +57,9 @@
  <tile id="1" type="EntityDef">
   <properties>
    <property name="animFrameDuration" type="float" value="0.06"/>
+   <property name="bodyType" propertytype="BodyType" value="KinematicBody"/>
+   <property name="categoryBits" propertytype="EntityModel" value="CHAINSAW"/>
+   <property name="damage" type="int" value="1"/>
    <property name="entityTags" propertytype="EntityTag" value="FOLLOW_TRACK"/>
    <property name="gameObject" propertytype="GameObject" value="CHAINSAW"/>
    <property name="gravityScale" type="float" value="0"/>
@@ -53,11 +70,13 @@
   </properties>
   <image width="38" height="38" source="../graphics/Off.png"/>
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="2" y="2" width="34" height="34">
+   <object id="1" type="FixtureDef" x="5" y="5" width="27" height="27">
     <properties>
-     <property name="density" type="float" value="30"/>
+     <property name="density" type="float" value="5"/>
+     <property name="entityModel" propertytype="EntityModel" value="CHAINSAW"/>
+     <property name="friction" type="float" value="0.5"/>
      <property name="isChain" type="bool" value="true"/>
-     <property name="isSensor" type="bool" value="true"/>
+     <property name="isSensor" type="bool" value="false"/>
      <property name="userData" value="hitbox"/>
     </properties>
     <ellipse/>

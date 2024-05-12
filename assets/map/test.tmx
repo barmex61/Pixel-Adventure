@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="31">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="36">
  <properties>
   <property name="musicAsset" value="TUTORIAL"/>
   <property name="name" value="Tutorial"/>
@@ -23,32 +23,56 @@
   </tile>
   <tile id="17">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="1" y="0" width="15" height="5"/>
+    <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+     <properties>
+      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="18">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="16" height="5"/>
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+     <properties>
+      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="19">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="15" height="5"/>
+    <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+     <properties>
+      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="39">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="1" y="0" width="15" height="5"/>
+    <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+     <properties>
+      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="40">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="16" height="5"/>
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+     <properties>
+      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="41">
    <objectgroup draworder="index" id="2">
-    <object id="1" x="0" y="0" width="15" height="5"/>
+    <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+     <properties>
+      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
  </tileset>
@@ -71,15 +95,21 @@
  <objectgroup id="3" name="objects">
   <object id="2" gid="243" x="389" y="278" width="32" height="32"/>
   <object id="6" gid="244" x="192" y="112" width="38" height="38"/>
-  <object id="13" gid="244" x="320" y="288" width="38" height="38"/>
-  <object id="19" gid="244" x="64" y="288" width="38" height="38"/>
+  <object id="13" gid="244" x="320" y="304" width="38" height="38"/>
+  <object id="33" gid="244" x="26" y="208" width="38" height="38"/>
  </objectgroup>
  <objectgroup id="7" name="chainsaw_tracks">
-  <object id="29" x="80" y="224">
-   <polyline points="0,0 0,48 256,0 256,48 128,48 256,0 0,0 96,48 0,48"/>
+  <object id="31" x="80" y="288">
+   <polyline points="0,0 256,0 0,-64 0,0 256,-64 256,0 0,-64 256,-64"/>
   </object>
-  <object id="30" x="224" y="80">
-   <polygon points="0,0 32,0 0,-32 32,-32 -112,16 -112,-16 -80,16 -80,-16 32,-16 -112,-16"/>
+  <object id="32" x="112" y="96">
+   <polygon points="0,0 144,0 144,-48 112,-48 32,-32 0,-32"/>
+  </object>
+  <object id="34" x="80" y="224">
+   <polyline points="0,0 176,-144 32,-128 256,0 0,0"/>
+  </object>
+  <object id="35" x="48" y="272">
+   <polyline points="0,0 0,-96"/>
   </object>
  </objectgroup>
  <layer id="4" name="foreground" width="30" height="20">

@@ -25,6 +25,7 @@ import com.fatih.pixeladventure.ai.AiEntity
 import com.fatih.pixeladventure.ai.IdleState
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
+import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Jump
@@ -41,13 +42,16 @@ import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
+import com.fatih.pixeladventure.util.EntityModel
 import com.fatih.pixeladventure.util.GameObject
+import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.TextureAtlasAsset
 import com.fatih.pixeladventure.util.animation
 import com.fatih.pixeladventure.util.component1
 import com.fatih.pixeladventure.util.component2
 import com.fatih.pixeladventure.util.component3
 import com.fatih.pixeladventure.util.component4
+import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.World
 import ktx.app.gdxError
 import ktx.box2d.body
@@ -60,6 +64,7 @@ import ktx.tiled.property
 import ktx.tiled.width
 import ktx.tiled.x
 import ktx.tiled.y
+import kotlin.experimental.or
 import kotlin.math.sin
 
 class TiledService (
@@ -146,16 +151,17 @@ class TiledService (
 
     private fun spawnGameObjectEntity(mapObject: MapObject){
         if (mapObject !is TiledMapTileMapObject){
-            gdxError("Unsupporteaad mapObject $mapObject")
+            gdxError("Unsupported mapObject $mapObject")
         }
         val tile = mapObject.tile
+        val bodyType = tile.property<String>("bodyType","StaticBody")
         val gameObjectStr = tile.property<String>("gameObject")
         val gameObject = GameObject.valueOf(gameObjectStr)
         val fixtureDefUserData = OBJECT_FIXTURES[gameObject]?: gdxError("No fixture definitions for ${gameObject.atlasKey}")
         val x = mapObject.x * UNIT_SCALE
         val y = mapObject.y * UNIT_SCALE
 
-        val body = createBody(BodyType.DynamicBody, vec2(x,y),true)
+        val body = createBody(BodyType.valueOf(bodyType), vec2(x,y),true)
         body.createFixtures(fixtureDefUserData)
 
         world.entity {
@@ -189,6 +195,11 @@ class TiledService (
             if (speed > 0f ){
                 val timeToMax = tile.property<Float>("timeToMax",0.1f)
                 it += Move(timeToMax = timeToMax, max = speed)
+            }
+
+            val damage = tile.property<Int>("damage",0)
+            if (damage > 0){
+                it += Damage(damage)
             }
 
             val hasState = tile.property<Boolean>("hasState",false)
@@ -228,7 +239,9 @@ class TiledService (
 
     private fun Body.createFixtures(fixtureDefUserData: List<FixtureDefUserData>) {
         fixtureDefUserData.forEach { it ->
-            this.createFixture(it.fixtureDef).apply { this.userData = it.userData }
+            this.createFixture(it.fixtureDef).apply {
+                this.userData = it.userData
+            }
             //it.fixtureDef.shape.dispose()
         }
     }
@@ -245,14 +258,18 @@ class TiledService (
                 is PolylineMapObject -> polylineFixtureDef(mapObject)
                 else -> gdxError("Unsupported mapobject $mapObject")
             }
+            val userData = mapObject.property("userData","")
             fixtureDef.apply {
                 friction = mapObject.property("friction",0f)
                 restitution = mapObject.property("restitution",0f)
                 isSensor = mapObject.property("isSensor",false)
                 density = mapObject.property("density",0f)
-
+                val entityModel = EntityModel.valueOf(mapObject.property<String>("entityModel","GROUND"))
+                filter.categoryBits = entityModel.categoryBit
+                filter.maskBits = entityModel.maskBits
+                if (userData == "player_foot") filter.maskBits = filter.maskBits or PLATFORM_BIT
             }
-            return FixtureDefUserData(fixtureDef,mapObject.property("userData",""))
+            return FixtureDefUserData(fixtureDef,userData)
         }
 
 

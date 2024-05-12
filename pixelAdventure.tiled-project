@@ -23,6 +23,18 @@
             "valuesAsFlags": true
         },
         {
+            "id": 9,
+            "name": "BodyType",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "DynamicBody",
+                "StaticBody",
+                "KinematicBody"
+            ],
+            "valuesAsFlags": true
+        },
+        {
             "color": "#ffa0a0a4",
             "drawFill": true,
             "id": 5,
@@ -30,6 +42,17 @@
                 {
                     "name": "animFrameDuration",
                     "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "bodyType",
+                    "propertyType": "BodyType",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "damage",
+                    "type": "int",
                     "value": 0
                 },
                 {
@@ -89,6 +112,19 @@
             ]
         },
         {
+            "id": 8,
+            "name": "EntityModel",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "CHAINSAW",
+                "PLAYER",
+                "GROUND",
+                "PLATFORM"
+            ],
+            "valuesAsFlags": true
+        },
+        {
             "id": 6,
             "name": "EntityTag",
             "storageType": "string",
@@ -111,14 +147,15 @@
                     "value": 0
                 },
                 {
+                    "name": "entityModel",
+                    "propertyType": "EntityModel",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "friction",
                     "type": "float",
                     "value": 0
-                },
-                {
-                    "name": "isChain",
-                    "type": "bool",
-                    "value": false
                 },
                 {
                     "name": "isSensor",

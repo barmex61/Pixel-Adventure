@@ -30,17 +30,18 @@
         },
         "assets/map/test.tmx#terrain-extruded": {
             "dynamicWrapping": false,
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.imagePath": "C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/assets/graphics",
     "openFiles": [
     ],
     "project": "pixelAdventure.tiled-project",
-    "property.type": "float",
+    "property.type": "int",
     "recentFiles": [
-        "assets/map/test.tmx",
         "assets/map/objects.tsx",
+        "assets/map/test.tmx",
         "assets/map/object.tmx"
     ]
 }

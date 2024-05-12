@@ -11,16 +11,19 @@ import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
+import com.fatih.pixeladventure.ecs.system.DamageSystem
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
+import com.fatih.pixeladventure.ecs.system.InvulnarableSystem
 import com.fatih.pixeladventure.ecs.system.JumpSystem
 import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
@@ -70,6 +73,8 @@ class GameScreen(
             add(TrackSystem())
             add(JumpSystem())
             add(PhysicSystem())
+            add(DamageSystem())
+            add(InvulnarableSystem())
             add(StateSystem())
             add(AnimationSystem())
             add(CameraSystem())
@@ -114,32 +119,6 @@ class GameScreen(
 
     override fun render(delta: Float) {
         world.update(delta)
-        if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
-            world.family { all(EntityTag.PLAYER) }.forEach {
-                it[Life].current = 1
-                GameEventDispatcher.fireEvent(EntityLifeChangeEvent(it))
-            }
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)){
-            world.family { all(EntityTag.PLAYER) }.forEach {
-                it[Life].current = 2
-                GameEventDispatcher.fireEvent(EntityLifeChangeEvent(it))
-            }
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
-            world.family { all(EntityTag.PLAYER) }.forEach {
-                it[Life].current = 3
-                GameEventDispatcher.fireEvent(EntityLifeChangeEvent(it))
-            }
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)){
-            world.family { all(EntityTag.PLAYER) }.forEach {
-                it[Life].current = 4
-                GameEventDispatcher.fireEvent(EntityLifeChangeEvent(it))
-            }
-        }else if (Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)){
-            world.family { all(EntityTag.PLAYER) }.forEach {
-                it[Life].current = 0
-                GameEventDispatcher.fireEvent(EntityLifeChangeEvent(it))
-            }
-        }
     }
 
     override fun resize(width: Int, height: Int) {
