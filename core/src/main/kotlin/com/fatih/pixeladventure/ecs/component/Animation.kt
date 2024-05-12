@@ -8,7 +8,7 @@ import com.github.quillraven.fleks.ComponentType
 typealias GdxAnimation = com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>
 
 enum class AnimationType{
-    IDLE,FALL,RUN,JUMP,DOUBLE_JUMP,HIT;
+    IDLE,FALL,RUN,JUMP,DOUBLE_JUMP,HIT,OFF,ON;
     val atlasKey : String = this.name.lowercase()
 }
 

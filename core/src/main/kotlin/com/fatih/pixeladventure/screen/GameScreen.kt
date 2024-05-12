@@ -27,6 +27,7 @@ import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
+import com.fatih.pixeladventure.ecs.system.TrackSystem
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.inputMultiplexer
@@ -66,6 +67,7 @@ class GameScreen(
         }
         systems {
             add(MoveSystem())
+            add(TrackSystem())
             add(JumpSystem())
             add(PhysicSystem())
             add(StateSystem())

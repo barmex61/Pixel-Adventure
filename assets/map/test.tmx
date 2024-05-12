@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="7" nextobjectid="3">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="31">
  <properties>
   <property name="musicAsset" value="TUTORIAL"/>
   <property name="name" value="Tutorial"/>
@@ -21,29 +21,70 @@
     <object id="2" x="0" y="2" width="15" height="11"/>
    </objectgroup>
   </tile>
+  <tile id="17">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="1" y="0" width="15" height="5"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0" width="16" height="5"/>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0" width="15" height="5"/>
+   </objectgroup>
+  </tile>
+  <tile id="39">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="1" y="0" width="15" height="5"/>
+   </objectgroup>
+  </tile>
+  <tile id="40">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0" width="16" height="5"/>
+   </objectgroup>
+  </tile>
+  <tile id="41">
+   <objectgroup draworder="index" id="2">
+    <object id="1" x="0" y="0" width="15" height="5"/>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="243" source="objects.tsx"/>
- <layer id="6" name="background" width="20" height="20">
+ <layer id="6" name="background" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJyTYGBgkBjFo3gUj+JRPIpJxACIGyWB
+   eJyTYGBgkBjFo3gUj+JRPIpH8SgexVTDADVYOEE=
   </data>
  </layer>
- <layer id="1" name="ground" width="20" height="20">
+ <layer id="1" name="ground" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFxAB2IOakoh5jIDYl0TxZIJYnww0cRGAYwKeGE+oGOSIwDOBTI49kHrJ6bHoZCIjDzAOFqwkRGAbwqSE1fkbBKBhpAAD3Yghj
+   eJxjYBgFgxmwAzHnAJhtDMSmNLJXFojlaWQ2yE8cRGAYIEYtIcwJ9ZMcERgGiFFLCMsj2YtsLjY7GAiI43MfuhjIXlD6MCECwwAxaglhWqXHUTC4ASxPk1IOkqMHHcDyFillFTl60AEsb5GS3snRMxCA2PKZmhiUBogtr6iJQXEBAEVlFb8=
   </data>
  </layer>
- <layer id="2" name="decoration" width="20" height="20">
+ <layer id="2" name="decoration" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2DggQIQK2Jh41NHSO0oGAWjgLYAAK/RAQU=
+   eJxjYBgFo2AUDHWgAMSKWNj41BHDJ2TeKBjaQAiIhYFYZKAdMgoIAg0g1gRirYF2yCggGgAA1ksCOw==
   </data>
  </layer>
  <objectgroup id="3" name="objects">
-  <object id="2" gid="243" x="0" y="98" width="32" height="32"/>
+  <object id="2" gid="243" x="389" y="278" width="32" height="32"/>
+  <object id="6" gid="244" x="192" y="112" width="38" height="38"/>
+  <object id="13" gid="244" x="320" y="288" width="38" height="38"/>
+  <object id="19" gid="244" x="64" y="288" width="38" height="38"/>
  </objectgroup>
- <layer id="4" name="foreground" width="20" height="20">
+ <objectgroup id="7" name="chainsaw_tracks">
+  <object id="29" x="80" y="224">
+   <polyline points="0,0 0,48 256,0 256,48 128,48 256,0 0,0 96,48 0,48"/>
+  </object>
+  <object id="30" x="224" y="80">
+   <polygon points="0,0 32,0 0,-32 32,-32 -112,16 -112,-16 -80,16 -80,-16 32,-16 -112,-16"/>
+  </object>
+ </objectgroup>
+ <layer id="4" name="foreground" width="30" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUjIJRMApIBwAGQAAB
+   eJztwTEBAAAAwqD1T20JT6AAAHgaCWAAAQ==
   </data>
  </layer>
 </map>

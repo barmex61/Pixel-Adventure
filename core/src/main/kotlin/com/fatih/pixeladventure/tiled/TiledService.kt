@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.tiled
 
 import com.badlogic.gdx.graphics.g2d.Sprite
+import com.badlogic.gdx.maps.MapLayer
 import com.badlogic.gdx.maps.MapObject
 import com.badlogic.gdx.maps.objects.EllipseMapObject
 import com.badlogic.gdx.maps.objects.PolygonMapObject
@@ -10,7 +11,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject
+import com.badlogic.gdx.math.Intersector
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType
@@ -34,6 +37,7 @@ import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Tiled
+import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
@@ -47,9 +51,11 @@ import com.fatih.pixeladventure.util.component4
 import com.github.quillraven.fleks.World
 import ktx.app.gdxError
 import ktx.box2d.body
+import ktx.collections.GdxFloatArray
 import ktx.math.vec2
 import ktx.tiled.height
 import ktx.tiled.id
+import ktx.tiled.layer
 import ktx.tiled.property
 import ktx.tiled.width
 import ktx.tiled.x
@@ -90,16 +96,47 @@ class TiledService (
             }
         }
         //spawn dynamic object bodies
-        tiledMap.layers
-            .filter { it !is TiledMapTileLayer }
-            .forEach { mapLayer ->
-            mapLayer.objects
-                .forEach {
-                    spawnGameObjectEntity(it)
-                }
+        tiledMap.layer("objects").objects.forEach { spawnGameObjectEntity(it) }
+
+        world.family { all(EntityTag.FOLLOW_TRACK) }.forEach {
+
+            val (mapObjectId,_,mapObjectBoundary) = it[Tiled]
+            val rectVertices = GdxFloatArray(
+                floatArrayOf(
+                    mapObjectBoundary.x , mapObjectBoundary.y,
+                    mapObjectBoundary.x + mapObjectBoundary.width,mapObjectBoundary.y,
+                    mapObjectBoundary.x + mapObjectBoundary.width, mapObjectBoundary.y + mapObjectBoundary.height,
+                    mapObjectBoundary.x , mapObjectBoundary.y + mapObjectBoundary.height
+                )
+            )
+            val trackVectorList = tiledMap.layer("chainsaw_tracks").trackVerticesByBoundary(mapObjectId,rectVertices)
+            it.configure { it += Track(trackVectorList) }
         }
     }
 
+    private fun MapLayer.trackVerticesByBoundary(mapObjectId : Int, rectVertices : GdxFloatArray) : List<Vector2> {
+        objects.forEach { layerObject->
+            if (layerObject !is PolylineMapObject && layerObject !is PolygonMapObject){
+                gdxError("Only Polyline map objects are supported for tracks $layerObject")
+            }
+            val lineVertices = when(layerObject){
+                is PolylineMapObject -> GdxFloatArray(layerObject.polyline.transformedVertices)
+                is PolygonMapObject ->GdxFloatArray(layerObject.polygon.transformedVertices)
+                else -> gdxError("Only Polyline map objects are supported for tracks $layerObject")
+
+            }
+            if (Intersector.intersectPolygons(lineVertices,rectVertices)){
+                val trackPoints = mutableListOf<Vector2>()
+                for (i in 0..<lineVertices.size step 2){
+                    val vertexX = lineVertices[i] * UNIT_SCALE
+                    val vertexY = lineVertices[i+1] * UNIT_SCALE
+                    trackPoints += Vector2(vertexX,vertexY)
+                }
+                return trackPoints
+            }
+        }
+        gdxError("There is no related track for $mapObjectId")
+    }
 
     private fun spawnGroundObject(x:Int, y:Int, collObj : MapObject){
         val body = createBody(BodyType.StaticBody, vec2(x.toFloat(),y.toFloat()),true)
@@ -109,10 +146,10 @@ class TiledService (
 
     private fun spawnGameObjectEntity(mapObject: MapObject){
         if (mapObject !is TiledMapTileMapObject){
-            gdxError("Unsupported mapObject $mapObject")
+            gdxError("Unsupporteaad mapObject $mapObject")
         }
         val tile = mapObject.tile
-        val gameObjectStr = tile.property<String>("GameObject")
+        val gameObjectStr = tile.property<String>("gameObject")
         val gameObject = GameObject.valueOf(gameObjectStr)
         val fixtureDefUserData = OBJECT_FIXTURES[gameObject]?: gdxError("No fixture definitions for ${gameObject.atlasKey}")
         val x = mapObject.x * UNIT_SCALE
@@ -123,9 +160,13 @@ class TiledService (
 
         world.entity {
             body.userData = it
-            it += Tiled(mapObject.id,gameObject)
-            it += Physic(body)
-            it += Graphic(sprite(gameObject,AnimationType.IDLE))
+            it += Tiled(mapObject.id,gameObject, Rectangle(mapObject.x,mapObject.y,mapObject.width,mapObject.height))
+
+            val gravityScale = tile.property<Float>("gravityScale",1f)
+            it += Physic(body.apply { this.gravityScale = gravityScale })
+
+            val startAnimType = AnimationType.valueOf(tile.property("startAnimType","IDLE"))
+            it += Graphic(sprite(gameObject,startAnimType,body.position))
 
             val entityTags = tile.property<String>("entityTags","")
             if (entityTags.isNotBlank()){
@@ -136,7 +177,7 @@ class TiledService (
             val hasAnimation = tile.property<Boolean>("hasAnimation",false)
             if (hasAnimation){
                 it += Animation(frameDuration = tile.property<Float>("animFrameDuration"))
-                world.animation(it,AnimationType.IDLE)
+                world.animation(it,startAnimType)
             }
 
             val jumpHeight = tile.property<Float>("jumpHeight",0f)
@@ -146,7 +187,7 @@ class TiledService (
 
             val speed = tile.property<Float>("speed",0f)
             if (speed > 0f ){
-                val timeToMax = tile.property<Float>("timeToMax",0f)
+                val timeToMax = tile.property<Float>("timeToMax",0.1f)
                 it += Move(timeToMax = timeToMax, max = speed)
             }
 
@@ -159,11 +200,12 @@ class TiledService (
             if (life > 0){
                 it += Life(life)
             }
+
         }
 
     }
 
-    private fun sprite(gameObject: GameObject, animationType: AnimationType): Sprite {
+    private fun sprite(gameObject: GameObject, animationType: AnimationType,startPosition : Vector2): Sprite {
         val atlas = assets[TextureAtlasAsset.GAMEOBJECT]
         val regions = atlas.findRegions("${gameObject.atlasKey}/${animationType.atlasKey}") ?:
             gdxError("There are no regions for $gameObject and $animationType")
@@ -171,6 +213,7 @@ class TiledService (
         val w = firstFrame.regionWidth * UNIT_SCALE
         val h = firstFrame.regionHeight * UNIT_SCALE
         return Sprite(firstFrame).apply {
+            setPosition(startPosition.x,startPosition.y)
             setSize(w,h)
         }
     }
@@ -186,7 +229,7 @@ class TiledService (
     private fun Body.createFixtures(fixtureDefUserData: List<FixtureDefUserData>) {
         fixtureDefUserData.forEach { it ->
             this.createFixture(it.fixtureDef).apply { this.userData = it.userData }
-            it.fixtureDef.shape.dispose()
+            //it.fixtureDef.shape.dispose()
         }
     }
 

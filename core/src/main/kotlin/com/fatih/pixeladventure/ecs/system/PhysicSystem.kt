@@ -5,6 +5,7 @@ import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
@@ -37,7 +38,12 @@ class PhysicSystem(
         val (body,previousPosition) = entity[Physic]
         previousPosition.set(body.position)
         entity.getOrNull(Move)?.let {moveComp ->
-            body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
+            val trackComp = entity.getOrNull(Track)
+            if (trackComp == null){
+                body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
+            }else{
+                body.setLinearVelocity(trackComp.moveX,trackComp.moveY)
+            }
         }
     }
 

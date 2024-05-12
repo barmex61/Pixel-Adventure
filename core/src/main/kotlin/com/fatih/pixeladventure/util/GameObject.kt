@@ -1,6 +1,6 @@
 package com.fatih.pixeladventure.util
 
 enum class GameObject {
-    FROG;
+    FROG,CHAINSAW;
     val atlasKey = this.name.lowercase()
 }

@@ -4,11 +4,12 @@ import com.badlogic.gdx.math.Interpolation
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
+import com.fatih.pixeladventure.ecs.component.Track
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World.Companion.family
 
-class MoveSystem : IteratingSystem(family = family{all(Move)}) {
+class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
 
     override fun onTickEntity(entity: Entity) {
         val moveComp = entity[Move]
@@ -18,7 +19,7 @@ class MoveSystem : IteratingSystem(family = family{all(Move)}) {
                 timer = 0f
             }
             timer = (timer + (deltaTime* (1f/timeToMax))).coerceAtMost(1f)
-            current = Interpolation.pow5Out.apply(0f,max,timer)
+            current = pow50outInterpolation.apply(0f,max,timer)
             current *= direction.value
             isFlipX = direction == MoveDirection.LEFT
         }else{
@@ -28,5 +29,9 @@ class MoveSystem : IteratingSystem(family = family{all(Move)}) {
         moveComp.current = current
         moveComp.timer = timer
         moveComp.flipX = isFlipX
+    }
+
+    companion object{
+        val pow50outInterpolation: Interpolation.PowOut = Interpolation.pow5Out
     }
 }

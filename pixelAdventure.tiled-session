@@ -21,11 +21,11 @@
             "scaleInEditor": 1
         },
         "assets/map/test.tmx": {
-            "scale": 2.529375,
+            "scale": 2.52,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 159.92092908327155,
-                "y": 159.92092908327155
+                "x": 160.1190476190476,
+                "y": 62.5
             }
         },
         "assets/map/test.tmx#terrain-extruded": {
@@ -33,11 +33,13 @@
             "scaleInDock": 1
         }
     },
+    "last.imagePath": "C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/assets/graphics",
     "openFiles": [
     ],
     "project": "pixelAdventure.tiled-project",
     "property.type": "float",
     "recentFiles": [
+        "assets/map/test.tmx",
         "assets/map/objects.tsx",
         "assets/map/object.tmx"
     ]

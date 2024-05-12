@@ -11,6 +11,18 @@
     ],
     "propertyTypes": [
         {
+            "id": 7,
+            "name": "AnimType",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "OFF",
+                "IDLE",
+                "ON"
+            ],
+            "valuesAsFlags": true
+        },
+        {
             "color": "#ffa0a0a4",
             "drawFill": true,
             "id": 5,
@@ -25,6 +37,11 @@
                     "propertyType": "EntityTag",
                     "type": "string",
                     "value": ""
+                },
+                {
+                    "name": "gravityScale",
+                    "type": "float",
+                    "value": 0
                 },
                 {
                     "name": "hasAnimation",
@@ -52,6 +69,12 @@
                     "value": 0
                 },
                 {
+                    "name": "startAnimType",
+                    "propertyType": "AnimType",
+                    "type": "string",
+                    "value": ""
+                },
+                {
                     "name": "timeToMax",
                     "type": "float",
                     "value": 0
@@ -72,7 +95,8 @@
             "type": "enum",
             "values": [
                 "PLAYER",
-                "CAMERA_FOCUS"
+                "CAMERA_FOCUS",
+                "FOLLOW_TRACK"
             ],
             "valuesAsFlags": true
         },
@@ -90,6 +114,11 @@
                     "name": "friction",
                     "type": "float",
                     "value": 0
+                },
+                {
+                    "name": "isChain",
+                    "type": "bool",
+                    "value": false
                 },
                 {
                     "name": "isSensor",
@@ -120,7 +149,8 @@
             "storageType": "string",
             "type": "enum",
             "values": [
-                "FROG"
+                "FROG",
+                "CHAINSAW"
             ],
             "valuesAsFlags": false
         }
