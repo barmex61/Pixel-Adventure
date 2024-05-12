@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.MapLayer
 import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
+import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.fatih.pixeladventure.ecs.component.Graphic
@@ -24,6 +25,8 @@ import ktx.graphics.use
 class RenderSystem(
     private val spriteBatch: SpriteBatch = inject(),
     private val gameViewport: Viewport = inject("gameViewport"),
+    private val uiViewport: Viewport = inject("uiViewport"),
+    private val uiStage : Stage = inject(),
     private val gameCamera : OrthographicCamera = inject()
 ) : IteratingSystem(
     family = family { all(Graphic) },
@@ -43,6 +46,9 @@ class RenderSystem(
             super.onTick()
             foregroundLayers.forEach {mapRenderer.renderTileLayer(it)}
         }
+        uiViewport.apply()
+        uiStage.act(deltaTime)
+        uiStage.draw()
     }
 
     override fun onTickEntity(entity: Entity) {
@@ -56,6 +62,7 @@ class RenderSystem(
                 mapRenderer.map = gameEvent.tiledMap
                 parseMapLayers(gameEvent.tiledMap)
             }
+            else -> Unit
         }
     }
 

@@ -43,6 +43,7 @@ class CameraSystem (
                     gameEvent.tiledMap.width.toFloat() , gameEvent.tiledMap.height.toFloat()
                 )
             }
+            else -> Unit
         }
     }
 }

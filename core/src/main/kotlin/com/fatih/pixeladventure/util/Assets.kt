@@ -6,7 +6,9 @@ import com.badlogic.gdx.audio.Sound
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TmxMapLoader
+import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.utils.Disposable
+import com.ray3k.stripe.FreeTypeSkinLoader
 import ktx.assets.disposeSafely
 import ktx.assets.load
 
@@ -27,19 +29,29 @@ enum class SoundAsset(val path : String){
     JUMP("audio/jump.mp3")
 }
 
+enum class SkinAsset(val path : String){
+    DEFAULT("ui/skin.json")
+}
+
 class Assets : Disposable{
 
     private val assetManager = AssetManager().apply {
-        setLoader(TiledMap::class.java,TmxMapLoader())
+        setLoader(TiledMap::class.java,TmxMapLoader(fileHandleResolver))
+        setLoader(Skin::class.java,FreeTypeSkinLoader(fileHandleResolver))
     }
 
     fun loadAll(){
         MapAsset.entries.forEach { assetManager.load<TiledMap>(it.path) }
         TextureAtlasAsset.entries.forEach { assetManager.load<TextureAtlas>(it.path) }
         SoundAsset.entries.forEach { assetManager.load<Sound>(it.path) }
+        SkinAsset.entries.forEach { assetManager.load<Skin>(it.path) }
         assetManager.finishLoading()
     }
 
+    operator fun plusAssign(musicAsset: MusicAsset) {
+        assetManager.load<Music>(musicAsset.path)
+        assetManager.finishLoading()
+    }
 
     operator fun get(textureAtlasAsset: TextureAtlasAsset) : TextureAtlas {
         return assetManager.get(textureAtlasAsset.path)
@@ -49,17 +61,16 @@ class Assets : Disposable{
         return assetManager.get(mapAsset.path)
     }
 
+    operator fun get(skinAsset: SkinAsset) : Skin {
+        return assetManager.get(skinAsset.path)
+    }
+
     operator fun get(soundAsset: SoundAsset) : Sound {
         return assetManager.get(soundAsset.path)
     }
 
     operator fun get(musicAsset: MusicAsset) : Music {
         return assetManager.get(musicAsset.path)
-    }
-
-    operator fun plusAssign(musicAsset: MusicAsset) {
-        assetManager.load<Music>(musicAsset.path)
-        assetManager.finishLoading()
     }
 
     operator fun minusAssign(mapAsset: MapAsset){

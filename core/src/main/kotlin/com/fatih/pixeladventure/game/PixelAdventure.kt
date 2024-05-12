@@ -9,8 +9,10 @@ import com.badlogic.gdx.utils.ObjectMap
 import com.badlogic.gdx.utils.PropertiesUtils
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.screen.LoadingScreen
+import com.fatih.pixeladventure.tiled.TiledService
+import com.fatih.pixeladventure.tiled.TiledService.Companion
+import com.fatih.pixeladventure.tiled.TiledService.Companion.FixtureDefUserData
 import com.fatih.pixeladventure.util.Assets
-import com.fatih.pixeladventure.util.FixtureDefUserData
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.GameProperties
 import com.fatih.pixeladventure.util.toGameProperties

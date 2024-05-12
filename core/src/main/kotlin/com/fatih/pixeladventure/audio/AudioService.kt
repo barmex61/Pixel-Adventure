@@ -40,6 +40,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
         currentMusicResource!!.music.apply {
             volume = musicVolume
             play()
+            isLooping = true
         }
 
     }
@@ -59,6 +60,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
                     println()
                 }
             }
+            else -> Unit
         }
     }
 }

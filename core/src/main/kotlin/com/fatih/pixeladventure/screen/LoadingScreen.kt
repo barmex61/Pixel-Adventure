@@ -6,13 +6,15 @@ import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
+import com.fatih.pixeladventure.tiled.TiledService.Companion.fixtureDefinitionOf
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.GameProperties
 import com.fatih.pixeladventure.util.MapAsset
-import com.fatih.pixeladventure.util.fixtureDefinitionOf
+import com.fatih.pixeladventure.util.SkinAsset
 import ktx.app.KtxScreen
 import ktx.app.gdxError
+import ktx.scene2d.Scene2DSkin
 import ktx.tiled.propertyOrNull
 
 class LoadingScreen(
@@ -29,6 +31,7 @@ class LoadingScreen(
         val tiledMap = assets[MapAsset.OBJECT]
         parseObjectCollisionShapes(tiledMap)
         assets -= MapAsset.OBJECT
+        Scene2DSkin.defaultSkin = assets[SkinAsset.DEFAULT]
         pixelAdventure.removeScreen<LoadingScreen>()
         dispose()
         pixelAdventure.addScreen(GameScreen(spriteBatch,physicWorld,assets,audioService,gameProperties))

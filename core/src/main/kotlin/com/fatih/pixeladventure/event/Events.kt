@@ -1,10 +1,12 @@
 package com.fatih.pixeladventure.event
 
 import com.badlogic.gdx.maps.tiled.TiledMap
+import com.github.quillraven.fleks.Entity
 
 sealed interface GameEvent
 
 data class MapChangeEvent(val tiledMap: TiledMap) : GameEvent
+data class EntityLifeChangeEvent(val entity: Entity) : GameEvent
 
 interface GameEventListener{
 

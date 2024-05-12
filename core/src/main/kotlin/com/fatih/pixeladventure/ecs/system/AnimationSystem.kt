@@ -48,7 +48,7 @@ class AnimationSystem(
             if (regions.isEmpty){
                 gdxError("There are no regions for the animation $animationAtlasKey")
             }
-            GdxAnimation(Animation.DEFAULT_FRAME_DURATION,regions,playMode)
+            GdxAnimation(entity[Animation].frameDuration,regions,playMode)
         }
         if (gdxAnimationCache.size > 100){
             log.info { "Animation cache is larger than 100" }

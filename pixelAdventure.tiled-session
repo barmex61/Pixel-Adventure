@@ -12,19 +12,20 @@
             "scale": 2.529375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 160.31628366691376,
-                "y": 160.31628366691376
+                "x": 159.92092908327155,
+                "y": 159.92092908327155
             }
         },
         "assets/map/objects.tsx": {
-            "dynamicWrapping": true
+            "dynamicWrapping": true,
+            "scaleInEditor": 1
         },
         "assets/map/test.tmx": {
             "scale": 2.529375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 160.31628366691376,
-                "y": 160.31628366691376
+                "x": 159.92092908327155,
+                "y": 159.92092908327155
             }
         },
         "assets/map/test.tmx#terrain-extruded": {
@@ -35,8 +36,9 @@
     "openFiles": [
     ],
     "project": "pixelAdventure.tiled-project",
-    "property.type": "GameObject",
+    "property.type": "float",
     "recentFiles": [
+        "assets/map/objects.tsx",
         "assets/map/object.tmx"
     ]
 }

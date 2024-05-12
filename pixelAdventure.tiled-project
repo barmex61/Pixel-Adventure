@@ -13,6 +13,72 @@
         {
             "color": "#ffa0a0a4",
             "drawFill": true,
+            "id": 5,
+            "members": [
+                {
+                    "name": "animFrameDuration",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "entityTags",
+                    "propertyType": "EntityTag",
+                    "type": "string",
+                    "value": ""
+                },
+                {
+                    "name": "hasAnimation",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "hasState",
+                    "type": "bool",
+                    "value": false
+                },
+                {
+                    "name": "jumpHeight",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "life",
+                    "type": "int",
+                    "value": 0
+                },
+                {
+                    "name": "speed",
+                    "type": "float",
+                    "value": 0
+                },
+                {
+                    "name": "timeToMax",
+                    "type": "float",
+                    "value": 0
+                }
+            ],
+            "name": "EntityDef",
+            "type": "class",
+            "useAs": [
+                "property",
+                "tile",
+                "project"
+            ]
+        },
+        {
+            "id": 6,
+            "name": "EntityTag",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "PLAYER",
+                "CAMERA_FOCUS"
+            ],
+            "valuesAsFlags": true
+        },
+        {
+            "color": "#ffa0a0a4",
+            "drawFill": true,
             "id": 3,
             "members": [
                 {
@@ -45,14 +111,7 @@
             "type": "class",
             "useAs": [
                 "property",
-                "map",
-                "layer",
-                "object",
-                "tile",
-                "tileset",
-                "wangcolor",
-                "wangset",
-                "project"
+                "object"
             ]
         },
         {

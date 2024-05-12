@@ -13,7 +13,7 @@ fun main() {
       return
     Lwjgl3Application(PixelAdventure(), Lwjgl3ApplicationConfiguration().apply {
         setTitle("Pixel Adventure")
-        setWindowedMode(640, 480)
+        setWindowedMode(1280, 720)
         setWindowIcon(*(arrayOf(128, 64, 32, 16).map { "libgdx$it.png" }.toTypedArray()))
     })
 }
