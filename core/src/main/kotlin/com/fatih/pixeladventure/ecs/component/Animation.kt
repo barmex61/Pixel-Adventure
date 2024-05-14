@@ -1,6 +1,5 @@
 package com.fatih.pixeladventure.ecs.component
 
-import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
@@ -8,7 +7,7 @@ import com.github.quillraven.fleks.ComponentType
 typealias GdxAnimation = com.badlogic.gdx.graphics.g2d.Animation<TextureRegion>
 
 enum class AnimationType{
-    IDLE,FALL,RUN,JUMP,DOUBLE_JUMP,HIT,OFF,ON;
+    IDLE,FALL,RUN,JUMP,DOUBLE_JUMP,HIT,OFF,ON,AGGRO,NONE;
     val atlasKey : String = this.name.lowercase()
 }
 

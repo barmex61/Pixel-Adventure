@@ -5,7 +5,7 @@ import com.fatih.pixeladventure.util.GameObject
 import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
 
-data class Tiled(val mapObjectId : Int , val gameObject: GameObject,val mapObjectBoundary : Rectangle) : Component <Tiled> {
+data class Tiled(val mapObjectId : Int , val gameObject: GameObject,val mapObjectBoundary : Rectangle = Rectangle()) : Component <Tiled> {
 
     override fun type() = Tiled
 

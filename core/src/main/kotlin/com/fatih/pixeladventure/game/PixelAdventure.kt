@@ -54,7 +54,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
 
     override fun render() {
         clearScreen(0f,0f,0f,0f)
-        currentScreen.render(Gdx.graphics.deltaTime.coerceAtMost(0.25f))
+        currentScreen.render(Gdx.graphics.deltaTime.coerceAtMost(1/30f))
         audioService.update()
     }
 

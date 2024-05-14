@@ -9,12 +9,15 @@ import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.Viewport
+import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.github.quillraven.fleks.Entity
+import com.github.quillraven.fleks.Family
+import com.github.quillraven.fleks.IntervalSystem
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
@@ -28,32 +31,36 @@ class RenderSystem(
     private val uiViewport: Viewport = inject("uiViewport"),
     private val uiStage : Stage = inject(),
     private val gameCamera : OrthographicCamera = inject()
-) : IteratingSystem(
-    family = family { all(Graphic) },
-    comparator = compareEntityBy(Graphic)
-), GameEventListener {
+) : IntervalSystem(), GameEventListener {
 
     private val mapRenderer = OrthogonalTiledMapRenderer(null, PixelAdventure.UNIT_SCALE,spriteBatch).apply { setView(gameCamera) }
     private val backgroundLayers = mutableListOf<TiledMapTileLayer>()
-    private val foregroundLayers = mutableListOf<TiledMapTileLayer>()
+    private val groundLayers = mutableListOf<TiledMapTileLayer>()
+    private val entityComparator = compareEntityBy(Graphic)
+    private val bgdEntities = family { all(Graphic, EntityTag.BACKGROUND) }
+    private val fgdEntities = family { all(Graphic, EntityTag.FOREGROUND) }
+    private val entities = family { all(Graphic).none(EntityTag.BACKGROUND,EntityTag.FOREGROUND) }
 
     override fun onTick() {
         gameViewport.apply()
         mapRenderer.setView(gameCamera)
         spriteBatch.use {
             backgroundLayers.forEach { mapRenderer.renderTileLayer(it) }
-            //render entities
-            super.onTick()
-            foregroundLayers.forEach {mapRenderer.renderTileLayer(it)}
+            renderEntities(bgdEntities)
+            groundLayers.forEach {mapRenderer.renderTileLayer(it)}
+            renderEntities(entities)
+            renderEntities(fgdEntities)
         }
         uiViewport.apply()
         uiStage.act(deltaTime)
         uiStage.draw()
     }
 
-    override fun onTickEntity(entity: Entity) {
-        val (sprite) = entity[Graphic]
-        sprite.draw(spriteBatch)
+    private fun renderEntities(family: Family) {
+        family.sort(entityComparator)
+        family.forEach {
+            it[Graphic].sprite.draw(spriteBatch)
+        }
     }
 
     override fun onEvent(gameEvent: GameEvent) {
@@ -68,13 +75,12 @@ class RenderSystem(
 
     private fun parseMapLayers(tiledMap: TiledMap){
         backgroundLayers.clear()
-        foregroundLayers.clear()
+        groundLayers.clear()
         var currentLayers = backgroundLayers
         tiledMap.layers.forEach {layer->
-            when(layer){
-                is TiledMapTileLayer -> currentLayers += layer
-                is MapLayer -> currentLayers = foregroundLayers
-            }
+            if (layer !is TiledMapTileLayer) return@forEach
+            if (layer.name == "ground") currentLayers = groundLayers
+            currentLayers += layer
         }
     }
 

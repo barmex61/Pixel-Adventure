@@ -16,6 +16,7 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
         val moveComp = entity[Move]
         var (isFlipX,direction,current,max,timer,timeToMax) = moveComp
         if (direction != MoveDirection.NONE){
+            moveComp.previousDirection = direction
             if ((current >0 && direction == MoveDirection.LEFT )|| (current<0 && direction == MoveDirection.RIGHT)){
                 timer = 0f
             }

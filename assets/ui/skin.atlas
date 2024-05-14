@@ -1,54 +1,67 @@
 
 skin.png
-size: 128, 128
+size: 256, 256
 format: RGBA8888
-filter: Linear, Linear
+filter: Nearest, Nearest
 repeat: none
 banner
   rotate: false
-  xy: 1, 80
+  xy: 1, 75
   size: 96, 32
+  split: 20, 20, 15, 15
+  pad: 0, 0, 0, 0
   orig: 96, 32
   offset: 0, 0
   index: -1
 button
   rotate: false
-  xy: 1, 46
+  xy: 99, 173
   size: 64, 32
+  split: 3, 3, 7, 11
+  pad: 0, 0, 0, 0
   orig: 64, 32
+  offset: 0, 0
+  index: -1
+frame
+  rotate: false
+  xy: 1, 109
+  size: 96, 96
+  split: 5, 4, 5, 5
+  pad: 0, 0, 0, 0
+  orig: 96, 96
   offset: 0, 0
   index: -1
 health_0
   rotate: false
-  xy: 1, 37
+  xy: 1, 66
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_1
   rotate: false
-  xy: 1, 28
+  xy: 99, 164
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_2
   rotate: false
-  xy: 1, 19
+  xy: 165, 198
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_3
   rotate: false
-  xy: 1, 10
+  xy: 1, 57
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_4
   rotate: false
-  xy: 1, 1
+  xy: 45, 66
   size: 42, 7
   orig: 42, 7
   offset: 0, 0

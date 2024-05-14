@@ -3,26 +3,6 @@ atlasData: {
 	atlasCurrent: true
 	drawables: [
 		{
-			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/button.png
-			bgColor: {
-				r: 1
-				g: 1
-				b: 1
-				a: 1
-			}
-			tint: null
-			tintName: null
-			name: button
-			tiled: false
-			minWidth: -1
-			minHeight: -1
-			customized: false
-			tenPatchData: null
-			tvgData: null
-			type: TEXTURE
-			hidden: false
-		}
-		{
 			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/health_0.png
 			bgColor: {
 				r: 1
@@ -123,7 +103,47 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/banner.png
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/frame.9.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: frame
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: NINE_PATCH
+			hidden: false
+		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/button.9.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: button
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: NINE_PATCH
+			hidden: false
+		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/banner.9.png
 			bgColor: {
 				r: 1
 				g: 1
@@ -139,7 +159,7 @@ atlasData: {
 			customized: false
 			tenPatchData: null
 			tvgData: null
-			type: TEXTURE
+			type: NINE_PATCH
 			hidden: false
 		}
 	]
@@ -476,7 +496,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: up
 						optional: true
-						value: banner
+						value: null
 					}
 					down: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -1093,13 +1113,13 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: up
 						optional: true
-						value: button
+						value: null
 					}
 					down: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: down
 						optional: true
-						value: button
+						value: null
 					}
 					over: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable

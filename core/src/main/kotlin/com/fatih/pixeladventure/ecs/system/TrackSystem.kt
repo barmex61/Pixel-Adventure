@@ -29,8 +29,8 @@ class TrackSystem : IteratingSystem(family = World.family { all(Track,Move,Graph
             val nextTrackPoint = trackPoints[trackComp.currentTrackIx]
             trackComp.angleRad = MathUtils.atan2( nextTrackPoint.y - currentY ,nextTrackPoint.x - currentX )
         }
-        trackComp.moveX = moveComp.current * MathUtils.cos(trackComp.angleRad) * (abs(trackPoints[trackComp.currentTrackIx].x - currentX) * 0.4f )
-        trackComp.moveY = moveComp.current * MathUtils.sin(trackComp.angleRad) * (abs(trackPoints[trackComp.currentTrackIx].y - currentY) * 0.4f )
+        trackComp.moveX = moveComp.current * MathUtils.cos(trackComp.angleRad) * (abs(trackPoints[trackComp.currentTrackIx].x - currentX) * 0.2f )
+        trackComp.moveY = moveComp.current * MathUtils.sin(trackComp.angleRad) * (abs(trackPoints[trackComp.currentTrackIx].y - currentY) * 0.2f )
     }
 
     private fun Vector2.inRange(otherX:Float, otherY:Float,tolerance : Float = 0.2f) : Boolean {

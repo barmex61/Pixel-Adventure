@@ -6,6 +6,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse
 import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.Manifold
+import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.DamageTaken
 import com.fatih.pixeladventure.ecs.component.Graphic
@@ -85,6 +86,19 @@ class PhysicSystem(
         get() = fixtureB.entity
 
     private fun Fixture.isHitBox() = this.userData == "hitbox"
+    private fun Fixture.isAggro(entity: Entity,isBeginContact : Boolean) : Boolean {
+        return when(this.userData){
+            "horizontalAggroSensor" -> {
+               entity[Aggro].horizontalCollision = isBeginContact
+               true
+            }
+            "verticalAggroSensor" ->{
+                entity[Aggro].verticalCollision = isBeginContact
+                true
+            }
+            else -> false
+        }
+    }
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
         return entityA has Damage && entityB has Life && fixtureA.isHitBox() && fixtureB.isHitBox()
@@ -108,6 +122,21 @@ class PhysicSystem(
         }
     }
 
+    private fun isAggroSensorCollision(entityA:Entity,fixtureA : Fixture,fixtureB: Fixture,isBeginContact: Boolean): Boolean{
+        return entityA has Aggro && fixtureA.isAggro(entityA,isBeginContact) && fixtureB.isHitBox()
+    }
+
+    private fun handleAggroBeginContact(aggroEntity: Entity,triggerEntity: Entity){
+        aggroEntity[Aggro].aggroEntities += triggerEntity
+    }
+
+    private fun handleAggroEndContact(aggroEntity: Entity,triggerEntity: Entity){
+        if (!aggroEntity[Aggro].horizontalCollision && ! aggroEntity[Aggro].verticalCollision){
+            aggroEntity[Aggro].aggroEntities -= triggerEntity
+            aggroEntity[Aggro].targetEntity = Entity.NONE
+        }
+    }
+
     override fun beginContact(contact: Contact) {
         val fixtureA = contact.fixtureA
         val fixtureB = contact.fixtureB
@@ -116,14 +145,13 @@ class PhysicSystem(
         if (entityA == null || entityB == null){
             return
         }
-        if (isDamageCollision(entityA,entityB,fixtureA,fixtureB)){
-            handleDamageBeginContact(entityA,entityB)
-        }else if (isDamageCollision(entityB,entityA,fixtureB,fixtureA)){
-            handleDamageBeginContact(entityB,entityA)
+        when {
+            isDamageCollision(entityA,entityB,fixtureA,fixtureB) -> handleDamageBeginContact(entityA,entityB)
+            isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageBeginContact(entityB,entityA)
+            isAggroSensorCollision(entityA,fixtureA,fixtureB,true) ->  handleAggroBeginContact(entityA,entityB)
+            isAggroSensorCollision(entityB,fixtureB,fixtureA,true) -> handleAggroBeginContact(entityB,entityA)
         }
     }
-
-
 
     override fun endContact(contact: Contact) {
         val fixtureA = contact.fixtureA
@@ -133,10 +161,11 @@ class PhysicSystem(
         if (entityA == null || entityB == null){
             return
         }
-        if (isDamageCollision(entityA,entityB,fixtureA,fixtureB)){
-            handleDamageEndContact(entityA,entityB)
-        }else if (isDamageCollision(entityB,entityA,fixtureB,fixtureA)){
-            handleDamageEndContact(entityB,entityA)
+        when {
+            isDamageCollision(entityA,entityB,fixtureA,fixtureB) ->  handleDamageEndContact(entityA,entityB)
+            isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageEndContact(entityB,entityA)
+            isAggroSensorCollision(entityA,fixtureA,fixtureB,false) ->  handleAggroEndContact(entityA,entityB)
+            isAggroSensorCollision(entityB,fixtureB,fixtureA,false) -> handleAggroEndContact(entityB,entityA)
         }
     }
 

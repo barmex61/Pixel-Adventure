@@ -18,9 +18,10 @@
             "values": [
                 "OFF",
                 "IDLE",
-                "ON"
+                "ON",
+                "NONE"
             ],
-            "valuesAsFlags": true
+            "valuesAsFlags": false
         },
         {
             "id": 9,
@@ -32,7 +33,7 @@
                 "StaticBody",
                 "KinematicBody"
             ],
-            "valuesAsFlags": true
+            "valuesAsFlags": false
         },
         {
             "color": "#ffa0a0a4",
@@ -48,7 +49,7 @@
                     "name": "bodyType",
                     "propertyType": "BodyType",
                     "type": "string",
-                    "value": ""
+                    "value": "DynamicBody"
                 },
                 {
                     "name": "damage",
@@ -57,24 +58,26 @@
                 },
                 {
                     "name": "entityTags",
-                    "propertyType": "EntityTag",
+                    "propertyType": "EntityTags",
                     "type": "string",
                     "value": ""
+                },
+                {
+                    "name": "gameObject",
+                    "propertyType": "GameObject",
+                    "type": "string",
+                    "value": "GROUND"
+                },
+                {
+                    "name": "gameObjectState",
+                    "propertyType": "GameObjectState",
+                    "type": "string",
+                    "value": "NONE"
                 },
                 {
                     "name": "gravityScale",
                     "type": "float",
                     "value": 0
-                },
-                {
-                    "name": "hasAnimation",
-                    "type": "bool",
-                    "value": false
-                },
-                {
-                    "name": "hasState",
-                    "type": "bool",
-                    "value": false
                 },
                 {
                     "name": "jumpHeight",
@@ -95,7 +98,7 @@
                     "name": "startAnimType",
                     "propertyType": "AnimType",
                     "type": "string",
-                    "value": ""
+                    "value": "NONE"
                 },
                 {
                     "name": "timeToMax",
@@ -112,27 +115,17 @@
             ]
         },
         {
-            "id": 8,
-            "name": "EntityModel",
-            "storageType": "string",
-            "type": "enum",
-            "values": [
-                "CHAINSAW",
-                "PLAYER",
-                "GROUND",
-                "PLATFORM"
-            ],
-            "valuesAsFlags": true
-        },
-        {
-            "id": 6,
-            "name": "EntityTag",
+            "id": 10,
+            "name": "EntityTags",
             "storageType": "string",
             "type": "enum",
             "values": [
                 "PLAYER",
                 "CAMERA_FOCUS",
-                "FOLLOW_TRACK"
+                "HAS_AGGRO",
+                "BACKGROUND",
+                "FOREGROUND",
+                "HAS_TRACK"
             ],
             "valuesAsFlags": true
         },
@@ -147,15 +140,15 @@
                     "value": 0
                 },
                 {
-                    "name": "entityModel",
-                    "propertyType": "EntityModel",
-                    "type": "string",
-                    "value": ""
-                },
-                {
                     "name": "friction",
                     "type": "float",
                     "value": 0
+                },
+                {
+                    "name": "gameObject",
+                    "propertyType": "GameObject",
+                    "type": "string",
+                    "value": "GROUND"
                 },
                 {
                     "name": "isSensor",
@@ -187,7 +180,26 @@
             "type": "enum",
             "values": [
                 "FROG",
-                "CHAINSAW"
+                "CHAINSAW",
+                "GROUND",
+                "PLATFORM",
+                "PLAYER",
+                "ROCK_HEAD"
+            ],
+            "valuesAsFlags": false
+        },
+        {
+            "id": 11,
+            "name": "GameObjectState",
+            "storageType": "string",
+            "type": "enum",
+            "values": [
+                "IDLE",
+                "JUMP",
+                "FALL",
+                "RUN",
+                "NONE",
+                "ROCK_HEAD_IDLE"
             ],
             "valuesAsFlags": false
         }

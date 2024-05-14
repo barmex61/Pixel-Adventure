@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="36">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="72">
  <properties>
   <property name="musicAsset" value="TUTORIAL"/>
   <property name="name" value="Tutorial"/>
@@ -25,7 +25,7 @@
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
      <properties>
-      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      </properties>
     </object>
    </objectgroup>
@@ -34,7 +34,7 @@
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
      <properties>
-      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      </properties>
     </object>
    </objectgroup>
@@ -43,7 +43,7 @@
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
      <properties>
-      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      </properties>
     </object>
    </objectgroup>
@@ -52,7 +52,7 @@
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
      <properties>
-      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      </properties>
     </object>
    </objectgroup>
@@ -61,7 +61,7 @@
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
      <properties>
-      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      </properties>
     </object>
    </objectgroup>
@@ -70,51 +70,50 @@
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
      <properties>
-      <property name="entityModel" propertytype="EntityModel" value="PLATFORM"/>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      </properties>
     </object>
    </objectgroup>
   </tile>
  </tileset>
  <tileset firstgid="243" source="objects.tsx"/>
- <layer id="6" name="background" width="30" height="20">
+ <layer id="6" name="background" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJyTYGBgkBjFo3gUj+JRPIpH8SgexVTDADVYOEE=
+   eJztw0ENAAAMA6Hzr6yy5mIvSFg1VVXVhwcTuHEf
   </data>
  </layer>
- <layer id="1" name="ground" width="30" height="20">
+ <layer id="1" name="ground" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFgxmwAzHnAJhtDMSmNLJXFojlaWQ2yE8cRGAYIEYtIcwJ9ZMcERgGiFFLCMsj2YtsLjY7GAiI43MfuhjIXlD6MCECwwAxaglhWqXHUTC4ASxPk1IOkqMHHcDyFillFTl60AEsb5GS3snRMxCA2PKZmhiUBogtr6iJQXEBAEVlFb8=
+   eJztVUEOgCAM44Y+An2E+v+vyQ5LiILtDHEeaNKEwBbrGF0IAwN3xMz5xxq2zONDLTWkzNVZg9RoIqhgYhEtfSE1WggqmFhEy52ovvL7NS0B7D/9x3XPok/6fCeoYGIRvd/VwIAAeVvLhyI475WDvK31zhM4751j1aeeY/GBNzmpWNf80nu2MvVj568X2fnhQemVExxMHB4=
   </data>
  </layer>
- <layer id="2" name="decoration" width="30" height="20">
+ <layer id="2" name="decoration" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo2AUDHWgAMSKWNj41BHDJ2TeKBjaQAiIhYFYZKAdMgoIAg0g1gRirYF2yCggGgAA1ksCOw==
+   eJxjYBgFowA30CQBaw2QG0fBKKAUKACxIhY2PnXE8AmZNwpGAS2BEBALA7HIQDtkFAx5oMFA/XpegWG0vBzJAAAYkgSq
   </data>
  </layer>
- <objectgroup id="3" name="objects">
-  <object id="2" gid="243" x="389" y="278" width="32" height="32"/>
-  <object id="6" gid="244" x="192" y="112" width="38" height="38"/>
-  <object id="13" gid="244" x="320" y="304" width="38" height="38"/>
-  <object id="33" gid="244" x="26" y="208" width="38" height="38"/>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="62" gid="243" x="321" y="97" width="32" height="32"/>
+  <object id="64" gid="244" x="412" y="69" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="65" gid="244" x="448" y="304" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="67" gid="244" x="250" y="69" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="71" gid="245" x="360" y="102" width="42" height="42"/>
  </objectgroup>
- <objectgroup id="7" name="chainsaw_tracks">
-  <object id="31" x="80" y="288">
-   <polyline points="0,0 256,0 0,-64 0,0 256,-64 256,0 0,-64 256,-64"/>
-  </object>
-  <object id="32" x="112" y="96">
-   <polygon points="0,0 144,0 144,-48 112,-48 32,-32 0,-32"/>
-  </object>
-  <object id="34" x="80" y="224">
-   <polyline points="0,0 176,-144 32,-128 256,0 0,0"/>
-  </object>
-  <object id="35" x="48" y="272">
-   <polyline points="0,0 0,-96"/>
+ <objectgroup id="10" name="tracks">
+  <object id="66" x="255" y="50">
+   <polyline points="0,0 190,0"/>
   </object>
  </objectgroup>
- <layer id="4" name="foreground" width="30" height="20">
-  <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20JT6AAAHgaCWAAAQ==
-  </data>
- </layer>
 </map>
