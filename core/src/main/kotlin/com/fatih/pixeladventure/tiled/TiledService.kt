@@ -188,14 +188,16 @@ class TiledService (
                     y + polyVertices[vertexIdx] * UNIT_SCALE
                 }
             }
+
             return FixtureDef().apply {
-                shape = ChainShape().apply {
-                    if (loop){
-                        createLoop(vertices)
-                    }else{
-                        createChain(vertices)
+                shape =
+                    ChainShape().apply {
+                        if (loop){
+                            createLoop(vertices)
+                        }else{
+                            createChain(vertices)
+                        }
                     }
-                }
             }
         }
 

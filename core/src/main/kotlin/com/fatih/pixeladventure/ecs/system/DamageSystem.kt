@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.fatih.pixeladventure.audio.AudioService
+import com.fatih.pixeladventure.ecs.component.Blink
 import com.fatih.pixeladventure.ecs.component.DamageTaken
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Invulnarable
@@ -23,7 +24,10 @@ class DamageSystem(
         audioService.play(SoundAsset.HURT)
         GameEventDispatcher.fireEvent(EntityLifeChangeEvent(entity))
         if (entity has EntityTag.PLAYER){
-            entity.configure { it += Invulnarable(1f) }
+            entity.configure {
+                it += Invulnarable(1f)
+                it += Blink(1.5f,0.075f)
+            }
         }
     }
 

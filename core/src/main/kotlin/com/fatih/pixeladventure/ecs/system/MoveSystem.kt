@@ -17,12 +17,12 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
         var (isFlipX,direction,current,max,timer,timeToMax) = moveComp
         if (direction != MoveDirection.NONE){
             moveComp.previousDirection = direction
-            if ((current >0 && direction == MoveDirection.LEFT )|| (current<0 && direction == MoveDirection.RIGHT)){
+            if ((current >0 && direction.isLeftOrDown() )|| (current<0 && direction.isRightOrUp())){
                 timer = 0f
             }
             timer = (timer + (deltaTime* (1f/timeToMax))).coerceAtMost(1f)
             current = pow50outInterpolation.apply(0f,max,timer)
-            current *= direction.value
+            current *= direction.valueX
             isFlipX = direction == MoveDirection.LEFT
         }else{
             current = 0f

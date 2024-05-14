@@ -15,6 +15,7 @@ import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.system.AnimationSystem
+import com.fatih.pixeladventure.ecs.system.BlinkSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
 import com.fatih.pixeladventure.ecs.system.DamageSystem
 import com.fatih.pixeladventure.util.Assets
@@ -78,6 +79,7 @@ class GameScreen(
             add(StateSystem())
             add(AnimationSystem())
             add(CameraSystem())
+            add(BlinkSystem())
             add(RenderSystem())
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())

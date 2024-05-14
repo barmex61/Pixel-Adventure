@@ -16,7 +16,7 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter {
 
     private fun updatePlayerMovement(moveValue : Int){
         moveX += moveValue
-        playerEntities.forEach { it[Move].direction = MoveDirection.of(moveX) }
+        playerEntities.forEach { it[Move].direction = MoveDirection.horizontalValueOf(moveX) }
     }
 
     override fun keyDown(keycode: Int): Boolean {

@@ -52,11 +52,22 @@ class PhysicSystem(
         previousPosition.set(body.position)
         entity.getOrNull(Move)?.let {moveComp ->
             val trackComp = entity.getOrNull(Track)
-            if (trackComp == null){
-                body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
-            }else{
+            if (trackComp != null) {
                 body.setLinearVelocity(trackComp.moveX,trackComp.moveY)
+                return
             }
+            val aggroComp = entity.getOrNull(Aggro)
+            if (aggroComp != null){
+                when {
+                    moveComp.direction.isNone() ->  body.setLinearVelocity(moveComp.current , moveComp.current)
+                    moveComp.direction.isUpOrDown() -> body.setLinearVelocity(0f,moveComp.current)
+                    moveComp.direction.isRightOrLeftOrNone() -> body.setLinearVelocity(moveComp.current,0f)
+                }
+                return
+            }
+            body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
+
+
         }
     }
 

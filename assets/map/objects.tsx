@@ -24,7 +24,7 @@
      <property name="userData" value="hitbox"/>
     </properties>
    </object>
-   <object id="5" type="FixtureDef" x="12" y="18">
+   <object id="5" type="FixtureDef" x="11" y="18">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
     </properties>
@@ -36,20 +36,19 @@
     </properties>
     <polyline points="-2,0 -2,11"/>
    </object>
-   <object id="13" type="FixtureDef" x="9" y="28.6667">
+   <object id="13" type="FixtureDef" x="7.7" y="28.6667">
     <properties>
      <property name="friction" type="float" value="0.25"/>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
      <property name="userData" value="player_foot"/>
     </properties>
-    <polygon points="3,-1.66667 3,3.33333 13,3.33333 13,-1.66667"/>
+    <polygon points="3.3,-1.66667 3.3,3.33333 14.3,3.33333 14.3,-1.66667"/>
    </object>
-   <object id="18" type="FixtureDef" x="12" y="18">
+   <object id="19" type="FixtureDef" x="11" y="12" width="11" height="12">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
-     <property name="restitution" type="float" value="1"/>
     </properties>
-    <polygon points="0,0 4,-5 6,-5 10,0"/>
+    <ellipse/>
    </object>
   </objectgroup>
  </tile>
@@ -92,7 +91,7 @@
   <objectgroup draworder="index" id="2">
    <object id="1" type="FixtureDef" x="4" y="4" width="34" height="34">
     <properties>
-     <property name="density" type="float" value="100"/>
+     <property name="density" type="float" value="20"/>
      <property name="isSensor" type="bool" value="false"/>
      <property name="userData" value="hitbox"/>
     </properties>

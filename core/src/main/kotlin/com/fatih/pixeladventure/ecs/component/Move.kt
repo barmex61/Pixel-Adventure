@@ -3,8 +3,13 @@ package com.fatih.pixeladventure.ecs.component
 import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
 
-enum class MoveDirection(val value : Int){
-    LEFT(-1),RIGHT(1),NONE(0),UP(2),DOWN(3);
+enum class MoveDirection(val valueX : Int){
+    LEFT(-1),
+    RIGHT(1),
+    NONE(0),
+    UP(1),
+    DOWN(-1);
+
     fun opposite() : MoveDirection {
         return when(this){
             LEFT -> RIGHT
@@ -14,13 +19,18 @@ enum class MoveDirection(val value : Int){
             NONE -> NONE
         }
     }
+
+    fun isLeftOrDown() = this == DOWN || this == LEFT
+    fun isRightOrUp() = this == UP || this == RIGHT
+    fun isRightOrLeftOrNone() = this == RIGHT || this == LEFT || this == NONE
+    fun isNone() = this == NONE
+    fun isUpOrDown() = this == UP || this == DOWN
+
     companion object{
-        fun of(value : Int): MoveDirection {
+        fun horizontalValueOf(value : Int): MoveDirection {
             return when(value){
                 1 -> RIGHT
                 -1 -> LEFT
-                2 -> UP
-                3 -> DOWN
                 else -> NONE
             }
         }
@@ -34,6 +44,7 @@ data class Move(var flipX : Boolean = false,
                 var timer : Float = 0f,
                 var timeToMax : Float,
                 var previousDirection : MoveDirection = MoveDirection.NONE) : Component <Move> {
+
 
     override fun type() = Move
 

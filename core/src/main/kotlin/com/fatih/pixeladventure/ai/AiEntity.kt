@@ -55,8 +55,8 @@ data class AiEntity(val entity: Entity,val world: World) {
         entity[Move].direction = when{
             entity[Aggro].verticalCollision -> {
                 when{
-                    diffX > 0f -> MoveDirection.LEFT
-                    diffX < 0f -> MoveDirection.RIGHT
+                    diffY < 0f -> MoveDirection.UP
+                    diffY > 0f -> MoveDirection.DOWN
                     else -> entity[Move].direction
                 }
             }
@@ -69,5 +69,6 @@ data class AiEntity(val entity: Entity,val world: World) {
             }
             else -> entity[Move].previousDirection
         }
+        println(" DIRECTION ${entity[Move].direction}")
     }
 }

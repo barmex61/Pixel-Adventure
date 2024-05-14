@@ -131,6 +131,7 @@ enum class GameObjectState : State<AiEntity>{
         }
 
         override fun update(entity: AiEntity) {
+            println("ATTACK")
 
             when{
                 !entity.inRange(entity[Aggro].sourceLocation,4.5f) ->  entity.state(ROCK_HEAD_RETURN)
@@ -147,7 +148,7 @@ enum class GameObjectState : State<AiEntity>{
 
         override fun update(entity: AiEntity) {
             println("RETURN")
-            if (entity.inRange(entity[Aggro].sourceLocation,0.1f)) entity.state(ROCK_HEAD_IDLE)
+            if (entity.inRange(entity[Aggro].sourceLocation,0.2f)) entity.state(ROCK_HEAD_IDLE)
         }
     };
 
