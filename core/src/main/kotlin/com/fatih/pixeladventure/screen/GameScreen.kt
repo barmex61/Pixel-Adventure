@@ -18,6 +18,7 @@ import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.fatih.pixeladventure.ecs.system.BlinkSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
 import com.fatih.pixeladventure.ecs.system.DamageSystem
+import com.fatih.pixeladventure.ecs.system.FlashSystem
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
@@ -40,6 +41,7 @@ import com.fatih.pixeladventure.tiled.TiledService
 import com.fatih.pixeladventure.ui.model.GameModel
 import com.fatih.pixeladventure.ui.view.gameView
 import com.fatih.pixeladventure.util.GameProperties
+import com.fatih.pixeladventure.util.ShaderAsset
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
@@ -80,6 +82,7 @@ class GameScreen(
             add(AnimationSystem())
             add(CameraSystem())
             add(BlinkSystem())
+            add(FlashSystem())
             add(RenderSystem())
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
@@ -92,6 +95,7 @@ class GameScreen(
     private val tiledService = TiledService(physicWorld,assets,world)
     private val gameModel : GameModel = GameModel(world)
     private val keyboardInputProcessor = KeyboardInputProcessor(world)
+    private val flashShader = assets[ShaderAsset.FLASH]
 
     override fun show() {
         inputMultiplexer.addProcessor(keyboardInputProcessor)
