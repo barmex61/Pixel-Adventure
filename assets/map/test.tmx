@@ -8,17 +8,29 @@
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
   <tile id="6">
    <objectgroup draworder="index" id="2">
-    <object id="2" x="2" y="2" width="14" height="11"/>
+    <object id="2" type="FixtureDef" x="2" y="2" width="14" height="11">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="7">
    <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="2" width="16" height="10"/>
+    <object id="2" type="FixtureDef" x="0" y="2" width="16" height="10">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="8">
    <objectgroup draworder="index" id="2">
-    <object id="2" x="0" y="2" width="15" height="11"/>
+    <object id="2" type="FixtureDef" x="0" y="2" width="15" height="11">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="17">
@@ -84,7 +96,7 @@
  </layer>
  <layer id="1" name="ground" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztVUEOgCAM44Y+An2E+v+vyQ5LiILtDIgHmjQxsMU6oXVuYOAOHzn/WMMWeXyoJYcQuXbWIDOaCCqYWkTLuZAZLQQVTC2i5Z+ovvT9OS0OrD99x3XNok/O+U5QwdQi9r5XAwMC5G0lH/Jgv1YP8rbSPQ9gv3aPVZ96jsUH3vSE5Dnnl72zlZkfm7+tshiRzY9WWYJy5gTgjRum
+   eJztVkEOgCAM46Y+An2E+v+vyQ5LjKLtSHAe1qQJIUsoBVZSCgTuGAqnH2tYC/cPtdSQCxdnDeLRSFDB1CJa7oV4NBNUMLWIljNRfef1a1oSmH/bx3XOok/u+UZQwdQier+rQECAept3PqHe5p0NrfrU9xZ/Lf+GfBrX+uWTPt1Xi7+WzGb8Y/O3VxYjsvnRK0tQzhyxmRpI
   </data>
  </layer>
  <layer id="2" name="decoration" width="40" height="20">
@@ -93,7 +105,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="62" gid="243" x="321" y="97" width="32" height="32"/>
+  <object id="62" gid="243" x="139" y="288" width="32" height="32"/>
   <object id="64" gid="244" x="412" y="69" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>

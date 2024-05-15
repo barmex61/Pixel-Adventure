@@ -9,6 +9,7 @@ import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject
 import com.badlogic.gdx.math.Intersector
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Body
+import com.badlogic.gdx.physics.box2d.ChainShape
 import com.fatih.pixeladventure.ai.AiEntity
 import com.fatih.pixeladventure.ai.GameObjectState
 import com.fatih.pixeladventure.ecs.component.Aggro
@@ -93,8 +94,26 @@ fun EntityCreateContext.configureAnimation(entity: Entity, tile: TiledMapTile, w
 
 fun EntityCreateContext.configureJump(entity: Entity, tile: TiledMapTile){
     val jumpHeight = tile.property<Float>("jumpHeight",0f)
+
     if (jumpHeight > 0f){
-        entity += Jump(jumpHeight)
+        val (body) = entity[Physic]
+        val feetFixture = body.fixtureList.first { it.userData == "player_foot" }
+        val chainShape = feetFixture.shape as ChainShape
+        val lowerXY = vec2(100f,100f)
+        val upperXY = vec2(-100f,-100f)
+        val vertex = vec2()
+        for (i in 0 until chainShape.vertexCount){
+            chainShape.getVertex(i,vertex)
+            if (vertex.y <= lowerXY.y && vertex.x <= lowerXY.x){
+                lowerXY.set(vertex)
+            }else if (vertex.y >= upperXY.y && vertex.x >= upperXY.x){
+                upperXY.set(vertex)
+            }
+        }
+        if ((lowerXY.x == 100f && lowerXY.y == 100f) || (upperXY.x == 100f && upperXY.y == 100f)){
+            gdxError("Couldnt calculate feet fixture size of entity $entity and tile $tile")
+        }
+        entity += Jump(jumpHeight,lowerXY,upperXY)
     }
 }
 

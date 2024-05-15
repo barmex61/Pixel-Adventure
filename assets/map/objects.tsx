@@ -36,19 +36,18 @@
     </properties>
     <polyline points="-2,0 -2,11"/>
    </object>
-   <object id="13" type="FixtureDef" x="7.7" y="28.6667">
-    <properties>
-     <property name="friction" type="float" value="0.25"/>
-     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
-     <property name="userData" value="player_foot"/>
-    </properties>
-    <polygon points="3.3,-1.66667 3.3,3.33333 14.3,3.33333 14.3,-1.66667"/>
-   </object>
    <object id="19" type="FixtureDef" x="11" y="12" width="11" height="12">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
     </properties>
     <ellipse/>
+   </object>
+   <object id="21" type="FixtureDef" x="11" y="29">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
+     <property name="userData" value="player_foot"/>
+    </properties>
+    <polygon points="0,0 0,3 11,3 11,0"/>
    </object>
   </objectgroup>
  </tile>
