@@ -40,6 +40,8 @@ import com.fatih.pixeladventure.util.component4
 import com.github.quillraven.fleks.World
 import ktx.app.gdxError
 import ktx.box2d.body
+import ktx.box2d.chain
+import ktx.box2d.loop
 import ktx.math.vec2
 import ktx.tiled.height
 import ktx.tiled.id
@@ -59,7 +61,10 @@ class TiledService (
 
     override fun onEvent(gameEvent: GameEvent) {
         when(gameEvent){
-            is MapChangeEvent -> spawnEntities(gameEvent.tiledMap)
+            is MapChangeEvent -> {
+                spawnEntities(gameEvent.tiledMap)
+                spawnMapBoundaries(gameEvent.tiledMap)
+            }
             else -> Unit
         }
     }
@@ -77,7 +82,22 @@ class TiledService (
         }
     }
 
+    private fun spawnMapBoundaries(tiledMap: TiledMap){
+        physicWorld.body(BodyType.StaticBody){
+            val vertices = floatArrayOf(
+                0f,tiledMap.height.toFloat(),
+                0f,0f,
+                tiledMap.width.toFloat() ,0f,
+                tiledMap.width.toFloat() ,tiledMap.height.toFloat()
+            )
+            loop(vertices){
+                userData = "mapBoundary"
+            }
+        }
+    }
+
     private fun spawnEntities(tiledMap: TiledMap){
+
         // spawn static ground bodies
         tiledMap.forEachCell { cell, x, y ->
             cell.tile?.objects?.forEach { collObj->

@@ -92,6 +92,16 @@ enum class GameObjectState : State<AiEntity>{
             }
         }
     },
+
+    HIT {
+        override fun enter(entity: AiEntity) {
+            entity.animation(AnimationType.HIT)
+        }
+
+        override fun update(entity: AiEntity) {
+            if (entity.isAnimationDone()) entity.changePreviousState()
+        }
+    },
     ROCK_HEAD_IDLE{
         override fun enter(entity: AiEntity) {
             entity[Move].direction = MoveDirection.NONE

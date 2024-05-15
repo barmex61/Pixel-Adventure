@@ -1,7 +1,7 @@
 package com.fatih.pixeladventure.ecs.system
 
-import com.badlogic.gdx.ai.btree.BehaviorTree.Listener
 import com.badlogic.gdx.graphics.Color
+import com.fatih.pixeladventure.ai.GameObjectState
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Blink
 import com.fatih.pixeladventure.ecs.component.DamageTaken
@@ -9,6 +9,7 @@ import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Flash
 import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Life
+import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.util.SoundAsset
@@ -32,6 +33,7 @@ class DamageSystem(
                 it += Blink(1.5f,0.075f)
                 it += Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
             }
+            entity[State].stateMachine.changeState(GameObjectState.HIT)
         }
     }
 

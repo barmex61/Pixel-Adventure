@@ -3,6 +3,7 @@ package com.fatih.pixeladventure.ai
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.badlogic.gdx.math.Vector2
 import com.fatih.pixeladventure.ecs.component.Aggro
+import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
@@ -69,6 +70,15 @@ data class AiEntity(val entity: Entity,val world: World) {
             }
             else -> entity[Move].previousDirection
         }
-        println(" DIRECTION ${entity[Move].direction}")
+    }
+
+    fun isAnimationDone(): Boolean = with(world){
+        val animComp = entity[Animation]
+        animComp.gdxAnimation!!.isAnimationFinished(animComp.timer)
+    }
+
+    fun changePreviousState() = with(world){
+        val stateComp = entity[State]
+        stateComp.stateMachine.changeState(stateComp.stateMachine.previousState)
     }
 }
