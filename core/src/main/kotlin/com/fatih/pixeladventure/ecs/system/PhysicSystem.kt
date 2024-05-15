@@ -9,10 +9,12 @@ import com.badlogic.gdx.physics.box2d.Manifold
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.DamageTaken
+import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
@@ -110,6 +112,7 @@ class PhysicSystem(
             else -> false
         }
     }
+    private fun Fixture.isBottomMapBoundary() = this.userData == "bottomMapBoundary"
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
         return entityA has Damage && entityB has Life && fixtureA.isHitBox() && fixtureB.isHitBox()
@@ -148,12 +151,25 @@ class PhysicSystem(
         }
     }
 
+    private fun isPlayerBottomMapBoundaryCollision(entity: Entity?,fixtureB: Fixture): Boolean{
+        if (entity == null) return false
+        return entity has EntityTag.PLAYER && fixtureB.isBottomMapBoundary()
+    }
+
+    private fun handlePlayerOutOfMap(playerEntity: Entity) = with(world){
+        playerEntity[Teleport].doTeleport = true
+    }
+
     override fun beginContact(contact: Contact) {
         val fixtureA = contact.fixtureA
         val fixtureB = contact.fixtureB
         val entityA = contact.entityA
         val entityB = contact.entityB
         if (entityA == null || entityB == null){
+            when{
+                isPlayerBottomMapBoundaryCollision(entityA,fixtureB) -> handlePlayerOutOfMap(entityA!!)
+                isPlayerBottomMapBoundaryCollision(entityB,fixtureA) -> handlePlayerOutOfMap(entityB!!)
+            }
             return
         }
         when {

@@ -22,6 +22,7 @@ import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
+import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.util.Assets
@@ -79,6 +80,9 @@ fun EntityCreateContext.configureEntityTags(
     }
     if (entity has EntityTag.HAS_AGGRO){
         entity += Aggro(sourceLocation = entity[Graphic].center.cpy())
+    }
+    if (entity has EntityTag.PLAYER){
+        entity += Teleport(Vector2(mapObject.x * UNIT_SCALE,mapObject.y * UNIT_SCALE))
     }
 }
 

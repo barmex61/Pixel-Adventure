@@ -20,6 +20,10 @@ class CameraSystem (
 
     private val mapBoundaries = Vector2(0f,0f)
 
+    init {
+        gameCamera.zoom = 2.5f
+    }
+
     override fun onTickEntity(entity: Entity) {
         val (sprite) = entity[Graphic]
 

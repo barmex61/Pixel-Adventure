@@ -28,8 +28,8 @@
             "scale": 2,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 279.75,
-                "y": 159.75
+                "x": 237.5,
+                "y": 71.75
             }
         },
         "assets/map/test.tmx#terrain-extruded": {
@@ -46,8 +46,8 @@
     "project": "pixelAdventure.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "assets/map/object.tmx",
         "assets/map/objects.tsx",
-        "assets/map/test.tmx"
+        "assets/map/test.tmx",
+        "assets/map/object.tmx"
     ]
 }

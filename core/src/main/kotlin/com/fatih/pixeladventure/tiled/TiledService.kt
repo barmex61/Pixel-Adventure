@@ -27,9 +27,11 @@ import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.Tiled
+import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
+import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.TextureAtlasAsset
@@ -85,13 +87,21 @@ class TiledService (
     private fun spawnMapBoundaries(tiledMap: TiledMap){
         physicWorld.body(BodyType.StaticBody){
             val vertices = floatArrayOf(
-                0f,tiledMap.height.toFloat(),
                 0f,0f,
-                tiledMap.width.toFloat() ,0f,
-                tiledMap.width.toFloat() ,tiledMap.height.toFloat()
+                0f,tiledMap.height.toFloat(),
+                tiledMap.width.toFloat(),tiledMap.height.toFloat(),
+                tiledMap.width.toFloat() ,0f
             )
-            loop(vertices){
+            chain(vertices){
                 userData = "mapBoundary"
+            }
+            val bottomVertices = floatArrayOf(
+                0f,0f,
+                tiledMap.width.toFloat(),0f
+            )
+            chain(bottomVertices){
+                userData = "bottomMapBoundary"
+                isSensor = true
             }
         }
     }

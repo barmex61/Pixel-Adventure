@@ -45,6 +45,7 @@ class RenderSystem(
     private val uLocFlashColor = flashShader.getUniformLocation("u_FlashColor")
     private val uLocFlashWeight = flashShader.getUniformLocation("u_FlashWeight")
 
+
     override fun onTick() {
         gameViewport.apply()
         mapRenderer.setView(gameCamera)

@@ -14,6 +14,6 @@ enum class GameObject(val categoryBit : Short, val maskBits : Short) {
     FROG(PLAYER_BIT, CHAINSAW_BIT or GROUND_BIT ),
     GROUND(GROUND_BIT, PLAYER_BIT or CHAINSAW_BIT or ROCK_HEAD_BIT),
     ROCK_HEAD(ROCK_HEAD_BIT, PLAYER_BIT or GROUND_BIT),
-    PLATFORM(PLATFORM_BIT, PLAYER_BIT );
+    PLATFORM(PLATFORM_BIT, PLAYER_BIT);
     val atlasKey = this.name.lowercase()
 }

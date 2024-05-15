@@ -84,7 +84,7 @@
  </layer>
  <layer id="1" name="ground" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztVUEOgCAM44Y+An2E+v+vyQ5LiILtDHEeaNKEwBbrGF0IAwN3xMz5xxq2zONDLTWkzNVZg9RoIqhgYhEtfSE1WggqmFhEy52ovvL7NS0B7D/9x3XPok/6fCeoYGIRvd/VwIAAeVvLhyI475WDvK31zhM4751j1aeeY/GBNzmpWNf80nu2MvVj568X2fnhQemVExxMHB4=
+   eJztVUEOgCAM44Y+An2E+v+vyQ5LiILtDIgHmjQxsMU6oXVuYOAOHzn/WMMWeXyoJYcQuXbWIDOaCCqYWkTLuZAZLQQVTC2i5Z+ovvT9OS0OrD99x3XNok/O+U5QwdQi9r5XAwMC5G0lH/Jgv1YP8rbSPQ9gv3aPVZ96jsUH3vSE5Dnnl72zlZkfm7+tshiRzY9WWYJy5gTgjRum
   </data>
  </layer>
  <layer id="2" name="decoration" width="40" height="20">
