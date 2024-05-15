@@ -18,6 +18,7 @@ import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
+import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
 import com.github.quillraven.fleks.Interval

@@ -110,6 +110,9 @@ enum class GameObjectState : State<AiEntity>{
 
         override fun update(entity: AiEntity) {
             entity.hasAggroTarget()?.let { aggroTarget->
+                if (entity.isPathBlocked(aggroTarget)){
+                    return
+                }
                 entity[Aggro].targetEntity = aggroTarget
                 entity.state(ROCK_HEAD_AGRO)
             }

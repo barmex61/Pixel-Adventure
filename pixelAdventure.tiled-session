@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "assets/map/test.tmx",
+    "activeFile": "assets/map/objects.tsx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tüm Dosyalar (*)",
@@ -26,10 +26,10 @@
                 3
             ],
             "scale": 2,
-            "selectedLayer": 3,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 237.5,
-                "y": 71.75
+                "x": 279,
+                "y": 166.25
             }
         },
         "assets/map/test.tmx#terrain-extruded": {
@@ -46,8 +46,8 @@
     "project": "pixelAdventure.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "assets/map/objects.tsx",
         "assets/map/test.tmx",
+        "assets/map/objects.tsx",
         "assets/map/object.tmx"
     ]
 }

@@ -14,7 +14,7 @@ data class Jump(
     override fun type() = Jump
 
     companion object : ComponentType<Jump>(){
-        const val JUMP_BUFFER_TIME = 0.05f
+        const val JUMP_BUFFER_TIME = 0.25f
     }
 
 }

@@ -34,6 +34,7 @@ import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.PLATFORM_BIT
+import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
 import com.fatih.pixeladventure.util.TextureAtlasAsset
 import com.fatih.pixeladventure.util.component1
 import com.fatih.pixeladventure.util.component2
@@ -151,7 +152,7 @@ class TiledService (
             configureJump(it,tile)
             configureSpeed(it,tile)
             configureDamage(it,tile)
-            configureState(it,tile,world)
+            configureState(it,tile,world,physicWorld)
             configureLife(it,tile)
 
         }

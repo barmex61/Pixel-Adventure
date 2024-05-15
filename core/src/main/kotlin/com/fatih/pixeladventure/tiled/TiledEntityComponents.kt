@@ -25,6 +25,7 @@ import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
+import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
@@ -132,10 +133,10 @@ fun EntityCreateContext.configureDamage(entity: Entity, tile: TiledMapTile){
     }
 }
 
-fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world: World){
+fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world: World,physicWorld : PhysicWorld){
     val initialState = tile.property<String>("gameObjectState","NONE")
     if (initialState.isNotBlank() && initialState != "NONE"){
-        entity += State(AiEntity(entity,world), GameObjectState.valueOf(initialState))
+        entity += State(AiEntity(entity,world, physicWorld ), GameObjectState.valueOf(initialState))
     }
 }
 

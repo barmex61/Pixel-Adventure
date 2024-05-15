@@ -2,6 +2,7 @@ package com.fatih.pixeladventure.ai
 
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.physics.box2d.BodyDef
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
@@ -9,15 +10,17 @@ import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.fatih.pixeladventure.ecs.component.State
+import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.World
+import ktx.box2d.rayCast
 import ktx.math.vec2
 import kotlin.math.pow
 
-data class AiEntity(val entity: Entity,val world: World) {
+data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicWorld) {
 
     inline operator fun <reified T:Component<*>> get(type: ComponentType<T>) : T = with(world){
         return entity[type]
@@ -80,5 +83,20 @@ data class AiEntity(val entity: Entity,val world: World) {
     fun changePreviousState() = with(world){
         val stateComp = entity[State]
         stateComp.stateMachine.changeState(stateComp.stateMachine.previousState)
+    }
+
+    fun isPathBlocked(targetEntity: Entity) : Boolean = with(world){
+        val start = entity[Graphic].center
+        val end = targetEntity[Graphic].center
+        var blocked = false
+        physicWorld.rayCast(start,end){fixture, point, normal, fraction ->
+            if (fixture.body.type == BodyDef.BodyType.StaticBody){
+                blocked = true
+                return@rayCast 0f
+            }
+            return@rayCast -1f
+        }
+
+        return@with blocked
     }
 }
