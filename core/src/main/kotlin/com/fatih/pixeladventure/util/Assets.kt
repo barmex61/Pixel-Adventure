@@ -34,7 +34,9 @@ enum class MusicAsset(val path : String){
 
 enum class SoundAsset(val path : String){
     JUMP("audio/jump.mp3"),
-    HURT("audio/hurt.wav")
+    HURT("audio/hurt.wav"),
+    VICTORY("audio/victory.mp3"),
+    COLLECT("audio/collect.wav")
 }
 
 enum class SkinAsset(val path : String){

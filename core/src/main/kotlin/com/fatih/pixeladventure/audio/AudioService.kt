@@ -1,10 +1,12 @@
 package com.fatih.pixeladventure.audio
 
 import com.badlogic.gdx.audio.Music
+import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MapChangeEvent
+import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.MusicAsset
 import com.fatih.pixeladventure.util.SoundAsset
@@ -27,7 +29,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
         soundQueue += soundAsset
     }
 
-    fun play(musicAsset: MusicAsset){
+    private fun play(musicAsset: MusicAsset){
         if (currentMusicResource?.musicAsset == musicAsset){
             return
         }
@@ -42,7 +44,13 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
             play()
             isLooping = true
         }
+    }
 
+    private fun stopMusic(){
+        if (currentMusicResource == null){
+            return
+        }
+        currentMusicResource!!.music.stop()
     }
 
     fun update(){
@@ -59,6 +67,13 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
                     play(MusicAsset.valueOf(it))
                     println()
                 }
+            }
+            is VictoryEvent ->{
+                stopMusic()
+                play(gameEvent.soundAsset)
+            }
+            is CollectItemEvent -> {
+                play(gameEvent.soundAsset)
             }
             else -> Unit
         }

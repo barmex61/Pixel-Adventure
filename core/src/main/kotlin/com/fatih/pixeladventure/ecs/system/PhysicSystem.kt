@@ -21,9 +21,13 @@ import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.Remove
 import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
+import com.fatih.pixeladventure.event.CollectItemEvent
+import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
+import com.fatih.pixeladventure.util.SoundAsset
 import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
@@ -121,7 +125,7 @@ class PhysicSystem(
     private fun Fixture.isPlayerFoot() = this.userData == "player_foot"
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
-        return entityA has Damage && entityB has Life && fixtureA.isHitBox() && fixtureB.isHitBox()
+        return entityA has Damage && entityB has Life  && fixtureA.isHitBox() && fixtureB.isHitBox()
     }
 
     private fun handleDamageBeginContact(damageSource: Entity, damageTarget: Entity) = with(world){
@@ -172,6 +176,7 @@ class PhysicSystem(
 
     private fun handleCollectableBeginContact(playerEntity : Entity,collectableEntity : Entity) = with(world){
         playerEntity[Jump].doubleJump = true
+        GameEventDispatcher.fireEvent(CollectItemEvent(SoundAsset.COLLECT))
         animation(collectableEntity,AnimationType.HIT, PlayMode.NORMAL)
         collectableEntity.configure {
             val duration = it[Animation].gdxAnimation!!.animationDuration
@@ -187,10 +192,12 @@ class PhysicSystem(
 
         playerEntity.configure {
             it -= EntityTag.PLAYER
+            it -= Life
             val body = it[Physic].body
-            body.setLinearVelocity(it[Move].max,body.linearVelocity.y)
+            body.setLinearVelocity(it[Move].max * it[Move].direction.valueX * -1,body.linearVelocity.y)
             body.linearDamping = 2f
             it -= Move
+            GameEventDispatcher.fireEvent(VictoryEvent(SoundAsset.VICTORY))
         }
 
         animation(flagEntity,AnimationType.RUN,PlayMode.NORMAL,AnimationType.WAVE)

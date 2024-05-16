@@ -57,6 +57,7 @@ class JumpSystem(
                 (fixture.filterData.categoryBits == ROCK_HEAD_BIT && fixture.userData == "hitbox") ||
                 fixture.filterData.categoryBits == PLATFORM_BIT){
                 applyJumpForce(jumpComps,body,maxHeight)
+                audioService.play(SoundAsset.JUMP)
             }
 
             return@query true
@@ -66,6 +67,5 @@ class JumpSystem(
         jumpComp.buffer = 0f
         val gravityY = if (physicWorld.gravity.y == 0f) 1f else physicWorld.gravity.y
         body.setLinearVelocity(body.linearVelocity.x, sqrt(2 * maxHeight * -gravityY))
-        audioService.play(SoundAsset.JUMP)
     }
 }
