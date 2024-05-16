@@ -17,7 +17,8 @@ enum class GameObject(val categoryBit : Short, val maskBits : Short) {
     GROUND(GROUND_BIT, PLAYER_BIT or CHAINSAW_BIT or ROCK_HEAD_BIT),
     ROCK_HEAD(ROCK_HEAD_BIT, PLAYER_BIT or GROUND_BIT),
     CHERRY(FRUIT_BIT, PLAYER_BIT),
-    FLAG(FLAG_BIT, PLAYER_BIT),
+    START_FLAG(FLAG_BIT, PLAYER_BIT),
+    FINISH_FLAG(FLAG_BIT, PLAYER_BIT),
     PLATFORM(PLATFORM_BIT, PLAYER_BIT);
-    val atlasKey = this.name.lowercase()
+    val atlasKey = if (this.name == "START_FLAG" || this.name == "FINISH_FLAG") "flag" else this.name.lowercase()
 }

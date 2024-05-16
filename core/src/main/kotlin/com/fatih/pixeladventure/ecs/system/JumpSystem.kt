@@ -54,7 +54,7 @@ class JumpSystem(
 
         physicWorld.query(lowerX,lowerY,upperX,upperY){fixture ->
             if (fixture.filterData.categoryBits == GROUND_BIT ||
-                fixture.filterData.categoryBits == ROCK_HEAD_BIT ||
+                (fixture.filterData.categoryBits == ROCK_HEAD_BIT && fixture.userData == "hitbox") ||
                 fixture.filterData.categoryBits == PLATFORM_BIT){
                 applyJumpForce(jumpComps,body,maxHeight)
             }

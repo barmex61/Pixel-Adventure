@@ -29,7 +29,7 @@ class AnimationSystem(
     override fun onTickEntity(entity: Entity) {
         val animationComp = entity[Animation]
         if (animationComp.gdxAnimation == null) return
-        val (gdxAnimation,timer) = animationComp
+        val (gdxAnimation,timer,_,nextAnimation) = animationComp
         val (sprite) = entity[Graphic]
         sprite.setRegion(gdxAnimation!!.getKeyFrame(timer).apply {
             entity.getOrNull(Move)?.let { moveComp ->
@@ -40,13 +40,19 @@ class AnimationSystem(
         })
         val velocityMultiplier = if (entity has Physic) abs(entity[Physic].body.linearVelocity.x / 4f) else 1f
         animationComp.timer += deltaTime * max(1f,velocityMultiplier)
+        if (gdxAnimation.isAnimationFinished(timer) && nextAnimation != null){
+            entityAnimation(entity,nextAnimation,PlayMode.LOOP)
+            animationComp.nextAnimation = null
+        }
     }
 
     fun entityAnimation(entity: Entity, animationType: AnimationType,playMode: PlayMode) {
         val (_,gameObject) = entity[Tiled]
         val animationAtlasKey = "${gameObject.atlasKey}/${animationType.atlasKey}"
+
         val gdxAnimation = gdxAnimationCache.getOrPut(animationAtlasKey){
             val regions = objectAtlas.findRegions(animationAtlasKey)
+
             if (regions.isEmpty){
                 gdxError("There are no regions for the animation $animationAtlasKey")
             }

@@ -179,6 +179,26 @@ class PhysicSystem(
         }
     }
 
+    private fun isFinishFlagCollision(entityA: Entity,fixtureA: Fixture,fixtureB: Fixture): Boolean {
+        return entityA has EntityTag.PLAYER && fixtureA.isHitBox() && fixtureB.userData == "finish_flag"
+    }
+
+    private fun handleFinishFlagCollision(playerEntity: Entity,flagEntity: Entity,flagFixture: Fixture) = with(world){
+
+        playerEntity.configure {
+            it -= EntityTag.PLAYER
+            val body = it[Physic].body
+            body.setLinearVelocity(it[Move].max,body.linearVelocity.y)
+            body.linearDamping = 2f
+            it -= Move
+        }
+
+        animation(flagEntity,AnimationType.RUN,PlayMode.NORMAL,AnimationType.WAVE)
+        val animComp = flagEntity[Animation]
+        animComp.nextAnimation = AnimationType.WAVE
+        flagFixture.userData = ""
+    }
+
     override fun beginContact(contact: Contact) {
         val fixtureA = contact.fixtureA
         val fixtureB = contact.fixtureB
@@ -198,6 +218,8 @@ class PhysicSystem(
             isAggroSensorCollision(entityB,fixtureB,fixtureA,true) -> handleAggroBeginContact(entityB,entityA)
             isCollectableCollision(entityA,entityB,fixtureA) -> handleCollectableBeginContact(entityA,entityB)
             isCollectableCollision(entityB,entityA,fixtureB) -> handleCollectableBeginContact(entityB,entityA)
+            isFinishFlagCollision(entityA,fixtureA,fixtureB) -> handleFinishFlagCollision(entityA,entityB,fixtureB)
+            isFinishFlagCollision(entityB,fixtureB,fixtureA) -> handleFinishFlagCollision(entityB,entityA,fixtureA)
         }
     }
 

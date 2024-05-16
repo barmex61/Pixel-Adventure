@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="117">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="127">
  <properties>
   <property name="musicAsset" value="TUTORIAL"/>
   <property name="name" value="Tutorial"/>
@@ -143,7 +143,7 @@
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="62" gid="243" x="592" y="33" width="32" height="32"/>
+  <object id="62" gid="243" x="499" y="287" width="32" height="32"/>
   <object id="64" gid="244" x="412" y="69" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
@@ -204,6 +204,16 @@
   <object id="114" gid="246" x="397" y="21" width="32" height="32"/>
   <object id="115" gid="246" x="354" y="43" width="32" height="32"/>
   <object id="116" gid="246" x="459" y="43" width="32" height="32"/>
+  <object id="125" gid="248" x="15" y="98" width="19" height="36">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="126" gid="247" x="528" y="290" width="64" height="64">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="66" x="255" y="50">

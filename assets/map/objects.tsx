@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="42" tileheight="42" tilecount="4" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="6" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -127,6 +127,44 @@
     <properties>
      <property name="gameObject" propertytype="GameObject" value="CHERRY"/>
      <property name="isSensor" type="bool" value="true"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="4" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value=""/>
+   <property name="gameObject" propertytype="GameObject" value="FINISH_FLAG"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="64" height="64" source="../graphics/finish_flag.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="22" y="18" width="3" height="46">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="FINISH_FLAG"/>
+     <property name="isSensor" type="bool" value="true"/>
+     <property name="userData" value="finish_flag"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="5" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="1"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value=""/>
+   <property name="gameObject" propertytype="GameObject" value="START_FLAG"/>
+   <property name="startAnimType" propertytype="AnimType" value="START"/>
+  </properties>
+  <image width="19" height="36" source="../graphics/start_flag.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="19" height="36">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="START_FLAG"/>
+     <property name="isSensor" type="bool" value="true"/>
+     <property name="userData" value="start_flag"/>
     </properties>
    </object>
   </objectgroup>

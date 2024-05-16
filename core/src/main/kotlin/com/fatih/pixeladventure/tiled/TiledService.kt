@@ -50,6 +50,7 @@ import ktx.tiled.height
 import ktx.tiled.id
 import ktx.tiled.layer
 import ktx.tiled.property
+import ktx.tiled.propertyOrNull
 import ktx.tiled.width
 import ktx.tiled.x
 import ktx.tiled.y

@@ -19,7 +19,8 @@
                 "OFF",
                 "IDLE",
                 "ON",
-                "NONE"
+                "NONE",
+                "START"
             ],
             "valuesAsFlags": false
         },
@@ -186,8 +187,9 @@
                 "PLATFORM",
                 "PLAYER",
                 "ROCK_HEAD",
-                "FLAG",
-                "CHERRY"
+                "CHERRY",
+                "START_FLAG",
+                "FINISH_FLAG"
             ],
             "valuesAsFlags": false
         },
