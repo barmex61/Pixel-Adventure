@@ -117,7 +117,6 @@ fun EntityCreateContext.configureJump(entity: Entity, tile: TiledMapTile){
         entity += Jump(jumpHeight,lowerXY,upperXY)
     }
 }
-
 fun EntityCreateContext.configureSpeed(entity: Entity, tile: TiledMapTile){
     val speed = tile.property<Float>("speed",0f)
     if (speed > 0f ){

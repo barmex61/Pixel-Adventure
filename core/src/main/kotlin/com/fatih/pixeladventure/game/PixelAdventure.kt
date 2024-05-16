@@ -9,10 +9,7 @@ import com.badlogic.gdx.utils.ObjectMap
 import com.badlogic.gdx.utils.PropertiesUtils
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.event.GameEventDispatcher
-import com.fatih.pixeladventure.event.GameResizeEvent
 import com.fatih.pixeladventure.screen.LoadingScreen
-import com.fatih.pixeladventure.tiled.TiledService
-import com.fatih.pixeladventure.tiled.TiledService.Companion
 import com.fatih.pixeladventure.tiled.TiledService.Companion.FixtureDefUserData
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
@@ -63,10 +60,6 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     override fun dispose() {
         spriteBatch.disposeSafely()
         assets.disposeSafely()
-    }
-
-    override fun resize(width: Int, height: Int) {
-        GameEventDispatcher.fireEvent(GameResizeEvent(width, height))
     }
 
     companion object{

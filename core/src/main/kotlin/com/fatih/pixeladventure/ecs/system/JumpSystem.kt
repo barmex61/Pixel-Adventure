@@ -1,9 +1,12 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.physics.box2d.Body
+import com.fatih.pixeladventure.ai.GameObjectState
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem.Companion.DEBUG_RECT
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.GROUND_BIT
@@ -24,10 +27,19 @@ class JumpSystem(
     override fun onTickEntity(entity: Entity) {
         val jumpComps = entity[Jump]
         val (body,_) = entity[Physic]
-        val (maxHeight , lowerFeet,upperFeet,buffer) = entity[Jump]
+        val (maxHeight , lowerFeet,upperFeet,buffer,doubleJump) = entity[Jump]
+
+        if (doubleJump){
+            applyJumpForce(jumpComps,body,maxHeight * 0.75f)
+            jumpComps.doubleJump = false
+            entity[State].stateMachine.changeState(GameObjectState.DOUBLE_JUMP)
+            return
+        }
+
         if (buffer == 0f ){
             return
         }
+
         jumpComps.buffer = (jumpComps.buffer -deltaTime).coerceAtLeast(0f)
         if (!MathUtils.isEqual(body.linearVelocity.y,0f,2f)){
             return
@@ -44,15 +56,16 @@ class JumpSystem(
             if (fixture.filterData.categoryBits == GROUND_BIT ||
                 fixture.filterData.categoryBits == ROCK_HEAD_BIT ||
                 fixture.filterData.categoryBits == PLATFORM_BIT){
-                jumpComps.buffer = 0f
-                val gravityY = if (physicWorld.gravity.y == 0f) 1f else physicWorld.gravity.y
-                body.setLinearVelocity(body.linearVelocity.x, sqrt(2 * maxHeight * -gravityY))
-                audioService.play(SoundAsset.JUMP)
+                applyJumpForce(jumpComps,body,maxHeight)
             }
 
             return@query true
         }
-
-
+    }
+    private fun applyJumpForce(jumpComp : Jump,body: Body,maxHeight:Float){
+        jumpComp.buffer = 0f
+        val gravityY = if (physicWorld.gravity.y == 0f) 1f else physicWorld.gravity.y
+        body.setLinearVelocity(body.linearVelocity.x, sqrt(2 * maxHeight * -gravityY))
+        audioService.play(SoundAsset.JUMP)
     }
 }

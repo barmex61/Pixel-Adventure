@@ -80,10 +80,6 @@ data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicW
         animComp.gdxAnimation!!.isAnimationFinished(animComp.timer)
     }
 
-    fun changePreviousState() = with(world){
-        val stateComp = entity[State]
-        stateComp.stateMachine.changeState(stateComp.stateMachine.previousState)
-    }
 
     fun isPathBlocked(targetEntity: Entity) : Boolean = with(world){
         val start = entity[Graphic].center

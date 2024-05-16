@@ -31,6 +31,7 @@ import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.ParallaxBgdSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
+import com.fatih.pixeladventure.ecs.system.RemoveSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.ecs.system.TeleportSystem
@@ -89,6 +90,7 @@ class GameScreen(
             add(FlashSystem())
             add(ParallaxBgdSystem())
             add(RenderSystem())
+            add(RemoveSystem())
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
             }

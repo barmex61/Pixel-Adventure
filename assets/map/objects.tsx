@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="42" tileheight="42" tilecount="3" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="42" tileheight="42" tilecount="4" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -42,12 +42,12 @@
     </properties>
     <ellipse/>
    </object>
-   <object id="21" type="FixtureDef" x="11" y="29">
+   <object id="21" type="FixtureDef" x="11" y="26">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
      <property name="userData" value="player_foot"/>
     </properties>
-    <polygon points="0,0 0,3 11,3 11,0"/>
+    <polygon points="0,0 0,6 11,6 11,0"/>
    </object>
   </objectgroup>
  </tile>
@@ -108,6 +108,25 @@
      <property name="gameObject" propertytype="GameObject" value="ROCK_HEAD"/>
      <property name="isSensor" type="bool" value="true"/>
      <property name="userData" value="horizontalAggroSensor"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="3" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,COLLECTABLE"/>
+   <property name="gameObject" propertytype="GameObject" value="CHERRY"/>
+   <property name="gameObjectState" propertytype="GameObjectState" value="NONE"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="32" height="32" source="../graphics/cherry_00.png"/>
+  <objectgroup draworder="index" id="3">
+   <object id="6" type="FixtureDef" x="10" y="16" width="13" height="6">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="CHERRY"/>
+     <property name="isSensor" type="bool" value="true"/>
     </properties>
    </object>
   </objectgroup>

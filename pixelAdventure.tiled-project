@@ -125,7 +125,8 @@
                 "HAS_AGGRO",
                 "BACKGROUND",
                 "FOREGROUND",
-                "HAS_TRACK"
+                "HAS_TRACK",
+                "COLLECTABLE"
             ],
             "valuesAsFlags": true
         },
@@ -184,7 +185,9 @@
                 "GROUND",
                 "PLATFORM",
                 "PLAYER",
-                "ROCK_HEAD"
+                "ROCK_HEAD",
+                "FLAG",
+                "CHERRY"
             ],
             "valuesAsFlags": false
         },

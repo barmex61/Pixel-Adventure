@@ -8,7 +8,6 @@ sealed interface GameEvent
 
 data class MapChangeEvent(val tiledMap: TiledMap) : GameEvent
 data class EntityLifeChangeEvent(val entity: Entity) : GameEvent
-data class GameResizeEvent(val width : Int,val height : Int) : GameEvent
 
 interface GameEventListener{
 

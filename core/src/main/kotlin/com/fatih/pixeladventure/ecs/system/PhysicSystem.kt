@@ -1,5 +1,6 @@
 package com.fatih.pixeladventure.ecs.system
 
+import com.badlogic.gdx.graphics.g2d.Animation.*
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.physics.box2d.Contact
 import com.badlogic.gdx.physics.box2d.ContactImpulse
@@ -7,18 +8,23 @@ import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.Manifold
 import com.fatih.pixeladventure.ecs.component.Aggro
+import com.fatih.pixeladventure.ecs.component.Animation
+import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.DamageTaken
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
+import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.component.Remove
 import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
+import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
 import com.github.quillraven.fleks.Interval
@@ -69,8 +75,6 @@ class PhysicSystem(
                 return
             }
             body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
-
-
         }
     }
 
@@ -114,6 +118,7 @@ class PhysicSystem(
         }
     }
     private fun Fixture.isBottomMapBoundary() = this.userData == "bottomMapBoundary"
+    private fun Fixture.isPlayerFoot() = this.userData == "player_foot"
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
         return entityA has Damage && entityB has Life && fixtureA.isHitBox() && fixtureB.isHitBox()
@@ -161,6 +166,19 @@ class PhysicSystem(
         playerEntity[Teleport].doTeleport = true
     }
 
+    private fun isCollectableCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture) : Boolean{
+        return entityA has EntityTag.PLAYER && entityB has EntityTag.COLLECTABLE && fixtureA.isPlayerFoot()
+    }
+
+    private fun handleCollectableBeginContact(playerEntity : Entity,collectableEntity : Entity) = with(world){
+        playerEntity[Jump].doubleJump = true
+        animation(collectableEntity,AnimationType.HIT, PlayMode.NORMAL)
+        collectableEntity.configure {
+            val duration = it[Animation].gdxAnimation!!.animationDuration
+            it += Remove(duration,true)
+        }
+    }
+
     override fun beginContact(contact: Contact) {
         val fixtureA = contact.fixtureA
         val fixtureB = contact.fixtureB
@@ -178,6 +196,8 @@ class PhysicSystem(
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageBeginContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,true) ->  handleAggroBeginContact(entityA,entityB)
             isAggroSensorCollision(entityB,fixtureB,fixtureA,true) -> handleAggroBeginContact(entityB,entityA)
+            isCollectableCollision(entityA,entityB,fixtureA) -> handleCollectableBeginContact(entityA,entityB)
+            isCollectableCollision(entityB,entityA,fixtureB) -> handleCollectableBeginContact(entityB,entityA)
         }
     }
 

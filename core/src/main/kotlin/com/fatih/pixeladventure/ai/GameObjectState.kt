@@ -21,7 +21,14 @@ enum class GameObjectState : State<AiEntity>{
 
     IDLE{
         override fun enter(entity: AiEntity) {
-            entity.animation(AnimationType.IDLE)
+            val body = entity[Physic].body
+            val (linX,linY) = body.linearVelocity
+            when{
+                linY > TOLERANCE_Y -> entity.state(JUMP)
+                linY < -TOLERANCE_Y -> entity.state(FALL)
+                !isEqual(linX, ZERO, TOLERANCE_X) -> entity.state(RUN)
+                else ->  entity.animation(AnimationType.IDLE)
+            }
         }
 
         override fun update(entity: AiEntity) {
@@ -93,13 +100,23 @@ enum class GameObjectState : State<AiEntity>{
         }
     },
 
+    DOUBLE_JUMP{
+        override fun enter(entity: AiEntity) {
+            entity.animation(AnimationType.DOUBLE_JUMP,Animation.PlayMode.NORMAL)
+        }
+
+        override fun update(entity: AiEntity) {
+            if (entity.isAnimationDone()) entity.state(IDLE)
+        }
+    },
+
     HIT {
         override fun enter(entity: AiEntity) {
             entity.animation(AnimationType.HIT,Animation.PlayMode.NORMAL)
         }
 
         override fun update(entity: AiEntity) {
-            if (entity.isAnimationDone()) entity.changePreviousState()
+            if (entity.isAnimationDone()) entity.state(IDLE)
         }
     },
 

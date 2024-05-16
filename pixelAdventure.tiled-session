@@ -8,6 +8,9 @@
     ],
     "file.lastUsedOpenFilter": "Tüm Dosyalar (*)",
     "fileStates": {
+        "": {
+            "scaleInEditor": 1
+        },
         "assets/map/object.tmx": {
             "scale": 2.529375,
             "selectedLayer": 0,
@@ -25,11 +28,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 2,
-            "selectedLayer": 0,
+            "scale": 3,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 278.5,
-                "y": 165.75
+                "x": 459.66666666666663,
+                "y": 12.833333333333314
             }
         },
         "assets/map/test.tmx#terrain-extruded": {

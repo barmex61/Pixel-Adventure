@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="73">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="117">
  <properties>
   <property name="musicAsset" value="TUTORIAL"/>
   <property name="name" value="Tutorial"/>
@@ -160,6 +160,50 @@
    </properties>
   </object>
   <object id="72" gid="245" x="555" y="214" width="42" height="42"/>
+  <object id="73" gid="246" x="504" y="40" width="32" height="32"/>
+  <object id="74" gid="246" x="488" y="88" width="32" height="32"/>
+  <object id="75" gid="246" x="598" y="105" width="32" height="32"/>
+  <object id="76" gid="246" x="493" y="165" width="32" height="32"/>
+  <object id="77" gid="246" x="447" y="206" width="32" height="32"/>
+  <object id="78" gid="246" x="400" y="226" width="32" height="32"/>
+  <object id="79" gid="246" x="383" y="261" width="32" height="32"/>
+  <object id="80" gid="246" x="346" y="245" width="32" height="32"/>
+  <object id="81" gid="246" x="290" y="251" width="32" height="32"/>
+  <object id="82" gid="246" x="263" y="291" width="32" height="32"/>
+  <object id="83" gid="246" x="219" y="236" width="32" height="32"/>
+  <object id="84" gid="246" x="153" y="244" width="32" height="32"/>
+  <object id="85" gid="246" x="428" y="251" width="32" height="32"/>
+  <object id="86" gid="246" x="355" y="212" width="32" height="32"/>
+  <object id="87" gid="246" x="313" y="225" width="32" height="32"/>
+  <object id="88" gid="246" x="273" y="198" width="32" height="32"/>
+  <object id="89" gid="246" x="199" y="202" width="32" height="32"/>
+  <object id="90" gid="246" x="182" y="243" width="32" height="32"/>
+  <object id="91" gid="246" x="231" y="288" width="32" height="32"/>
+  <object id="92" gid="246" x="99" y="261" width="32" height="32"/>
+  <object id="93" gid="246" x="17" y="257" width="32" height="32"/>
+  <object id="94" gid="246" x="30" y="210" width="32" height="32"/>
+  <object id="95" gid="246" x="94" y="223" width="32" height="32"/>
+  <object id="96" gid="246" x="55" y="249" width="32" height="32"/>
+  <object id="97" gid="246" x="82" y="188" width="32" height="32"/>
+  <object id="98" gid="246" x="164" y="209" width="32" height="32"/>
+  <object id="99" gid="246" x="163" y="177" width="32" height="32"/>
+  <object id="100" gid="246" x="127" y="201" width="32" height="32"/>
+  <object id="101" gid="246" x="173" y="129" width="32" height="32"/>
+  <object id="102" gid="246" x="159" y="80" width="32" height="32"/>
+  <object id="103" gid="246" x="61" y="73" width="32" height="32"/>
+  <object id="104" gid="246" x="26" y="103" width="32" height="32"/>
+  <object id="105" gid="246" x="17" y="52" width="32" height="32"/>
+  <object id="106" gid="246" x="51" y="33" width="32" height="32"/>
+  <object id="107" gid="246" x="153" y="36" width="32" height="32"/>
+  <object id="108" gid="246" x="97" y="39" width="32" height="32"/>
+  <object id="109" gid="246" x="309" y="109" width="32" height="32"/>
+  <object id="110" gid="246" x="339" y="88" width="32" height="32"/>
+  <object id="111" gid="246" x="311" y="34" width="32" height="32"/>
+  <object id="112" gid="246" x="417" y="91" width="32" height="32"/>
+  <object id="113" gid="246" x="423" y="98" width="32" height="32"/>
+  <object id="114" gid="246" x="397" y="21" width="32" height="32"/>
+  <object id="115" gid="246" x="354" y="43" width="32" height="32"/>
+  <object id="116" gid="246" x="459" y="43" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="66" x="255" y="50">

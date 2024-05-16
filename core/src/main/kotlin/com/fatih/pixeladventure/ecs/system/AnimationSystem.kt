@@ -3,6 +3,7 @@ package com.fatih.pixeladventure.ecs.system
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
+import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.GdxAnimation
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
@@ -31,11 +32,14 @@ class AnimationSystem(
         val (gdxAnimation,timer) = animationComp
         val (sprite) = entity[Graphic]
         sprite.setRegion(gdxAnimation!!.getKeyFrame(timer).apply {
-            if (entity.getOrNull(Move)?.flipX != isFlipX){
-                flip(true,false)
-            } }
-        )
-        animationComp.timer += deltaTime * max(1f,abs(entity[Physic].body.linearVelocity.x / 4f))
+            entity.getOrNull(Move)?.let { moveComp ->
+                if (moveComp.flipX != isFlipX){
+                    flip(true,false)
+                }
+            }
+        })
+        val velocityMultiplier = if (entity has Physic) abs(entity[Physic].body.linearVelocity.x / 4f) else 1f
+        animationComp.timer += deltaTime * max(1f,velocityMultiplier)
     }
 
     fun entityAnimation(entity: Entity, animationType: AnimationType,playMode: PlayMode) {
