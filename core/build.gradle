@@ -23,8 +23,12 @@ dependencies {
   api "com.github.raeleus.stripe:freetype:$stripeVersion"
   api "com.badlogicgames.gdx:gdx-freetype:$gdxVersion"
   api "com.rafaskoberg.gdx:typing-label:1.3.0"
-  testImplementation 'org.jetbrains.kotlin:kotlin-test'
+
+  testImplementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
   testImplementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
+  testImplementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+  testImplementation 'org.jetbrains.kotlin:kotlin-test'
+  testImplementation files(rootProject.file('assets').path)
 
 }
 

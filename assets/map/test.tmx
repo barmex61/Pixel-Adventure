@@ -6,6 +6,11 @@
  </properties>
  <tileset firstgid="1" name="terrain-extruded" tilewidth="16" tileheight="16" spacing="8" margin="4" tilecount="242" columns="22">
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
+  <tile id="2">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
   <tile id="6">
    <objectgroup draworder="index" id="2">
     <object id="2" type="FixtureDef" x="2" y="2" width="14" height="11">
@@ -60,6 +65,11 @@
     </object>
    </objectgroup>
   </tile>
+  <tile id="24">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
   <tile id="39">
    <objectgroup draworder="index" id="2">
     <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
@@ -87,25 +97,53 @@
     </object>
    </objectgroup>
   </tile>
+  <tile id="46">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
+  <tile id="61">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+      <property name="userData" value=""/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="62">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="63">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
  </tileset>
  <tileset firstgid="243" source="objects.tsx"/>
- <layer id="6" name="background" width="40" height="20">
-  <data encoding="base64" compression="zlib">
-   eJztw0ENAAAMA6Hzr6yy5mIvSFg1VVXVhwcTuHEf
-  </data>
- </layer>
  <layer id="1" name="ground" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJztVkEOgCAM46Y+An2E+v+vyQ5LjKLtSHAe1qQJIUsoBVZSCgTuGAqnH2tYC/cPtdSQCxdnDeLRSFDB1CJa7oV4NBNUMLWIljNRfef1a1oSmH/bx3XOok/u+UZQwdQier+rQECAept3PqHe5p0NrfrU9xZ/Lf+GfBrX+uWTPt1Xi7+WzGb8Y/O3VxYjsvnRK0tQzhyxmRpI
+   eJztVkEKgDAM6019ggf1CR7U/3/N7VAQcSatk4ksEJBRahZnM5GKv6EJ7D7QI9VvCdweamB7sPD0GwKnjBo8iB61BBVMLaLlXESPRoIKphbR8k1U3/H9V1oErN/t47xm0RfP5UpQwdQi5vyvKkT60gIA5tICEkCzLWc+eYBmW+ls8OpT3z3+Wu4Nw+H5al6m9Om+PP5aMpvxj83ft7IYkc2Pt7IE5cwOPK4bgA==
   </data>
  </layer>
  <layer id="2" name="decoration" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFowA30CQBaw2QG0fBKKAUKACxIhY2PnXE8AmZNwpGAS2BEBALA7HIQDtkFAx5oMFA/XpegWG0vBzJAAAYkgSq
+   eJxjYBgFowA30CQBaw2QG0fBKMAGhIBYGIhFiFCrAMSKWNj41BHDJ2TeUAJ2QGwPxA4D7I5RMAoGCozkPKDBQHo9T6gMVmAYvuXlKCAMAFU+Bl0=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="62" gid="243" x="266" y="95" width="32" height="32"/>
+  <object id="62" gid="243" x="592" y="33" width="32" height="32"/>
   <object id="64" gid="244" x="412" y="69" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
@@ -121,8 +159,7 @@
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
    </properties>
   </object>
-  <object id="71" gid="245" x="360" y="102" width="42" height="42"/>
-  <object id="72" gid="245" x="555" y="213" width="42" height="42"/>
+  <object id="72" gid="245" x="555" y="214" width="42" height="42"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="66" x="255" y="50">

@@ -95,13 +95,14 @@ enum class GameObjectState : State<AiEntity>{
 
     HIT {
         override fun enter(entity: AiEntity) {
-            entity.animation(AnimationType.HIT)
+            entity.animation(AnimationType.HIT,Animation.PlayMode.NORMAL)
         }
 
         override fun update(entity: AiEntity) {
             if (entity.isAnimationDone()) entity.changePreviousState()
         }
     },
+
     ROCK_HEAD_IDLE{
         override fun enter(entity: AiEntity) {
             entity[Move].direction = MoveDirection.NONE
@@ -118,6 +119,7 @@ enum class GameObjectState : State<AiEntity>{
             }
         }
     },
+
     ROCK_HEAD_AGRO{
         override fun enter(entity: AiEntity) {
             entity[Move].direction = MoveDirection.NONE
@@ -142,9 +144,9 @@ enum class GameObjectState : State<AiEntity>{
         }
 
         override fun update(entity: AiEntity) {
-
             when{
                 !entity.inRange(entity[Aggro].sourceLocation,4.5f) ->  entity.state(ROCK_HEAD_RETURN)
+                entity[Aggro].targetEntity == Entity.NONE -> entity.state(ROCK_HEAD_RETURN)
             }
 
         }
@@ -157,7 +159,7 @@ enum class GameObjectState : State<AiEntity>{
         }
 
         override fun update(entity: AiEntity) {
-            if (entity.inRange(entity[Aggro].sourceLocation,0.2f)) entity.state(ROCK_HEAD_IDLE)
+            if (entity.inRange(entity[Aggro].sourceLocation,0.05f)) entity.state(ROCK_HEAD_IDLE)
         }
     };
 

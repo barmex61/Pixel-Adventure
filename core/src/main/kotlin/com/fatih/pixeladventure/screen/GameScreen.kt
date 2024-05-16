@@ -28,6 +28,7 @@ import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
 import com.fatih.pixeladventure.ecs.system.InvulnarableSystem
 import com.fatih.pixeladventure.ecs.system.JumpSystem
 import com.fatih.pixeladventure.ecs.system.MoveSystem
+import com.fatih.pixeladventure.ecs.system.ParallaxBgdSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
@@ -38,6 +39,7 @@ import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
+import com.fatih.pixeladventure.parallax.ParallaxBackground
 import com.fatih.pixeladventure.tiled.TiledService
 import com.fatih.pixeladventure.ui.model.GameModel
 import com.fatih.pixeladventure.ui.view.gameView
@@ -85,6 +87,7 @@ class GameScreen(
             add(CameraSystem())
             add(BlinkSystem())
             add(FlashSystem())
+            add(ParallaxBgdSystem())
             add(RenderSystem())
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
@@ -97,7 +100,6 @@ class GameScreen(
     private val tiledService = TiledService(physicWorld,assets,world)
     private val gameModel : GameModel = GameModel(world)
     private val keyboardInputProcessor = KeyboardInputProcessor(world)
-    private val flashShader = assets[ShaderAsset.FLASH]
 
     override fun show() {
         inputMultiplexer.addProcessor(keyboardInputProcessor)

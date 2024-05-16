@@ -30,6 +30,7 @@ class GameModel(val world: World) : GameEventListener , PropertyChangeSource(){
                     }
                 }
             }
+            else -> Unit
         }
     }
 

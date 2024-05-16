@@ -91,18 +91,19 @@
    <object id="1" type="FixtureDef" x="4" y="4" width="34" height="34">
     <properties>
      <property name="density" type="float" value="20"/>
+     <property name="gameObject" propertytype="GameObject" value="ROCK_HEAD"/>
      <property name="isSensor" type="bool" value="false"/>
      <property name="userData" value="hitbox"/>
     </properties>
    </object>
-   <object id="2" type="FixtureDef" x="5" y="-59" width="32" height="160">
+   <object id="2" type="FixtureDef" x="8" y="-59" width="27" height="160">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="ROCK_HEAD"/>
      <property name="isSensor" type="bool" value="true"/>
      <property name="userData" value="verticalAggroSensor"/>
     </properties>
    </object>
-   <object id="3" type="FixtureDef" x="-59" y="5" width="160" height="32">
+   <object id="3" type="FixtureDef" x="-59" y="8" width="160" height="26">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="ROCK_HEAD"/>
      <property name="isSensor" type="bool" value="true"/>

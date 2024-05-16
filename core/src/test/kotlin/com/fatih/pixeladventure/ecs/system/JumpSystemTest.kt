@@ -7,6 +7,7 @@ import com.github.quillraven.fleks.configureWorld
 import ktx.box2d.body
 import ktx.box2d.box
 import ktx.box2d.createWorld
+import ktx.math.vec2
 import kotlin.test.Test
 
 
@@ -25,7 +26,7 @@ class JumpSystemTest{
     @Test
     fun testJumpSystem(){
         val entity = world.entity {
-            it += Jump(maxHeight = 2f, buffer = 0.25f)
+            it += Jump(maxHeight = 2f, buffer = 0.25f, lowerFeet = vec2(), upperFeet = vec2())
             val body = physicWorld.body {
                 box(1f,1f)
                 position.set(0f,0f)

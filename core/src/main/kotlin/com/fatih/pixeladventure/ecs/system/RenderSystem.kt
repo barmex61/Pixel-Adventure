@@ -15,6 +15,7 @@ import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.game.PixelAdventure
+import com.fatih.pixeladventure.parallax.ParallaxBackground
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.ShaderAsset
 import com.github.quillraven.fleks.Family
