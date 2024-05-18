@@ -17,9 +17,8 @@ import ktx.assets.getAsset
 import ktx.assets.load
 
 enum class MapAsset(val path : String,val nextMap : MapAsset? = null,val parallaxBgdTexture : String = "graphics/green.png"){
-    TEST("map/test.tmx"),
     JUMP_HIGHER("map/map2.tmx", parallaxBgdTexture = "graphics/brown.png"),
-    FIND_THE_WAY("map/map1.tmx",JUMP_HIGHER,parallaxBgdTexture = "graphics/blue.png"),
+    FIND_THE_WAY("map/map3.tmx",JUMP_HIGHER,parallaxBgdTexture = "graphics/blue.png"),
     TUTORIAL("map/tutorial.tmx",FIND_THE_WAY,parallaxBgdTexture = "graphics/pink.png"),
     OBJECT("map/object.tmx");
     val mapName = this.name.toString().replace('_',' ')

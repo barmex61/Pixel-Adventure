@@ -172,7 +172,7 @@
  </tile>
  <tile id="40">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+   <object id="3" type="FixtureDef" x="0" y="0" width="16" height="5">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>

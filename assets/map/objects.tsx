@@ -29,13 +29,6 @@
     </properties>
     <ellipse/>
    </object>
-   <object id="21" type="FixtureDef" x="11" y="26">
-    <properties>
-     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
-     <property name="userData" value="player_foot"/>
-    </properties>
-    <polygon points="0,0 0,6 11,6 11,0"/>
-   </object>
    <object id="25" type="FixtureDef" x="11" y="26">
     <properties>
      <property name="friction" type="float" value="0"/>
@@ -44,6 +37,13 @@
      <property name="userData" value="frictionFixture"/>
     </properties>
     <polygon points="0,0 11,0 11,-11 0,-11"/>
+   </object>
+   <object id="29" type="FixtureDef" x="22" y="21">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
+     <property name="userData" value="player_foot"/>
+    </properties>
+    <polygon points="0,0 0,11 -11,11 -11,0"/>
    </object>
   </objectgroup>
  </tile>
