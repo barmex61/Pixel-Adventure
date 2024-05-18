@@ -7,6 +7,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse
 import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.Manifold
+import com.fatih.pixeladventure.ai.FlagState
+import com.fatih.pixeladventure.ai.FruitState
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
@@ -18,13 +20,14 @@ import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
-import com.fatih.pixeladventure.ecs.component.Respawn
+import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.SoundAsset
 import com.fatih.pixeladventure.util.animation
@@ -109,6 +112,7 @@ class PhysicSystem(
         get() = fixtureB.entity
 
     private fun Fixture.isHitBox() = this.userData == "hitbox"
+    private fun Fixture.isCherry() = this.userData == "cherry"
     private fun Fixture.isAggro(entity: Entity,isBeginContact : Boolean) : Boolean {
         return when(this.userData){
             "horizontalAggroSensor" -> {
@@ -171,21 +175,12 @@ class PhysicSystem(
         playerEntity[Teleport].doTeleport = true
     }
 
-    private fun isCollectableCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture) : Boolean{
-        return entityA has EntityTag.PLAYER && entityB has EntityTag.COLLECTABLE && fixtureA.isPlayerFoot()
+    private fun isCollectableCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB: Fixture) : Boolean{
+        return entityA has EntityTag.PLAYER && entityB has EntityTag.COLLECTABLE && ((fixtureA.isPlayerFoot() && fixtureB.isCherry()) || (!fixtureB.isCherry() && fixtureA.isHitBox() ))
     }
 
-    private fun handleCollectableBeginContact(playerEntity : Entity,collectableEntity : Entity) = with(world){
-        playerEntity[Jump].doubleJump = true
-        GameEventDispatcher.fireEvent(CollectItemEvent(SoundAsset.COLLECT))
-        animation(collectableEntity,AnimationType.HIT, PlayMode.NORMAL)
-        collectableEntity.configure {
-            val animComp = it[Animation]
-            val duration = animComp.gdxAnimation!!.animationDuration
-            animComp.nextAnimation = null
-            it -= EntityTag.COLLECTABLE
-            it += Respawn(duration * 6f,EntityTag.COLLECTABLE)
-        }
+    private fun handleCollectableBeginContact(playerEntity : Entity,collectableEntity : Entity) {
+        GameEventDispatcher.fireEvent(CollectItemEvent(playerEntity,collectableEntity))
     }
 
     private fun isFinishFlagCollision(entityA: Entity,fixtureA: Fixture,fixtureB: Fixture): Boolean {
@@ -203,10 +198,7 @@ class PhysicSystem(
             it -= Move
             GameEventDispatcher.fireEvent(VictoryEvent(SoundAsset.FLAG))
         }
-
-        animation(flagEntity,AnimationType.RUN,PlayMode.NORMAL)
-        val animComp = flagEntity[Animation]
-        animComp.nextAnimation = AnimationType.WAVE
+        flagEntity[State].stateMachine.changeState(FlagState.RUN)
         flagFixture.userData = ""
     }
 
@@ -215,6 +207,14 @@ class PhysicSystem(
         val fixtureB = contact.fixtureB
         val entityA = contact.entityA
         val entityB = contact.entityB
+        if (entityA != null && entityA has EntityTag.PLAYER && fixtureA.userData == "frictionFixture" && fixtureB.filterData.categoryBits == GROUND_BIT){
+            println("player Friction ${fixtureA.friction}")
+            println("ground friction ${fixtureB.friction}")
+        }
+        if (entityB != null && entityB has EntityTag.PLAYER && fixtureB.userData == "frictionFixture" && fixtureA.filterData.categoryBits == GROUND_BIT){
+            println("player Friction ${fixtureB.friction}")
+            println("ground friction ${fixtureA.friction}")
+        }
         if (entityA == null || entityB == null){
             when{
                 isPlayerBottomMapBoundaryCollision(entityA,fixtureB) -> handlePlayerOutOfMap(entityA!!)
@@ -227,8 +227,8 @@ class PhysicSystem(
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageBeginContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,true) ->  handleAggroBeginContact(entityA,entityB)
             isAggroSensorCollision(entityB,fixtureB,fixtureA,true) -> handleAggroBeginContact(entityB,entityA)
-            isCollectableCollision(entityA,entityB,fixtureA) -> handleCollectableBeginContact(entityA,entityB)
-            isCollectableCollision(entityB,entityA,fixtureB) -> handleCollectableBeginContact(entityB,entityA)
+            isCollectableCollision(entityA,entityB,fixtureA,fixtureB) -> handleCollectableBeginContact(entityA,entityB)
+            isCollectableCollision(entityB,entityA,fixtureB,fixtureA) -> handleCollectableBeginContact(entityB,entityA)
             isFinishFlagCollision(entityA,fixtureA,fixtureB) -> handleFinishFlagCollision(entityA,entityB,fixtureB)
             isFinishFlagCollision(entityB,fixtureB,fixtureA) -> handleFinishFlagCollision(entityB,entityA,fixtureA)
         }

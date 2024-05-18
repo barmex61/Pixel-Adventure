@@ -37,6 +37,7 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter {
         when(keycode){
             Input.Keys.D -> updatePlayerMovement(-1)
             Input.Keys.A -> updatePlayerMovement(1)
+            Input.Keys.SPACE -> playerEntities.forEach { it[Jump].buffer = 0f }
         }
         return false
     }

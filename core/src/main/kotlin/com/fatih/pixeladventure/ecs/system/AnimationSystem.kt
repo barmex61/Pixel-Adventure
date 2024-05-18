@@ -29,13 +29,10 @@ class AnimationSystem(
     override fun onTickEntity(entity: Entity) {
         val animationComp = entity[Animation]
         if (animationComp.gdxAnimation == null) return
-        val (gdxAnimation,timer,_,playMode,nextAnimation) = animationComp
+        val (gdxAnimation,timer,_,_) = animationComp
         val (sprite) = entity[Graphic]
-        if (gdxAnimation!!.isAnimationFinished(timer) && nextAnimation != null ){
-            entityAnimation(entity,nextAnimation,playMode)
-            animationComp.nextAnimation = null
-        }
-        sprite.setRegion(gdxAnimation.getKeyFrame(timer).apply {
+
+        sprite.setRegion(gdxAnimation!!.getKeyFrame(timer).apply {
             entity.getOrNull(Move)?.let { moveComp ->
                 if (moveComp.flipX != isFlipX){
                     flip(true,false)
@@ -65,6 +62,7 @@ class AnimationSystem(
         val animationComp = entity[Animation]
         animationComp.timer = 0f
         animationComp.gdxAnimation = gdxAnimation
+        animationComp.playMode = playMode
         entity[Graphic].sprite.setRegion(gdxAnimation.getKeyFrame(0f))
     }
 

@@ -43,7 +43,9 @@ data class Move(var flipX : Boolean = false,
                 var max : Float ,
                 var timer : Float = 0f,
                 var timeToMax : Float,
-                var previousDirection : MoveDirection = MoveDirection.NONE) : Component <Move> {
+                var previousDirection : MoveDirection = MoveDirection.NONE,
+                val defaultMax : Float = max,
+                var maxReduceTimer : Float = 0f) : Component <Move> {
 
 
     override fun type() = Move

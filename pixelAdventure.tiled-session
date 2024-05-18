@@ -20,8 +20,8 @@
             "scale": 4,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 392.75,
-                "y": 159.875
+                "x": 810.75,
+                "y": 223.125
             }
         },
         "assets/map/map1.tmx#terrain-extruded": {
@@ -34,11 +34,11 @@
                 3,
                 10
             ],
-            "scale": 1.5,
+            "scale": 8,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 320,
-                "y": 160.33333333333334
+                "x": 602.5,
+                "y": 55.9375
             }
         },
         "assets/map/map2.tmx#terrain-extruded": {
@@ -48,7 +48,7 @@
             "scale": 2.529375,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 159.52557449962939,
+                "x": 158.53718804052386,
                 "y": 159.52557449962939
             }
         },
@@ -82,11 +82,11 @@
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 4,
+            "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 479.875,
-                "y": 119.875
+                "x": 1362,
+                "y": 205.66666666666663
             }
         },
         "assets/map/tutorial.tmx#terrain-extruded": {
@@ -105,7 +105,7 @@
         "assets/map/terrain-extruded.tsx"
     ],
     "project": "pixelAdventure.tiled-project",
-    "property.type": "bool",
+    "property.type": "AnimType",
     "recentFiles": [
         "assets/map/tutorial.tmx",
         "assets/map/terrain-extruded.tsx",

@@ -1,7 +1,8 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.graphics.Color
-import com.fatih.pixeladventure.ai.GameObjectState
+import com.fatih.pixeladventure.ai.EntityState
+import com.fatih.pixeladventure.ai.PlayerState
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Blink
 import com.fatih.pixeladventure.ecs.component.Flash
@@ -31,7 +32,7 @@ class TeleportSystem (
         entity.configure {
             it += Blink(1.5f,0.075f)
             it +=  Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
-            entity[State].stateMachine.changeState(GameObjectState.HIT)
+            entity[State].stateMachine.changeState(PlayerState.HIT)
             audioService.play(SoundAsset.HURT)
         }
         physicComp.body.setTransform(spawnLocation,0f)

@@ -179,6 +179,7 @@ class TiledService (
         fixtureDefUserData.forEach { it ->
             this.createFixture(it.fixtureDef).apply {
                 this.userData = it.userData
+                this.restitution
             }
             //it.fixtureDef.shape.dispose()
         }
@@ -194,7 +195,7 @@ class TiledService (
                 is EllipseMapObject -> ellipseFixtureDef(mapObject)
                 is PolygonMapObject -> polygonFixtureDef(mapObject)
                 is PolylineMapObject -> polylineFixtureDef(mapObject)
-                else -> gdxError("Unsupported mapobject $mapObject")
+                else -> gdxError("Unsupported mapObject $mapObject")
             }
             val userData = mapObject.property("userData","")
             fixtureDef.apply {

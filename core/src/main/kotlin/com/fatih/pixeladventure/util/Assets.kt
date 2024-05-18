@@ -16,12 +16,13 @@ import ktx.assets.disposeSafely
 import ktx.assets.getAsset
 import ktx.assets.load
 
-enum class MapAsset(val path : String,val nextMap : MapAsset? = null){
+enum class MapAsset(val path : String,val nextMap : MapAsset? = null,val parallaxBgdTexture : String = "graphics/green.png"){
     TEST("map/test.tmx"),
-    MAP2("map/map2.tmx"),
-    MAP1("map/map1.tmx",MAP2),
-    TUTORIAL("map/tutorial.tmx",MAP1),
+    JUMP_HIGHER("map/map2.tmx", parallaxBgdTexture = "graphics/brown.png"),
+    FIND_THE_WAY("map/map1.tmx",JUMP_HIGHER,parallaxBgdTexture = "graphics/blue.png"),
+    TUTORIAL("map/tutorial.tmx",FIND_THE_WAY,parallaxBgdTexture = "graphics/pink.png"),
     OBJECT("map/object.tmx");
+    val mapName = this.name.toString().replace('_',' ')
 }
 
 enum class TextureAtlasAsset(val path : String){

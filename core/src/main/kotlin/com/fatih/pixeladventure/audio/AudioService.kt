@@ -72,7 +72,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
                 play(gameEvent.soundAsset)
             }
             is CollectItemEvent -> {
-                play(gameEvent.soundAsset)
+                play(SoundAsset.COLLECT)
             }
             else -> Unit
         }

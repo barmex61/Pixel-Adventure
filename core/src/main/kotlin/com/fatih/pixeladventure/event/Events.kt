@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.event
 
 import com.badlogic.gdx.maps.tiled.TiledMap
+import com.badlogic.gdx.physics.box2d.Fixture
 import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.Entity
 
@@ -10,7 +11,7 @@ data class MapChangeEvent(val tiledMap: TiledMap) : GameEvent
 data class EntityLifeChangeEvent(val entity: Entity) : GameEvent
 data class VictoryEvent(val soundAsset: SoundAsset) : GameEvent
 data object PlayerDeathEvent : GameEvent
-data class CollectItemEvent(val soundAsset: SoundAsset) : GameEvent
+data class CollectItemEvent(val playerEntity : Entity,val collectEntity : Entity) : GameEvent
 
 interface GameEventListener{
 

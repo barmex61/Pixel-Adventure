@@ -24,13 +24,10 @@ import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.ParallaxBgdSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
-import com.fatih.pixeladventure.ecs.system.RemoveSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
-import com.fatih.pixeladventure.ecs.system.RespawnSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.ecs.system.TeleportSystem
 import com.fatih.pixeladventure.ecs.system.TextSystem
-import com.fatih.pixeladventure.ecs.system.TrackSystem
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.PlayerDeathEvent
 import com.fatih.pixeladventure.event.VictoryEvent
@@ -80,7 +77,6 @@ class GameScreen(
         systems {
             add(AnimationSystem())
             add(MoveSystem())
-            add(TrackSystem())
             add(JumpSystem())
             add(PhysicSystem())
             add(TeleportSystem())
@@ -93,8 +89,6 @@ class GameScreen(
             add(ParallaxBgdSystem())
             add(TextSystem())
             add(RenderSystem())
-            add(RemoveSystem())
-            add(RespawnSystem())
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
             }
@@ -110,6 +104,7 @@ class GameScreen(
     fun loadMap(mapAsset: MapAsset){
         currentMapAsset = mapAsset
         val map = assets[mapAsset]
+        world.system<ParallaxBgdSystem>().parallaxBgd.setTexture(mapAsset.parallaxBgdTexture)
         GameEventDispatcher.fireEvent(MapChangeEvent(map))
     }
 

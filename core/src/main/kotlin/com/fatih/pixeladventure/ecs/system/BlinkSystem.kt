@@ -12,7 +12,7 @@ class BlinkSystem : IteratingSystem(family = World.family { all(Blink,Graphic) }
     override fun onTickEntity(entity: Entity) {
         val blinkComp = entity[Blink]
         val (sprite,_) = entity[Graphic]
-        val(maxTime,blinksRatio,timer) = blinkComp
+        val(maxTime,blinksRatio,_) = blinkComp
         if (maxTime <= 0f){
             sprite.setAlpha(1f)
             entity.configure { it -= Blink }

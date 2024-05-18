@@ -35,17 +35,48 @@
  </tile>
  <tile id="12">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="13">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="14">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="15">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="7" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+   <object id="2" type="FixtureDef" x="9" y="0" width="7" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+   <object id="3" type="FixtureDef" x="7" y="0" width="2" height="16">
+    <properties>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="17">
@@ -92,12 +123,42 @@
  </tile>
  <tile id="35">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="4" type="FixtureDef" x="0" y="0" width="8" height="16">
+    <properties>
+     <property name="density" type="float" value="0"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+   <object id="5" type="FixtureDef" x="8" y="0" width="8" height="16">
+    <properties>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="36">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="2" type="FixtureDef" x="8" y="0" width="8" height="16">
+    <properties>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+   <object id="3" type="FixtureDef" x="0" y="0" width="8" height="16">
+    <properties>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="37">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="39">
@@ -134,12 +195,32 @@
  </tile>
  <tile id="57">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="density" type="float" value="0"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="58">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="59">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="61">
@@ -234,6 +315,42 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="188">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="189">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="190">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="191">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="207">
   <objectgroup draworder="index" id="2">
    <object id="1" type="FixtureDef" x="8" y="0" width="8" height="14"/>
@@ -242,6 +359,24 @@
  <tile id="208">
   <objectgroup draworder="index" id="2">
    <object id="1" type="FixtureDef" x="0" y="0" width="8" height="14"/>
+  </objectgroup>
+ </tile>
+ <tile id="213">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="235">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
 </tileset>

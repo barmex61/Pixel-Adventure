@@ -9,7 +9,10 @@ data class Jump(
     val lowerFeet : Vector2,
     val upperFeet : Vector2,
     var buffer : Float = 0f,
-    var doubleJump : Boolean = false
+    var doubleJump : Boolean = false,
+    var jumpOnGround : Boolean = false,
+    var fly : Boolean = false,
+    var flyTimer : Float = 2f,
     ) : Component <Jump> {
 
     override fun type() = Jump

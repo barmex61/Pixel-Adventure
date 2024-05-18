@@ -2,13 +2,13 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="168">
  <properties>
   <property name="musicAsset" value="MUSIC4"/>
-  <property name="name" value="Tutorial"/>
+  <property name="name" value="Find the way"/>
  </properties>
  <tileset firstgid="1" source="terrain-extruded.tsx"/>
  <tileset firstgid="243" source="objects.tsx"/>
  <layer id="1" name="ground" width="50" height="20">
   <data encoding="base64" compression="zlib">
-   eJztlEEOgCAMBLlpD+oLsI8Q/v81Szg3aAOYxp1krgvDgRAAAOAdi7h2lqYWVKJ4dpanFlS8dGziLh7OO1qgAx0F6z+p/YVfdVjP1bZHdLTempx0tDZ5QIf2duSsQ9tjdPyq4xKTwax0aHvZeE56cMeyfQMTyTrF
+   eJztlD0OgCAMRtmUQT2BsugJhAXvfy9LWFgaTMNfY7/khe0rD5IqNWY88CQn15zAlZxcI/8xVnr/xwTMhdFNDWJ24CiMaWoQw8VjAVZgY+6Ri3iIRwh1T2K7sJcHdS7WXcMj99aaiUeu01TwwN5OM/PA+ox4/MrjBiwBh3hgfY44x364Y+h+AUtlPqc=
   </data>
  </layer>
  <layer id="2" name="decoration" width="50" height="20">
@@ -34,13 +34,14 @@
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
    </properties>
   </object>
-  <object id="154" gid="248" x="48" y="192" width="19" height="36">
+  <object id="154" gid="248" x="48" y="194" width="19" height="36">
    <properties>
+    <property name="animFrameDuration" type="float" value="0"/>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>
   </object>
   <object id="155" gid="243" x="0" y="192" width="32" height="32"/>
-  <object id="156" gid="247" x="736" y="208" width="64" height="64">
+  <object id="156" gid="247" x="736" y="210" width="64" height="64">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>

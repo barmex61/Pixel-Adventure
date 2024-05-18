@@ -16,7 +16,7 @@ class ParallaxBgdSystem(
     private val gameViewPort: Viewport = inject("gameViewport"),
 ) : IntervalSystem()  {
 
-    private val parallaxBgd = ParallaxBackground(gameViewPort, "graphics/green.png", vec2(0.2f, 0.2f))
+    val parallaxBgd = ParallaxBackground(gameViewPort, "graphics/green.png", vec2(0.3f, 0.3f))
 
     override fun onTick() {
         parallaxBgd.scrollTo(gameCamera.position.x, -gameCamera.position.y)

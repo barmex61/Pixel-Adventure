@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="6" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="10" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -7,7 +7,6 @@
    <property name="bodyType" propertytype="BodyType" value="DynamicBody"/>
    <property name="entityTags" propertytype="EntityTags" value="PLAYER,CAMERA_FOCUS"/>
    <property name="gameObject" propertytype="GameObject" value="FROG"/>
-   <property name="gameObjectState" propertytype="GameObjectState" value="IDLE"/>
    <property name="gravityScale" type="float" value="1"/>
    <property name="jumpHeight" type="float" value="2.2"/>
    <property name="life" type="int" value="4"/>
@@ -39,7 +38,10 @@
    </object>
    <object id="25" type="FixtureDef" x="11" y="26">
     <properties>
+     <property name="friction" type="float" value="0"/>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
+     <property name="restitution" type="float" value="0"/>
+     <property name="userData" value="frictionFixture"/>
     </properties>
     <polygon points="0,0 11,0 11,-11 0,-11"/>
    </object>
@@ -75,7 +77,6 @@
    <property name="damage" type="int" value="1"/>
    <property name="entityTags" propertytype="EntityTags" value="HAS_AGGRO"/>
    <property name="gameObject" propertytype="GameObject" value="ROCK_HEAD"/>
-   <property name="gameObjectState" propertytype="GameObjectState" value="ROCK_HEAD_IDLE"/>
    <property name="speed" type="float" value="12"/>
    <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
    <property name="timeToMax" type="float" value="3"/>
@@ -110,17 +111,17 @@
   <properties>
    <property name="animFrameDuration" type="float" value="0.035"/>
    <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
-   <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,COLLECTABLE"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
    <property name="gameObject" propertytype="GameObject" value="CHERRY"/>
-   <property name="gameObjectState" propertytype="GameObjectState" value="NONE"/>
    <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
   </properties>
-  <image width="32" height="32" source="../graphics/cherry_00.png"/>
+  <image width="32" height="32" source="../graphics/cherry.png"/>
   <objectgroup draworder="index" id="3">
    <object id="8" type="FixtureDef" x="9" y="15" width="14" height="7">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="CHERRY"/>
      <property name="isSensor" type="bool" value="true"/>
+     <property name="userData" value="cherry"/>
     </properties>
    </object>
   </objectgroup>
@@ -160,6 +161,82 @@
      <property name="isSensor" type="bool" value="true"/>
      <property name="userData" value="start_flag"/>
     </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="6" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+   <property name="gameObject" propertytype="GameObject" value="BANANA"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="32" height="32" source="../graphics/banana.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="3" type="FixtureDef" x="10" y="17">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="BANANA"/>
+     <property name="isSensor" type="bool" value="true"/>
+    </properties>
+    <polygon points="0,0 4,4 9,4 12,2 12,-1 10,-5 0,-5"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="7" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+   <property name="gameObject" propertytype="GameObject" value="MELON"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="32" height="32" source="../graphics/melon.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="4" type="FixtureDef" x="8" y="11">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="MELON"/>
+     <property name="isSensor" type="bool" value="true"/>
+    </properties>
+    <polygon points="0,0 0,5 5,10 11,10 16,5 16,0"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="8" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+   <property name="gameObject" propertytype="GameObject" value="PINEAPPLE"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="32" height="32" source="../graphics/pineapple.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="11" y="16">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PINEAPPLE"/>
+     <property name="isSensor" type="bool" value="true"/>
+    </properties>
+    <polygon points="0,0 0,7 1,8 9,8 10,7 10,0 8,-3 2,-3"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="9" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+   <property name="gameObject" propertytype="GameObject" value="KIWI"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="32" height="32" source="../graphics/kiwi.png"/>
+  <objectgroup draworder="index" id="4">
+   <object id="3" type="FixtureDef" x="9" y="9" width="14" height="14">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="KIWI"/>
+     <property name="isSensor" type="bool" value="true"/>
+    </properties>
+    <ellipse/>
    </object>
   </objectgroup>
  </tile>

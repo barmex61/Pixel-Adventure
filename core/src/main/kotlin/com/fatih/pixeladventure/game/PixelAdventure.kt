@@ -52,7 +52,6 @@ class PixelAdventure : KtxGame<KtxScreen>() {
         Gdx.app.getPreferences("pixel_adventure")
     }
     private val gamePreferences : GamePreferences by lazy {
-        preferences.clear()
         GamePreferences(preferences)
     }
 

@@ -30,11 +30,11 @@ class GameView(
            color = skin.getColor("white")
            this.color.a = 0f
         }
-        this.add(typingLabel).padTop(10f).expand().align(Align.top).prefWidth(120f).prefHeight(40f)
+        this.add(typingLabel).padTop(10f).expand().align(Align.top).prefWidth(180f).prefHeight(40f)
         row()
         val playerLife = image("health_4"){
             name = "player_life"
-            it.padLeft(7f).padBottom(10f).expand().align(Align.bottomLeft).prefWidth(70f).prefHeight(10f)
+            it.padLeft(7f).padBottom(10f).expand().align(Align.bottomLeft).minWidth(70f).minHeight(10f)
         }
 
         gameModel.onPropertyChange(GameModel::mapName){

@@ -26,13 +26,13 @@ class MenuView (
         padTop(15f).padBottom(15f)
         setFillParent(true)
         menuTextButton(MapAsset.TUTORIAL,menuModel)
-        menuTextButton(MapAsset.MAP1,menuModel)
-        menuTextButton(MapAsset.MAP2,menuModel)
+        menuTextButton(MapAsset.FIND_THE_WAY,menuModel)
+        menuTextButton(MapAsset.JUMP_HIGHER,menuModel)
 
     }
 
     private fun menuTextButton(mapAsset: MapAsset,menuModel: MenuModel){
-        textButton(mapAsset.name,"menu_txt_button",skin){
+        textButton(mapAsset.mapName,"menu_txt_button",skin){
             it.expandY().fillX().prefWidth(150f)
             val isUnlocked = menuModel.isUnlocked(mapAsset)
             isDisabled = !isUnlocked

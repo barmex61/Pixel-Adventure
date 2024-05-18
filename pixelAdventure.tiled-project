@@ -70,12 +70,6 @@
                     "value": "GROUND"
                 },
                 {
-                    "name": "gameObjectState",
-                    "propertyType": "GameObjectState",
-                    "type": "string",
-                    "value": "NONE"
-                },
-                {
                     "name": "gravityScale",
                     "type": "float",
                     "value": 0
@@ -189,7 +183,11 @@
                 "ROCK_HEAD",
                 "CHERRY",
                 "START_FLAG",
-                "FINISH_FLAG"
+                "FINISH_FLAG",
+                "BANANA",
+                "MELON",
+                "PINEAPPLE",
+                "KIWI"
             ],
             "valuesAsFlags": false
         },

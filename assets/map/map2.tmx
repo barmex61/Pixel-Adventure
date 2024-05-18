@@ -2,7 +2,7 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="152">
  <properties>
   <property name="musicAsset" value="MUSIC5"/>
-  <property name="name" value="Tutorial"/>
+  <property name="name" value="Jump higher"/>
  </properties>
  <tileset firstgid="1" name="terrain-extruded" tilewidth="16" tileheight="16" spacing="8" margin="4" tilecount="242" columns="22">
   <image source="../graphics/terrain-ext.png" width="528" height="264"/>
@@ -132,19 +132,19 @@
   </tile>
  </tileset>
  <tileset firstgid="243" source="objects.tsx"/>
- <tileset firstgid="249" source="terrain-extruded.tsx"/>
+ <tileset firstgid="251" source="terrain-extruded.tsx"/>
  <layer id="1" name="ground" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJxjYBgFo4D6IJyRgSGCAI5kHDj35QLtziOA8wfQfc1Au1sI4NYBdN8ooA/4DyIYMTEjkXGvAFSnSAJWIjFNiQLVi2HB4oMkbY66jzIwVN2HLd8Qm2fo4b7BEqaj7htY9+Eq3wlhYtOyNlCdDpFYF4uZpPiPnLgAAPGpHKg=
+   eJxjYBgFo4D6IJKRgSGKAI5mHDj35QPtLiCACwfQfa1Au9sI4PYBdN8ooA9gBMYxExbMTGTcKwHVKZOAVUhMU+JA9RJYsOQgSZuj7qMMDFX3Ycs3xOYZerhvsITpqPsG1n24yndCmNi0rAtUp0ck1sdiJin+IycuAC4jGxM=
   </data>
  </layer>
  <layer id="2" name="decoration" width="40" height="20">
   <data encoding="base64" compression="zlib">
-   eJzt08ENACAMw8AUlij7LwoLRH22Qr4J/LEEAMDfVkg7uiu8fG1ncB/QwX075Wf3LT/XLsFDAK8=
+   eJzt08ENACAMw8BUgiXK/nvCAlGfrZBvAn8sAQDwtxXSju4KL1/bGdwHdHDfTvnZfcvPtQsDQgDH
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="127" gid="248" x="64" y="144" width="19" height="36">
+  <object id="127" gid="248" x="64" y="146" width="19" height="36">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>
@@ -176,7 +176,7 @@
   <object id="148" gid="246" x="384" y="128" width="32" height="32"/>
   <object id="149" gid="246" x="416" y="112" width="32" height="32"/>
   <object id="150" gid="246" x="448" y="96" width="32" height="32"/>
-  <object id="151" gid="247" x="560" y="48" width="64" height="64">
+  <object id="151" gid="247" x="560" y="50" width="64" height="64">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>
