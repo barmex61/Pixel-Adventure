@@ -27,13 +27,13 @@ class TeleportSystem (
         val physicComp = entity[Physic]
         val lifeComp = entity[Life]
         lifeComp.current = (lifeComp.current -1).coerceAtLeast(0)
+        GameEventDispatcher.fireEvent(EntityLifeChangeEvent(entity))
         entity.configure {
             it += Blink(1.5f,0.075f)
             it +=  Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
             entity[State].stateMachine.changeState(GameObjectState.HIT)
             audioService.play(SoundAsset.HURT)
         }
-        GameEventDispatcher.fireEvent(EntityLifeChangeEvent(entity))
         physicComp.body.setTransform(spawnLocation,0f)
         teleportComp.doTeleport = false
     }

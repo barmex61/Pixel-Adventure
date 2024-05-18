@@ -1,27 +1,27 @@
 package com.fatih.pixeladventure.util
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.assets.loaders.ShaderProgramLoader.ShaderProgramParameter
 import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.audio.Sound
-import com.badlogic.gdx.files.FileHandle
 import com.badlogic.gdx.graphics.g2d.TextureAtlas
 import com.badlogic.gdx.graphics.glutils.ShaderProgram
 import com.badlogic.gdx.maps.tiled.TiledMap
-import com.badlogic.gdx.maps.tiled.TmxMapLoader
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.utils.Disposable
+import com.fatih.pixeladventure.tiled.TiledLoader
 import com.ray3k.stripe.FreeTypeSkinLoader
 import ktx.app.gdxError
 import ktx.assets.disposeSafely
 import ktx.assets.getAsset
 import ktx.assets.load
-import java.util.logging.FileHandler
 
-enum class MapAsset(val path : String){
+enum class MapAsset(val path : String,val nextMap : MapAsset? = null){
     TEST("map/test.tmx"),
-    OBJECT("map/object.tmx")
+    MAP2("map/map2.tmx"),
+    MAP1("map/map1.tmx",MAP2),
+    TUTORIAL("map/tutorial.tmx",MAP1),
+    OBJECT("map/object.tmx");
 }
 
 enum class TextureAtlasAsset(val path : String){
@@ -29,14 +29,21 @@ enum class TextureAtlasAsset(val path : String){
 }
 
 enum class MusicAsset(val path : String){
-    TUTORIAL("audio/tutorial.mp3")
+    MUSIC1("audio/music1.wav"),
+    MUSIC2("audio/music2.wav"),
+    MUSIC3("audio/music3.wav"),
+    MUSIC4("audio/music4.wav"),
+    MUSIC5("audio/music5.wav"),
+    MUSIC6("audio/music6.wav"),
+    MUSIC7("audio/music7.wav");
 }
 
 enum class SoundAsset(val path : String){
     JUMP("audio/jump.mp3"),
     HURT("audio/hurt.wav"),
-    VICTORY("audio/victory.mp3"),
-    COLLECT("audio/collect.wav")
+    FLAG("audio/flag.wav"),
+    COLLECT("audio/collect.wav"),
+    DEATH("audio/death.wav")
 }
 
 enum class SkinAsset(val path : String){
@@ -50,7 +57,7 @@ enum class ShaderAsset(val vertexShader : String,val fragmentShader : String){
 class Assets : Disposable{
 
     private val assetManager = AssetManager().apply {
-        setLoader(TiledMap::class.java,TmxMapLoader(fileHandleResolver))
+        setLoader(TiledMap::class.java,TiledLoader(fileHandleResolver))
         setLoader(Skin::class.java,FreeTypeSkinLoader(fileHandleResolver))
     }
 

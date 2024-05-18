@@ -3,13 +3,42 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "assets/map/test.tmx",
+    "activeFile": "assets/map/tutorial.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tüm Dosyalar (*)",
     "fileStates": {
         "": {
+            "scaleInDock": 1,
+            "scaleInEditor": 3
+        },
+        "assets/map/map1.tmx": {
+            "expandedObjectLayers": [
+                10,
+                3
+            ],
+            "scale": 2,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 378.5,
+                "y": 137.25
+            }
+        },
+        "assets/map/map1.tmx#terrain-extruded": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "assets/map/map2.tmx": {
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 317.3333333333333,
+                "y": 94.33333333333331
+            }
+        },
+        "assets/map/map2.tmx#terrain-extruded": {
+            "scaleInDock": 1
         },
         "assets/map/object.tmx": {
             "scale": 2.529375,
@@ -24,33 +53,57 @@
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
+        "assets/map/terrain-extruded.tsx": {
+            "dynamicWrapping": false,
+            "scaleInEditor": 1
+        },
         "assets/map/test.tmx": {
             "expandedObjectLayers": [
                 3
             ],
-            "scale": 3,
+            "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 459.66666666666663,
-                "y": 12.833333333333314
+                "x": 419,
+                "y": 208.25
             }
         },
         "assets/map/test.tmx#terrain-extruded": {
             "dynamicWrapping": false,
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "assets/map/tutorial.tmx": {
+            "expandedObjectLayers": [
+                3
+            ],
+            "scale": 4,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 403.25,
+                "y": 173.125
+            }
+        },
+        "assets/map/tutorial.tmx#terrain-extruded": {
+            "dynamicWrapping": false,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
+    "last.externalTilesetPath": "C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/assets/map",
     "last.imagePath": "C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/assets/graphics",
     "openFiles": [
-        "assets/map/test.tmx",
-        "assets/map/objects.tsx"
+        "assets/map/tutorial.tmx"
     ],
     "project": "pixelAdventure.tiled-project",
     "property.type": "bool",
     "recentFiles": [
-        "assets/map/objects.tsx",
+        "assets/map/terrain-extruded.tsx",
+        "assets/map/tutorial.tmx",
         "assets/map/test.tmx",
+        "assets/map/objects.tsx",
+        "assets/map/map1.tmx",
+        "assets/map/map2.tmx",
         "assets/map/object.tmx"
     ]
 }

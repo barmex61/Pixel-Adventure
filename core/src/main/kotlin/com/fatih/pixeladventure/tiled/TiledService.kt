@@ -1,6 +1,5 @@
 package com.fatih.pixeladventure.tiled
 
-import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.maps.MapLayer
 import com.badlogic.gdx.maps.MapObject
 import com.badlogic.gdx.maps.objects.EllipseMapObject
@@ -12,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell
 import com.badlogic.gdx.maps.tiled.objects.TiledMapTileMapObject
 import com.badlogic.gdx.math.MathUtils
+import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType
@@ -19,23 +19,18 @@ import com.badlogic.gdx.physics.box2d.ChainShape
 import com.badlogic.gdx.physics.box2d.CircleShape
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.badlogic.gdx.physics.box2d.PolygonShape
-import com.fatih.pixeladventure.ecs.component.AnimationType
-import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.component.Text
 import com.fatih.pixeladventure.ecs.component.Tiled
-import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
-import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.PLATFORM_BIT
-import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
-import com.fatih.pixeladventure.util.TextureAtlasAsset
 import com.fatih.pixeladventure.util.component1
 import com.fatih.pixeladventure.util.component2
 import com.fatih.pixeladventure.util.component3
@@ -44,7 +39,6 @@ import com.github.quillraven.fleks.World
 import ktx.app.gdxError
 import ktx.box2d.body
 import ktx.box2d.chain
-import ktx.box2d.loop
 import ktx.math.vec2
 import ktx.tiled.height
 import ktx.tiled.id
@@ -98,8 +92,8 @@ class TiledService (
                 userData = "mapBoundary"
             }
             val bottomVertices = floatArrayOf(
-                0f,0f,
-                tiledMap.width.toFloat(),0f
+                -10f,0f,
+                tiledMap.width.toFloat() + 10f,0f
             )
             chain(bottomVertices){
                 userData = "bottomMapBoundary"
@@ -122,6 +116,17 @@ class TiledService (
 
     }
 
+    private fun spawnTextEntities(mapObject: RectangleMapObject){
+        val text = mapObject.propertyOrNull<String>("text")?: gdxError("Text not specified for $mapObject")
+        world.entity {
+            val xPos = mapObject.x * UNIT_SCALE
+            val yPos = mapObject.y * UNIT_SCALE
+            val width = mapObject.width * UNIT_SCALE
+            val height = mapObject.height * UNIT_SCALE
+            it += Text(text, Rectangle(xPos,yPos,width,height))
+        }
+    }
+
     private fun spawnGroundObject(x:Int, y:Int, collObj : MapObject){
         val body = createBody(BodyType.StaticBody, vec2(x.toFloat(),y.toFloat()),true)
         val fixtureDefUserData = fixtureDefinitionOf(collObj)
@@ -129,6 +134,10 @@ class TiledService (
     }
 
     private fun spawnGameObjectEntity(mapObject: MapObject, trackLayer: MapLayer){
+        if (mapObject is RectangleMapObject){
+            spawnTextEntities(mapObject)
+            return
+        }
         if (mapObject !is TiledMapTileMapObject){
             gdxError("Unsupported mapObject $mapObject")
         }

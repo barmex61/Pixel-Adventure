@@ -29,7 +29,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
         soundQueue += soundAsset
     }
 
-    private fun play(musicAsset: MusicAsset){
+    fun play(musicAsset: MusicAsset){
         if (currentMusicResource?.musicAsset == musicAsset){
             return
         }
@@ -65,7 +65,6 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
             is MapChangeEvent ->{
                 gameEvent.tiledMap.propertyOrNull<String>("musicAsset")?.let {
                     play(MusicAsset.valueOf(it))
-                    println()
                 }
             }
             is VictoryEvent ->{

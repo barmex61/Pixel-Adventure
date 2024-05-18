@@ -24,18 +24,6 @@
      <property name="userData" value="hitbox"/>
     </properties>
    </object>
-   <object id="5" type="FixtureDef" x="11" y="18">
-    <properties>
-     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
-    </properties>
-    <polyline points="0,0 0,5.5 0,11"/>
-   </object>
-   <object id="6" type="FixtureDef" x="24" y="18">
-    <properties>
-     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
-    </properties>
-    <polyline points="-2,0 -2,11"/>
-   </object>
    <object id="19" type="FixtureDef" x="11" y="12" width="11" height="12">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
@@ -48,6 +36,12 @@
      <property name="userData" value="player_foot"/>
     </properties>
     <polygon points="0,0 0,6 11,6 11,0"/>
+   </object>
+   <object id="25" type="FixtureDef" x="11" y="26">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
+    </properties>
+    <polygon points="0,0 11,0 11,-11 0,-11"/>
    </object>
   </objectgroup>
  </tile>
@@ -123,7 +117,7 @@
   </properties>
   <image width="32" height="32" source="../graphics/cherry_00.png"/>
   <objectgroup draworder="index" id="3">
-   <object id="6" type="FixtureDef" x="10" y="16" width="13" height="6">
+   <object id="8" type="FixtureDef" x="9" y="15" width="14" height="7">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="CHERRY"/>
      <property name="isSensor" type="bool" value="true"/>

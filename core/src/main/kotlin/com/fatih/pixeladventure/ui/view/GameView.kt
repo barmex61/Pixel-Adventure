@@ -1,6 +1,5 @@
 package com.fatih.pixeladventure.ui.view
 
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.delay
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn

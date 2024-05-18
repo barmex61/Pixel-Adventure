@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="127">
  <properties>
-  <property name="musicAsset" value="TUTORIAL"/>
+  <property name="musicAsset" value="MUSIC1"/>
   <property name="name" value="Tutorial"/>
  </properties>
  <tileset firstgid="1" name="terrain-extruded" tilewidth="16" tileheight="16" spacing="8" margin="4" tilecount="242" columns="22">

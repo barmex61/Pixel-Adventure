@@ -1,5 +1,6 @@
 package com.fatih.pixeladventure.ecs.component
 
+import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
@@ -11,7 +12,7 @@ enum class AnimationType{
     val atlasKey : String = this.name.lowercase()
 }
 
-data class Animation(var gdxAnimation : GdxAnimation? = null,var timer : Float = 0f,var frameDuration : Float,var nextAnimation : AnimationType? = null) : Component <Animation> {
+data class Animation(var gdxAnimation : GdxAnimation? = null,var timer : Float = 0f,var frameDuration : Float,var playMode: PlayMode = PlayMode.LOOP,var nextAnimation : AnimationType? = null) : Component <Animation> {
 
     override fun type() = Animation
 

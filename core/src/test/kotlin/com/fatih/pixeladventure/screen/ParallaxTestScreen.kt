@@ -14,7 +14,7 @@ class ParallaxTestScreen : KtxScreen {
 
     private val spriteBatch = SpriteBatch()
     private val gameViewPort = StretchViewport(16f,9f)
-    private val parallaxBgd = ParallaxBackground(gameViewPort, vec2(0.33f,0.05f))
+    private val parallaxBgd = ParallaxBackground(gameViewPort,"graphics/green.png", vec2(0.33f,0.05f))
     private val gameCamera = gameViewPort.camera
 
 

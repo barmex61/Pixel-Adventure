@@ -7,8 +7,7 @@ import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.World
 
-fun World.animation(entity: Entity,animationType: AnimationType,playMode : PlayMode = PlayMode.LOOP,nextAnimation : AnimationType? = null) {
-    if (entity has EntityTag.PLAYER) println(animationType)
+fun World.animation(entity: Entity,animationType: AnimationType,playMode : PlayMode = PlayMode.LOOP) {
     val animationSystem = this.system<AnimationSystem>()
     animationSystem.entityAnimation(entity,animationType,playMode)
 }

@@ -2,11 +2,12 @@ package com.fatih.pixeladventure.ecs.system
 
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.Remove
+import com.fatih.pixeladventure.ecs.component.Respawn
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
 
-class RemoveSystem : IteratingSystem(family = World.family { all(Remove) }) {
+class RemoveSystem : IteratingSystem(family = World.family { all(Remove).none(Respawn) }) {
 
     override fun onTickEntity(entity: Entity) {
         val removeComp = entity[Remove]

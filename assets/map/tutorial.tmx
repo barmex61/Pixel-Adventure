@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="60" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="146">
+ <properties>
+  <property name="musicAsset" value="MUSIC3"/>
+  <property name="name" value="Tutorial"/>
+ </properties>
+ <tileset firstgid="1" name="terrain-extruded" tilewidth="16" tileheight="16" spacing="8" margin="4" tilecount="242" columns="22">
+  <image source="../graphics/terrain-ext.png" width="528" height="264"/>
+  <tile id="2">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
+  <tile id="6">
+   <objectgroup draworder="index" id="2">
+    <object id="2" type="FixtureDef" x="2" y="2" width="14" height="11">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="7">
+   <objectgroup draworder="index" id="2">
+    <object id="2" type="FixtureDef" x="0" y="2" width="16" height="10">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="8">
+   <objectgroup draworder="index" id="2">
+    <object id="2" type="FixtureDef" x="0" y="2" width="15" height="11">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="17">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="24">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
+  <tile id="39">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="40">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="41">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="46">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16"/>
+   </objectgroup>
+  </tile>
+  <tile id="61">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+      <property name="userData" value=""/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="62">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="63">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+     <properties>
+      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="94">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="95">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="96">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="116">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="117">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="118">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="138">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="139">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+  <tile id="140">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+     <properties>
+      <property name="restitution" type="float" value="1"/>
+     </properties>
+    </object>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="243" source="objects.tsx"/>
+ <layer id="1" name="ground" width="60" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztzsENwCAMQ1FutENAh6DsvxrJAJYiWdz+k3yM49YAAAAAVPXIY+Q1e9X9jb35a0SmkU/sqvaqe8XZm79W5Deyxa5qr7pXnL356wAPXQ95
+  </data>
+ </layer>
+ <layer id="2" name="decoration" width="60" height="15">
+  <data encoding="base64" compression="zlib">
+   eJztyaENAAAIwDBOgf+fhAcwKESbTC0CAABgl1MdHv8196QAgw==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="130" gid="243" x="16" y="192" width="32" height="32"/>
+  <object id="131" gid="248" x="48" y="192" width="19" height="36"/>
+  <object id="132" gid="247" x="896" y="192" width="64" height="64"/>
+  <object id="133" gid="246" x="560" y="192" width="32" height="32"/>
+  <object id="135" gid="246" x="608" y="192" width="32" height="32"/>
+  <object id="136" gid="246" x="656" y="192" width="32" height="32"/>
+  <object id="137" name="TEXT" x="66" y="129" width="137" height="64">
+   <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Use [#FF0000]A[] and [#FF0000]D[] for moving</text>
+  </object>
+  <object id="138" name="TEXT" x="233" y="129" width="159" height="62">
+   <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Use [#FF0000]Space[] to jump</text>
+  </object>
+  <object id="139" name="TEXT" x="736" y="128" width="125" height="65">
+   <text fontfamily="Masaaki" pixelsize="23" wrap="1" halign="center" valign="center">Run to to finish</text>
+  </object>
+  <object id="140" name="TEXT" x="544" y="96" width="147" height="77">
+   <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect cherries to perform mid-air jump</text>
+  </object>
+  <object id="141" gid="246" x="201" y="169" width="32" height="32"/>
+  <object id="142" gid="246" x="247" y="135" width="32" height="32"/>
+  <object id="143" gid="246" x="195" y="109" width="32" height="32"/>
+  <object id="144" gid="246" x="191" y="137" width="32" height="32"/>
+  <object id="145" gid="246" x="205" y="195" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks"/>
+</map>

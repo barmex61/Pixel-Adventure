@@ -2,6 +2,7 @@ package com.fatih.pixeladventure.game
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
+import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.badlogic.gdx.physics.box2d.World
@@ -13,6 +14,7 @@ import com.fatih.pixeladventure.screen.LoadingScreen
 import com.fatih.pixeladventure.tiled.TiledService.Companion.FixtureDefUserData
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
+import com.fatih.pixeladventure.util.GamePreferences
 import com.fatih.pixeladventure.util.GameProperties
 import com.fatih.pixeladventure.util.toGameProperties
 import ktx.app.KtxGame
@@ -43,11 +45,20 @@ class PixelAdventure : KtxGame<KtxScreen>() {
             soundVolume = gameProperties.soundVolume,
             musicVolume = gameProperties.musicVolume)
     }
-    private val physicWorld : PhysicWorld = World(vec2(0f,-30f),true).apply { autoClearForces = false }
+    private val physicWorld : PhysicWorld by lazy {
+        World(vec2(0f,-30f),true).apply { autoClearForces = false }
+    }
+    private val preferences : Preferences by lazy {
+        Gdx.app.getPreferences("pixel_adventure")
+    }
+    private val gamePreferences : GamePreferences by lazy {
+        preferences.clear()
+        GamePreferences(preferences)
+    }
 
     override fun create() {
         Gdx.input.inputProcessor = InputMultiplexer()
-        addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets,audioService,gameProperties))
+        addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets,audioService,gameProperties, gamePreferences ))
         setScreen<LoadingScreen>()
     }
 

@@ -12,7 +12,11 @@ import ktx.app.KtxInputAdapter
 class KeyboardInputProcessor(world: World) : KtxInputAdapter {
 
     private var moveX = 0
-    private val playerEntities = world.family { all(EntityTag.PLAYER) }
+    private var playerEntities = world.family { all(EntityTag.PLAYER) }
+
+    fun resetMoveX() {
+        moveX = 0
+    }
 
     private fun updatePlayerMovement(moveValue : Int){
         moveX += moveValue

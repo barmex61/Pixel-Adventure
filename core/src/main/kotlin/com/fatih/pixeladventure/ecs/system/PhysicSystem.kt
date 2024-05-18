@@ -18,7 +18,7 @@ import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
-import com.fatih.pixeladventure.ecs.component.Remove
+import com.fatih.pixeladventure.ecs.component.Respawn
 import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.event.CollectItemEvent
@@ -26,7 +26,6 @@ import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
-import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
 import com.fatih.pixeladventure.util.SoundAsset
 import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Entity
@@ -61,7 +60,9 @@ class PhysicSystem(
     }
 
     override fun onTickEntity(entity: Entity) {
-        val (body,previousPosition) = entity[Physic]
+        val physicComp = entity[Physic]
+        val (body,previousPosition) = physicComp
+
         previousPosition.set(body.position)
         entity.getOrNull(Move)?.let {moveComp ->
             val trackComp = entity.getOrNull(Track)
@@ -179,8 +180,11 @@ class PhysicSystem(
         GameEventDispatcher.fireEvent(CollectItemEvent(SoundAsset.COLLECT))
         animation(collectableEntity,AnimationType.HIT, PlayMode.NORMAL)
         collectableEntity.configure {
-            val duration = it[Animation].gdxAnimation!!.animationDuration
-            it += Remove(duration,true)
+            val animComp = it[Animation]
+            val duration = animComp.gdxAnimation!!.animationDuration
+            animComp.nextAnimation = null
+            it -= EntityTag.COLLECTABLE
+            it += Respawn(duration * 6f,EntityTag.COLLECTABLE)
         }
     }
 
@@ -197,10 +201,10 @@ class PhysicSystem(
             body.setLinearVelocity(it[Move].max * it[Move].direction.valueX * -1,body.linearVelocity.y)
             body.linearDamping = 2f
             it -= Move
-            GameEventDispatcher.fireEvent(VictoryEvent(SoundAsset.VICTORY))
+            GameEventDispatcher.fireEvent(VictoryEvent(SoundAsset.FLAG))
         }
 
-        animation(flagEntity,AnimationType.RUN,PlayMode.NORMAL,AnimationType.WAVE)
+        animation(flagEntity,AnimationType.RUN,PlayMode.NORMAL)
         val animComp = flagEntity[Animation]
         animComp.nextAnimation = AnimationType.WAVE
         flagFixture.userData = ""

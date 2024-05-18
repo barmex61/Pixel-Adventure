@@ -14,13 +14,14 @@ import ktx.math.vec2
 class ParallaxBackground(
     gameViewport: Viewport,
     bgdTexturePath: String,
-    private val scrollSpeed: Vector2 = vec2(1f, 1f)
+    private val scrollSpeed: Vector2 = vec2(1f, 1f),
+    scale: Float = UNIT_SCALE
 ) : Disposable {
     private val originUV = vec2(0f, 0f)
     private val originUV2 = vec2(0f, 0f)
     private val texture = wrappedTexture(bgdTexturePath)
     private val bgdSprite = Sprite(texture).apply {
-        resize(gameViewport.worldWidth, gameViewport.worldHeight)
+        resize(gameViewport.worldWidth, gameViewport.worldHeight,scale)
     }
 
     private fun wrappedTexture(internalPath: String) = Texture(internalPath).apply {
@@ -28,11 +29,11 @@ class ParallaxBackground(
     }
 
     // background sprite that fills out the entire viewport
-    private fun Sprite.resize(worldWidth: Float, worldHeight: Float) {
+    private fun Sprite.resize(worldWidth: Float, worldHeight: Float,scale : Float = UNIT_SCALE) {
         setSize(worldWidth, worldHeight)
         // tile the texture over the entire background by keeping its original aspect ratio
         originUV.set(u, v)
-        originUV2.set((worldWidth / (texture.width * UNIT_SCALE)), (worldHeight / (texture.height * UNIT_SCALE)))
+        originUV2.set((worldWidth / (texture.width * scale)), (worldHeight / (texture.height * scale)))
         u2 = originUV2.x
         v2 = originUV2.y
     }

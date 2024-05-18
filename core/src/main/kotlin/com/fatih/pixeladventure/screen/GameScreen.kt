@@ -1,19 +1,12 @@
 package com.fatih.pixeladventure.screen
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.utils.viewport.ExtendViewport
-import com.badlogic.gdx.utils.viewport.FitViewport
 import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.fatih.pixeladventure.audio.AudioService
-import com.fatih.pixeladventure.ecs.component.EntityTag
-import com.fatih.pixeladventure.ecs.component.Invulnarable
-import com.fatih.pixeladventure.ecs.component.Life
-import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.fatih.pixeladventure.ecs.system.BlinkSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
@@ -33,23 +26,27 @@ import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
 import com.fatih.pixeladventure.ecs.system.PhysicSystem
 import com.fatih.pixeladventure.ecs.system.RemoveSystem
 import com.fatih.pixeladventure.ecs.system.RenderSystem
+import com.fatih.pixeladventure.ecs.system.RespawnSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.ecs.system.TeleportSystem
+import com.fatih.pixeladventure.ecs.system.TextSystem
 import com.fatih.pixeladventure.ecs.system.TrackSystem
-import com.fatih.pixeladventure.event.EntityLifeChangeEvent
+import com.fatih.pixeladventure.event.GameEvent
+import com.fatih.pixeladventure.event.PlayerDeathEvent
+import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
-import com.fatih.pixeladventure.parallax.ParallaxBackground
 import com.fatih.pixeladventure.tiled.TiledService
 import com.fatih.pixeladventure.ui.model.GameModel
 import com.fatih.pixeladventure.ui.view.gameView
+import com.fatih.pixeladventure.util.GamePreferences
 import com.fatih.pixeladventure.util.GameProperties
-import com.fatih.pixeladventure.util.ShaderAsset
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
-import ktx.math.vec2
+import ktx.collections.GdxArray
 import ktx.scene2d.actors
 
 class GameScreen(
@@ -57,13 +54,18 @@ class GameScreen(
     private val physicWorld: PhysicWorld,
     private val assets: Assets,
     audioService: AudioService,
-    gameProperties: GameProperties
-): KtxScreen {
+    gameProperties: GameProperties,
+    private val game : PixelAdventure,
+    private val gamePreferences: GamePreferences
+): KtxScreen , GameEventListener{
 
     private val gameViewPort : Viewport = StretchViewport(16f,9f)
     private val uiViewPort : Viewport = StretchViewport(320f,180f)
     private val uiStage : Stage = Stage(uiViewPort,spriteBatch)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
+    private var delayToMenu = 0f
+    private var isPlayerDeath = false
+    private lateinit var currentMapAsset: MapAsset
     private val world = configureWorld {
         injectables {
             add("gameViewport",gameViewPort)
@@ -76,6 +78,7 @@ class GameScreen(
             add(audioService)
         }
         systems {
+            add(AnimationSystem())
             add(MoveSystem())
             add(TrackSystem())
             add(JumpSystem())
@@ -84,13 +87,14 @@ class GameScreen(
             add(DamageSystem())
             add(InvulnarableSystem())
             add(StateSystem())
-            add(AnimationSystem())
             add(CameraSystem())
             add(BlinkSystem())
             add(FlashSystem())
             add(ParallaxBgdSystem())
+            add(TextSystem())
             add(RenderSystem())
             add(RemoveSystem())
+            add(RespawnSystem())
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
             }
@@ -101,7 +105,13 @@ class GameScreen(
     }
     private val tiledService = TiledService(physicWorld,assets,world)
     private val gameModel : GameModel = GameModel(world)
-    private val keyboardInputProcessor = KeyboardInputProcessor(world)
+    private val keyboardInputProcessor: KeyboardInputProcessor = KeyboardInputProcessor(world)
+
+    fun loadMap(mapAsset: MapAsset){
+        currentMapAsset = mapAsset
+        val map = assets[mapAsset]
+        GameEventDispatcher.fireEvent(MapChangeEvent(map))
+    }
 
     override fun show() {
         inputMultiplexer.addProcessor(keyboardInputProcessor)
@@ -111,18 +121,19 @@ class GameScreen(
             .forEach { GameEventDispatcher.register(it) }
         GameEventDispatcher.register(gameModel)
         GameEventDispatcher.register(tiledService)
+        GameEventDispatcher.register(this)
         uiStage.actors {
             gameView(gameModel)
         }
-        val map = assets[MapAsset.TEST]
-        GameEventDispatcher.fireEvent(MapChangeEvent(map))
 
     }
 
     override fun hide() {
+        keyboardInputProcessor.resetMoveX()
         inputMultiplexer.clear()
         GameEventDispatcher.unregister(gameModel)
         GameEventDispatcher.unregister(tiledService)
+        GameEventDispatcher.unregister(this)
         world.systems
             .filterIsInstance<GameEventListener>()
             .forEach { GameEventDispatcher.unregister(it) }
@@ -131,11 +142,41 @@ class GameScreen(
 
     override fun render(delta: Float) {
         world.update(delta)
+        if (delayToMenu > 0f){
+            delayToMenu -= delta
+            if (delayToMenu < 0f){
+                onFinishMap()
+            }
+        }
+    }
+
+    private fun onFinishMap(){
+        delayToMenu = 0f
+        if (!isPlayerDeath) currentMapAsset.nextMap?.let {mapAsset -> gamePreferences.storeUnlockedMap(mapAsset) }
+        isPlayerDeath = false
+        world.removeAll()
+        val bodyList = GdxArray<Body>()
+        physicWorld.getBodies(bodyList)
+        bodyList.forEach { physicWorld.destroyBody(it) }
+        game.setScreen<MenuScreen>()
     }
 
     override fun resize(width: Int, height: Int) {
         gameViewPort.update(width,height,true)
         uiViewPort.update(width,height,true)
+    }
+
+    override fun onEvent(gameEvent: GameEvent) {
+        when(gameEvent){
+            is VictoryEvent ->{
+                delayToMenu = 2f
+            }
+            is PlayerDeathEvent ->{
+                delayToMenu = 0.00001f
+                isPlayerDeath = true
+            }
+            else -> Unit
+        }
     }
 
     override fun dispose() {

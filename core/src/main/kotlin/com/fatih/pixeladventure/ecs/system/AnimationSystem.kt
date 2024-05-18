@@ -29,9 +29,13 @@ class AnimationSystem(
     override fun onTickEntity(entity: Entity) {
         val animationComp = entity[Animation]
         if (animationComp.gdxAnimation == null) return
-        val (gdxAnimation,timer,_,nextAnimation) = animationComp
+        val (gdxAnimation,timer,_,playMode,nextAnimation) = animationComp
         val (sprite) = entity[Graphic]
-        sprite.setRegion(gdxAnimation!!.getKeyFrame(timer).apply {
+        if (gdxAnimation!!.isAnimationFinished(timer) && nextAnimation != null ){
+            entityAnimation(entity,nextAnimation,playMode)
+            animationComp.nextAnimation = null
+        }
+        sprite.setRegion(gdxAnimation.getKeyFrame(timer).apply {
             entity.getOrNull(Move)?.let { moveComp ->
                 if (moveComp.flipX != isFlipX){
                     flip(true,false)
@@ -40,10 +44,7 @@ class AnimationSystem(
         })
         val velocityMultiplier = if (entity has Physic) abs(entity[Physic].body.linearVelocity.x / 4f) else 1f
         animationComp.timer += deltaTime * max(1f,velocityMultiplier)
-        if (gdxAnimation.isAnimationFinished(timer) && nextAnimation != null){
-            entityAnimation(entity,nextAnimation,PlayMode.LOOP)
-            animationComp.nextAnimation = null
-        }
+
     }
 
     fun entityAnimation(entity: Entity, animationType: AnimationType,playMode: PlayMode) {

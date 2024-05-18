@@ -22,6 +22,15 @@ button
   orig: 64, 32
   offset: 0, 0
   index: -1
+button_disabled
+  rotate: false
+  xy: 1, 41
+  size: 64, 32
+  split: 2, 2, 7, 10
+  pad: 0, 0, 0, 0
+  orig: 64, 32
+  offset: 0, 0
+  index: -1
 frame
   rotate: false
   xy: 1, 109
@@ -33,35 +42,35 @@ frame
   index: -1
 health_0
   rotate: false
-  xy: 1, 66
+  xy: 99, 164
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_1
   rotate: false
-  xy: 99, 164
+  xy: 165, 198
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_2
   rotate: false
-  xy: 165, 198
+  xy: 1, 32
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_3
   rotate: false
-  xy: 1, 57
+  xy: 99, 155
   size: 42, 7
   orig: 42, 7
   offset: 0, 0
   index: -1
 health_4
   rotate: false
-  xy: 45, 66
+  xy: 165, 189
   size: 42, 7
   orig: 42, 7
   offset: 0, 0

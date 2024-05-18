@@ -30,7 +30,7 @@ class JumpSystem(
         val (maxHeight , lowerFeet,upperFeet,buffer,doubleJump) = entity[Jump]
 
         if (doubleJump){
-            applyJumpForce(jumpComps,body,maxHeight * 0.75f)
+            applyJumpForce(jumpComps,body,maxHeight * 0.8f)
             jumpComps.doubleJump = false
             entity[State].stateMachine.changeState(GameObjectState.DOUBLE_JUMP)
             return
