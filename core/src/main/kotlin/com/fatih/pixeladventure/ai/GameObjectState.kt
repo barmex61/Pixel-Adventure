@@ -17,6 +17,21 @@ private const val TOLERANCE_X = 0.1f
 private const val TOLERANCE_Y = 1f
 private const val ZERO = 0f
 
+interface GameObjectState : State<AiEntity>{
+    override fun enter(entity: AiEntity) = Unit
+    override fun update(entity: AiEntity) = Unit
+    override fun exit(entity: AiEntity) = Unit
+    override fun onMessage(entity: AiEntity?, telegram: Telegram?) = false
+}
+
+enum class PlayerState : GameObjectState{
+    IDLE{
+        override fun enter(entity: AiEntity) {
+
+        }
+    }
+}
+
 enum class GameObjectState : State<AiEntity>{
 
     IDLE{
