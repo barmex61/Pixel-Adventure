@@ -8,7 +8,7 @@
  </tile>
  <tile id="6">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="2" y="2" width="14" height="11">
+   <object id="2" type="FixtureDef" x="2" y="2" width="14" height="2">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -17,7 +17,7 @@
  </tile>
  <tile id="7">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="2" width="16" height="10">
+   <object id="2" type="FixtureDef" x="0" y="2" width="16" height="2">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -26,7 +26,7 @@
  </tile>
  <tile id="8">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="0" y="2" width="15" height="11">
+   <object id="2" type="FixtureDef" x="0" y="2" width="15" height="2">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>

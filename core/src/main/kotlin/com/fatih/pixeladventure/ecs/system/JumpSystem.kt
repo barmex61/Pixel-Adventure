@@ -40,25 +40,26 @@ class JumpSystem(
     override fun onTickEntity(entity: Entity) {
         val jumpComps = entity[Jump]
         val (body,_) = entity[Physic]
-        var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpCount,jumpFruitTimer) = entity[Jump]
+        var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpFruitTimer,jumpCounter) = entity[Jump]
 
         if (jumpFruitTimer > 0f ){
             jumpFruitTimer = (jumpFruitTimer - deltaTime).coerceAtLeast(0f)
             jumpComps.jumpFruitTimer = jumpFruitTimer
-            if (jump && jumpCount <2){
-                jumpCount += 1
-                if (jumpCount == 1) applyJumpForce(jumpComps,body,maxHeight,jumpCount)
-                if (jumpCount == 2) {
-                    applyJumpForce(jumpComps,body,maxHeight* 0.85f,jumpCount)
+            if (jumpCounter <2 && jump){
+                jumpCounter += 1
+                if (jumpCounter == 1)  applyJumpForce(jumpComps,body,maxHeight)
+                if (jumpCounter == 2)  {
+                    applyJumpForce(jumpComps,body,maxHeight* 0.85f)
                     entity[State].stateMachine.changeState(PlayerState.DOUBLE_JUMP)
                 }
-                jumpComps.jumpCount = jumpCount
-                return
+                audioService.play(SoundAsset.JUMP)
+                jumpComps.jumpCounter = jumpCounter
             }
+            return
         }
 
         if (doubleJump){
-            applyJumpForce(jumpComps,body,maxHeight * 0.85f,2)
+            applyJumpForce(jumpComps,body,maxHeight * 0.85f)
             jumpComps.doubleJump = false
             entity[State].stateMachine.changeState(PlayerState.DOUBLE_JUMP)
             return
@@ -87,7 +88,7 @@ class JumpSystem(
                 if (jumpOnGround && categoryBit == GROUND_BIT && userData == "cantJump" ){
                     jumpComps.jumpOnGround = false
                 }
-                applyJumpForce(jumpComps,body,maxHeight,1)
+                applyJumpForce(jumpComps,body,maxHeight)
                 audioService.play(SoundAsset.JUMP)
                 return@query false
             }
@@ -95,11 +96,10 @@ class JumpSystem(
         }
     }
 
-    private fun applyJumpForce(jumpComp : Jump,body: Body,maxHeight:Float,jumpCount : Int ){
+    private fun applyJumpForce(jumpComp : Jump,body: Body,maxHeight:Float ){
         val gravityY = if (physicWorld.gravity.y == 0f) 1f else physicWorld.gravity.y
         body.setLinearVelocity(body.linearVelocity.x, sqrt(2 * maxHeight * -gravityY))
         jumpComp.jump = false
-        jumpComp.jumpCount = jumpCount
     }
 
     override fun onEvent(gameEvent: GameEvent) {
@@ -127,7 +127,6 @@ class JumpSystem(
                     }
                     GameObject.APPLE.name -> {
                         gameEvent.playerEntity[Jump].jumpFruitTimer = 4f
-                        gameEvent.playerEntity[Jump].jumpCount = 0
                     }
 
                     else -> Unit

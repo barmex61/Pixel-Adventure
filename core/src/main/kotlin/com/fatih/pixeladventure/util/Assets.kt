@@ -17,9 +17,10 @@ import ktx.assets.getAsset
 import ktx.assets.load
 
 enum class MapAsset(val path : String,val nextMap : MapAsset? = null,val parallaxBgdTexture : String = "graphics/green.png",val mapName : String){
-    MAP5("map/map5.tmx",null, parallaxBgdTexture = "graphics/green.png","Are You Invincible ?"),
-    MAP4("map/map4.tmx",MAP5, parallaxBgdTexture = "graphics/green.png","Fly Like a Butterfly"),
-    MAP3("map/map3.tmx", MAP4,parallaxBgdTexture = "graphics/green.png","Let`s Climb"),
+    MAP6("map/map6.tmx",null, parallaxBgdTexture = "graphics/green.png","Double Jumper"),
+    MAP5("map/map5.tmx",MAP6, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
+    MAP4("map/map4.tmx",MAP5, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
+    MAP3("map/map3.tmx", MAP4,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
     MAP2("map/map2.tmx",MAP3, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
     MAP1("map/map1.tmx",MAP2,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
     TUTORIAL("map/tutorial.tmx",MAP1,parallaxBgdTexture = "graphics/pink.png","Tutorial"),

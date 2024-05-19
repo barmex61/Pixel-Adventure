@@ -5,15 +5,15 @@
   <property name="name" value="Fly like a butterfly"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <tileset firstgid="12" source="terrain-extruded.tsx"/>
  <layer id="2" name="ground" width="35" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt2TEOQEAQhWFXQIEToOEEaLj/lUyhUNjdkdhZ4f+S17/mZZPZLAPeI5cUipQGXVpJp0hv0GWSzIosBl0A/FclqW+mSdIUAAA8aZCMqUscVsmWugSAZLR3I4t7kvZuZHFP0t6NuCfhSezxGnvE2/m2a/HvcubbrsW/y5lvu+zy+1y7CG0ixlvo2kVoEzHeQtcuQpuI8RbuDTomTw==
+   eJzt2TEOgzAQRFHOABSEE4Q05ATBDdz/SNkiBQW2NxIeI/GfNP00I0vrpgGuo7V0jvSCLk/L5MhL0OVjWRwJgi4A7muwPP7MWKUpAAA402x51y7xs1q22iUAVOO9GynuSd67keKe5L0bcU/CmdjjMfaIq0ttV/HvspfaruLfZS+13SDuAr3YLnKbKPEWxnaR20SJtzC2i5DpUuIt/ALoISdI
   </data>
  </layer>
  <layer id="1" name="decoration" width="35" height="60">
   <data encoding="base64" compression="zlib">
-   eJztzwEJADAIAEEzTftncyUEx+7gA3wEAADwm3PLBdX0KAAAAADwrAY1DQb6
+   eJztzwEJADAIAEE7TftXcyUEx+7gA3wEAADwm3PLBdX0KAAAAADwrAYDRgcd
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">

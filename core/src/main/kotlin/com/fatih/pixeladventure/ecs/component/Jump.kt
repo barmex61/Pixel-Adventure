@@ -11,8 +11,8 @@ data class Jump(
     var jump : Boolean = false,
     var doubleJump : Boolean = false,
     var jumpOnGround : Boolean = false,
-    var jumpCount : Int = 0,
-    var jumpFruitTimer : Float = 0f
+    var jumpFruitTimer : Float = 0f,
+    var jumpCounter : Int = 0
     ) : Component <Jump> {
 
     override fun type() = Jump

@@ -14,6 +14,7 @@ import com.fatih.pixeladventure.ecs.component.DamageTaken
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Invulnarable
+import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
@@ -25,6 +26,7 @@ import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
+import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
@@ -109,6 +111,8 @@ class PhysicSystem(
     private fun Entity.isPlayer() = this has EntityTag.PLAYER
     private fun Fixture.isHitBox() = this.userData == "hitbox"
     private fun Fixture.isCherry() = this.userData == "cherry"
+    private fun Fixture.isPlatform() = this.filterData.categoryBits == PLATFORM_BIT
+    private fun Fixture.isPlayer() = this.filterData.categoryBits == PLAYER_BIT
     private fun Fixture.isAggro(entity: Entity,isBeginContact : Boolean) : Boolean {
         return when(this.userData){
             "horizontalAggroSensor" -> {
@@ -126,13 +130,12 @@ class PhysicSystem(
     private fun Fixture.isPlayerFoot() = this.userData == "footFixture"
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
-        return entityA has Damage && entityB has Life  && fixtureA.isHitBox() && fixtureB.isHitBox()
+        return entityA has Damage && entityB has Life && fixtureB.isSensor && fixtureA.isHitBox() && fixtureB.isHitBox()
     }
 
     private fun handleDamageBeginContact(damageSource: Entity, damageTarget: Entity) = with(world){
         val (damageAmount) = damageSource[Damage]
         damageTarget.configure {
-            println(it has EntityTag.PLAYER)
             val damageTakenComp = it.getOrAdd(DamageTaken){ DamageTaken(0) }
             damageTakenComp.damageAmount += damageAmount
         }
@@ -199,15 +202,26 @@ class PhysicSystem(
         flagFixture.userData = ""
     }
 
+    private fun isGroundAndFootCollision(fixtureA: Fixture,fixtureB: Fixture) : Boolean {
+        return fixtureA.isPlayerFoot() && fixtureB.filterData.categoryBits == PLATFORM_BIT
+    }
+
+    private fun handleGroundAndFootCollision(playerEntity: Entity){
+        playerEntity[Jump].jumpCounter = 0
+    }
+
     override fun beginContact(contact: Contact) {
         val fixtureA = contact.fixtureA
         val fixtureB = contact.fixtureB
         val entityA = contact.entityA
         val entityB = contact.entityB
+
         if (entityA == null || entityB == null){
             when{
                 isPlayerBottomMapBoundaryCollision(entityA,fixtureB) -> handlePlayerOutOfMap(entityA!!)
                 isPlayerBottomMapBoundaryCollision(entityB,fixtureA) -> handlePlayerOutOfMap(entityB!!)
+                isGroundAndFootCollision(fixtureA,fixtureB) && entityA != null -> handleGroundAndFootCollision(entityA)
+                isGroundAndFootCollision(fixtureB,fixtureA) && entityB != null-> handleGroundAndFootCollision(entityB)
             }
             return
         }
@@ -220,6 +234,7 @@ class PhysicSystem(
             isCollectableCollision(entityB,entityA,fixtureB,fixtureA) -> handleCollectableBeginContact(entityB,entityA)
             isFinishFlagCollision(entityA,fixtureA,fixtureB) -> handleFinishFlagCollision(entityA,entityB,fixtureB)
             isFinishFlagCollision(entityB,fixtureB,fixtureA) -> handleFinishFlagCollision(entityB,entityA,fixtureA)
+
         }
     }
 

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="375">
+ <properties>
+  <property name="musicAsset" value="MUSIC5"/>
+  <property name="name" value="Are you invincible ?"/>
+ </properties>
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="12" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="80" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztlkEOgjAQRXsGZOcFkI16AWUj3v9G1mgikpR25gPtNP8nP2HRdqYvMx2co0LqvE8L7vOlZkLkhymFX+N9WMntPtfaTSn8Ymskrq2eyS9d2j4kv480HFh/P5EfphL4IbM8t0rgZ7luyQ8T+WEiP0zkh82vVpl3A55REj+kFnrlng48g/zs8jt7X8hPze/hPWbmJ31zt3gja+nfreKsxW/er+Qn4zfvV/KT8YvJGr8jkC/5OXcF8p16aYaRX9yhHKR1aY3fk/z+Yub6F6yFX65ZbJnfzfv+9fQ7xYNwfcihuIOQnzR/9C7vPS9YT/A6
+  </data>
+ </layer>
+ <layer id="1" name="decoration" width="80" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1LENACAMAzB+Av5/DRYuQIUhttS9ldK0BgD/9T1jz/y9CJHkj6MyC3IGd178UPKfJt8OZNN/QCr9B6TSfwBUWZJfBhk=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="358" gid="6" x="96" y="432" width="19" height="36"/>
+  <object id="359" gid="1" x="48" y="432" width="32" height="32"/>
+  <object id="360" gid="11" x="176" y="432" width="32" height="32"/>
+  <object id="361" gid="11" x="16" y="240" width="32" height="32"/>
+  <object id="362" gid="2" x="-13" y="325" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="363" gid="2" x="185" y="326" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="365" gid="3" x="176" y="192" width="42" height="42">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="HAS_AGGRO,FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="366" gid="11" x="576" y="384" width="32" height="32"/>
+  <object id="367" gid="2" x="521" y="165" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="368" gid="2" x="288" y="166" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="370" gid="3" x="0" y="53" width="42" height="42"/>
+  <object id="371" gid="3" x="608" y="313" width="42" height="42"/>
+  <object id="372" gid="3" x="704" y="225" width="42" height="42"/>
+  <object id="373" gid="11" x="1145" y="388" width="32" height="32"/>
+  <object id="374" gid="5" x="1184" y="82" width="64" height="64"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks">
+  <object id="364" x="207" y="306">
+   <polyline points="0,0 -207,0"/>
+  </object>
+  <object id="369" x="305" y="146">
+   <polyline points="0,0 238,0"/>
+  </object>
+ </objectgroup>
+</map>

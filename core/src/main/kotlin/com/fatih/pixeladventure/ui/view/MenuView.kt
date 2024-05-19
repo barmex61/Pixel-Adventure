@@ -31,6 +31,7 @@ class MenuView (
         menuTextButton(MapAsset.MAP3,menuModel)
         menuTextButton(MapAsset.MAP4,menuModel)
         menuTextButton(MapAsset.MAP5,menuModel)
+        menuTextButton(MapAsset.MAP6,menuModel)
 
     }
 

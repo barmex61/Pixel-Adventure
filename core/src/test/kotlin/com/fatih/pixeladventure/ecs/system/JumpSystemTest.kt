@@ -26,7 +26,7 @@ class JumpSystemTest{
     @Test
     fun testJumpSystem(){
         val entity = world.entity {
-            it += Jump(maxHeight = 2f, buffer = 0.25f, lowerFeet = vec2(), upperFeet = vec2())
+            it += Jump(maxHeight = 2f,  lowerFeet = vec2(), upperFeet = vec2())
             val body = physicWorld.body {
                 box(1f,1f)
                 position.set(0f,0f)
@@ -35,7 +35,6 @@ class JumpSystemTest{
         }
         with(world){
             world.update(0.1f)
-            println(entity[Physic].body.position.y)
         }
 
     }
