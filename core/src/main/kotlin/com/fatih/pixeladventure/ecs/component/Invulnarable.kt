@@ -19,11 +19,12 @@ data class Invulnarable(var time : Float) : Component <Invulnarable> {
     }
 
     override fun World.onRemove(entity: Entity) {
+        if (entity hasNo  Physic) return
         entity[Physic].body.fixtureList.filterNot {
-            it.userData == "hitbox"
-        }.forEach {
-            it.filterData.maskBits = it.filterData.maskBits or ROCK_HEAD_BIT
-        }
+                it.userData == "hitbox"
+            }.forEach {
+                it.filterData.maskBits = it.filterData.maskBits or ROCK_HEAD_BIT
+            }
     }
 
     companion object : ComponentType<Invulnarable>()

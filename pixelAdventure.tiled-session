@@ -20,8 +20,8 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 200.5,
-                "y": 399.5
+                "x": 40.5,
+                "y": 5.5
             }
         },
         "assets/map/map1.tmx#terrain-extruded": {
@@ -37,8 +37,8 @@
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 719.6666666666666,
-                "y": 120.33333333333334
+                "x": 314.3333333333333,
+                "y": 154.33333333333331
             }
         },
         "assets/map/map2.tmx#terrain-extruded": {
@@ -52,8 +52,8 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 359.5,
-                "y": 280.5
+                "x": 40.5,
+                "y": 5.5
             }
         },
         "assets/map/map3.tmx#terrain-extruded": {
@@ -125,8 +125,8 @@
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 2664,
-                "y": 35.5
+                "x": 40.5,
+                "y": 5.5
             }
         },
         "assets/map/tutorial.tmx#terrain-extruded": {

@@ -43,7 +43,6 @@ class JumpSystem(
         var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpCount,jumpFruitTimer) = entity[Jump]
 
         if (jumpFruitTimer > 0f ){
-            println(jumpFruitTimer)
             jumpFruitTimer = (jumpFruitTimer - deltaTime).coerceAtLeast(0f)
             jumpComps.jumpFruitTimer = jumpFruitTimer
             if (jump && jumpCount <2){
@@ -116,11 +115,7 @@ class JumpSystem(
                     GameObject.BANANA.name -> gameEvent.playerEntity[Move].max += 1f
                     GameObject.MELON.name -> gameEvent.playerEntity[Jump].jumpOnGround = true
                     GameObject.PINEAPPLE.name -> gameEvent.playerEntity.configure {
-                        if (it has Fly){
-                            it[Fly].timer = 2f
-                            return
-                        }
-                        it += Fly()
+                        it += Fly(2f)
                     }
                     GameObject.KIWI.name ->{
                         gameEvent.playerEntity.configure {
