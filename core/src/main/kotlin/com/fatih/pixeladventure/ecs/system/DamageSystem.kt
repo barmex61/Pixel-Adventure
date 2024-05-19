@@ -21,11 +21,12 @@ import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
+import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
 
 class DamageSystem(
     private val audioService: AudioService = inject()
-) : IteratingSystem(family = World.family { all(DamageTaken,Life).none(Invulnarable) }) , GameEventListener{
+) : IteratingSystem(family = family { all(DamageTaken,Life).none(Invulnarable) }) , GameEventListener{
 
     override fun onTickEntity(entity: Entity) {
         val (damageAmount) = entity[DamageTaken]
@@ -34,7 +35,7 @@ class DamageSystem(
         GameEventDispatcher.fireEvent(EntityLifeChangeEvent(entity))
         if (entity has EntityTag.PLAYER){
             entity.configure {
-                it += Invulnarable(1f)
+                it += Invulnarable(1.5f)
                 it += Blink(1.5f,0.075f)
                 it += Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
             }

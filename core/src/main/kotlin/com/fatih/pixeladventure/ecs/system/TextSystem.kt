@@ -8,6 +8,7 @@ import com.fatih.pixeladventure.ecs.component.Text
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
+import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
 import ktx.graphics.use
 import ktx.math.vec2
@@ -17,7 +18,7 @@ class TextSystem (
     private val uiViewport: Viewport = inject("uiViewport"),
     private val gameViewport : Viewport = inject("gameViewport"),
     private val spriteBatch : SpriteBatch = inject()
-): IteratingSystem(family = World.family { all(Text) }) {
+): IteratingSystem(family = family { all(Text) }) {
 
     private val bitmapFont = Scene2DSkin.defaultSkin.getFont("default_fnt_small").apply {
         this.data.markupEnabled = true

@@ -1,105 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="20" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="168">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="25" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="265">
  <properties>
-  <property name="musicAsset" value="MUSIC4"/>
-  <property name="name" value="Find the way"/>
+  <property name="musicAsset" value="MUSIC1"/>
+  <property name="name" value="Jump higher"/>
  </properties>
- <tileset firstgid="1" source="terrain-extruded.tsx"/>
- <tileset firstgid="243" source="objects.tsx"/>
- <layer id="1" name="ground" width="50" height="20">
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <layer id="1" name="ground" width="25" height="50">
   <data encoding="base64" compression="zlib">
-   eJztlD0OgCAMRtmUQT2BsugJhAXvfy9LWFgaTMNfY7/khe0rD5IqNWY88CQn15zAlZxcI/8xVnr/xwTMhdFNDWJ24CiMaWoQw8VjAVZgY+6Ri3iIRwh1T2K7sJcHdS7WXcMj99aaiUeu01TwwN5OM/PA+ox4/MrjBiwBh3hgfY44x364Y+h+AUtlPqc=
+   eJzt1LENwCAMRFFWCBki0JAJIA3Zf6XcCJYjF5b+k35zA1wpAAAAeQ11OzerrV7nBgDZ/flPK/4TyO1QNbBTXaoF1tVUK7BHfQEqD1E=
   </data>
  </layer>
- <layer id="2" name="decoration" width="50" height="20">
+ <layer id="2" name="decoration" width="25" height="50">
   <data encoding="base64" compression="zlib">
-   eJzt00EKACAIRNFZ1yXs/pesAxRkRSX8B26icaNKAIDUKj/InmatyoMsfH7amR0mdgaxjG4v2k2a+rc3eo/gxGxW5ziTm+1t2p+N5683t9ob91SJ2QNd
+   eJzt1tEJwCAMBUBnqu4/m4L0px+CRUX0DjJASF5ICNzmKRUnVlrXCgzXkw+7DlD9/S3c0b29czUnWr75ty/zyCScIQMdyAyO
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="142" gid="246" x="112" y="192" width="32" height="32"/>
-  <object id="143" gid="246" x="240" y="112" width="32" height="32"/>
-  <object id="144" gid="246" x="401" y="215" width="32" height="32">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
-   </properties>
-  </object>
-  <object id="150" gid="244" x="305" y="100" width="38" height="38">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
-   </properties>
-  </object>
-  <object id="152" gid="244" x="656" y="224" width="38" height="38">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
-   </properties>
-  </object>
-  <object id="154" gid="248" x="48" y="194" width="19" height="36">
-   <properties>
-    <property name="animFrameDuration" type="float" value="0"/>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
-   </properties>
-  </object>
-  <object id="155" gid="243" x="0" y="192" width="32" height="32"/>
-  <object id="156" gid="247" x="736" y="210" width="64" height="64">
+  <object id="152" gid="6" x="42" y="754" width="19" height="36">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>
   </object>
-  <object id="157" gid="246" x="148" y="165" width="32" height="32"/>
-  <object id="158" gid="246" x="503" y="214" width="32" height="32">
+  <object id="215" gid="1" x="0" y="752" width="32" height="32">
    <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+    <property name="jumpHeight" type="float" value="2.4"/>
    </properties>
   </object>
-  <object id="159" gid="246" x="542" y="255" width="32" height="32">
+  <object id="218" gid="4" x="112" y="736" width="32" height="32"/>
+  <object id="219" gid="4" x="144" y="704" width="32" height="32"/>
+  <object id="220" gid="4" x="176" y="672" width="32" height="32"/>
+  <object id="221" gid="4" x="208" y="640" width="32" height="32"/>
+  <object id="222" gid="4" x="240" y="608" width="32" height="32"/>
+  <object id="223" gid="2" x="276" y="597" width="38" height="38">
    <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+    <property name="speed" type="float" value="0"/>
+    <property name="timeToMax" type="float" value="0"/>
    </properties>
   </object>
-  <object id="160" gid="246" x="516" y="159" width="32" height="32">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
-   </properties>
-  </object>
-  <object id="161" gid="246" x="563" y="141" width="32" height="32">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
-   </properties>
-  </object>
-  <object id="162" gid="246" x="601" y="265" width="32" height="32">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
-   </properties>
-  </object>
-  <object id="163" gid="246" x="637" y="247" width="32" height="32">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
-   </properties>
-  </object>
-  <object id="164" gid="246" x="272" y="80" width="32" height="32"/>
-  <object id="165" gid="244" x="640" y="100" width="38" height="38">
+  <object id="224" gid="4" x="320" y="576" width="32" height="32"/>
+  <object id="225" gid="4" x="352" y="544" width="32" height="32"/>
+  <object id="226" gid="4" x="320" y="512" width="32" height="32"/>
+  <object id="227" gid="4" x="288" y="480" width="32" height="32"/>
+  <object id="228" gid="4" x="256" y="448" width="32" height="32"/>
+  <object id="229" gid="2" x="143" y="438" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
    </properties>
   </object>
-  <object id="166" gid="246" x="368" y="237" width="32" height="32">
+  <object id="231" gid="4" x="112" y="624" width="32" height="32"/>
+  <object id="232" gid="4" x="112" y="592" width="32" height="32"/>
+  <object id="233" gid="4" x="128" y="560" width="32" height="32"/>
+  <object id="234" gid="4" x="96" y="528" width="32" height="32"/>
+  <object id="235" gid="4" x="112" y="480" width="32" height="32"/>
+  <object id="236" gid="4" x="144" y="448" width="32" height="32"/>
+  <object id="237" gid="4" x="240" y="416" width="32" height="32"/>
+  <object id="238" gid="4" x="224" y="352" width="32" height="32"/>
+  <object id="239" gid="4" x="336" y="416" width="32" height="32"/>
+  <object id="240" gid="4" x="304" y="352" width="32" height="32"/>
+  <object id="241" gid="4" x="192" y="320" width="32" height="32"/>
+  <object id="242" gid="4" x="160" y="288" width="32" height="32"/>
+  <object id="243" gid="4" x="240" y="304" width="32" height="32"/>
+  <object id="244" gid="4" x="272" y="336" width="32" height="32"/>
+  <object id="245" gid="4" x="304" y="304" width="32" height="32"/>
+  <object id="246" gid="4" x="336" y="336" width="32" height="32"/>
+  <object id="247" gid="4" x="368" y="304" width="32" height="32"/>
+  <object id="248" gid="4" x="128" y="256" width="32" height="32"/>
+  <object id="249" gid="4" x="112" y="240" width="32" height="32"/>
+  <object id="250" gid="2" x="68" y="229" width="38" height="38">
    <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>
   </object>
-  <object id="167" gid="246" x="432" y="192" width="32" height="32">
+  <object id="251" gid="4" x="16" y="192" width="32" height="32"/>
+  <object id="252" gid="4" x="48" y="160" width="32" height="32"/>
+  <object id="253" gid="4" x="80" y="128" width="32" height="32"/>
+  <object id="254" gid="4" x="112" y="112" width="32" height="32"/>
+  <object id="255" gid="4" x="368" y="336" width="32" height="32"/>
+  <object id="256" gid="5" x="320" y="80" width="64" height="64"/>
+  <object id="257" gid="2" x="-17" y="102" width="38" height="38">
    <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="258" gid="2" x="377" y="102" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="260" gid="2" x="45" y="517" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="262" gid="4" x="240" y="384" width="32" height="32"/>
+  <object id="263" gid="4" x="336" y="384" width="32" height="32"/>
+  <object id="264" gid="2" x="377" y="437" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="10" name="tracks">
-  <object id="149" x="320" y="81">
-   <polyline points="0,0 352,0"/>
+  <object id="230" x="161" y="418">
+   <polyline points="0,0 239,0"/>
   </object>
-  <object id="151" x="672" y="208">
-   <polyline points="0,0 0,-144"/>
+  <object id="259" x="399" y="82">
+   <polyline points="0,0 -400,1"/>
   </object>
  </objectgroup>
 </map>

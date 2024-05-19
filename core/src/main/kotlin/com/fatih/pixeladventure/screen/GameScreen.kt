@@ -12,6 +12,7 @@ import com.fatih.pixeladventure.ecs.system.BlinkSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
 import com.fatih.pixeladventure.ecs.system.DamageSystem
 import com.fatih.pixeladventure.ecs.system.FlashSystem
+import com.fatih.pixeladventure.ecs.system.FlySystem
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
@@ -78,17 +79,19 @@ class GameScreen(
             add(AnimationSystem())
             add(MoveSystem())
             add(JumpSystem())
+            add(FlySystem())
             add(PhysicSystem())
-            add(TeleportSystem())
             add(DamageSystem())
-            add(InvulnarableSystem())
             add(StateSystem())
             add(CameraSystem())
             add(BlinkSystem())
+            add(InvulnarableSystem())
             add(FlashSystem())
             add(ParallaxBgdSystem())
             add(TextSystem())
             add(RenderSystem())
+            add(TeleportSystem())
+
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
             }
@@ -109,6 +112,7 @@ class GameScreen(
     }
 
     override fun show() {
+        keyboardInputProcessor.resetMoveX()
         inputMultiplexer.addProcessor(keyboardInputProcessor)
         inputMultiplexer.addProcessor(uiStage)
         world.systems

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="35" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="326">
+ <properties>
+  <property name="musicAsset" value="MUSIC4"/>
+  <property name="name" value="Fly like a butterfly"/>
+ </properties>
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="35" height="60">
+  <data encoding="base64" compression="zlib">
+   eJzt2TEOQEAQhWFXQIEToOEEaLj/lUyhUNjdkdhZ4f+S17/mZZPZLAPeI5cUipQGXVpJp0hv0GWSzIosBl0A/FclqW+mSdIUAAA8aZCMqUscVsmWugSAZLR3I4t7kvZuZHFP0t6NuCfhSezxGnvE2/m2a/HvcubbrsW/y5lvu+zy+1y7CG0ixlvo2kVoEzHeQtcuQpuI8RbuDTomTw==
+  </data>
+ </layer>
+ <layer id="1" name="decoration" width="35" height="60">
+  <data encoding="base64" compression="zlib">
+   eJztzwEJADAIAEEzTftncyUEx+7gA3wEAADwm3PLBdX0KAAAAADwrAY1DQb6
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="305" gid="6" x="48" y="914" width="19" height="36"/>
+  <object id="306" gid="1" x="0" y="912" width="32" height="32"/>
+  <object id="307" gid="9" x="80" y="912" width="32" height="32"/>
+  <object id="308" gid="9" x="384" y="912" width="32" height="32"/>
+  <object id="309" gid="9" x="464" y="704" width="32" height="32"/>
+  <object id="310" gid="9" x="368" y="464" width="32" height="32"/>
+  <object id="311" gid="9" x="192" y="240" width="32" height="32"/>
+  <object id="312" gid="5" x="506" y="66" width="64" height="64"/>
+  <object id="314" gid="2" x="-18" y="374" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="315" gid="2" x="538" y="374" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="316" gid="3" x="186" y="756" width="42" height="42"/>
+  <object id="317" gid="3" x="378" y="852" width="42" height="42"/>
+  <object id="318" gid="3" x="334" y="645" width="42" height="42"/>
+  <object id="319" gid="3" x="460" y="500" width="42" height="42"/>
+  <object id="320" gid="3" x="173" y="548" width="42" height="42"/>
+  <object id="321" gid="3" x="292" y="292" width="42" height="42"/>
+  <object id="322" gid="3" x="272" y="112" width="42" height="42"/>
+  <object id="325" gid="9" x="224" y="608" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks">
+  <object id="313" x="559" y="355">
+   <polyline points="0,0 -559,-1"/>
+  </object>
+ </objectgroup>
+</map>

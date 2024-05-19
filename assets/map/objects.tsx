@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="10" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="11" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -8,7 +8,7 @@
    <property name="entityTags" propertytype="EntityTags" value="PLAYER,CAMERA_FOCUS"/>
    <property name="gameObject" propertytype="GameObject" value="FROG"/>
    <property name="gravityScale" type="float" value="1"/>
-   <property name="jumpHeight" type="float" value="2.2"/>
+   <property name="jumpHeight" type="float" value="2.4"/>
    <property name="life" type="int" value="4"/>
    <property name="speed" type="float" value="7"/>
    <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
@@ -26,6 +26,7 @@
    <object id="19" type="FixtureDef" x="11" y="12" width="11" height="12">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
+     <property name="userData" value="headFixture"/>
     </properties>
     <ellipse/>
    </object>
@@ -34,16 +35,16 @@
      <property name="friction" type="float" value="0"/>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
      <property name="restitution" type="float" value="0"/>
-     <property name="userData" value="frictionFixture"/>
+     <property name="userData" value="bodyFixture"/>
     </properties>
     <polygon points="0,0 11,0 11,-11 0,-11"/>
    </object>
-   <object id="29" type="FixtureDef" x="22" y="21">
+   <object id="29" type="FixtureDef" x="22" y="24">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
-     <property name="userData" value="player_foot"/>
+     <property name="userData" value="footFixture"/>
     </properties>
-    <polygon points="0,0 0,11 -11,11 -11,0"/>
+    <polygon points="0,0 0,8 -11,8 -11,0"/>
    </object>
   </objectgroup>
  </tile>
@@ -130,7 +131,7 @@
   <properties>
    <property name="animFrameDuration" type="float" value="0.035"/>
    <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
-   <property name="entityTags" propertytype="EntityTags" value=""/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    <property name="gameObject" propertytype="GameObject" value="FINISH_FLAG"/>
    <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
   </properties>
@@ -149,7 +150,7 @@
   <properties>
    <property name="animFrameDuration" type="float" value="1"/>
    <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
-   <property name="entityTags" propertytype="EntityTags" value=""/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    <property name="gameObject" propertytype="GameObject" value="START_FLAG"/>
    <property name="startAnimType" propertytype="AnimType" value="START"/>
   </properties>
@@ -237,6 +238,25 @@
      <property name="isSensor" type="bool" value="true"/>
     </properties>
     <ellipse/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="10" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,COLLECTABLE"/>
+   <property name="gameObject" propertytype="GameObject" value="APPLE"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+  </properties>
+  <image width="32" height="32" source="../graphics/apple.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="11" y="17">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="APPLE"/>
+     <property name="isSensor" type="bool" value="true"/>
+    </properties>
+    <polygon points="0,0 2,3 8,3 10,0 10,-4 9,-5 1,-5 0,-4"/>
    </object>
   </objectgroup>
  </tile>

@@ -127,7 +127,7 @@ class PhysicSystem(
         }
     }
     private fun Fixture.isBottomMapBoundary() = this.userData == "bottomMapBoundary"
-    private fun Fixture.isPlayerFoot() = this.userData == "player_foot"
+    private fun Fixture.isPlayerFoot() = this.userData == "footFixture"
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
         return entityA has Damage && entityB has Life  && fixtureA.isHitBox() && fixtureB.isHitBox()
@@ -207,14 +207,6 @@ class PhysicSystem(
         val fixtureB = contact.fixtureB
         val entityA = contact.entityA
         val entityB = contact.entityB
-        if (entityA != null && entityA has EntityTag.PLAYER && fixtureA.userData == "frictionFixture" && fixtureB.filterData.categoryBits == GROUND_BIT){
-            println("player Friction ${fixtureA.friction}")
-            println("ground friction ${fixtureB.friction}")
-        }
-        if (entityB != null && entityB has EntityTag.PLAYER && fixtureB.userData == "frictionFixture" && fixtureA.filterData.categoryBits == GROUND_BIT){
-            println("player Friction ${fixtureB.friction}")
-            println("ground friction ${fixtureA.friction}")
-        }
         if (entityA == null || entityB == null){
             when{
                 isPlayerBottomMapBoundaryCollision(entityA,fixtureB) -> handlePlayerOutOfMap(entityA!!)

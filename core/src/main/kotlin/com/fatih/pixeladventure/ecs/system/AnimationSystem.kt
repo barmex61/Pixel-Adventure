@@ -14,6 +14,7 @@ import com.fatih.pixeladventure.util.TextureAtlasAsset
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
+import com.github.quillraven.fleks.World.Companion.family
 import ktx.app.gdxError
 import ktx.log.logger
 import kotlin.math.abs
@@ -21,7 +22,7 @@ import kotlin.math.max
 
 class AnimationSystem(
     assets: Assets = World.inject()
-) : IteratingSystem(family = World.family { all(Animation,Graphic) }) {
+) : IteratingSystem(family = family { all(Animation,Graphic) }) {
 
     private val objectAtlas = assets[TextureAtlasAsset.GAMEOBJECT]
     private val gdxAnimationCache = mutableMapOf<String,GdxAnimation>()

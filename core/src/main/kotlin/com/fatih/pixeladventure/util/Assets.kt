@@ -16,12 +16,14 @@ import ktx.assets.disposeSafely
 import ktx.assets.getAsset
 import ktx.assets.load
 
-enum class MapAsset(val path : String,val nextMap : MapAsset? = null,val parallaxBgdTexture : String = "graphics/green.png"){
-    JUMP_HIGHER("map/map2.tmx", parallaxBgdTexture = "graphics/brown.png"),
-    FIND_THE_WAY("map/map3.tmx",JUMP_HIGHER,parallaxBgdTexture = "graphics/blue.png"),
-    TUTORIAL("map/tutorial.tmx",FIND_THE_WAY,parallaxBgdTexture = "graphics/pink.png"),
-    OBJECT("map/object.tmx");
-    val mapName = this.name.toString().replace('_',' ')
+enum class MapAsset(val path : String,val nextMap : MapAsset? = null,val parallaxBgdTexture : String = "graphics/green.png",val mapName : String){
+    MAP5("map/map5.tmx",null, parallaxBgdTexture = "graphics/green.png","Are You Invincible ?"),
+    MAP4("map/map4.tmx",MAP5, parallaxBgdTexture = "graphics/green.png","Fly Like a Butterfly"),
+    MAP3("map/map3.tmx", MAP4,parallaxBgdTexture = "graphics/green.png","Let`s Climb"),
+    MAP2("map/map2.tmx",MAP3, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
+    MAP1("map/map1.tmx",MAP2,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
+    TUTORIAL("map/tutorial.tmx",MAP1,parallaxBgdTexture = "graphics/pink.png","Tutorial"),
+    OBJECT("map/object.tmx", mapName = "Object");
 }
 
 enum class TextureAtlasAsset(val path : String){

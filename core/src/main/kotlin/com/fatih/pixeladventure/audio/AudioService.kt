@@ -30,7 +30,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
     }
 
     fun play(musicAsset: MusicAsset){
-        if (currentMusicResource?.musicAsset == musicAsset){
+        if (currentMusicResource?.musicAsset == musicAsset && currentMusicResource!!.music.isPlaying){
             return
         }
         currentMusicResource?.let {

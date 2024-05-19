@@ -62,19 +62,14 @@
  </tile>
  <tile id="15">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="7" height="16">
+   <object id="1" type="FixtureDef" x="0" y="4" width="16" height="12">
     <properties>
      <property name="userData" value="cantJump"/>
     </properties>
    </object>
-   <object id="2" type="FixtureDef" x="9" y="0" width="7" height="16">
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="4">
     <properties>
-     <property name="userData" value="cantJump"/>
-    </properties>
-   </object>
-   <object id="3" type="FixtureDef" x="7" y="0" width="2" height="16">
-    <properties>
-     <property name="userData" value="canJump"/>
+     <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
    </object>
   </objectgroup>
@@ -121,33 +116,44 @@
    <object id="1" type="FixtureDef" x="0" y="0" width="8" height="14"/>
   </objectgroup>
  </tile>
- <tile id="35">
+ <tile id="34">
   <objectgroup draworder="index" id="2">
-   <object id="4" type="FixtureDef" x="0" y="0" width="8" height="16">
-    <properties>
-     <property name="density" type="float" value="0"/>
-     <property name="friction" type="float" value="0"/>
-     <property name="userData" value="cantJump"/>
-    </properties>
-   </object>
-   <object id="5" type="FixtureDef" x="8" y="0" width="8" height="16">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
     <properties>
      <property name="userData" value="canJump"/>
     </properties>
    </object>
   </objectgroup>
  </tile>
- <tile id="36">
+ <tile id="35">
   <objectgroup draworder="index" id="2">
-   <object id="2" type="FixtureDef" x="8" y="0" width="8" height="16">
+   <object id="4" type="FixtureDef" x="0" y="0" width="16" height="4">
     <properties>
+     <property name="density" type="float" value="0"/>
      <property name="friction" type="float" value="0"/>
+     <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     <property name="userData" value=""/>
+    </properties>
+   </object>
+   <object id="5" type="FixtureDef" x="0" y="4" width="16" height="12">
+    <properties>
      <property name="userData" value="cantJump"/>
     </properties>
    </object>
-   <object id="3" type="FixtureDef" x="0" y="0" width="8" height="16">
+  </objectgroup>
+ </tile>
+ <tile id="36">
+  <objectgroup draworder="index" id="2">
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="4">
     <properties>
-     <property name="userData" value="canJump"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     <property name="userData" value=""/>
+    </properties>
+   </object>
+   <object id="3" type="FixtureDef" x="0" y="4" width="16" height="12">
+    <properties>
+     <property name="userData" value="cantJump"/>
     </properties>
    </object>
   </objectgroup>
@@ -195,7 +201,7 @@
  </tile>
  <tile id="57">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
     <properties>
      <property name="density" type="float" value="0"/>
      <property name="friction" type="float" value="0"/>
@@ -206,8 +212,9 @@
  </tile>
  <tile id="58">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
     <properties>
+     <property name="density" type="float" value="0"/>
      <property name="friction" type="float" value="0"/>
      <property name="userData" value="cantJump"/>
     </properties>
@@ -278,6 +285,29 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="101">
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="0" width="16" height="16"/>
+  </objectgroup>
+ </tile>
+ <tile id="102">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="7" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="103">
+  <objectgroup draworder="index" id="2">
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
  <tile id="119">
   <objectgroup draworder="index" id="2">
    <object id="1" type="FixtureDef" x="11" y="0" width="5" height="12"/>
@@ -286,6 +316,68 @@
  <tile id="120">
   <objectgroup draworder="index" id="2">
    <object id="1" type="FixtureDef" x="0" y="0" width="6" height="12"/>
+  </objectgroup>
+ </tile>
+ <tile id="123">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="density" type="float" value="0"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="124">
+  <objectgroup draworder="index" id="2">
+   <object id="2" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="density" type="float" value="0"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="125">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="145">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="density" type="float" value="0"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="146">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="density" type="float" value="0"/>
+     <property name="friction" type="float" value="0"/>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="147">
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="16">
+    <properties>
+     <property name="userData" value="cantJump"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="182">

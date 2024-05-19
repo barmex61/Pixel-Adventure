@@ -187,7 +187,8 @@
                 "BANANA",
                 "MELON",
                 "PINEAPPLE",
-                "KIWI"
+                "KIWI",
+                "APPLE"
             ],
             "valuesAsFlags": false
         },

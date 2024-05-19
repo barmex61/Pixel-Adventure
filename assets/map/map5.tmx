@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="358">
+ <properties>
+  <property name="musicAsset" value="MUSIC5"/>
+  <property name="name" value="Are you invincible ?"/>
+ </properties>
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="45" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt2FsOQDAQBdBugX5gBVgE3f+ujI8m0vQRo6NVd5L704ge41EohUKhUO1XR+kFoikDZaRMmc2LUFbPXLmO4U1zripp5vYdfYa5RjPnOasLm2fmfmGGGWaYYYb5L2Z3ff/C2u1uU7rPsXck28/azLE+W1sN5uv3FNeceoflXvOSfU7dB9xzAXO7Zol/YlrYzFlX7/YeZphzmzfK7klo/EmMY47NYQKOc/wAF/2yAQ==
+  </data>
+ </layer>
+ <layer id="1" name="decoration" width="45" height="40">
+  <data encoding="base64" compression="zlib">
+   eJzt1LEJACAQA0BnUvefTRsH0CKC3kH6Jw8pBQDgH3WmzfTbhxDj53k6z9N5ns7zdA6wZ+3mSWwtwPsGby8Gxw==
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="326" gid="2" x="422" y="564" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="327" gid="2" x="153" y="564" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="328" gid="2" x="410" y="516" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="329" gid="2" x="161" y="518" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="332" gid="6" x="80" y="482" width="19" height="36"/>
+  <object id="333" gid="1" x="16" y="480" width="32" height="32"/>
+  <object id="336" gid="10" x="176" y="496" width="32" height="32"/>
+  <object id="337" gid="3" x="224" y="464" width="42" height="42"/>
+  <object id="338" gid="3" x="320" y="464" width="42" height="42"/>
+  <object id="339" gid="10" x="592" y="432" width="32" height="32"/>
+  <object id="340" gid="2" x="625" y="420" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="341" gid="2" x="662" y="420" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="342" gid="2" x="699" y="421" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="343" gid="3" x="590" y="411" width="42" height="42"/>
+  <object id="344" gid="10" x="492" y="229" width="32" height="32"/>
+  <object id="345" gid="3" x="496" y="166" width="42" height="42"/>
+  <object id="347" gid="2" x="480" y="245" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="348" gid="2" x="699" y="244" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="350" gid="2" x="544" y="356" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="353" gid="2" x="492" y="326" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="354" gid="2" x="447" y="294" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="355" gid="2" x="399" y="260" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="356" gid="5" x="160" y="114" width="64" height="64"/>
+  <object id="357" gid="3" x="112" y="118" width="42" height="42"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks">
+  <object id="330" x="171" y="546">
+   <polyline points="0,0 271,0"/>
+  </object>
+  <object id="331" x="181" y="498">
+   <polyline points="0,0 249,0"/>
+  </object>
+  <object id="349" x="718" y="226">
+   <polyline points="0,0 -221,0"/>
+  </object>
+ </objectgroup>
+</map>

@@ -95,7 +95,7 @@ data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicW
         val end = targetEntity[Graphic].center
         var blocked = false
         physicWorld.rayCast(start,end){fixture, point, normal, fraction ->
-            if (fixture.body.type == BodyDef.BodyType.StaticBody){
+            if (fixture.body.type == BodyDef.BodyType.StaticBody && !fixture.isSensor){
                 blocked = true
                 return@rayCast 0f
             }

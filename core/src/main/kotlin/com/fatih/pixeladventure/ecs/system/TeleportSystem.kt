@@ -1,12 +1,13 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.graphics.Color
-import com.fatih.pixeladventure.ai.EntityState
 import com.fatih.pixeladventure.ai.PlayerState
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Blink
 import com.fatih.pixeladventure.ecs.component.Flash
+import com.fatih.pixeladventure.ecs.component.Fly
 import com.fatih.pixeladventure.ecs.component.Life
+import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Teleport
@@ -16,15 +17,18 @@ import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
+import com.github.quillraven.fleks.World.Companion.family
 
 class TeleportSystem (
     private val audioService: AudioService = World.inject()
-): IteratingSystem(family = World.family { all(Teleport) }) {
+): IteratingSystem(family = family { all(Teleport) }) {
 
     override fun onTickEntity(entity: Entity) {
         val teleportComp = entity[Teleport]
         val (spawnLocation,doTeleport) = teleportComp
         if (!doTeleport) return
+        entity[Move].max = entity[Move].defaultMax
+        entity.getOrNull(Fly)?.timer = 0f
         val physicComp = entity[Physic]
         val lifeComp = entity[Life]
         lifeComp.current = (lifeComp.current -1).coerceAtLeast(0)

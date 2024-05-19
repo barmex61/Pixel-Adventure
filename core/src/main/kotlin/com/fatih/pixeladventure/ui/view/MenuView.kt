@@ -26,8 +26,11 @@ class MenuView (
         padTop(15f).padBottom(15f)
         setFillParent(true)
         menuTextButton(MapAsset.TUTORIAL,menuModel)
-        menuTextButton(MapAsset.FIND_THE_WAY,menuModel)
-        menuTextButton(MapAsset.JUMP_HIGHER,menuModel)
+        menuTextButton(MapAsset.MAP1,menuModel)
+        menuTextButton(MapAsset.MAP2,menuModel)
+        menuTextButton(MapAsset.MAP3,menuModel)
+        menuTextButton(MapAsset.MAP4,menuModel)
+        menuTextButton(MapAsset.MAP5,menuModel)
 
     }
 

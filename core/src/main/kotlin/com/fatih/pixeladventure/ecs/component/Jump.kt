@@ -8,17 +8,15 @@ data class Jump(
     var maxHeight : Float ,
     val lowerFeet : Vector2,
     val upperFeet : Vector2,
-    var buffer : Float = 0f,
+    var jump : Boolean = false,
     var doubleJump : Boolean = false,
     var jumpOnGround : Boolean = false,
-    var fly : Boolean = false,
-    var flyTimer : Float = 2f,
+    var jumpCount : Int = 0,
+    var jumpFruitTimer : Float = 0f
     ) : Component <Jump> {
 
     override fun type() = Jump
 
-    companion object : ComponentType<Jump>(){
-        const val JUMP_BUFFER_TIME = 0.25f
-    }
+    companion object : ComponentType<Jump>()
 
 }

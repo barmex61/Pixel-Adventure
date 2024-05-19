@@ -108,7 +108,7 @@ fun EntityCreateContext.configureJump(entity: Entity, tile: TiledMapTile){
 
     if (jumpHeight > 0f){
         val (body) = entity[Physic]
-        val feetFixture = body.fixtureList.first { it.userData == "player_foot" }
+        val feetFixture = body.fixtureList.first { it.userData == "footFixture" }
         val chainShape = feetFixture.shape as ChainShape
         val lowerXY = vec2(100f,100f)
         val upperXY = vec2(-100f,-100f)
@@ -143,12 +143,13 @@ fun EntityCreateContext.configureDamage(entity: Entity, tile: TiledMapTile){
 }
 
 fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world: World,physicWorld : PhysicWorld){
-    val gameObject = tile.property<String>("gameObject","")
-    val state : EntityState = when(gameObject){
+    val gameObjectStr = tile.property<String>("gameObject","")
+    val state : EntityState = when(gameObjectStr){
         GameObject.FROG.name -> PlayerState.IDLE
         GameObject.CHERRY.name -> FruitState.IDLE
         GameObject.BANANA.name -> FruitState.IDLE
         GameObject.MELON.name -> FruitState.IDLE
+        GameObject.APPLE.name -> FruitState.IDLE
         GameObject.KIWI.name -> FruitState.IDLE
         GameObject.PINEAPPLE.name -> FruitState.IDLE
         GameObject.CHAINSAW.name -> ChainsawState.FOLLOW_TRACK
@@ -156,7 +157,7 @@ fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world:
         GameObject.START_FLAG.name -> FlagState.START
         GameObject.FINISH_FLAG.name -> FlagState.IDLE
         "" -> return
-        else -> gdxError("gameObject $gameObject doesn't support ")
+        else -> gdxError("gameObject $gameObjectStr doesn't support ")
     }
     entity += State(AiEntity(entity,world,physicWorld),state)
 }

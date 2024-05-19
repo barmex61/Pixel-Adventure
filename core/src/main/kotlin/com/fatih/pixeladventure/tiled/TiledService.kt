@@ -31,6 +31,7 @@ import com.fatih.pixeladventure.game.PixelAdventure.Companion.OBJECT_FIXTURES
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.PLATFORM_BIT
+import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
 import com.fatih.pixeladventure.util.component1
 import com.fatih.pixeladventure.util.component2
 import com.fatih.pixeladventure.util.component3
@@ -206,7 +207,7 @@ class TiledService (
                 val gameObject = GameObject.valueOf(mapObject.property<String>("gameObject","GROUND"))
                 filter.categoryBits = gameObject.categoryBit
                 filter.maskBits = gameObject.maskBits
-                if (userData == "player_foot") filter.maskBits = filter.maskBits or PLATFORM_BIT
+                if (userData == "footFixture") filter.maskBits = filter.maskBits or PLATFORM_BIT
             }
             return FixtureDefUserData(fixtureDef,userData)
         }

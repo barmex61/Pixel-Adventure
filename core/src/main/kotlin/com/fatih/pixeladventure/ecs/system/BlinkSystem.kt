@@ -5,9 +5,10 @@ import com.fatih.pixeladventure.ecs.component.Graphic
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
+import com.github.quillraven.fleks.World.Companion.family
 import kotlin.math.max
 
-class BlinkSystem : IteratingSystem(family = World.family { all(Blink,Graphic) }) {
+class BlinkSystem : IteratingSystem(family = family { all(Blink,Graphic) }) {
 
     override fun onTickEntity(entity: Entity) {
         val blinkComp = entity[Blink]

@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="160" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="176">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="224">
  <properties>
   <property name="musicAsset" value="MUSIC3"/>
   <property name="name" value="Tutorial"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="11" source="terrain-extruded.tsx"/>
- <layer id="1" name="ground" width="160" height="15">
+ <tileset firstgid="12" source="terrain-extruded.tsx"/>
+ <layer id="1" name="ground" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJztmEEOAiEMRbmCuvMC6s4LqDsP7yl6CteyNKag8D8y0/yXNGEI+S30Z2ZCSmKJPEhrauyBsYiNkdbUOANjERsjrakh/8WE8Z0y0poa8l9MGH16OnOf/3sG5pD/YjKqT/bluRX5Lyb/8h+K/BcT+U/MhNEn727PCLrvyH8xYfTJfpxDuANjsVzW4j8RE8Z7wrt/8ebWzibHFogdQbekMaLentzsnL11zahj9B4POY5AnJxzSo26JQ1Ul5WbnbO3rhl1jN7jJccViJtzTqlRt6SB6rJys3P21jWjjtF7fAE8V11z
+   eJztmUEOwjAMBPMG4MYHgBsfAG79/49IrpUj1fEmrpMdyVKE2rWLvU0LKZEzcgcdc/R87ZoQT96gY46er10T4gn9QWYF8RxCf5BZQczRJny29x39QSLSa472uvQHicgof0h7TKse/UFGMcofSD36g4wCMUfSO/7M/tD8psH/YWKDmCNJAz2fm2GNRnNt3MdiE8UfZ4L+WAfEfVbS6Hn/9kZzbSO/h0uOqyFuAN2aRo96W3Kjc7bW5VHHylF68MjxNMRL6GNS6tY0rLqo3OicrXV51LFylB58cnwN8RP6mJS6NQ2rLio3OmdrXR51rBylB3/svmSL
   </data>
  </layer>
- <layer id="2" name="decoration" width="160" height="15">
+ <layer id="2" name="decoration" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt1jEOgCAMBdCeBzf0/mezKxOGVGV4L/lbCw0sjQAAAJ7qmTNz/T0IAACfsP8BAMC6ljkKair7qs59635Gs3f2D+ziBsMqA4Y=
+   eJzt17ENwCAMBED2IV1g/9XiPhWSLQS6k76Dt1u3BgAAwAneyIjM3YsAAADXc38AAABQoUeehDeZ/7J6q+avzMjYoXpGZf+p3cDfB7YQBlI=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="130" gid="1" x="16" y="192" width="32" height="32"/>
+  <object id="130" gid="1" x="16" y="192" width="32" height="32">
+   <properties>
+    <property name="jumpHeight" type="float" value="2.4"/>
+   </properties>
+  </object>
   <object id="131" gid="6" x="48" y="194" width="19" height="36">
    <properties>
     <property name="animFrameDuration" type="float" value="0"/>
    </properties>
   </object>
-  <object id="132" gid="5" x="2512" y="194" width="64" height="64"/>
   <object id="133" gid="4" x="560" y="192" width="32" height="32"/>
   <object id="137" name="TEXT" x="64" y="112" width="137" height="64">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Use [#FF0000]A[] and [#FF0000]D[] for moving</text>
   </object>
   <object id="138" name="TEXT" x="233" y="112" width="159" height="62">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Use [#FF0000]Space[] to jump</text>
-  </object>
-  <object id="139" name="TEXT" x="2367" y="138" width="125" height="54">
-   <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Run to the finish</text>
   </object>
   <object id="140" name="TEXT" x="544" y="73" width="158" height="86">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#FF0000]Cherries[] to perform mid-air jump</text>
@@ -47,34 +47,41 @@
   <object id="152" gid="7" x="864" y="192" width="32" height="32"/>
   <object id="153" gid="7" x="928" y="192" width="32" height="32"/>
   <object id="154" gid="7" x="976" y="192" width="32" height="32"/>
-  <object id="159" gid="8" x="1296" y="192" width="32" height="32"/>
-  <object id="161" gid="8" x="1296" y="128" width="32" height="32"/>
-  <object id="162" name="TEXT" x="1168" y="64" width="110" height="111">
+  <object id="208" gid="5" x="3136" y="192" width="64" height="64"/>
+  <object id="209" name="TEXT" x="2976" y="144" width="125" height="54">
+   <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Run to the finish</text>
+  </object>
+  <object id="210" gid="8" x="1293" y="194" width="32" height="32"/>
+  <object id="211" gid="8" x="1293" y="130" width="32" height="32"/>
+  <object id="212" name="TEXT" x="1180" y="66" width="110" height="111">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#bc3cac]Melons[] to perform wall jump</text>
   </object>
-  <object id="163" name="TEXT" x="1408" y="49" width="207" height="120">
+  <object id="213" name="TEXT" x="1405" y="51" width="207" height="120">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#f4bc7c]Pineapple[] and hold [#f4bc7c]Jump[] button to perform temporary fly</text>
   </object>
-  <object id="164" gid="9" x="1488" y="192" width="32" height="32"/>
-  <object id="169" gid="2" x="2208" y="208" width="38" height="38">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
-   </properties>
-  </object>
-  <object id="171" gid="2" x="2016" y="208" width="38" height="38">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
-   </properties>
-  </object>
-  <object id="173" gid="10" x="1888" y="192" width="32" height="32"/>
-  <object id="174" name="TEXT" x="1809" y="77" width="197" height="84">
+  <object id="214" gid="9" x="1485" y="194" width="32" height="32"/>
+  <object id="215" gid="10" x="1885" y="194" width="32" height="32"/>
+  <object id="216" name="TEXT" x="1806" y="79" width="197" height="84">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#8baf38]Kiwis[] to become temporarily invincible</text>
   </object>
-  <object id="175" gid="2" x="2112" y="208" width="38" height="38"/>
+  <object id="219" gid="2" x="2013" y="213" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="220" gid="2" x="2221" y="213" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="221" gid="11" x="2448" y="192" width="32" height="32"/>
+  <object id="222" name="TEXT" x="2368" y="80" width="188" height="94">
+   <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#ff00ff]Apples[] to gain temporary double jump</text>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="tracks">
-  <object id="168" x="2033" y="192">
-   <polyline points="0,0 207,0"/>
+  <object id="218" x="2240" y="194">
+   <polyline points="0,0 -208,0"/>
   </object>
  </objectgroup>
 </map>

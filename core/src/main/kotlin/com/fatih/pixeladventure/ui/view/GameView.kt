@@ -4,6 +4,7 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.delay
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut
+import com.badlogic.gdx.scenes.scene2d.ui.Cell
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
@@ -23,14 +24,17 @@ class GameView(
     skin: Skin
 ) : Table(skin),KTable{
 
+    val typingLabelCell : Cell<TypingLabel>
+
     init {
         setFillParent(true)
-       val typingLabel = TypingLabel("",skin, defaultStyle).apply{
+        val typingLabel = TypingLabel("",skin, defaultStyle).apply{
            setAlignment(Align.center)
            color = skin.getColor("white")
            this.color.a = 0f
         }
-        this.add(typingLabel).padTop(10f).expand().align(Align.top).prefWidth(180f).prefHeight(40f)
+        typingLabelCell = this.add(typingLabel)
+        typingLabelCell.padTop(10f).expand().align(Align.top).prefWidth(180f).prefHeight(40f)
         row()
         val playerLife = image("health_4"){
             name = "player_life"
@@ -39,6 +43,8 @@ class GameView(
 
         gameModel.onPropertyChange(GameModel::mapName){
             typingLabel.clearActions()
+            val mapNameLength = it.length
+            typingLabelCell.prefWidth(mapNameLength * 15f)
             typingLabel += Actions.sequence(
                 fadeIn(2f),
                 delay(1f),

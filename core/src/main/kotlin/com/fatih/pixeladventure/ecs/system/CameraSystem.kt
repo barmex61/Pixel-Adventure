@@ -10,13 +10,14 @@ import com.fatih.pixeladventure.event.MapChangeEvent
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
+import com.github.quillraven.fleks.World.Companion.family
 import ktx.tiled.height
 import ktx.tiled.width
 import kotlin.math.max
 
 class CameraSystem (
     private val gameCamera : OrthographicCamera = World.inject()
-): IteratingSystem(family = World.family { all(Graphic,EntityTag.CAMERA_FOCUS) }) , GameEventListener {
+): IteratingSystem(family = family { all(Graphic,EntityTag.CAMERA_FOCUS) }) , GameEventListener {
 
     private val mapBoundaries = Vector2(0f,0f)
 
