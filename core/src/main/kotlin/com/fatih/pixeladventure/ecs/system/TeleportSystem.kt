@@ -6,6 +6,7 @@ import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Blink
 import com.fatih.pixeladventure.ecs.component.Flash
 import com.fatih.pixeladventure.ecs.component.Fly
+import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
@@ -19,9 +20,7 @@ import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
 import com.github.quillraven.fleks.World.Companion.family
 
-class TeleportSystem (
-    private val audioService: AudioService = World.inject()
-): IteratingSystem(family = family { all(Teleport) }) {
+class TeleportSystem : IteratingSystem(family = family { all(Teleport) }) {
 
     override fun onTickEntity(entity: Entity) {
         val teleportComp = entity[Teleport]
@@ -32,12 +31,14 @@ class TeleportSystem (
         val physicComp = entity[Physic]
         val lifeComp = entity[Life]
         lifeComp.current = (lifeComp.current -1).coerceAtLeast(0)
-        GameEventDispatcher.fireEvent(EntityLifeChangeEvent(entity))
+        GameEventDispatcher.fireEvent(EntityLifeChangeEvent(entity.getOrNull(Life)?.current?:0))
         entity.configure {
-            it += Blink(1.5f,0.075f)
-            it +=  Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
+            if (it hasNo Invulnarable && it hasNo Blink && it hasNo Flash){
+                it += Invulnarable(1.5f)
+                it += Blink(1.5f,0.075f)
+                it += Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
+            }
             entity[State].stateMachine.changeState(PlayerState.HIT)
-            audioService.play(SoundAsset.HURT)
         }
         physicComp.body.setTransform(spawnLocation,0f)
         teleportComp.doTeleport = false

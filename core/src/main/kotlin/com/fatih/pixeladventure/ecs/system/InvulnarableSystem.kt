@@ -8,11 +8,11 @@ import com.github.quillraven.fleks.World.Companion.family
 class InvulnarableSystem : IteratingSystem(family = family { all(Invulnarable) }) {
 
     override fun onTickEntity(entity: Entity) {
-        if (entity hasNo  Invulnarable) return
-        val invComp = entity[Invulnarable]
-        if (invComp.time <= 0f){
-            entity.configure { it -= Invulnarable }
+        entity.getOrNull(Invulnarable)?.let { invComp->
+            invComp.time -= deltaTime
+            if (invComp.time <= 0f){
+                entity.configure { it -= Invulnarable }
+            }
         }
-        invComp.time -= deltaTime
     }
 }

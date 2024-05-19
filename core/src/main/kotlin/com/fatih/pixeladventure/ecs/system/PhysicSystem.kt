@@ -8,15 +8,12 @@ import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.Manifold
 import com.fatih.pixeladventure.ai.FlagState
-import com.fatih.pixeladventure.ai.FruitState
 import com.fatih.pixeladventure.ecs.component.Aggro
-import com.fatih.pixeladventure.ecs.component.Animation
-import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.DamageTaken
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
-import com.fatih.pixeladventure.ecs.component.Jump
+import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
@@ -27,10 +24,8 @@ import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
-import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.SoundAsset
-import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
 import com.github.quillraven.fleks.Interval
@@ -111,6 +106,7 @@ class PhysicSystem(
     private val Contact.entityB : Entity?
         get() = fixtureB.entity
 
+    private fun Entity.isPlayer() = this has EntityTag.PLAYER
     private fun Fixture.isHitBox() = this.userData == "hitbox"
     private fun Fixture.isCherry() = this.userData == "cherry"
     private fun Fixture.isAggro(entity: Entity,isBeginContact : Boolean) : Boolean {
@@ -136,16 +132,17 @@ class PhysicSystem(
     private fun handleDamageBeginContact(damageSource: Entity, damageTarget: Entity) = with(world){
         val (damageAmount) = damageSource[Damage]
         damageTarget.configure {
+            println(it has EntityTag.PLAYER)
             val damageTakenComp = it.getOrAdd(DamageTaken){ DamageTaken(0) }
-            damageTakenComp.amount += damageAmount
+            damageTakenComp.damageAmount += damageAmount
         }
     }
 
     private fun handleDamageEndContact(damageSource: Entity, damageTarget: Entity) = with(world){
         damageTarget.getOrNull(DamageTaken)?.let {
             val (damageAmount) = damageSource[Damage]
-            it.amount -= damageAmount
-            if (it.amount <= 0){
+            it.damageAmount -= damageAmount
+            if (it.damageAmount <= 0){
                 damageTarget.configure { it -= DamageTaken }
             }
         }

@@ -2,6 +2,7 @@ package com.fatih.pixeladventure.audio
 
 import com.badlogic.gdx.audio.Music
 import com.fatih.pixeladventure.event.CollectItemEvent
+import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
@@ -73,6 +74,13 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
             }
             is CollectItemEvent -> {
                 play(SoundAsset.COLLECT)
+            }
+            is EntityLifeChangeEvent -> {
+                if (gameEvent.currentLife == 0) {
+                    play(SoundAsset.DEATH)
+                    return
+                }
+                play(SoundAsset.HURT)
             }
             else -> Unit
         }

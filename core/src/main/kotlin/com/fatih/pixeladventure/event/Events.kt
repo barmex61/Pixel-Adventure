@@ -8,9 +8,8 @@ import com.github.quillraven.fleks.Entity
 sealed interface GameEvent
 
 data class MapChangeEvent(val tiledMap: TiledMap) : GameEvent
-data class EntityLifeChangeEvent(val entity: Entity) : GameEvent
+data class EntityLifeChangeEvent(val currentLife : Int) : GameEvent
 data class VictoryEvent(val soundAsset: SoundAsset) : GameEvent
-data object PlayerDeathEvent : GameEvent
 data class CollectItemEvent(val playerEntity : Entity,val collectEntity : Entity) : GameEvent
 
 interface GameEventListener{

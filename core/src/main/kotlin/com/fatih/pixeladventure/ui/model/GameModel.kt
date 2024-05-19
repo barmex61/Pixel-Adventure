@@ -24,11 +24,8 @@ class GameModel(val world: World) : GameEventListener , PropertyChangeSource(){
                 mapName = gameEvent.tiledMap.property("name","MISS_MAP_NAME")
             }
             is EntityLifeChangeEvent -> {
-               with(world){
-                    if (gameEvent.entity has EntityTag.PLAYER){
-                        playerLife = gameEvent.entity[Life].current
-                    }
-                }
+                playerLife = gameEvent.currentLife
+
             }
             else -> Unit
         }

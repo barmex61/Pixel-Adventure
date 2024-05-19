@@ -16,14 +16,14 @@ class FlySystem : IteratingSystem(family = family { all(Fly) }) {
         val jumpComp = entity[Jump]
         val (body) = entity[Physic]
         var (flyTimer) = flyComp
+        flyTimer -= deltaTime
+        flyComp.timer = flyTimer
         if (flyTimer <= 0f) {
             entity.configure {
                 it -= Fly
             }
             return
         }
-        flyTimer -= deltaTime
-        flyComp.timer = flyTimer
         if (jumpComp.jump){
             body.setLinearVelocity(body.linearVelocity.x, 9f)
         }

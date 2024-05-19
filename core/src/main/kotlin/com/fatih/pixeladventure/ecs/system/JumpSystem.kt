@@ -124,7 +124,7 @@ class JumpSystem(
                     }
                     GameObject.KIWI.name ->{
                         gameEvent.playerEntity.configure {
-                            if (!(it has Invulnarable) && !(it has Blink)){
+                            if (it hasNo  Invulnarable && it hasNo  Blink){
                                 it += Invulnarable(3.5f)
                                 it += Blink(3.5f,0.075f)
                             }

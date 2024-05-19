@@ -79,8 +79,8 @@
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 359.75,
-                "y": 319.75
+                "x": 386,
+                "y": 100.25
             }
         },
         "assets/map/object.tmx": {
@@ -122,11 +122,11 @@
                 10,
                 3
             ],
-            "scale": 1.5,
-            "selectedLayer": 0,
+            "scale": 1,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 1279.6666666666665,
-                "y": 119.66666666666664
+                "x": 2664,
+                "y": 35.5
             }
         },
         "assets/map/tutorial.tmx#terrain-extruded": {

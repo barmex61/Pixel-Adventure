@@ -10,7 +10,6 @@ import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.fatih.pixeladventure.ecs.system.BlinkSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
-import com.fatih.pixeladventure.ecs.system.DamageSystem
 import com.fatih.pixeladventure.ecs.system.FlashSystem
 import com.fatih.pixeladventure.ecs.system.FlySystem
 import com.fatih.pixeladventure.util.Assets
@@ -21,6 +20,7 @@ import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.ecs.system.GlProfilerSystem
 import com.fatih.pixeladventure.ecs.system.InvulnarableSystem
 import com.fatih.pixeladventure.ecs.system.JumpSystem
+import com.fatih.pixeladventure.ecs.system.DamageSystem
 import com.fatih.pixeladventure.ecs.system.MoveSystem
 import com.fatih.pixeladventure.ecs.system.ParallaxBgdSystem
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem
@@ -29,8 +29,8 @@ import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.ecs.system.TeleportSystem
 import com.fatih.pixeladventure.ecs.system.TextSystem
+import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
-import com.fatih.pixeladventure.event.PlayerDeathEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure
@@ -76,21 +76,21 @@ class GameScreen(
             add(audioService)
         }
         systems {
+            add(DamageSystem())
             add(AnimationSystem())
             add(MoveSystem())
             add(JumpSystem())
-            add(FlySystem())
             add(PhysicSystem())
-            add(DamageSystem())
+            add(TeleportSystem())
+            add(InvulnarableSystem())
+            add(FlySystem())
             add(StateSystem())
             add(CameraSystem())
             add(BlinkSystem())
-            add(InvulnarableSystem())
             add(FlashSystem())
             add(ParallaxBgdSystem())
             add(TextSystem())
             add(RenderSystem())
-            add(TeleportSystem())
 
             if (gameProperties.debugPhysic){
                 add(PhysicDebugRenderSystem())
@@ -112,7 +112,6 @@ class GameScreen(
     }
 
     override fun show() {
-        keyboardInputProcessor.resetMoveX()
         inputMultiplexer.addProcessor(keyboardInputProcessor)
         inputMultiplexer.addProcessor(uiStage)
         world.systems
@@ -170,9 +169,11 @@ class GameScreen(
             is VictoryEvent ->{
                 delayToMenu = 2f
             }
-            is PlayerDeathEvent ->{
-                delayToMenu = 0.00001f
-                isPlayerDeath = true
+            is EntityLifeChangeEvent ->{
+                if (gameEvent.currentLife == 0){
+                    delayToMenu = 0.00001f
+                    isPlayerDeath = true
+                }
             }
             else -> Unit
         }
