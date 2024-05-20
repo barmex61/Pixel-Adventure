@@ -76,6 +76,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
                 play(SoundAsset.COLLECT)
             }
             is EntityLifeChangeEvent -> {
+                if (gameEvent.currentLife == 4) return
                 if (gameEvent.currentLife == 0) {
                     play(SoundAsset.DEATH)
                     return

@@ -11,6 +11,8 @@ data class MapChangeEvent(val tiledMap: TiledMap) : GameEvent
 data class EntityLifeChangeEvent(val currentLife : Int) : GameEvent
 data class VictoryEvent(val soundAsset: SoundAsset) : GameEvent
 data class CollectItemEvent(val playerEntity : Entity,val collectEntity : Entity) : GameEvent
+data object RestartGameEvent : GameEvent
+data class PlayerOutOfMapEvent(val playerEntity : Entity) : GameEvent
 
 interface GameEventListener{
 

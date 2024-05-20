@@ -16,8 +16,27 @@ import ktx.assets.disposeSafely
 import ktx.assets.getAsset
 import ktx.assets.load
 
-enum class MapAsset(val path : String,val nextMap : MapAsset? = null,val parallaxBgdTexture : String = "graphics/green.png",val mapName : String){
-    MAP6("map/map6.tmx",null, parallaxBgdTexture = "graphics/green.png","Double Jumper"),
+enum class MapAsset(val path : String, val unlocksMap : MapAsset? = null, val parallaxBgdTexture : String = "graphics/green.png", val mapName : String){
+    MAP25("map/map6.tmx",MAP25, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
+    MAP24("map/map6.tmx",MAP25,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
+    MAP23("map/map6.tmx",MAP24, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
+    MAP22("map/map6.tmx",MAP23,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
+    MAP21("map/map6.tmx",MAP22, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
+    MAP20("map/map6.tmx",MAP21, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
+    MAP19("map/map6.tmx",MAP20,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
+    MAP18("map/map6.tmx",MAP19, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
+    MAP17("map/map6.tmx",MAP18,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
+    MAP16("map/map6.tmx",MAP17, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
+    MAP15("map/map6.tmx",MAP16, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
+    MAP14("map/map6.tmx",MAP15,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
+    MAP13("map/map6.tmx",MAP14, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
+    MAP12("map/map6.tmx",MAP13,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
+    MAP11("map/map6.tmx",MAP12, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
+    MAP10("map/map6.tmx",MAP11, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
+    MAP9("map/map6.tmx",MAP10,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
+    MAP8("map/map6.tmx",MAP9, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
+    MAP7("map/map6.tmx",MAP8,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
+    MAP6("map/map6.tmx",MAP6, parallaxBgdTexture = "graphics/green.png","Double Jumper"),
     MAP5("map/map5.tmx",MAP6, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
     MAP4("map/map4.tmx",MAP5, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
     MAP3("map/map3.tmx",MAP4,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),

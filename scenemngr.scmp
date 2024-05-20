@@ -210,51 +210,6 @@ atlasData: {
 				b: 1
 				a: 1
 			}
-			tint: null
-			tintName: black
-			name: button_black
-			tiled: false
-			minWidth: -1
-			minHeight: -1
-			customized: false
-			tenPatchData: null
-			tvgData: null
-			type: TINTED_FROM_COLOR_DATA
-			hidden: false
-		}
-		{
-			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/button.9.png
-			bgColor: {
-				r: 1
-				g: 1
-				b: 1
-				a: 1
-			}
-			tint: {
-				r: 1
-				g: 0.9882353
-				b: 0
-				a: 1
-			}
-			tintName: null
-			name: button_yellow
-			tiled: false
-			minWidth: -1
-			minHeight: -1
-			customized: false
-			tenPatchData: null
-			tvgData: null
-			type: TINTED
-			hidden: false
-		}
-		{
-			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/button.9.png
-			bgColor: {
-				r: 1
-				g: 1
-				b: 1
-				a: 1
-			}
 			tint: {
 				r: 0.9647059
 				g: 0.78431374
@@ -653,26 +608,6 @@ atlasData: {
 			hidden: false
 		}
 		{
-			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/Item3.png
-			bgColor: {
-				r: 1
-				g: 1
-				b: 1
-				a: 1
-			}
-			tint: null
-			tintName: null
-			name: Item3
-			tiled: false
-			minWidth: -1
-			minHeight: -1
-			customized: false
-			tenPatchData: null
-			tvgData: null
-			type: TEXTURE
-			hidden: false
-		}
-		{
 			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/button.9.png
 			bgColor: {
 				r: 1
@@ -692,6 +627,106 @@ atlasData: {
 			type: TINTED_FROM_COLOR_DATA
 			hidden: false
 		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/Previous.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: light_red
+			name: Previous_light_red
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: TINTED_FROM_COLOR_DATA
+			hidden: false
+		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/Previous.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: orange
+			name: Previous_orange
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: TINTED_FROM_COLOR_DATA
+			hidden: false
+		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/Next.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: orange
+			name: Next_orange
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: TINTED_FROM_COLOR_DATA
+			hidden: false
+		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/Next.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: light_red
+			name: Next_light_red
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: TINTED_FROM_COLOR_DATA
+			hidden: false
+		}
+		{
+			file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/Next_disabled.png
+			bgColor: {
+				r: 1
+				g: 1
+				b: 1
+				a: 1
+			}
+			tint: null
+			tintName: null
+			name: Next_disabled
+			tiled: false
+			minWidth: -1
+			minHeight: -1
+			customized: false
+			tenPatchData: null
+			tvgData: null
+			type: TEXTURE
+			hidden: false
+		}
 	]
 	fontDrawables: []
 }
@@ -706,6 +741,16 @@ jsonData: {
 				a: 1
 			}
 			name: black
+		}
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 0
+				g: 0.99607843
+				b: 1
+				a: 1
+			}
+			name: blue
 		}
 		{
 			class: com.ray3k.skincomposer.data.ColorData
@@ -736,6 +781,16 @@ jsonData: {
 				a: 1
 			}
 			name: light_red
+		}
+		{
+			class: com.ray3k.skincomposer.data.ColorData
+			color: {
+				r: 1
+				g: 0.78039217
+				b: 0.68235296
+				a: 1
+			}
+			name: light_skin
 		}
 		{
 			class: com.ray3k.skincomposer.data.ColorData
@@ -1524,25 +1579,25 @@ jsonData: {
 						type: com.badlogic.gdx.graphics.g2d.BitmapFont
 						name: font
 						optional: false
-						value: null
+						value: default_fnt
 					}
 					fontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: fontColor
 						optional: true
-						value: null
+						value: black
 					}
 					downFontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: downFontColor
 						optional: true
-						value: null
+						value: red
 					}
 					overFontColor: {
 						type: com.badlogic.gdx.graphics.Color
 						name: overFontColor
 						optional: true
-						value: null
+						value: orange
 					}
 					focusedFontColor: {
 						type: com.badlogic.gdx.graphics.Color
@@ -1584,7 +1639,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: up
 						optional: true
-						value: null
+						value: button_disabled
 					}
 					down: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -1638,13 +1693,13 @@ jsonData: {
 						type: float
 						name: pressedOffsetX
 						optional: true
-						value: 0
+						value: 3
 					}
 					pressedOffsetY: {
 						type: float
 						name: pressedOffsetY
 						optional: true
-						value: 0
+						value: 3
 					}
 					unpressedOffsetX: {
 						type: float
@@ -1685,7 +1740,7 @@ jsonData: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
 						name: imageUp
 						optional: true
-						value: Settings
+						value: null
 					}
 					imageDown: {
 						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
@@ -2099,6 +2154,288 @@ jsonData: {
 				deletable: true
 				parent: default
 			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: back_img_button
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: Previous
+					}
+					imageDown: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: Previous_orange
+					}
+					imageOver: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: Previous_light_red
+					}
+					imageDisabled: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: null
+					}
+					imageChecked: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedDown: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedDown
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					up: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: null
+					}
+					down: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					disabled: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					checked: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedDown: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedDown
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 3
+					}
+					pressedOffsetY: {
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 3
+					}
+					unpressedOffsetX: {
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
+			{
+				class: com.ray3k.skincomposer.data.StyleData
+				name: next_img_button
+				clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+				properties: {
+					imageUp: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageUp
+						optional: true
+						value: Next
+					}
+					imageDown: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDown
+						optional: true
+						value: Next_orange
+					}
+					imageOver: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageOver
+						optional: true
+						value: Next_light_red
+					}
+					imageDisabled: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageDisabled
+						optional: true
+						value: Next_disabled
+					}
+					imageChecked: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageChecked
+						optional: true
+						value: null
+					}
+					imageCheckedDown: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedDown
+						optional: true
+						value: null
+					}
+					imageCheckedOver: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: imageCheckedOver
+						optional: true
+						value: null
+					}
+					up: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: up
+						optional: true
+						value: null
+					}
+					down: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: down
+						optional: true
+						value: null
+					}
+					over: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: over
+						optional: true
+						value: null
+					}
+					focused: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: focused
+						optional: true
+						value: null
+					}
+					disabled: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: disabled
+						optional: true
+						value: null
+					}
+					checked: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checked
+						optional: true
+						value: null
+					}
+					checkedOver: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedOver
+						optional: true
+						value: null
+					}
+					checkedDown: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedDown
+						optional: true
+						value: null
+					}
+					checkedFocused: {
+						type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+						name: checkedFocused
+						optional: true
+						value: null
+					}
+					pressedOffsetX: {
+						type: float
+						name: pressedOffsetX
+						optional: true
+						value: 3
+					}
+					pressedOffsetY: {
+						type: float
+						name: pressedOffsetY
+						optional: true
+						value: 3
+					}
+					unpressedOffsetX: {
+						type: float
+						name: unpressedOffsetX
+						optional: true
+						value: 0
+					}
+					unpressedOffsetY: {
+						type: float
+						name: unpressedOffsetY
+						optional: true
+						value: 0
+					}
+					checkedOffsetX: {
+						type: float
+						name: checkedOffsetX
+						optional: true
+						value: 0
+					}
+					checkedOffsetY: {
+						type: float
+						name: checkedOffsetY
+						optional: true
+						value: 0
+					}
+				}
+				deletable: true
+				parent: null
+			}
 		]
 		com.badlogic.gdx.scenes.scene2d.ui.List: [
 			{
@@ -2217,13 +2554,13 @@ jsonData: {
 						type: float
 						name: pressedOffsetX
 						optional: true
-						value: 0
+						value: 6
 					}
 					pressedOffsetY: {
 						type: float
 						name: pressedOffsetY
 						optional: true
-						value: 0
+						value: 6
 					}
 					unpressedOffsetX: {
 						type: float
@@ -2935,9 +3272,371 @@ sceneComposer: {
 			cells: [
 				{
 					child: {
+						class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimImageButton
+						name: null
+						style: {
+							name: restart_img_button
+							clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+							properties: {
+								imageUp: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageUp
+									optional: true
+									value: Restart
+								}
+								imageDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageDown
+									optional: true
+									value: Restart_orange
+								}
+								imageOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageOver
+									optional: true
+									value: Restart_light_red
+								}
+								imageDisabled: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageDisabled
+									optional: true
+									value: null
+								}
+								imageChecked: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageChecked
+									optional: true
+									value: null
+								}
+								imageCheckedDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageCheckedDown
+									optional: true
+									value: null
+								}
+								imageCheckedOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageCheckedOver
+									optional: true
+									value: null
+								}
+								up: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: up
+									optional: true
+									value: null
+								}
+								down: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: down
+									optional: true
+									value: null
+								}
+								over: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: over
+									optional: true
+									value: null
+								}
+								focused: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: focused
+									optional: true
+									value: null
+								}
+								disabled: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: disabled
+									optional: true
+									value: null
+								}
+								checked: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checked
+									optional: true
+									value: null
+								}
+								checkedOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedOver
+									optional: true
+									value: null
+								}
+								checkedDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedDown
+									optional: true
+									value: null
+								}
+								checkedFocused: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedFocused
+									optional: true
+									value: null
+								}
+								pressedOffsetX: {
+									type: float
+									name: pressedOffsetX
+									optional: true
+									value: 3
+								}
+								pressedOffsetY: {
+									type: float
+									name: pressedOffsetY
+									optional: true
+									value: 3
+								}
+								unpressedOffsetX: {
+									type: float
+									name: unpressedOffsetX
+									optional: true
+									value: 0
+								}
+								unpressedOffsetY: {
+									type: float
+									name: unpressedOffsetY
+									optional: true
+									value: 0
+								}
+								checkedOffsetX: {
+									type: float
+									name: checkedOffsetX
+									optional: true
+									value: 0
+								}
+								checkedOffsetY: {
+									type: float
+									name: checkedOffsetY
+									optional: true
+									value: 0
+								}
+							}
+							deletable: true
+							parent: default
+						}
+						checked: false
+						disabled: false
+						color: null
+						padLeft: 0
+						padRight: 0
+						padTop: 0
+						padBottom: 0
+						touchable: enabled
+						visible: true
+					}
+					row: 0
+					column: 0
+					padLeft: 20
+					padRight: 0
+					padTop: 15
+					padBottom: 0
+					spaceLeft: 0
+					spaceRight: 0
+					spaceTop: 0
+					spaceBottom: 0
+					expandX: false
+					expandY: false
+					fillX: false
+					fillY: false
+					growX: false
+					growY: false
+					alignment: 10
+					minWidth: 10
+					minHeight: 10
+					maxWidth: -1
+					maxHeight: -1
+					preferredWidth: 30
+					preferredHeight: 30
+					uniformX: false
+					uniformY: false
+					colSpan: 1
+				}
+				{
+					child: {
+						class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimImageButton
+						name: null
+						style: {
+							name: restart_img_button
+							clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+							properties: {
+								imageUp: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageUp
+									optional: true
+									value: Restart
+								}
+								imageDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageDown
+									optional: true
+									value: Restart_orange
+								}
+								imageOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageOver
+									optional: true
+									value: Restart_light_red
+								}
+								imageDisabled: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageDisabled
+									optional: true
+									value: null
+								}
+								imageChecked: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageChecked
+									optional: true
+									value: null
+								}
+								imageCheckedDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageCheckedDown
+									optional: true
+									value: null
+								}
+								imageCheckedOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageCheckedOver
+									optional: true
+									value: null
+								}
+								up: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: up
+									optional: true
+									value: null
+								}
+								down: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: down
+									optional: true
+									value: null
+								}
+								over: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: over
+									optional: true
+									value: null
+								}
+								focused: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: focused
+									optional: true
+									value: null
+								}
+								disabled: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: disabled
+									optional: true
+									value: null
+								}
+								checked: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checked
+									optional: true
+									value: null
+								}
+								checkedOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedOver
+									optional: true
+									value: null
+								}
+								checkedDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedDown
+									optional: true
+									value: null
+								}
+								checkedFocused: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedFocused
+									optional: true
+									value: null
+								}
+								pressedOffsetX: {
+									type: float
+									name: pressedOffsetX
+									optional: true
+									value: 3
+								}
+								pressedOffsetY: {
+									type: float
+									name: pressedOffsetY
+									optional: true
+									value: 3
+								}
+								unpressedOffsetX: {
+									type: float
+									name: unpressedOffsetX
+									optional: true
+									value: 0
+								}
+								unpressedOffsetY: {
+									type: float
+									name: unpressedOffsetY
+									optional: true
+									value: 0
+								}
+								checkedOffsetX: {
+									type: float
+									name: checkedOffsetX
+									optional: true
+									value: 0
+								}
+								checkedOffsetY: {
+									type: float
+									name: checkedOffsetY
+									optional: true
+									value: 0
+								}
+							}
+							deletable: true
+							parent: default
+						}
+						checked: false
+						disabled: false
+						color: null
+						padLeft: 0
+						padRight: 0
+						padTop: 0
+						padBottom: 0
+						touchable: enabled
+						visible: true
+					}
+					row: 0
+					column: 1
+					padLeft: 5
+					padRight: 0
+					padTop: 15
+					padBottom: 0
+					spaceLeft: 0
+					spaceRight: 0
+					spaceTop: 0
+					spaceBottom: 0
+					expandX: false
+					expandY: false
+					fillX: false
+					fillY: false
+					growX: false
+					growY: false
+					alignment: 10
+					minWidth: 10
+					minHeight: 10
+					maxWidth: -1
+					maxHeight: -1
+					preferredWidth: 30
+					preferredHeight: 30
+					uniformX: false
+					uniformY: false
+					colSpan: 1
+				}
+				{
+					child: {
 						class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimTextButton
 						name: null
-						text: Pixel Adventure
+						text: null
 						style: {
 							name: default
 							clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
@@ -3098,15 +3797,7 @@ sceneComposer: {
 						}
 						checked: false
 						disabled: false
-						color: {
-							color: {
-								r: 1
-								g: 0.54509807
-								b: 0.015686275
-								a: 1
-							}
-							name: orange
-						}
+						color: null
 						padLeft: 0
 						padRight: 0
 						padTop: 0
@@ -3115,7 +3806,7 @@ sceneComposer: {
 						visible: true
 					}
 					row: 0
-					column: 0
+					column: 2
 					padLeft: 0
 					padRight: 0
 					padTop: 0
@@ -3124,7 +3815,7 @@ sceneComposer: {
 					spaceRight: 0
 					spaceTop: 0
 					spaceBottom: 0
-					expandX: false
+					expandX: true
 					expandY: false
 					fillX: false
 					fillY: false
@@ -3135,7 +3826,7 @@ sceneComposer: {
 					minHeight: -1
 					maxWidth: -1
 					maxHeight: -1
-					preferredWidth: 200
+					preferredWidth: 150
 					preferredHeight: 40
 					uniformX: false
 					uniformY: false
@@ -3143,646 +3834,163 @@ sceneComposer: {
 				}
 				{
 					child: {
-						class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimTable
-						cells: [
-							{
-								child: {
-									class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimTextButton
-									name: null
-									text: PLAY
-									style: {
-										name: menu_txt_button
-										clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
-										properties: {
-											font: {
-												type: com.badlogic.gdx.graphics.g2d.BitmapFont
-												name: font
-												optional: false
-												value: default_fnt_small
-											}
-											fontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: fontColor
-												optional: true
-												value: black
-											}
-											downFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: downFontColor
-												optional: true
-												value: white
-											}
-											overFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: overFontColor
-												optional: true
-												value: white
-											}
-											focusedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: focusedFontColor
-												optional: true
-												value: null
-											}
-											disabledFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: disabledFontColor
-												optional: true
-												value: gray
-											}
-											checkedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedFontColor
-												optional: true
-												value: null
-											}
-											checkedDownFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedDownFontColor
-												optional: true
-												value: null
-											}
-											checkedOverFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedOverFontColor
-												optional: true
-												value: null
-											}
-											checkedFocusedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedFocusedFontColor
-												optional: true
-												value: null
-											}
-											up: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: up
-												optional: true
-												value: button
-											}
-											down: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: down
-												optional: true
-												value: button_orange
-											}
-											over: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: over
-												optional: true
-												value: button_open_oragne
-											}
-											focused: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: focused
-												optional: true
-												value: null
-											}
-											disabled: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: disabled
-												optional: true
-												value: button_disabled
-											}
-											checked: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checked
-												optional: true
-												value: null
-											}
-											checkedOver: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedOver
-												optional: true
-												value: null
-											}
-											checkedDown: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedDown
-												optional: true
-												value: null
-											}
-											checkedFocused: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedFocused
-												optional: true
-												value: null
-											}
-											pressedOffsetX: {
-												type: float
-												name: pressedOffsetX
-												optional: true
-												value: 3
-											}
-											pressedOffsetY: {
-												type: float
-												name: pressedOffsetY
-												optional: true
-												value: 3
-											}
-											unpressedOffsetX: {
-												type: float
-												name: unpressedOffsetX
-												optional: true
-												value: 0
-											}
-											unpressedOffsetY: {
-												type: float
-												name: unpressedOffsetY
-												optional: true
-												value: 0
-											}
-											checkedOffsetX: {
-												type: float
-												name: checkedOffsetX
-												optional: true
-												value: 0
-											}
-											checkedOffsetY: {
-												type: float
-												name: checkedOffsetY
-												optional: true
-												value: 0
-											}
-										}
-										deletable: true
-										parent: null
-									}
-									checked: false
-									disabled: false
-									color: null
-									padLeft: 0
-									padRight: 0
-									padTop: 0
-									padBottom: 0
-									touchable: enabled
-									visible: true
-								}
-								row: 0
-								column: 0
-								padLeft: 0
-								padRight: 0
-								padTop: 0
-								padBottom: 15
-								spaceLeft: 0
-								spaceRight: 0
-								spaceTop: 0
-								spaceBottom: 0
-								expandX: false
-								expandY: false
-								fillX: false
-								fillY: false
-								growX: false
-								growY: false
-								alignment: 1
-								minWidth: -1
-								minHeight: -1
-								maxWidth: -1
-								maxHeight: -1
-								preferredWidth: 100
-								preferredHeight: -1
-								uniformX: false
-								uniformY: false
-								colSpan: 1
-							}
-							{
-								child: {
-									class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimTextButton
-									name: null
-									text: SETTINGS
-									style: {
-										name: menu_txt_button
-										clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
-										properties: {
-											font: {
-												type: com.badlogic.gdx.graphics.g2d.BitmapFont
-												name: font
-												optional: false
-												value: default_fnt_small
-											}
-											fontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: fontColor
-												optional: true
-												value: black
-											}
-											downFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: downFontColor
-												optional: true
-												value: white
-											}
-											overFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: overFontColor
-												optional: true
-												value: white
-											}
-											focusedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: focusedFontColor
-												optional: true
-												value: null
-											}
-											disabledFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: disabledFontColor
-												optional: true
-												value: gray
-											}
-											checkedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedFontColor
-												optional: true
-												value: null
-											}
-											checkedDownFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedDownFontColor
-												optional: true
-												value: null
-											}
-											checkedOverFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedOverFontColor
-												optional: true
-												value: null
-											}
-											checkedFocusedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedFocusedFontColor
-												optional: true
-												value: null
-											}
-											up: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: up
-												optional: true
-												value: button
-											}
-											down: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: down
-												optional: true
-												value: button_orange
-											}
-											over: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: over
-												optional: true
-												value: button_open_oragne
-											}
-											focused: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: focused
-												optional: true
-												value: null
-											}
-											disabled: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: disabled
-												optional: true
-												value: button_disabled
-											}
-											checked: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checked
-												optional: true
-												value: null
-											}
-											checkedOver: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedOver
-												optional: true
-												value: null
-											}
-											checkedDown: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedDown
-												optional: true
-												value: null
-											}
-											checkedFocused: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedFocused
-												optional: true
-												value: null
-											}
-											pressedOffsetX: {
-												type: float
-												name: pressedOffsetX
-												optional: true
-												value: 3
-											}
-											pressedOffsetY: {
-												type: float
-												name: pressedOffsetY
-												optional: true
-												value: 3
-											}
-											unpressedOffsetX: {
-												type: float
-												name: unpressedOffsetX
-												optional: true
-												value: 0
-											}
-											unpressedOffsetY: {
-												type: float
-												name: unpressedOffsetY
-												optional: true
-												value: 0
-											}
-											checkedOffsetX: {
-												type: float
-												name: checkedOffsetX
-												optional: true
-												value: 0
-											}
-											checkedOffsetY: {
-												type: float
-												name: checkedOffsetY
-												optional: true
-												value: 0
-											}
-										}
-										deletable: true
-										parent: null
-									}
-									checked: false
-									disabled: false
-									color: null
-									padLeft: 0
-									padRight: 0
-									padTop: 0
-									padBottom: 0
-									touchable: enabled
-									visible: true
-								}
-								row: 1
-								column: 0
-								padLeft: 0
-								padRight: 0
-								padTop: 0
-								padBottom: 15
-								spaceLeft: 0
-								spaceRight: 0
-								spaceTop: 0
-								spaceBottom: 0
-								expandX: false
-								expandY: false
-								fillX: false
-								fillY: false
-								growX: false
-								growY: false
-								alignment: 1
-								minWidth: -1
-								minHeight: -1
-								maxWidth: -1
-								maxHeight: -1
-								preferredWidth: 100
-								preferredHeight: -1
-								uniformX: false
-								uniformY: false
-								colSpan: 1
-							}
-							{
-								child: {
-									class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimTextButton
-									name: null
-									text: EXIT
-									style: {
-										name: menu_txt_button
-										clazz: com.badlogic.gdx.scenes.scene2d.ui.TextButton
-										properties: {
-											font: {
-												type: com.badlogic.gdx.graphics.g2d.BitmapFont
-												name: font
-												optional: false
-												value: default_fnt_small
-											}
-											fontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: fontColor
-												optional: true
-												value: black
-											}
-											downFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: downFontColor
-												optional: true
-												value: white
-											}
-											overFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: overFontColor
-												optional: true
-												value: white
-											}
-											focusedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: focusedFontColor
-												optional: true
-												value: null
-											}
-											disabledFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: disabledFontColor
-												optional: true
-												value: gray
-											}
-											checkedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedFontColor
-												optional: true
-												value: null
-											}
-											checkedDownFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedDownFontColor
-												optional: true
-												value: null
-											}
-											checkedOverFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedOverFontColor
-												optional: true
-												value: null
-											}
-											checkedFocusedFontColor: {
-												type: com.badlogic.gdx.graphics.Color
-												name: checkedFocusedFontColor
-												optional: true
-												value: null
-											}
-											up: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: up
-												optional: true
-												value: button
-											}
-											down: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: down
-												optional: true
-												value: button_orange
-											}
-											over: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: over
-												optional: true
-												value: button_open_oragne
-											}
-											focused: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: focused
-												optional: true
-												value: null
-											}
-											disabled: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: disabled
-												optional: true
-												value: button_disabled
-											}
-											checked: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checked
-												optional: true
-												value: null
-											}
-											checkedOver: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedOver
-												optional: true
-												value: null
-											}
-											checkedDown: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedDown
-												optional: true
-												value: null
-											}
-											checkedFocused: {
-												type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
-												name: checkedFocused
-												optional: true
-												value: null
-											}
-											pressedOffsetX: {
-												type: float
-												name: pressedOffsetX
-												optional: true
-												value: 3
-											}
-											pressedOffsetY: {
-												type: float
-												name: pressedOffsetY
-												optional: true
-												value: 3
-											}
-											unpressedOffsetX: {
-												type: float
-												name: unpressedOffsetX
-												optional: true
-												value: 0
-											}
-											unpressedOffsetY: {
-												type: float
-												name: unpressedOffsetY
-												optional: true
-												value: 0
-											}
-											checkedOffsetX: {
-												type: float
-												name: checkedOffsetX
-												optional: true
-												value: 0
-											}
-											checkedOffsetY: {
-												type: float
-												name: checkedOffsetY
-												optional: true
-												value: 0
-											}
-										}
-										deletable: true
-										parent: null
-									}
-									checked: false
-									disabled: false
-									color: null
-									padLeft: 0
-									padRight: 0
-									padTop: 0
-									padBottom: 0
-									touchable: enabled
-									visible: true
-								}
-								row: 2
-								column: 0
-								padLeft: 0
-								padRight: 0
-								padTop: 0
-								padBottom: 0
-								spaceLeft: 0
-								spaceRight: 0
-								spaceTop: 0
-								spaceBottom: 0
-								expandX: false
-								expandY: false
-								fillX: false
-								fillY: false
-								growX: false
-								growY: false
-								alignment: 1
-								minWidth: -1
-								minHeight: -1
-								maxWidth: -1
-								maxHeight: -1
-								preferredWidth: 100
-								preferredHeight: -1
-								uniformX: false
-								uniformY: false
-								colSpan: 1
-							}
-						]
+						class: com.ray3k.skincomposer.dialog.scenecomposer.DialogSceneComposerModel$SimImageButton
 						name: null
-						background: {
-							file: C:/Users/Fatih/AndroidStudioProjects/PixelAdventure/rawassets/ui/frame.9.png
-							bgColor: {
-								r: 1
-								g: 1
-								b: 1
-								a: 1
+						style: {
+							name: setting_img_button
+							clazz: com.badlogic.gdx.scenes.scene2d.ui.ImageButton
+							properties: {
+								imageUp: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageUp
+									optional: true
+									value: Settings
+								}
+								imageDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageDown
+									optional: true
+									value: Settings_orange
+								}
+								imageOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageOver
+									optional: true
+									value: Settings_light_red
+								}
+								imageDisabled: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageDisabled
+									optional: true
+									value: null
+								}
+								imageChecked: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageChecked
+									optional: true
+									value: null
+								}
+								imageCheckedDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageCheckedDown
+									optional: true
+									value: null
+								}
+								imageCheckedOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: imageCheckedOver
+									optional: true
+									value: null
+								}
+								up: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: up
+									optional: true
+									value: null
+								}
+								down: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: down
+									optional: true
+									value: null
+								}
+								over: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: over
+									optional: true
+									value: null
+								}
+								focused: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: focused
+									optional: true
+									value: null
+								}
+								disabled: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: disabled
+									optional: true
+									value: null
+								}
+								checked: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checked
+									optional: true
+									value: null
+								}
+								checkedOver: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedOver
+									optional: true
+									value: null
+								}
+								checkedDown: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedDown
+									optional: true
+									value: null
+								}
+								checkedFocused: {
+									type: com.badlogic.gdx.scenes.scene2d.utils.Drawable
+									name: checkedFocused
+									optional: true
+									value: null
+								}
+								pressedOffsetX: {
+									type: float
+									name: pressedOffsetX
+									optional: true
+									value: 3
+								}
+								pressedOffsetY: {
+									type: float
+									name: pressedOffsetY
+									optional: true
+									value: 3
+								}
+								unpressedOffsetX: {
+									type: float
+									name: unpressedOffsetX
+									optional: true
+									value: 0
+								}
+								unpressedOffsetY: {
+									type: float
+									name: unpressedOffsetY
+									optional: true
+									value: 0
+								}
+								checkedOffsetX: {
+									type: float
+									name: checkedOffsetX
+									optional: true
+									value: 0
+								}
+								checkedOffsetY: {
+									type: float
+									name: checkedOffsetY
+									optional: true
+									value: 0
+								}
 							}
-							tint: null
-							tintName: null
-							name: frame
-							tiled: false
-							minWidth: -1
-							minHeight: -1
-							customized: false
-							tenPatchData: null
-							tvgData: null
-							type: NINE_PATCH
-							hidden: false
+							deletable: true
+							parent: default
 						}
+						checked: false
+						disabled: false
 						color: null
-						padLeft: 20
-						padRight: 20
-						padTop: 20
-						padBottom: 20
-						paddingEnabled: true
-						alignment: 1
-						fillParent: false
-						touchable: childrenOnly
+						padLeft: 0
+						padRight: 0
+						padTop: 0
+						padBottom: 0
+						touchable: enabled
 						visible: true
 					}
-					row: 1
-					column: 0
+					row: 0
+					column: 3
 					padLeft: 0
-					padRight: 0
-					padTop: 0
+					padRight: 20
+					padTop: 15
 					padBottom: 0
 					spaceLeft: 0
 					spaceRight: 0
@@ -3794,13 +4002,13 @@ sceneComposer: {
 					fillY: false
 					growX: false
 					growY: false
-					alignment: 1
+					alignment: 18
 					minWidth: -1
 					minHeight: -1
 					maxWidth: -1
 					maxHeight: -1
-					preferredWidth: -1
-					preferredHeight: -1
+					preferredWidth: 65
+					preferredHeight: 30
 					uniformX: false
 					uniformY: false
 					colSpan: 1
@@ -3814,9 +4022,9 @@ sceneComposer: {
 			padTop: 0
 			padBottom: 0
 			paddingEnabled: false
-			alignment: 1
+			alignment: 2
 			fillParent: true
-			touchable: childrenOnly
+			touchable: enabled
 			visible: true
 		}
 	]

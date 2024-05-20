@@ -14,13 +14,15 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter {
     private var playerEntities = with(world) {
         family { all(EntityTag.PLAYER) }
     }
+    var stop : Boolean = false
 
     fun resetMoveX() {
         moveX = 0
     }
 
     private fun updatePlayerMovement(moveValue : Int){
-        moveX += moveValue
+        if (stop) return
+        moveX = (moveX + moveValue).coerceIn(-1,1)
         playerEntities.forEach { it[Move].direction = MoveDirection.horizontalValueOf(moveX) }
     }
 

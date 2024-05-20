@@ -8,8 +8,13 @@ import com.badlogic.gdx.scenes.scene2d.ui.Cell
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
+import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.RestartGameEvent
+import com.fatih.pixeladventure.game.PixelAdventure
+import com.fatih.pixeladventure.screen.GameScreen
 import com.fatih.pixeladventure.ui.model.GameModel
 import com.rafaskoberg.gdx.typinglabel.TypingLabel
+import ktx.actors.onClick
 import ktx.actors.plusAssign
 import ktx.scene2d.KTable
 import ktx.scene2d.KWidget
@@ -22,7 +27,8 @@ import ktx.scene2d.imageButton
 
 class GameView(
     gameModel : GameModel,
-    skin: Skin
+    skin: Skin,
+    game : PixelAdventure
 ) : Table(skin),KTable{
 
     val typingLabelCell : Cell<TypingLabel>
@@ -32,6 +38,9 @@ class GameView(
         setFillParent(true)
         imageButton("restart_img_button"){
             it.padLeft(15f).padTop(15f).align(Align.top).prefSize(17f)
+            onClick {
+                GameEventDispatcher.fireEvent(RestartGameEvent)
+            }
         }
         val typingLabel = TypingLabel("",skin, defaultStyle).apply{
            setAlignment(Align.center)
@@ -42,6 +51,9 @@ class GameView(
         typingLabelCell.padTop(15f).expand().align(Align.top).prefHeight(45f)
         imageButton("setting_img_button"){
             it.padRight(15f).padTop(15f).align(Align.top).prefSize(17f)
+            onClick {
+                game.getScreen<GameScreen>().stopGame()
+            }
         }
         row()
         val playerLife = image("health_4"){
@@ -71,5 +83,6 @@ class GameView(
 fun <S>KWidget<S>.gameView(
     gameModel: GameModel,
     skin: Skin = Scene2DSkin.defaultSkin,
+    game : PixelAdventure,
     init : GameView.(S) -> Unit = {}
-) : GameView = actor(GameView(gameModel,skin),init)
+) : GameView = actor(GameView(gameModel,skin,game),init)

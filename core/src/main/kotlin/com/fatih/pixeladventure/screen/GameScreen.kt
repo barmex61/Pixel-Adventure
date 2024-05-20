@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.fatih.pixeladventure.audio.AudioService
@@ -54,9 +55,10 @@ class GameScreen(
     audioService: AudioService,
     gameProperties: GameProperties,
     private val game : PixelAdventure,
-    private val gamePreferences: GamePreferences
+    private val gamePreferences: GamePreferences,
 ): KtxScreen , GameEventListener{
 
+    private var stopGame : Boolean = false
     private val gameViewPort : Viewport = StretchViewport(18f,11f)
     private val uiViewPort : Viewport = StretchViewport(480f,270f)
     private val uiStage : Stage = Stage(uiViewPort,spriteBatch)
@@ -121,7 +123,7 @@ class GameScreen(
         GameEventDispatcher.register(tiledService)
         GameEventDispatcher.register(this)
         uiStage.actors {
-            gameView(gameModel)
+            gameView(gameModel, game = game)
         }
 
     }
@@ -139,7 +141,7 @@ class GameScreen(
     }
 
     override fun render(delta: Float) {
-        world.update(delta)
+        world.update(if (stopGame) 0f else delta)
         if (delayToMenu > 0f){
             delayToMenu -= delta
             if (delayToMenu < 0f){
@@ -148,15 +150,22 @@ class GameScreen(
         }
     }
 
+    fun stopGame(){
+        stopGame = !stopGame
+        keyboardInputProcessor.stop = !keyboardInputProcessor.stop
+        keyboardInputProcessor.resetMoveX()
+    }
+
     private fun onFinishMap(){
         delayToMenu = 0f
-        if (!isPlayerDeath) currentMapAsset.nextMap?.let {mapAsset -> gamePreferences.storeUnlockedMap(mapAsset) }
+        if (!isPlayerDeath) currentMapAsset.unlocksMap?.let { mapAsset -> gamePreferences.storeUnlockedMap(mapAsset) }
         isPlayerDeath = false
         world.removeAll()
         val bodyList = GdxArray<Body>()
         physicWorld.getBodies(bodyList)
         bodyList.forEach { physicWorld.destroyBody(it) }
         game.setScreen<MenuScreen>()
+        game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),MenuScreen.ViewType.LEVEL_VIEW)
     }
 
     override fun resize(width: Int, height: Int) {

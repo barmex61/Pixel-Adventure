@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.screen
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -55,7 +56,7 @@ class LoadingScreen(
         parseObjectCollisionShapes(tiledMap)
         assets -= MapAsset.OBJECT
         Scene2DSkin.defaultSkin = assets[SkinAsset.DEFAULT]
-        audioService.play(MusicAsset.MUSIC1)
+        audioService.play(MusicAsset.MUSIC6)
         loadingStage.actors {
             table {
                 setFillParent(true)
@@ -73,7 +74,7 @@ class LoadingScreen(
         if (Gdx.input.justTouched()){
             pixelAdventure.removeScreen<LoadingScreen>()
             dispose()
-            pixelAdventure.addScreen(MenuScreen(spriteBatch,audioService,pixelAdventure,gamePreferences))
+            pixelAdventure.addScreen(MenuScreen(spriteBatch,pixelAdventure,gamePreferences))
             pixelAdventure.addScreen(GameScreen(spriteBatch,physicWorld,assets,audioService,gameProperties,pixelAdventure,gamePreferences))
             pixelAdventure.setScreen<MenuScreen>()
         }

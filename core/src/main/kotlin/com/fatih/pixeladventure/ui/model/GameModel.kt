@@ -1,8 +1,6 @@
 package com.fatih.pixeladventure.ui.model
 
 
-import com.fatih.pixeladventure.ecs.component.EntityTag
-import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventListener

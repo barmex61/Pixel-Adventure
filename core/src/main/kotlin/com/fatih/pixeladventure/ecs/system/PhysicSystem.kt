@@ -23,6 +23,7 @@ import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.PlayerOutOfMapEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
@@ -172,7 +173,7 @@ class PhysicSystem(
     }
 
     private fun handlePlayerOutOfMap(playerEntity: Entity) = with(world){
-        playerEntity[Teleport].doTeleport = true
+        GameEventDispatcher.fireEvent(PlayerOutOfMapEvent(playerEntity))
     }
 
     private fun isCollectableCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB: Fixture) : Boolean{
