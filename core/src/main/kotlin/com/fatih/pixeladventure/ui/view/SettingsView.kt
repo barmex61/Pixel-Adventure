@@ -8,10 +8,14 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
+import com.fatih.pixeladventure.audio.AudioService.Companion.mute
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.MainMenuEvent
+import com.fatih.pixeladventure.event.MuteAudioEvent
+import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.screen.GameScreen
+import com.fatih.pixeladventure.util.SoundAsset
 import com.rafaskoberg.gdx.typinglabel.TypingLabel
 import ktx.actors.onClick
 import ktx.scene2d.KTable
@@ -67,9 +71,15 @@ class SettingsView(
             row()
             image("Volume"){
                 it.padRight(10.0f).padBottom(10.0f).expand().align(Align.right)
+
             }
             checkBox(""){
                 it.padBottom(10.0f).expand().align(Align.left).minSize(10.0f).prefSize(30.0f)
+                isChecked = mute
+                onClick {
+                    GameEventDispatcher.fireEvent(MuteAudioEvent(this.isChecked))
+                    GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
+                }
             }
 
         }

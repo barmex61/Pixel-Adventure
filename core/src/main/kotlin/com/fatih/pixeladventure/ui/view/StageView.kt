@@ -6,9 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
+import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.screen.MenuScreen
 import com.fatih.pixeladventure.ui.model.MenuModel
 import com.fatih.pixeladventure.util.MapAsset
+import com.fatih.pixeladventure.util.SoundAsset
 import com.rafaskoberg.gdx.typinglabel.TypingLabel
 import ktx.actors.onClick
 import ktx.actors.plusAssign
@@ -40,6 +43,7 @@ class StageView(
                 this@StageView.touchable = Touchable.disabled
                 this@StageView += Actions.fadeOut(0.75f)
                 menuModel.addActionToView(Actions.fadeIn(0.75f),MenuScreen.ViewType.MENU_VIEW)
+                GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
             }
         }
         table { tableCell ->
@@ -48,6 +52,7 @@ class StageView(
                 it.padBottom(15.0f).minSize(20.0f).prefWidth(100.0f).prefHeight(40.0f)
                 onClick {
                     menuModel.startGame(MapAsset.TUTORIAL)
+                    GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
                 }
             }
             row()
@@ -60,12 +65,16 @@ class StageView(
                     this@StageView.touchable = Touchable.disabled
                     this@StageView += Actions.fadeOut(0.75f)
                     menuModel.addActionToView(Actions.fadeIn(0.75f),MenuScreen.ViewType.LEVEL_VIEW)
+                    GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
                 }
             }
             row()
             textButton("Stage 2","menu_txt_button"){
                 it.minSize(20.0f).prefWidth(100.0f).prefHeight(40.0f)
                 isDisabled = true
+                onClick {
+                    GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
+                }
             }
         }
         add().expandX().expandY().prefSize(15f)

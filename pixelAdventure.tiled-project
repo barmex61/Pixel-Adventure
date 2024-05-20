@@ -121,7 +121,8 @@
                 "BACKGROUND",
                 "FOREGROUND",
                 "HAS_TRACK",
-                "COLLECTABLE"
+                "COLLECTABLE",
+                "FAN"
             ],
             "valuesAsFlags": true
         },
@@ -188,7 +189,11 @@
                 "MELON",
                 "PINEAPPLE",
                 "KIWI",
-                "APPLE"
+                "APPLE",
+                "FALLING_PLATFORM",
+                "FAN_PLATFORM",
+                "FIRE_TRAP",
+                "TRAMBOLINE"
             ],
             "valuesAsFlags": false
         },

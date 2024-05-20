@@ -9,10 +9,11 @@ const val PLATFORM_BIT : Short = 8
 const val ROCK_HEAD_BIT : Short = 16
 const val FRUIT_BIT : Short = 32
 const val FLAG_BIT : Short = 64
+const val TRAP_BIT : Short = 128
 
 enum class GameObject(val categoryBit : Short, val maskBits : Short) {
     CHAINSAW(CHAINSAW_BIT, PLAYER_BIT or GROUND_BIT ),
-    PLAYER(PLAYER_BIT, CHAINSAW_BIT or GROUND_BIT or ROCK_HEAD_BIT or FRUIT_BIT or FLAG_BIT),
+    PLAYER(PLAYER_BIT, CHAINSAW_BIT or GROUND_BIT or ROCK_HEAD_BIT or FRUIT_BIT or FLAG_BIT or TRAP_BIT),
     FROG(PLAYER_BIT, CHAINSAW_BIT or GROUND_BIT ),
     GROUND(GROUND_BIT, PLAYER_BIT or CHAINSAW_BIT or ROCK_HEAD_BIT),
     ROCK_HEAD(ROCK_HEAD_BIT, PLAYER_BIT or GROUND_BIT),
@@ -24,6 +25,10 @@ enum class GameObject(val categoryBit : Short, val maskBits : Short) {
     PINEAPPLE(FRUIT_BIT, PLAYER_BIT),
     START_FLAG(FLAG_BIT, PLAYER_BIT),
     FINISH_FLAG(FLAG_BIT, PLAYER_BIT),
+    FALLING_PLATFORM(PLATFORM_BIT, PLAYER_BIT),
+    TRAMBOLINE(PLATFORM_BIT, PLAYER_BIT),
+    FAN_PLATFORM(PLATFORM_BIT, PLAYER_BIT),
+    FIRE_TRAP(TRAP_BIT, PLAYER_BIT),
     PLATFORM(PLATFORM_BIT, PLAYER_BIT);
     val atlasKey = if (this.name == "START_FLAG" || this.name == "FINISH_FLAG") "flag" else this.name.lowercase()
 }

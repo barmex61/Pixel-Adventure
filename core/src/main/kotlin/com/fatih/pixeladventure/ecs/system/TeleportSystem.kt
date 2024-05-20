@@ -2,7 +2,6 @@ package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.graphics.Color
 import com.fatih.pixeladventure.ai.PlayerState
-import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Blink
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Flash
@@ -18,11 +17,9 @@ import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.PlayerOutOfMapEvent
-import com.fatih.pixeladventure.event.RestartGameEvent
-import com.fatih.pixeladventure.util.SoundAsset
+import com.fatih.pixeladventure.event.RestartLevelEvent
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
-import com.github.quillraven.fleks.World
 import com.github.quillraven.fleks.World.Companion.family
 
 class TeleportSystem : IteratingSystem(family = family { all(Teleport) }) , GameEventListener{
@@ -46,12 +43,6 @@ class TeleportSystem : IteratingSystem(family = family { all(Teleport) }) , Game
 
     override fun onEvent(gameEvent: GameEvent) {
         when(gameEvent){
-            is RestartGameEvent ->{
-                val playerEntity = world.family { all(EntityTag.PLAYER) }.firstOrNull()?:return
-                playerEntity.getOrNull(Life)?.current = 4
-                GameEventDispatcher.fireEvent(EntityLifeChangeEvent(playerEntity.getOrNull(Life)?.current?:0))
-                playerEntity.getOrNull(Teleport)?.doTeleport = true
-            }
             is PlayerOutOfMapEvent ->{
                 val playerEntity = gameEvent.playerEntity
                 playerEntity[Teleport].doTeleport = true

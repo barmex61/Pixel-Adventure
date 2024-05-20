@@ -1,25 +1,26 @@
 package com.fatih.pixeladventure.ecs.system
 
-import com.badlogic.gdx.graphics.g2d.Animation.*
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.physics.box2d.Contact
 import com.badlogic.gdx.physics.box2d.ContactImpulse
 import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.Manifold
+import com.fatih.pixeladventure.ai.FallingPlatformState
+import com.fatih.pixeladventure.ai.FireTrapState
 import com.fatih.pixeladventure.ai.FlagState
+import com.fatih.pixeladventure.ai.TrambolineState
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.DamageTaken
 import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.component.Fan
 import com.fatih.pixeladventure.ecs.component.Graphic
-import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
-import com.fatih.pixeladventure.ecs.component.Teleport
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
@@ -29,6 +30,7 @@ import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.SoundAsset
+import com.fatih.pixeladventure.util.TRAP_BIT
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
 import com.github.quillraven.fleks.Interval
@@ -109,10 +111,13 @@ class PhysicSystem(
     private val Contact.entityB : Entity?
         get() = fixtureB.entity
 
-    private fun Entity.isPlayer() = this has EntityTag.PLAYER
+    private fun Fixture.isFanSensor() = this.userData == "fan_sensor"
     private fun Fixture.isHitBox() = this.userData == "hitbox"
     private fun Fixture.isCherry() = this.userData == "cherry"
     private fun Fixture.isPlatform() = this.filterData.categoryBits == PLATFORM_BIT
+    private fun Fixture.isFallingPlatform() = this.userData == "falling_platform"
+    private fun Fixture.isTramboline() = this.userData == "tramboline"
+    private fun Fixture.isFanPlatform() = this.userData == "fan_platform"
     private fun Fixture.isPlayer() = this.filterData.categoryBits == PLAYER_BIT
     private fun Fixture.isAggro(entity: Entity,isBeginContact : Boolean) : Boolean {
         return when(this.userData){
@@ -131,7 +136,7 @@ class PhysicSystem(
     private fun Fixture.isPlayerFoot() = this.userData == "footFixture"
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
-        return entityA has Damage && entityB has Life && fixtureB.isSensor && fixtureA.isHitBox() && fixtureB.isHitBox()
+        return  entityA has Damage && entityB has Life && fixtureB.isSensor && fixtureA.isHitBox() && fixtureB.isHitBox()
     }
 
     private fun handleDamageBeginContact(damageSource: Entity, damageTarget: Entity) = with(world){
@@ -139,7 +144,6 @@ class PhysicSystem(
         damageTarget.configure {
             val damageTakenComp = it.getOrAdd(DamageTaken){ DamageTaken(0) }
             damageTakenComp.damageAmount += damageAmount
-            println("damageAmount ${damageTakenComp.damageAmount}")
         }
     }
 
@@ -212,6 +216,38 @@ class PhysicSystem(
         playerEntity[Jump].jumpCounter = 0
     }
 
+    private fun isPlayerAndFallingPlatformCollision(fixtureA: Fixture,fixtureB: Fixture): Boolean{
+        val isCollisionSuccess = fixtureA.isPlayer() && fixtureB.isPlatform() && fixtureB.isFallingPlatform()
+        if (isCollisionSuccess) fixtureB.userData = "off"
+        return isCollisionSuccess
+    }
+
+    private fun handlePlayerAndFallingPlatformCollision(platformEntity: Entity){
+        platformEntity[State].stateMachine.changeState(FallingPlatformState.OFF)
+    }
+
+    private fun isPlayerAndFanCollision(fixtureA: Fixture,fixtureB: Fixture,isBeginContact: Boolean = false) : Boolean {
+        return fixtureA.isPlayer() && (fixtureB.isFanSensor() || if (isBeginContact) fixtureB.isFanPlatform() else false)
+    }
+
+    private fun handlePlayerAndFanBeginCollision(playerEntity: Entity, fanEntity: Entity) = with(world){
+        fanEntity[Fan].collideEntity = playerEntity
+    }
+
+    private fun handlePlayerAndFanEndCollision(fanEntity: Entity) = with(world){
+        fanEntity[Fan].collideEntity = null
+    }
+
+    private fun isPlayerAndTrambolineCollision(fixtureA: Fixture,fixtureB: Fixture) : Boolean{
+        return fixtureA.isPlayerFoot() && fixtureB.isTramboline()
+    }
+
+    private fun handlePlayerAndTrambolineCollision(playerEntity: Entity,trambolineEntity : Entity){
+        val playerBody = playerEntity[Physic].body
+        playerBody.setLinearVelocity(playerBody.linearVelocity.x, 20f)
+        trambolineEntity[State].stateMachine.changeState(TrambolineState.ON)
+    }
+
     override fun beginContact(contact: Contact) {
         val fixtureA = contact.fixtureA
         val fixtureB = contact.fixtureB
@@ -228,6 +264,12 @@ class PhysicSystem(
             return
         }
         when {
+            isPlayerAndFanCollision(fixtureA,fixtureB,true) -> handlePlayerAndFanBeginCollision(entityA,entityB)
+            isPlayerAndFanCollision(fixtureB,fixtureA,true) -> handlePlayerAndFanBeginCollision(entityB,entityA)
+            isPlayerAndFallingPlatformCollision(fixtureA,fixtureB) -> handlePlayerAndFallingPlatformCollision(entityB)
+            isPlayerAndFallingPlatformCollision(fixtureB,fixtureA) -> handlePlayerAndFallingPlatformCollision(entityA)
+            isPlayerAndTrambolineCollision(fixtureA,fixtureB) -> handlePlayerAndTrambolineCollision(entityA,entityB)
+            isPlayerAndTrambolineCollision(fixtureB,fixtureA) -> handlePlayerAndTrambolineCollision(entityB,entityA)
             isDamageCollision(entityA,entityB,fixtureA,fixtureB) -> handleDamageBeginContact(entityA,entityB)
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageBeginContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,true) ->  handleAggroBeginContact(entityA,entityB)
@@ -249,6 +291,8 @@ class PhysicSystem(
             return
         }
         when {
+            isPlayerAndFanCollision(fixtureA,fixtureB) -> handlePlayerAndFanEndCollision(entityB)
+            isPlayerAndFanCollision(fixtureB,fixtureA) -> handlePlayerAndFanEndCollision(entityA)
             isDamageCollision(entityA,entityB,fixtureA,fixtureB) ->  handleDamageEndContact(entityA,entityB)
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageEndContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,false) ->  handleAggroEndContact(entityA,entityB)

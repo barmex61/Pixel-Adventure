@@ -24,15 +24,12 @@ class DamageSystem : IteratingSystem(family = family{all(Life,DamageTaken).none(
         val lifeComp = entity[Life]
         val (damageAmount) = damageTaken
         lifeComp.current = (lifeComp.current - damageAmount).coerceAtLeast(0)
-        damageTaken.damageAmount = 0
         GameEventDispatcher.fireEvent(EntityLifeChangeEvent(lifeComp.current))
         if (entity has EntityTag.PLAYER){
             entity.configure {
-                if (it hasNo Invulnarable && it hasNo Blink && it hasNo Flash){
-                    it += Invulnarable(1.5f)
-                    it += Blink(1.5f,0.075f)
-                    it += Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
-                }
+                it += Invulnarable(1.5f)
+                it += Blink(1.5f,0.075f)
+                it += Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
             }
             entity[State].stateMachine.changeState(PlayerState.HIT)
         }

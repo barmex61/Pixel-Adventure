@@ -12,7 +12,7 @@ enum class AnimationType{
     val atlasKey : String = this.name.lowercase()
 }
 
-data class Animation(var gdxAnimation : GdxAnimation? = null,var timer : Float = 0f,var frameDuration : Float,var playMode: PlayMode = PlayMode.LOOP) : Component <Animation> {
+data class Animation(var gdxAnimation : GdxAnimation? = null,var timer : Float = 0f,var frameDuration : Float,var playMode: PlayMode = PlayMode.LOOP,var animationType: AnimationType = AnimationType.IDLE) : Component <Animation> {
 
     override fun type() = Animation
 

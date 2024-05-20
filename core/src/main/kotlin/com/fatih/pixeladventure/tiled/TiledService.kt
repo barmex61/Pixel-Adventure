@@ -144,7 +144,7 @@ class TiledService (
         }
         val tile = mapObject.tile
         val bodyType = tile.property<String>("bodyType","StaticBody")
-        val gravityScale = tile.property<Float>("gravityScale",1f)
+        val gravityScale = tile.property<Float>("gravityScale",0f)
         val gameObjectStr = tile.property<String>("gameObject")
         val gameObject = GameObject.valueOf(gameObjectStr)
         val fixtureDefUserData = OBJECT_FIXTURES[gameObject]?: gdxError("No fixture definitions for ${gameObject.atlasKey}")

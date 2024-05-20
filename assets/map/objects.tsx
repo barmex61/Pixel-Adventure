@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="11" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="15" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -257,6 +257,93 @@
      <property name="isSensor" type="bool" value="true"/>
     </properties>
     <polygon points="0,0 2,3 8,3 10,0 10,-4 9,-5 1,-5 0,-4"/>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="11" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.075"/>
+   <property name="bodyType" propertytype="BodyType" value="KinematicBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   <property name="gameObject" propertytype="GameObject" value="FALLING_PLATFORM"/>
+   <property name="startAnimType" propertytype="AnimType" value="ON"/>
+  </properties>
+  <image width="32" height="10" source="../graphics/falling_platform.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="0" y="1" width="32" height="1">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="FALLING_PLATFORM"/>
+     <property name="userData" value="falling_platform"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="12" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.035"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,FAN"/>
+   <property name="gameObject" propertytype="GameObject" value="FAN_PLATFORM"/>
+   <property name="startAnimType" propertytype="AnimType" value="ON"/>
+  </properties>
+  <image width="24" height="8" source="../graphics/fan_platform.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="1" y="0" width="23" height="4">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="FAN_PLATFORM"/>
+     <property name="userData" value="fan_platform"/>
+    </properties>
+   </object>
+   <object id="4" type="FixtureDef" x="-2" y="-79" width="28" height="83">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="FAN_PLATFORM"/>
+     <property name="isSensor" type="bool" value="true"/>
+     <property name="userData" value="fan_sensor"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="13" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.2"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="damage" type="int" value="1"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   <property name="gameObject" propertytype="GameObject" value="FIRE_TRAP"/>
+   <property name="startAnimType" propertytype="AnimType" value="OFF"/>
+  </properties>
+  <image width="16" height="32" source="../graphics/fire.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="3" y="1" width="10" height="15">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="FIRE_TRAP"/>
+     <property name="isSensor" type="bool" value="true"/>
+     <property name="userData" value="hitbox"/>
+    </properties>
+   </object>
+   <object id="2" type="FixtureDef" x="0" y="16" width="16" height="16">
+    <properties>
+     <property name="isSensor" type="bool" value="true"/>
+     <property name="userData" value="canJump"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="14" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.1"/>
+   <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   <property name="gameObject" propertytype="GameObject" value="TRAMBOLINE"/>
+   <property name="startAnimType" propertytype="AnimType" value="OFF"/>
+  </properties>
+  <image width="28" height="28" source="../graphics/tramboline.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="3" y="18" width="21" height="1">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="TRAMBOLINE"/>
+     <property name="userData" value="tramboline"/>
+    </properties>
    </object>
   </objectgroup>
  </tile>

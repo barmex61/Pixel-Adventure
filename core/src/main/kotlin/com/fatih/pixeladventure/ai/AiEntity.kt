@@ -7,25 +7,41 @@ import com.badlogic.gdx.physics.box2d.BodyDef
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
+import com.fatih.pixeladventure.ecs.component.Damage
+import com.fatih.pixeladventure.ecs.component.Fan
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
+import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.World
 import ktx.box2d.rayCast
+import kotlin.experimental.or
+import kotlin.experimental.xor
 import kotlin.math.abs
 import kotlin.math.pow
 
-data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicWorld) {
+data class AiEntity(
+    val entity: Entity,
+    val world: World,
+    val physicWorld: PhysicWorld,
+) {
 
     var fruitRespawnDuration : Float = 3f
+    var entityRemoveDuration : Float = 1f
+    var frameDuration = 1f
     val hasTrack : Boolean = with(world){ entity has Track}
+    val animationType : AnimationType
+        get() = with(world){
+            entity[Animation].animationType
+        }
 
     inline operator fun <reified T:Component<*>> get(type: ComponentType<T>) : T = with(world){
         return entity[type]
@@ -45,6 +61,9 @@ data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicW
         return@with entity[Aggro].aggroEntities.firstOrNull()
     }
 
+    fun hasFanTarget() : Entity? = with(world){
+        return@with entity[Fan].collideEntity
+    }
 
     fun inRange(range: Float, targetEntity: Entity): Boolean = with(world){
         val (_,targetCenter) = targetEntity[Graphic]
@@ -105,6 +124,12 @@ data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicW
         return@with blocked
     }
 
+    fun remove(){
+        with(world){
+            entity.remove()
+        }
+    }
+
 
     //-------------------------TRACK FEATURE-------------------------//
     fun followTrack() = with(world){
@@ -131,4 +156,5 @@ data class AiEntity(val entity: Entity,val world: World,val physicWorld: PhysicW
     private fun Vector2.inRange(otherX:Float, otherY:Float,tolerance : Float = 0.2f) : Boolean {
         return MathUtils.isEqual(this.x,otherX,tolerance) && MathUtils.isEqual(this.y,otherY,tolerance)
     }
+
 }

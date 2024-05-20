@@ -1,20 +1,20 @@
 package com.fatih.pixeladventure.ui.view
 
-import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.delay
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut
 import com.badlogic.gdx.scenes.scene2d.ui.Cell
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
 import com.fatih.pixeladventure.event.GameEventDispatcher
-import com.fatih.pixeladventure.event.RestartGameEvent
+import com.fatih.pixeladventure.event.PlaySoundEvent
+import com.fatih.pixeladventure.event.RestartLevelEvent
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.screen.GameScreen
 import com.fatih.pixeladventure.ui.model.GameModel
+import com.fatih.pixeladventure.util.SoundAsset
 import com.rafaskoberg.gdx.typinglabel.TypingLabel
 import ktx.actors.onClick
 import ktx.actors.plusAssign
@@ -42,7 +42,8 @@ class GameView(
         imageButton("restart_img_button"){
             it.padLeft(15f).padTop(15f).align(Align.top).prefSize(17f)
             onClick {
-                GameEventDispatcher.fireEvent(RestartGameEvent)
+                GameEventDispatcher.fireEvent(RestartLevelEvent)
+                GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
             }
         }
         val typingLabel = TypingLabel("",skin, defaultStyle).apply{

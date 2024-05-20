@@ -1,5 +1,6 @@
 package com.fatih.pixeladventure.tiled
 
+import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.maps.MapLayer
 import com.badlogic.gdx.maps.objects.PolygonMapObject
@@ -13,16 +14,21 @@ import com.badlogic.gdx.physics.box2d.ChainShape
 import com.fatih.pixeladventure.ai.AiEntity
 import com.fatih.pixeladventure.ai.ChainsawState
 import com.fatih.pixeladventure.ai.EntityState
+import com.fatih.pixeladventure.ai.FallingPlatformState
+import com.fatih.pixeladventure.ai.FanPlatformState
+import com.fatih.pixeladventure.ai.FireTrapState
 import com.fatih.pixeladventure.ai.FlagState
 import com.fatih.pixeladventure.ai.FruitState
 import com.fatih.pixeladventure.ai.PlayerState
 import com.fatih.pixeladventure.ai.RockHeadState
+import com.fatih.pixeladventure.ai.TrambolineState
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Collectable
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.component.Fan
 import com.fatih.pixeladventure.ecs.component.Graphic
 import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Life
@@ -96,6 +102,9 @@ fun EntityCreateContext.configureEntityTags(
         val gameObject = GameObject.valueOf(tile.propertyOrNull<String>("gameObject")?: gdxError("gameObject is null $tile"))
         entity += Collectable(gameObject.name)
     }
+    if (entity has EntityTag.FAN){
+        entity += Fan()
+    }
 }
 
 fun EntityCreateContext.configureAnimation(entity: Entity, tile: TiledMapTile, world: World,startAnimType : AnimationType) {
@@ -152,14 +161,18 @@ fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world:
         GameObject.APPLE.name -> FruitState.IDLE
         GameObject.KIWI.name -> FruitState.IDLE
         GameObject.PINEAPPLE.name -> FruitState.IDLE
+        GameObject.FALLING_PLATFORM.name -> FallingPlatformState.ON
+        GameObject.FAN_PLATFORM.name -> FanPlatformState.ON
+        GameObject.TRAMBOLINE.name -> TrambolineState.OFF
         GameObject.CHAINSAW.name -> ChainsawState.FOLLOW_TRACK
         GameObject.ROCK_HEAD.name -> RockHeadState.ROCK_HEAD_IDLE
         GameObject.START_FLAG.name -> FlagState.START
         GameObject.FINISH_FLAG.name -> FlagState.IDLE
+        GameObject.FIRE_TRAP.name -> FireTrapState.OFF
         "" -> return
         else -> gdxError("gameObject $gameObjectStr doesn't support ")
     }
-    entity += State(AiEntity(entity,world,physicWorld),state)
+    entity += State(AiEntity(entity, world, physicWorld),state)
 }
 
 fun EntityCreateContext.configureLife(entity: Entity, tile: TiledMapTile){

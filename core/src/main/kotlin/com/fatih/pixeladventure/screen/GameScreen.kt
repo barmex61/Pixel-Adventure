@@ -34,6 +34,7 @@ import com.fatih.pixeladventure.ecs.system.TextSystem
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.MainMenuEvent
+import com.fatih.pixeladventure.event.RestartLevelEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure
@@ -86,18 +87,18 @@ class GameScreen(
             add(audioService)
         }
         systems {
-            add(DamageSystem())
             add(AnimationSystem())
             add(MoveSystem())
             add(JumpSystem())
             add(PhysicSystem())
             add(TeleportSystem())
+            add(BlinkSystem())
             add(InvulnarableSystem())
+            add(FlashSystem())
+            add(DamageSystem())
             add(FlySystem())
             add(StateSystem())
             add(CameraSystem())
-            add(BlinkSystem())
-            add(FlashSystem())
             add(ParallaxBgdSystem())
             add(TextSystem())
             add(RenderSystem())
@@ -184,6 +185,14 @@ class GameScreen(
         game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),MenuScreen.ViewType.STAGE_VIEW)
     }
 
+    private fun restartLevel(){
+        world.removeAll()
+        val bodyList = GdxArray<Body>()
+        physicWorld.getBodies(bodyList)
+        bodyList.forEach { physicWorld.destroyBody(it) }
+        loadMap(currentMapAsset)
+    }
+
     override fun resize(width: Int, height: Int) {
         gameViewPort.update(width,height,true)
         uiViewPort.update(width,height,true)
@@ -205,6 +214,9 @@ class GameScreen(
                 stopGame(false)
                 delayToMenu = 0.00001f
                 gameView?.touchable = Touchable.disabled
+            }
+            is RestartLevelEvent ->{
+                restartLevel()
             }
             else -> Unit
         }

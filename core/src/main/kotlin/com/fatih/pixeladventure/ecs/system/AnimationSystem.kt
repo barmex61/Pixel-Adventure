@@ -64,6 +64,7 @@ class AnimationSystem(
         animationComp.timer = 0f
         animationComp.gdxAnimation = gdxAnimation
         animationComp.playMode = playMode
+        animationComp.animationType = animationType
         entity[Graphic].sprite.setRegion(gdxAnimation.getKeyFrame(0f))
     }
 

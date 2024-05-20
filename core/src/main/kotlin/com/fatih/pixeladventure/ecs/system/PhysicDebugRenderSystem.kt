@@ -22,7 +22,7 @@ class PhysicDebugRenderSystem(
     private val shapeRenderer = ShapeRenderer()
 
     override fun onTick() {
-        //b2dDebugRenderer.render(physicWorld,gameCamera.combined)
+        b2dDebugRenderer.render(physicWorld,gameCamera.combined)
         shapeRenderer.use(ShapeRenderer.ShapeType.Line,gameCamera){
             it.color = Color.RED
             it.rect(DEBUG_RECT.x, DEBUG_RECT.y, DEBUG_RECT.width, DEBUG_RECT.height)

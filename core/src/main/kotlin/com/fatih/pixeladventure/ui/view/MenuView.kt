@@ -8,8 +8,11 @@ import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
+import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.screen.MenuScreen
 import com.fatih.pixeladventure.ui.model.MenuModel
+import com.fatih.pixeladventure.util.SoundAsset
 import com.rafaskoberg.gdx.typinglabel.TypingLabel
 import ktx.actors.onClick
 import ktx.actors.plusAssign
@@ -43,6 +46,7 @@ class MenuView(
                     this@MenuView.touchable = Touchable.disabled
                     this@MenuView += fadeOut(0.75f)
                     menuModel.addActionToView(fadeIn(0.75f),MenuScreen.ViewType.STAGE_VIEW)
+                    GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
                 }
             }
             row()

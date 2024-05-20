@@ -8,6 +8,8 @@ import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.event.MainMenuEvent
 import com.fatih.pixeladventure.event.MapChangeEvent
+import com.fatih.pixeladventure.event.MuteAudioEvent
+import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.MusicAsset
@@ -20,6 +22,9 @@ private data class MusicResource(val music: Music, val musicAsset: MusicAsset)
 class AudioService(private val assets: Assets,private var soundVolume : Float = 1f , private var musicVolume : Float = 1f)
     : GameEventListener{
 
+    companion object{
+        var mute : Boolean = false
+    }
     init {
         GameEventDispatcher.register(this)
     }
@@ -32,6 +37,7 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
     }
 
     fun play(musicAsset: MusicAsset){
+        if (mute) return
         if (currentMusicResource?.musicAsset == musicAsset && currentMusicResource!!.music.isPlaying){
             return
         }
@@ -78,6 +84,21 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
             }
             is CollectItemEvent -> {
                 play(SoundAsset.COLLECT)
+            }
+            is PlaySoundEvent ->{
+                play(gameEvent.soundAsset)
+            }
+            is MuteAudioEvent ->{
+                val music = currentMusicResource?.music?:return
+               if (gameEvent.mute) {
+                    mute = true
+                    music.volume =  0f
+                    music.pause()
+               } else {
+                    mute = false
+                    music.volume = this.musicVolume
+                    music.play()
+               }
             }
             is EntityLifeChangeEvent -> {
                 if (gameEvent.currentLife == 4) return
