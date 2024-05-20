@@ -20,9 +20,11 @@ import com.github.quillraven.fleks.World.Companion.inject
 class DamageSystem : IteratingSystem(family = family{all(Life,DamageTaken).none(Invulnarable)}) {
 
     override fun onTickEntity(entity: Entity) {
-        val (damageAmount) = entity[DamageTaken]
+        val damageTaken = entity[DamageTaken]
         val lifeComp = entity[Life]
+        val (damageAmount) = damageTaken
         lifeComp.current = (lifeComp.current - damageAmount).coerceAtLeast(0)
+        damageTaken.damageAmount = 0
         GameEventDispatcher.fireEvent(EntityLifeChangeEvent(lifeComp.current))
         if (entity has EntityTag.PLAYER){
             entity.configure {

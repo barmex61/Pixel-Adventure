@@ -74,7 +74,7 @@ class LoadingScreen(
         if (Gdx.input.justTouched()){
             pixelAdventure.removeScreen<LoadingScreen>()
             dispose()
-            pixelAdventure.addScreen(MenuScreen(spriteBatch,pixelAdventure,gamePreferences))
+            pixelAdventure.addScreen(MenuScreen(spriteBatch,audioService,pixelAdventure,gamePreferences))
             pixelAdventure.addScreen(GameScreen(spriteBatch,physicWorld,assets,audioService,gameProperties,pixelAdventure,gamePreferences))
             pixelAdventure.setScreen<MenuScreen>()
         }

@@ -1,10 +1,12 @@
 package com.fatih.pixeladventure.ui.view
 
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.delay
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut
 import com.badlogic.gdx.scenes.scene2d.ui.Cell
+import com.badlogic.gdx.scenes.scene2d.ui.ImageButton
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
 import com.badlogic.gdx.scenes.scene2d.ui.Table
 import com.badlogic.gdx.utils.Align
@@ -33,6 +35,7 @@ class GameView(
 
     val typingLabelCell : Cell<TypingLabel>
 
+
     init {
         align(Align.top)
         setFillParent(true)
@@ -45,14 +48,13 @@ class GameView(
         val typingLabel = TypingLabel("",skin, defaultStyle).apply{
            setAlignment(Align.center)
            color = skin.getColor("white")
-           this.color.a = 0f
         }
         typingLabelCell = this.add(typingLabel)
         typingLabelCell.padTop(15f).expand().align(Align.top).prefHeight(45f)
         imageButton("setting_img_button"){
             it.padRight(15f).padTop(15f).align(Align.top).prefSize(17f)
             onClick {
-                game.getScreen<GameScreen>().stopGame()
+                game.getScreen<GameScreen>().stopGame(true)
             }
         }
         row()

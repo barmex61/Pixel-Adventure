@@ -139,6 +139,7 @@ class PhysicSystem(
         damageTarget.configure {
             val damageTakenComp = it.getOrAdd(DamageTaken){ DamageTaken(0) }
             damageTakenComp.damageAmount += damageAmount
+            println("damageAmount ${damageTakenComp.damageAmount}")
         }
     }
 

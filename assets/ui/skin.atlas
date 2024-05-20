@@ -6,7 +6,7 @@ filter: Nearest, Nearest
 repeat: none
 Achievements
   rotate: false
-  xy: 67, 97
+  xy: 1, 20
   size: 21, 22
   orig: 21, 22
   offset: 0, 0
@@ -20,21 +20,21 @@ Back
   index: -1
 Close
   rotate: false
-  xy: 18, 2
+  xy: 122, 125
   size: 15, 16
   orig: 15, 16
   offset: 0, 0
   index: -1
 Leaderboard
   rotate: false
-  xy: 1, 20
+  xy: 99, 143
   size: 21, 22
   orig: 21, 22
   offset: 0, 0
   index: -1
 Levels
   rotate: false
-  xy: 99, 143
+  xy: 67, 87
   size: 21, 22
   orig: 21, 22
   offset: 0, 0
@@ -48,7 +48,7 @@ Next
   index: -1
 Next_disabled
   rotate: false
-  xy: 24, 20
+  xy: 122, 143
   size: 21, 22
   orig: 21, 22
   offset: 0, 0
@@ -83,7 +83,7 @@ Settings
   index: -1
 Volume
   rotate: false
-  xy: 90, 95
+  xy: 24, 20
   size: 21, 22
   orig: 21, 22
   offset: 0, 0
@@ -171,5 +171,28 @@ health_4
   xy: 165, 235
   size: 42, 7
   orig: 42, 7
+  offset: 0, 0
+  index: -1
+volume_background
+  rotate: false
+  xy: 67, 111
+  size: 27, 8
+  orig: 27, 8
+  offset: 0, 0
+  index: -1
+volume_knob
+  rotate: false
+  xy: 165, 225
+  size: 6, 8
+  orig: 6, 8
+  offset: 0, 0
+  index: -1
+volume_knob_before
+  rotate: false
+  xy: 156, 185
+  size: 5, 8
+  split: 2, 2, 3, 3
+  pad: 0, 0, 0, 0
+  orig: 5, 8
   offset: 0, 0
   index: -1

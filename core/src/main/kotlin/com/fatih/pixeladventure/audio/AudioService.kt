@@ -6,6 +6,7 @@ import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
+import com.fatih.pixeladventure.event.MainMenuEvent
 import com.fatih.pixeladventure.event.MapChangeEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.util.Assets
@@ -71,6 +72,9 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
             is VictoryEvent ->{
                 stopMusic()
                 play(gameEvent.soundAsset)
+            }
+            is MainMenuEvent ->{
+                play(MusicAsset.MUSIC6)
             }
             is CollectItemEvent -> {
                 play(SoundAsset.COLLECT)

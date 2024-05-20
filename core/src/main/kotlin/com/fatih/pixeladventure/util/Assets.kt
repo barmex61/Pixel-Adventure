@@ -65,6 +65,7 @@ enum class SoundAsset(val path : String){
     HURT("audio/hurt.wav"),
     FLAG("audio/flag.wav"),
     COLLECT("audio/collect.wav"),
+    PAUSE("audio/pause.wav"),
     DEATH("audio/death.wav")
 }
 

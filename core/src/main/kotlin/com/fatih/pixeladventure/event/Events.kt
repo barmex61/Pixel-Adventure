@@ -13,7 +13,7 @@ data class VictoryEvent(val soundAsset: SoundAsset) : GameEvent
 data class CollectItemEvent(val playerEntity : Entity,val collectEntity : Entity) : GameEvent
 data object RestartGameEvent : GameEvent
 data class PlayerOutOfMapEvent(val playerEntity : Entity) : GameEvent
-
+data object MainMenuEvent : GameEvent
 interface GameEventListener{
 
     fun onEvent(gameEvent: GameEvent)

@@ -5,17 +5,21 @@ import com.badlogic.gdx.scenes.scene2d.Action
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.utils.viewport.StretchViewport
+import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.parallax.ParallaxBackground
 import com.fatih.pixeladventure.ui.model.MenuModel
 import com.fatih.pixeladventure.ui.view.LevelView
 import com.fatih.pixeladventure.ui.view.MenuView
+import com.fatih.pixeladventure.ui.view.SettingsView
 import com.fatih.pixeladventure.ui.view.StageView
 import com.fatih.pixeladventure.ui.view.levelView
 import com.fatih.pixeladventure.ui.view.menuView
+import com.fatih.pixeladventure.ui.view.settingsView
 import com.fatih.pixeladventure.ui.view.stageView
 import com.fatih.pixeladventure.util.GamePreferences
+import com.fatih.pixeladventure.util.MusicAsset
 import ktx.actors.alpha
 import ktx.actors.plusAssign
 import ktx.app.KtxScreen
@@ -24,13 +28,12 @@ import ktx.graphics.use
 import ktx.math.vec2
 import ktx.scene2d.actors
 
-class MenuScreen(spriteBatch: SpriteBatch, game : PixelAdventure,preferences: GamePreferences) : KtxScreen{
+class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService,game : PixelAdventure,preferences: GamePreferences) : KtxScreen{
 
     enum class ViewType{
         MENU_VIEW,LEVEL_VIEW,STAGE_VIEW
     }
 
-    private var currentView = ViewType.MENU_VIEW
     private val viewPort = StretchViewport(480f,270f)
     private val menuStage = Stage(viewPort,spriteBatch)
     private val menuModel = MenuModel(game,preferences)
@@ -75,6 +78,7 @@ class MenuScreen(spriteBatch: SpriteBatch, game : PixelAdventure,preferences: Ga
             }
         }
         firstLaunch = false
+        audioService.play(MusicAsset.MUSIC6)
     }
 
     override fun hide() {

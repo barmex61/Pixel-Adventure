@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.Body
 import com.badlogic.gdx.scenes.scene2d.Stage
+import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.utils.viewport.Viewport
@@ -32,6 +33,7 @@ import com.fatih.pixeladventure.ecs.system.TeleportSystem
 import com.fatih.pixeladventure.ecs.system.TextSystem
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
+import com.fatih.pixeladventure.event.MainMenuEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure
@@ -39,9 +41,13 @@ import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
 import com.fatih.pixeladventure.tiled.TiledService
 import com.fatih.pixeladventure.ui.model.GameModel
+import com.fatih.pixeladventure.ui.view.GameView
+import com.fatih.pixeladventure.ui.view.SettingsView
 import com.fatih.pixeladventure.ui.view.gameView
+import com.fatih.pixeladventure.ui.view.settingsView
 import com.fatih.pixeladventure.util.GamePreferences
 import com.fatih.pixeladventure.util.GameProperties
+import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.configureWorld
 import ktx.app.KtxScreen
 import ktx.assets.disposeSafely
@@ -52,12 +58,14 @@ class GameScreen(
     spriteBatch: SpriteBatch,
     private val physicWorld: PhysicWorld,
     private val assets: Assets,
-    audioService: AudioService,
+    private val audioService: AudioService,
     gameProperties: GameProperties,
     private val game : PixelAdventure,
     private val gamePreferences: GamePreferences,
 ): KtxScreen , GameEventListener{
 
+    private var settingsView: SettingsView ?= null
+    private var gameView : GameView ?= null
     private var stopGame : Boolean = false
     private val gameViewPort : Viewport = StretchViewport(18f,11f)
     private val uiViewPort : Viewport = StretchViewport(480f,270f)
@@ -123,7 +131,10 @@ class GameScreen(
         GameEventDispatcher.register(tiledService)
         GameEventDispatcher.register(this)
         uiStage.actors {
-            gameView(gameModel, game = game)
+            gameView = gameView(gameModel, game = game)
+            settingsView = settingsView(game = game){
+                isVisible = false
+            }
         }
 
     }
@@ -148,13 +159,18 @@ class GameScreen(
                 onFinishMap()
             }
         }
+        settingsView?.act(delta)
     }
 
-    fun stopGame(){
-        stopGame = !stopGame
-        keyboardInputProcessor.stop = !keyboardInputProcessor.stop
+    fun stopGame(stop : Boolean){
+        stopGame = stop
+        keyboardInputProcessor.stop = stop
         keyboardInputProcessor.resetMoveX()
+        audioService.play(SoundAsset.PAUSE)
+        settingsView?.isVisible = stop
+        gameView?.touchable = if (stop) Touchable.disabled else Touchable.enabled
     }
+
 
     private fun onFinishMap(){
         delayToMenu = 0f
@@ -165,7 +181,7 @@ class GameScreen(
         physicWorld.getBodies(bodyList)
         bodyList.forEach { physicWorld.destroyBody(it) }
         game.setScreen<MenuScreen>()
-        game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),MenuScreen.ViewType.LEVEL_VIEW)
+        game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),MenuScreen.ViewType.STAGE_VIEW)
     }
 
     override fun resize(width: Int, height: Int) {
@@ -177,12 +193,18 @@ class GameScreen(
         when(gameEvent){
             is VictoryEvent ->{
                 delayToMenu = 2f
+                gameView?.touchable = Touchable.disabled
             }
             is EntityLifeChangeEvent ->{
                 if (gameEvent.currentLife == 0){
                     delayToMenu = 0.00001f
                     isPlayerDeath = true
                 }
+            }
+            is MainMenuEvent ->{
+                stopGame(false)
+                delayToMenu = 0.00001f
+                gameView?.touchable = Touchable.disabled
             }
             else -> Unit
         }

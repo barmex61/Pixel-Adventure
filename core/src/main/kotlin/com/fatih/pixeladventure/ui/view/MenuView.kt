@@ -36,7 +36,6 @@ class MenuView(
         this.add(typingLabel).prefWidth(200f).prefHeight(40f)
         row()
         table {
-            this.background = skin.getDrawable("frame")
             this.pad(25f)
             textButton("Play","menu_txt_button"){
                 it.padBottom(15f).prefWidth(100f)
@@ -45,11 +44,6 @@ class MenuView(
                     this@MenuView += fadeOut(0.75f)
                     menuModel.addActionToView(fadeIn(0.75f),MenuScreen.ViewType.STAGE_VIEW)
                 }
-            }
-            row()
-
-            textButton("Settings","menu_txt_button"){
-                it.padBottom(15f).prefWidth(100f)
             }
             row()
             textButton("Exit","menu_txt_button"){
