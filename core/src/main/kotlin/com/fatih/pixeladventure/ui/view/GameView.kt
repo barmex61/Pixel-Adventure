@@ -18,6 +18,7 @@ import ktx.scene2d.Scene2dDsl
 import ktx.scene2d.actor
 import ktx.scene2d.defaultStyle
 import ktx.scene2d.image
+import ktx.scene2d.imageButton
 
 class GameView(
     gameModel : GameModel,
@@ -27,18 +28,25 @@ class GameView(
     val typingLabelCell : Cell<TypingLabel>
 
     init {
+        align(Align.top)
         setFillParent(true)
+        imageButton("restart_img_button"){
+            it.padLeft(15f).padTop(15f).align(Align.top).prefSize(17f)
+        }
         val typingLabel = TypingLabel("",skin, defaultStyle).apply{
            setAlignment(Align.center)
            color = skin.getColor("white")
            this.color.a = 0f
         }
         typingLabelCell = this.add(typingLabel)
-        typingLabelCell.padTop(10f).expand().align(Align.top).prefWidth(180f).prefHeight(40f)
+        typingLabelCell.padTop(15f).expand().align(Align.top).prefHeight(45f)
+        imageButton("setting_img_button"){
+            it.padRight(15f).padTop(15f).align(Align.top).prefSize(17f)
+        }
         row()
         val playerLife = image("health_4"){
             name = "player_life"
-            it.padLeft(7f).padBottom(10f).expand().align(Align.bottomLeft).minWidth(70f).minHeight(10f)
+            it.padLeft(15f).padBottom(15f).expandY().align(Align.bottomLeft).prefWidth(90f).prefHeight(13f).colspan(2)
         }
 
         gameModel.onPropertyChange(GameModel::mapName){

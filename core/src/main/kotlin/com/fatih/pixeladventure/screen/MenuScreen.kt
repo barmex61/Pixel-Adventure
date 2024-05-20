@@ -8,6 +8,7 @@ import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.game.inputMultiplexer
 import com.fatih.pixeladventure.parallax.ParallaxBackground
 import com.fatih.pixeladventure.ui.model.MenuModel
+import com.fatih.pixeladventure.ui.view.levelView
 import com.fatih.pixeladventure.ui.view.menuView
 import com.fatih.pixeladventure.util.GamePreferences
 import com.fatih.pixeladventure.util.MusicAsset
@@ -20,7 +21,7 @@ import ktx.scene2d.actors
 class MenuScreen(spriteBatch: SpriteBatch, private val audioService: AudioService,game : PixelAdventure,preferences: GamePreferences) : KtxScreen{
 
 
-    private val viewPort = StretchViewport(320f,180f)
+    private val viewPort = StretchViewport(480f,270f)
     private val menuStage = Stage(viewPort,spriteBatch)
     private val menuModel = MenuModel(game,preferences)
     private val parallaxBgd = ParallaxBackground(viewPort,"graphics/gray.png", vec2(1f,1f),1f)
@@ -28,7 +29,7 @@ class MenuScreen(spriteBatch: SpriteBatch, private val audioService: AudioServic
     override fun show() {
         inputMultiplexer.addProcessor(menuStage)
         menuStage.actors {
-            menuView(menuModel = menuModel)
+            menuView()
         }
         audioService.play(MusicAsset.MUSIC2)
     }

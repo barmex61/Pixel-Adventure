@@ -57,8 +57,8 @@ class GameScreen(
     private val gamePreferences: GamePreferences
 ): KtxScreen , GameEventListener{
 
-    private val gameViewPort : Viewport = StretchViewport(16f,9f)
-    private val uiViewPort : Viewport = StretchViewport(320f,180f)
+    private val gameViewPort : Viewport = StretchViewport(18f,11f)
+    private val uiViewPort : Viewport = StretchViewport(480f,270f)
     private val uiStage : Stage = Stage(uiViewPort,spriteBatch)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
     private var delayToMenu = 0f

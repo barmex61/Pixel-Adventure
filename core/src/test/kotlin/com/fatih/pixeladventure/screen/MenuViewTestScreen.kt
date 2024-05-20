@@ -3,7 +3,7 @@ package com.fatih.pixeladventure.screen
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.StretchViewport
-import com.fatih.pixeladventure.ui.view.menuView
+import com.fatih.pixeladventure.ui.view.levelView
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.SkinAsset
 import ktx.app.KtxScreen
@@ -23,7 +23,7 @@ class MenuViewTestScreen : KtxScreen {
         assets.loadAll()
         Scene2DSkin.defaultSkin = assets[SkinAsset.DEFAULT]
         menuStage.actors {
-            menuView()
+            levelView()
         }
     }
 

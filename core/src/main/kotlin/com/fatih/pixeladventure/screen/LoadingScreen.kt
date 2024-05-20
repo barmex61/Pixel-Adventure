@@ -46,7 +46,7 @@ class LoadingScreen(
     private val gamePreferences: GamePreferences
 ) : KtxScreen {
 
-    private val viewPort = StretchViewport(320f,180f)
+    private val viewPort = StretchViewport(480f,270f)
     private val loadingStage = Stage(viewPort,spriteBatch)
 
     override fun show() {
