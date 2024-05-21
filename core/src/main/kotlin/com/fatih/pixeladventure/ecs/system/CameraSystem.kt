@@ -26,7 +26,6 @@ class CameraSystem (
 
         var camX = sprite.x + sprite.width * 0.5f
         var camY = sprite.y + sprite.height * 0.5f
-
         if (!mapBoundaries.isZero){
             val viewportW = gameCamera.viewportWidth/2f
             val viewportH = gameCamera.viewportHeight/2f

@@ -1,6 +1,5 @@
 package com.fatih.pixeladventure.tiled
 
-import com.badlogic.gdx.Game
 import com.badlogic.gdx.graphics.g2d.Sprite
 import com.badlogic.gdx.maps.MapLayer
 import com.badlogic.gdx.maps.objects.PolygonMapObject
@@ -21,6 +20,7 @@ import com.fatih.pixeladventure.ai.FlagState
 import com.fatih.pixeladventure.ai.FruitState
 import com.fatih.pixeladventure.ai.PlayerState
 import com.fatih.pixeladventure.ai.RockHeadState
+import com.fatih.pixeladventure.ai.SpikeHeadState
 import com.fatih.pixeladventure.ai.TrambolineState
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Animation
@@ -166,6 +166,7 @@ fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world:
         GameObject.TRAMBOLINE.name -> TrambolineState.OFF
         GameObject.CHAINSAW.name -> ChainsawState.FOLLOW_TRACK
         GameObject.ROCK_HEAD.name -> RockHeadState.ROCK_HEAD_IDLE
+        GameObject.SPIKE_HEAD.name -> SpikeHeadState.AGGRO
         GameObject.START_FLAG.name -> FlagState.START
         GameObject.FINISH_FLAG.name -> FlagState.IDLE
         GameObject.FIRE_TRAP.name -> FireTrapState.OFF

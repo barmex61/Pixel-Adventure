@@ -193,7 +193,8 @@
                 "FALLING_PLATFORM",
                 "FAN_PLATFORM",
                 "FIRE_TRAP",
-                "TRAMBOLINE"
+                "TRAMBOLINE",
+                "SPIKE_HEAD"
             ],
             "valuesAsFlags": false
         },

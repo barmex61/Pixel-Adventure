@@ -1,112 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="25" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="265">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="25" height="60" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="283">
  <properties>
   <property name="musicAsset" value="MUSIC1"/>
   <property name="name" value="Jump higher"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="11" source="terrain-extruded.tsx"/>
- <layer id="1" name="ground" width="25" height="50">
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
+ <layer id="1" name="ground" width="25" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt1LENwCAMRFFWCBki0JAJIA3Zf6XcCJYjF5b+k35zA1wpAAAAeQ11OzerrV7nBgDZ/flPK/4TyO1QNbBTXaoF1tVUK7BHfQEqD1E=
+   eJzt1zEKgDAQRNHcQj2E2iiordrE+9/HaYWAWzii8B/8ZpslqZKU8CWTmo0t7x0lZFCjeUdWh3nHk7gTAACAq9L7KDqLKr2PojMA+Dv+oQDuVKo21qhWdcZ6tarN2K5OP90ZAA==
   </data>
  </layer>
- <layer id="2" name="decoration" width="25" height="50">
+ <layer id="2" name="decoration" width="25" height="60">
   <data encoding="base64" compression="zlib">
-   eJzt1tEJwCAMBUBnqu4/m4L0px+CRUX0DjJASF5ICNzmKRUnVlrXCgzXkw+7DlD9/S3c0b29czUnWr75ty/zyCScIQMdyAyO
+   eJzt1tEJwCAMBUDH0u4/mIL440dBqVLCHWSAkLyQlACIJrcqB+u51wp8biUfdh2g2/0t3NF/G3M1J97M+bcv58gkxFAB9cYOCA==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="152" gid="6" x="42" y="754" width="19" height="36">
+  <object id="152" gid="6" x="42" y="914" width="19" height="36">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>
   </object>
-  <object id="215" gid="1" x="0" y="752" width="32" height="32">
+  <object id="215" gid="1" x="0" y="912" width="32" height="32">
    <properties>
     <property name="jumpHeight" type="float" value="2.4"/>
    </properties>
   </object>
-  <object id="218" gid="4" x="112" y="736" width="32" height="32"/>
-  <object id="219" gid="4" x="144" y="704" width="32" height="32"/>
-  <object id="220" gid="4" x="176" y="672" width="32" height="32"/>
-  <object id="221" gid="4" x="208" y="640" width="32" height="32"/>
-  <object id="222" gid="4" x="240" y="608" width="32" height="32"/>
-  <object id="223" gid="2" x="276" y="597" width="38" height="38">
+  <object id="218" gid="4" x="112" y="896" width="32" height="32"/>
+  <object id="219" gid="4" x="144" y="864" width="32" height="32"/>
+  <object id="220" gid="4" x="176" y="832" width="32" height="32"/>
+  <object id="221" gid="4" x="208" y="800" width="32" height="32"/>
+  <object id="222" gid="4" x="240" y="768" width="32" height="32"/>
+  <object id="223" gid="2" x="276" y="757" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
     <property name="speed" type="float" value="0"/>
     <property name="timeToMax" type="float" value="0"/>
    </properties>
   </object>
-  <object id="224" gid="4" x="320" y="576" width="32" height="32"/>
-  <object id="225" gid="4" x="352" y="544" width="32" height="32"/>
-  <object id="226" gid="4" x="320" y="512" width="32" height="32"/>
-  <object id="227" gid="4" x="288" y="480" width="32" height="32"/>
-  <object id="228" gid="4" x="256" y="448" width="32" height="32"/>
-  <object id="229" gid="2" x="143" y="438" width="38" height="38">
+  <object id="224" gid="4" x="336" y="720" width="32" height="32"/>
+  <object id="225" gid="4" x="304" y="688" width="32" height="32"/>
+  <object id="226" gid="4" x="272" y="656" width="32" height="32"/>
+  <object id="227" gid="4" x="240" y="624" width="32" height="32"/>
+  <object id="228" gid="4" x="272" y="592" width="32" height="32"/>
+  <object id="229" gid="2" x="143" y="598" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
    </properties>
   </object>
-  <object id="231" gid="4" x="112" y="624" width="32" height="32"/>
-  <object id="232" gid="4" x="112" y="592" width="32" height="32"/>
-  <object id="233" gid="4" x="128" y="560" width="32" height="32"/>
-  <object id="234" gid="4" x="96" y="528" width="32" height="32"/>
-  <object id="235" gid="4" x="112" y="480" width="32" height="32"/>
-  <object id="236" gid="4" x="144" y="448" width="32" height="32"/>
-  <object id="237" gid="4" x="240" y="416" width="32" height="32"/>
-  <object id="238" gid="4" x="224" y="352" width="32" height="32"/>
-  <object id="239" gid="4" x="336" y="416" width="32" height="32"/>
-  <object id="240" gid="4" x="304" y="352" width="32" height="32"/>
-  <object id="241" gid="4" x="192" y="320" width="32" height="32"/>
-  <object id="242" gid="4" x="160" y="288" width="32" height="32"/>
-  <object id="243" gid="4" x="240" y="304" width="32" height="32"/>
-  <object id="244" gid="4" x="272" y="336" width="32" height="32"/>
-  <object id="245" gid="4" x="304" y="304" width="32" height="32"/>
-  <object id="246" gid="4" x="336" y="336" width="32" height="32"/>
-  <object id="247" gid="4" x="368" y="304" width="32" height="32"/>
-  <object id="248" gid="4" x="128" y="256" width="32" height="32"/>
-  <object id="249" gid="4" x="112" y="240" width="32" height="32"/>
-  <object id="250" gid="2" x="68" y="229" width="38" height="38">
+  <object id="231" gid="4" x="112" y="784" width="32" height="32"/>
+  <object id="232" gid="4" x="112" y="752" width="32" height="32"/>
+  <object id="233" gid="4" x="144" y="720" width="32" height="32"/>
+  <object id="234" gid="4" x="112" y="688" width="32" height="32"/>
+  <object id="235" gid="4" x="112" y="656" width="32" height="32"/>
+  <object id="236" gid="4" x="144" y="624" width="32" height="32"/>
+  <object id="237" gid="4" x="240" y="560" width="32" height="32"/>
+  <object id="238" gid="4" x="208" y="496" width="32" height="32"/>
+  <object id="239" gid="4" x="336" y="560" width="32" height="32"/>
+  <object id="240" gid="4" x="304" y="528" width="32" height="32"/>
+  <object id="242" gid="4" x="176" y="464" width="32" height="32"/>
+  <object id="243" gid="4" x="240" y="464" width="32" height="32"/>
+  <object id="244" gid="4" x="272" y="496" width="32" height="32"/>
+  <object id="245" gid="4" x="304" y="464" width="32" height="32"/>
+  <object id="246" gid="4" x="336" y="496" width="32" height="32"/>
+  <object id="247" gid="4" x="368" y="464" width="32" height="32"/>
+  <object id="248" gid="4" x="144" y="432" width="32" height="32"/>
+  <object id="249" gid="4" x="112" y="400" width="32" height="32"/>
+  <object id="250" gid="2" x="68" y="389" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>
   </object>
-  <object id="251" gid="4" x="16" y="192" width="32" height="32"/>
-  <object id="252" gid="4" x="48" y="160" width="32" height="32"/>
-  <object id="253" gid="4" x="80" y="128" width="32" height="32"/>
-  <object id="254" gid="4" x="112" y="112" width="32" height="32"/>
-  <object id="255" gid="4" x="368" y="336" width="32" height="32"/>
-  <object id="256" gid="5" x="320" y="80" width="64" height="64"/>
-  <object id="257" gid="2" x="-17" y="102" width="38" height="38">
+  <object id="252" gid="4" x="80" y="304" width="32" height="32"/>
+  <object id="254" gid="4" x="112" y="272" width="32" height="32"/>
+  <object id="255" gid="4" x="368" y="496" width="32" height="32"/>
+  <object id="256" gid="5" x="320" y="64" width="64" height="64"/>
+  <object id="257" gid="2" x="-17" y="262" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
    </properties>
   </object>
-  <object id="258" gid="2" x="377" y="102" width="38" height="38">
+  <object id="258" gid="2" x="366" y="261" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
    </properties>
   </object>
-  <object id="260" gid="2" x="45" y="517" width="38" height="38">
+  <object id="260" gid="2" x="45" y="677" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>
   </object>
-  <object id="262" gid="4" x="240" y="384" width="32" height="32"/>
-  <object id="263" gid="4" x="336" y="384" width="32" height="32"/>
-  <object id="264" gid="2" x="377" y="437" width="38" height="38">
+  <object id="262" gid="4" x="240" y="528" width="32" height="32"/>
+  <object id="263" gid="4" x="336" y="528" width="32" height="32"/>
+  <object id="264" gid="2" x="377" y="597" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
    </properties>
   </object>
+  <object id="267" gid="4" x="176" y="208" width="32" height="32"/>
+  <object id="269" gid="4" x="144" y="176" width="32" height="32"/>
+  <object id="271" gid="4" x="112" y="144" width="32" height="32"/>
+  <object id="272" gid="4" x="144" y="112" width="32" height="32"/>
+  <object id="273" gid="4" x="176" y="80" width="32" height="32"/>
+  <object id="274" gid="4" x="80" y="368" width="32" height="32"/>
+  <object id="275" gid="4" x="48" y="336" width="32" height="32"/>
+  <object id="276" gid="4" x="208" y="240" width="32" height="32"/>
+  <object id="280" gid="2" x="128" y="80" width="38" height="38"/>
+  <object id="281" gid="2" x="208" y="80" width="38" height="38"/>
+  <object id="282" gid="2" x="272" y="80" width="38" height="38"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
-  <object id="230" x="161" y="418">
+  <object id="230" x="161" y="578">
    <polyline points="0,0 239,0"/>
   </object>
-  <object id="259" x="399" y="82">
+  <object id="259" x="399" y="242">
    <polyline points="0,0 -400,1"/>
   </object>
  </objectgroup>

@@ -12,11 +12,9 @@ import com.fatih.pixeladventure.parallax.ParallaxBackground
 import com.fatih.pixeladventure.ui.model.MenuModel
 import com.fatih.pixeladventure.ui.view.LevelView
 import com.fatih.pixeladventure.ui.view.MenuView
-import com.fatih.pixeladventure.ui.view.SettingsView
 import com.fatih.pixeladventure.ui.view.StageView
 import com.fatih.pixeladventure.ui.view.levelView
 import com.fatih.pixeladventure.ui.view.menuView
-import com.fatih.pixeladventure.ui.view.settingsView
 import com.fatih.pixeladventure.ui.view.stageView
 import com.fatih.pixeladventure.util.GamePreferences
 import com.fatih.pixeladventure.util.MusicAsset
@@ -30,7 +28,7 @@ import ktx.scene2d.actors
 
 class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService,game : PixelAdventure,preferences: GamePreferences) : KtxScreen{
 
-    enum class ViewType{
+    enum class MenuViewType{
         MENU_VIEW,LEVEL_VIEW,STAGE_VIEW
     }
 
@@ -43,18 +41,18 @@ class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService
     private lateinit var stageView: StageView
     private var firstLaunch = true
 
-    fun addAction(actions: Action,viewType: ViewType){
+    fun addAction(actions: Action, menuViewType: MenuViewType){
         println("action")
-        when(viewType){
-            ViewType.LEVEL_VIEW -> {
+        when(menuViewType){
+            MenuViewType.LEVEL_VIEW -> {
                 levelView += actions
                 levelView.touchable = Touchable.enabled
             }
-            ViewType.STAGE_VIEW -> {
+            MenuViewType.STAGE_VIEW -> {
                 stageView += actions
                 stageView.touchable = Touchable.enabled
             }
-            ViewType.MENU_VIEW -> {
+            MenuViewType.MENU_VIEW -> {
                 menuView += actions
                 menuView.touchable = Touchable.enabled
             }

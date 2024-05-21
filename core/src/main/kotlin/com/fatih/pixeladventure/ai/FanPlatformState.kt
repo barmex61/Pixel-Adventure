@@ -13,7 +13,7 @@ enum class FanPlatformState : EntityState {
             entity.hasFanTarget()?.let {
                 with(entity.world){
                     val playerBody = it[Physic].body
-                    playerBody.setLinearVelocity(playerBody.linearVelocity.x,playerBody.linearVelocity.y + 0.04f)
+                    playerBody.setLinearVelocity(playerBody.linearVelocity.x,playerBody.linearVelocity.y + 0.045f)
                 }
             }
         }

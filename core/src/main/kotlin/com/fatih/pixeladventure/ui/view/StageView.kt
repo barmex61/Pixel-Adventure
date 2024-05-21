@@ -1,6 +1,5 @@
 package com.fatih.pixeladventure.ui.view
 
-import com.badlogic.gdx.scenes.scene2d.Action
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.ui.Skin
@@ -42,7 +41,7 @@ class StageView(
             onClick {
                 this@StageView.touchable = Touchable.disabled
                 this@StageView += Actions.fadeOut(0.75f)
-                menuModel.addActionToView(Actions.fadeIn(0.75f),MenuScreen.ViewType.MENU_VIEW)
+                menuModel.addActionToView(Actions.fadeIn(0.75f),MenuScreen.MenuViewType.MENU_VIEW)
                 GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
             }
         }
@@ -64,7 +63,7 @@ class StageView(
                 onClick {
                     this@StageView.touchable = Touchable.disabled
                     this@StageView += Actions.fadeOut(0.75f)
-                    menuModel.addActionToView(Actions.fadeIn(0.75f),MenuScreen.ViewType.LEVEL_VIEW)
+                    menuModel.addActionToView(Actions.fadeIn(0.75f),MenuScreen.MenuViewType.LEVEL_VIEW)
                     GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
                 }
             }

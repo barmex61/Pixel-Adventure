@@ -18,8 +18,8 @@ class MenuModel(val game : PixelAdventure,val preferences: GamePreferences){
         game.getScreen<GameScreen>().loadMap(mapAsset)
     }
 
-    fun addActionToView(actions : Action,viewType: ViewType){
-        game.getScreen<MenuScreen>().addAction(actions,viewType)
+    fun addActionToView(actions : Action, menuViewType: MenuViewType){
+        game.getScreen<MenuScreen>().addAction(actions,menuViewType)
     }
 
     fun isUnlocked(mapAsset: MapAsset) = unlockedMaps.contains(mapAsset)

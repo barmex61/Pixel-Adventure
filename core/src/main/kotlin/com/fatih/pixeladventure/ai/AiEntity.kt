@@ -16,6 +16,7 @@ import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Component
@@ -23,10 +24,12 @@ import com.github.quillraven.fleks.ComponentType
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.World
 import ktx.box2d.rayCast
+import java.lang.Math.pow
 import kotlin.experimental.or
 import kotlin.experimental.xor
 import kotlin.math.abs
 import kotlin.math.pow
+import kotlin.math.sqrt
 
 data class AiEntity(
     val entity: Entity,
@@ -34,8 +37,11 @@ data class AiEntity(
     val physicWorld: PhysicWorld,
 ) {
 
+    var changeTrackPosition : Boolean = false
     var fruitRespawnDuration : Float = 3f
     var entityRemoveDuration : Float = 1f
+    var nextAnimType = AnimationType.HIT_LEFT
+    var currentAnimType = AnimationType.IDLE
     var frameDuration = 1f
     val hasTrack : Boolean = with(world){ entity has Track}
     val animationType : AnimationType
@@ -132,7 +138,7 @@ data class AiEntity(
 
 
     //-------------------------TRACK FEATURE-------------------------//
-    fun followTrack() = with(world){
+    fun followTrack(fixedVelocity : Boolean = false,stopOnTrackChange : Boolean = false,tolerance: Float = 0.1f) = with(world){
 
         val trackComp = entity[Track]
         val moveComp = entity[Move]
@@ -140,21 +146,47 @@ data class AiEntity(
         val (sprite) = entity[Graphic]
 
         moveComp.current = moveComp.max
-
         val currentX = sprite.x + sprite.width / 2f
         val currentY = sprite.y + sprite.height / 2f
-        if (currentTrackIx == -1 || trackPoints[currentTrackIx].inRange(currentX,currentY)) {
+        if (currentTrackIx == -1 || trackPoints[currentTrackIx].inRange(currentX,currentY,tolerance)) {
             // entity reached current track point go to next point
             trackComp.currentTrackIx = (currentTrackIx + 1) % trackPoints.size
             val nextTrackPoint = trackPoints[trackComp.currentTrackIx]
-            trackComp.angleRad = MathUtils.atan2( nextTrackPoint.y - currentY ,nextTrackPoint.x - currentX )
+            val diffY = nextTrackPoint.y - currentY
+            val diffX = nextTrackPoint.x - currentX
+            trackComp.angleRad = MathUtils.atan2( diffY ,diffX )
+            nextAnimType = setNextAnimationForSpikeHead(abs(diffX) , abs(diffY) , nextTrackPoint, currentX, currentY)
+            changeTrackPosition = true
         }
-        trackComp.moveX = moveComp.current * MathUtils.cos(trackComp.angleRad) * (abs(trackPoints[trackComp.currentTrackIx].x - currentX) * 0.2f )
-        trackComp.moveY = moveComp.current * MathUtils.sin(trackComp.angleRad) * (abs(trackPoints[trackComp.currentTrackIx].y - currentY) * 0.2f )
+        val velMultiplexerX = if (!fixedVelocity) (abs(trackPoints[trackComp.currentTrackIx].x - currentX) * 0.2f ) else 1f
+        val velMultiplexerY = if (!fixedVelocity) (abs(trackPoints[trackComp.currentTrackIx].y - currentY) * 0.2f ) else 1f
+        trackComp.moveX = moveComp.current * MathUtils.cos(trackComp.angleRad) * velMultiplexerX
+        trackComp.moveY = moveComp.current * MathUtils.sin(trackComp.angleRad) * velMultiplexerY
+        if (changeTrackPosition && stopOnTrackChange){
+            trackComp.moveX = 0f
+            trackComp.moveY = 0f
+        }
     }
 
-    private fun Vector2.inRange(otherX:Float, otherY:Float,tolerance : Float = 0.2f) : Boolean {
+    private fun Vector2.inRange(otherX:Float, otherY:Float,tolerance : Float) : Boolean {
         return MathUtils.isEqual(this.x,otherX,tolerance) && MathUtils.isEqual(this.y,otherY,tolerance)
+    }
+
+    private fun setNextAnimationForSpikeHead(diffX : Float , diffY : Float , nextTrackPoint : Vector2,currentX: Float,currentY : Float) : AnimationType {
+        return when{
+            diffX > diffY ->{
+                when{
+                    nextTrackPoint.x > currentX -> AnimationType.HIT_RIGHT
+                    else -> AnimationType.HIT_LEFT
+                }
+            }
+            else ->{
+                when{
+                    nextTrackPoint.y > currentY -> AnimationType.HIT_TOP
+                    else -> AnimationType.HIT_BOTTOM
+                }
+            }
+        }
     }
 
 }

@@ -68,6 +68,7 @@ class GameScreen(
     private var settingsView: SettingsView ?= null
     private var gameView : GameView ?= null
     private var stopGame : Boolean = false
+    private var menuViewType = MenuScreen.MenuViewType.STAGE_VIEW
     private val gameViewPort : Viewport = StretchViewport(18f,11f)
     private val uiViewPort : Viewport = StretchViewport(480f,270f)
     private val uiStage : Stage = Stage(uiViewPort,spriteBatch)
@@ -182,7 +183,7 @@ class GameScreen(
         physicWorld.getBodies(bodyList)
         bodyList.forEach { physicWorld.destroyBody(it) }
         game.setScreen<MenuScreen>()
-        game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),MenuScreen.ViewType.STAGE_VIEW)
+        game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),menuViewType)
     }
 
     private fun restartLevel(){
@@ -201,16 +202,19 @@ class GameScreen(
     override fun onEvent(gameEvent: GameEvent) {
         when(gameEvent){
             is VictoryEvent ->{
+                menuViewType = MenuScreen.MenuViewType.LEVEL_VIEW
                 delayToMenu = 2f
                 gameView?.touchable = Touchable.disabled
             }
             is EntityLifeChangeEvent ->{
+                menuViewType = MenuScreen.MenuViewType.LEVEL_VIEW
                 if (gameEvent.currentLife == 0){
                     delayToMenu = 0.00001f
                     isPlayerDeath = true
                 }
             }
             is MainMenuEvent ->{
+                menuViewType = MenuScreen.MenuViewType.MENU_VIEW
                 stopGame(false)
                 delayToMenu = 0.00001f
                 gameView?.touchable = Touchable.disabled

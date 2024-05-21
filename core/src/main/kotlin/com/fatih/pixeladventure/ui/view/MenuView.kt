@@ -1,7 +1,6 @@
 package com.fatih.pixeladventure.ui.view
 
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.scenes.scene2d.Action
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeOut
@@ -45,7 +44,7 @@ class MenuView(
                 onClick {
                     this@MenuView.touchable = Touchable.disabled
                     this@MenuView += fadeOut(0.75f)
-                    menuModel.addActionToView(fadeIn(0.75f),MenuScreen.ViewType.STAGE_VIEW)
+                    menuModel.addActionToView(fadeIn(0.75f),MenuScreen.MenuViewType.STAGE_VIEW)
                     GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
                 }
             }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="15" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="16" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -323,7 +323,7 @@
    </object>
    <object id="2" type="FixtureDef" x="0" y="16" width="16" height="16">
     <properties>
-     <property name="isSensor" type="bool" value="true"/>
+     <property name="isSensor" type="bool" value="false"/>
      <property name="userData" value="canJump"/>
     </properties>
    </object>
@@ -343,6 +343,28 @@
     <properties>
      <property name="gameObject" propertytype="GameObject" value="TRAMBOLINE"/>
      <property name="userData" value="tramboline"/>
+    </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="15" type="EntityDef">
+  <properties>
+   <property name="animFrameDuration" type="float" value="0.15"/>
+   <property name="bodyType" propertytype="BodyType" value="KinematicBody"/>
+   <property name="damage" type="int" value="1"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   <property name="gameObject" propertytype="GameObject" value="SPIKE_HEAD"/>
+   <property name="speed" type="float" value="8"/>
+   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+   <property name="timeToMax" type="float" value="0"/>
+  </properties>
+  <image width="54" height="52" source="../graphics/spike_head.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="1" type="FixtureDef" x="9" y="8" width="37" height="37">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="SPIKE_HEAD"/>
+     <property name="isSensor" type="bool" value="false"/>
+     <property name="userData" value="hitbox"/>
     </properties>
    </object>
   </objectgroup>

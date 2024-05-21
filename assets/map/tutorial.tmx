@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="233">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="242">
  <properties>
   <property name="musicAsset" value="MUSIC3"/>
   <property name="name" value="Tutorial"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="16" source="terrain-extruded.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="1" name="ground" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJztmUEOwjAMBPMK4MYHgBsfAG79/39IrpUj1fEmrpMdyVKE2rWLvU0LKZEzcgcdc/R87ZoQT96gY46er10T4gn9QWYF8RxCf5BZQczRJny29x39QSLSa472uvQHicgof0h7TKse/UFGMcofSD36g4wCMUfSO/7M/tD8psH/YWKDmCNJAz2fm2GNRnNt3MdiE8UfZ4L+WAfEfVbS6Hn/9kZzbSO/h0uOqyFuAN2aRo96W3Kjc7bW5VHHylF68MjxNMRL6GNS6tY0rLqo3OicrXV51LFylB58cnwN8RP6mJS6NQ2rLio3OmdrXR51rBylB3/tgW4T
+   eJztlcsNwjAQRN0FcHMDwI0GgFsaAYoAigDaxb7bkj+zWSc7TxrJQs7sBGcS58iIeNCe0utr14RocgLtKb2+dk1w3ILuhXooZRwN9sMOz6BXod6zJpPBAzzYDztY6wfiOZoSv3nwHPZjDNgPGV/2Yx2wHzK+qW9Mqx/7oQf7MaYv+zEG7Ec9Xsg356fdDy+0dwmwHxgP9PM5dazR1Nzb2r5jn6BvoX5KGZEspR8jYbkf1kC8Z1Meku9vbWrubc7/YRO07dAO4JvzkMjbMhs9szWXRg7LimewDzp06Jg4R1fpm/Po9UXNRs9szaWRw7LiGZyDLh26Js7RVfrmPHp9UbPRM1tzaeSwrHgGf74mpnU=
   </data>
  </layer>
  <layer id="2" name="decoration" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt17ENwCAMBEA2Il1g/8XiPhWSLQS6k76Dt1u3BgAAwAneyIjM3YsAAADXc38AAABQoUeehDeZ/7J6q+avzMjYoXpGZf+p3cDfB2rLBuI=
+   eJzt17ENwCAMBEBGIl1g/8HiPhWSLQS6k76Dt1u3BgAAwAneyIjM3YsAAADXc38AAABQoUeehDeZ/7J6q+avzMjYoXpGZf+p3cDfB5f2BwY=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="130" gid="1" x="16" y="192" width="32" height="32">
+  <object id="130" gid="1" x="32" y="192" width="32" height="32">
    <properties>
     <property name="jumpHeight" type="float" value="2.4"/>
    </properties>
@@ -66,30 +66,36 @@
   </object>
   <object id="219" gid="2" x="2013" y="213" width="38" height="38">
    <properties>
-    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>
   </object>
   <object id="220" gid="2" x="2221" y="213" width="38" height="38">
    <properties>
-    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
    </properties>
   </object>
   <object id="221" gid="11" x="2448" y="192" width="32" height="32"/>
   <object id="222" name="TEXT" x="2368" y="80" width="188" height="94">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#ff00ff]Apples[] to gain temporary double jump</text>
   </object>
-  <object id="229" gid="12" x="189" y="170" width="32" height="10"/>
-  <object id="230" gid="13" x="150" y="170" width="24" height="8"/>
+  <object id="229" gid="12" x="258" y="107" width="32" height="10"/>
+  <object id="230" gid="13" x="352" y="192" width="24" height="8"/>
   <object id="231" gid="14" x="112" y="192" width="16" height="32">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>
   </object>
   <object id="232" gid="15" x="240" y="192" width="28" height="28"/>
+  <object id="233" gid="16" x="536" y="173" width="54" height="52"/>
+  <object id="240" gid="12" x="288" y="80" width="32" height="10"/>
+  <object id="241" gid="12" x="320" y="58" width="32" height="10"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="218" x="2240" y="194">
    <polyline points="0,0 -208,0"/>
+  </object>
+  <object id="239" x="427" y="57">
+   <polygon points="0,0 0,92 139,92 139,0"/>
   </object>
  </objectgroup>
 </map>
