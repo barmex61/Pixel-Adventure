@@ -16,7 +16,9 @@ import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem.Companion.DEBUG_RECT
 import com.fatih.pixeladventure.event.CollectItemEvent
+import com.fatih.pixeladventure.event.EndAppleEffectEvent
 import com.fatih.pixeladventure.event.GameEvent
+import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.GROUND_BIT
@@ -34,8 +36,9 @@ import kotlin.math.sqrt
 class JumpSystem(
     private val physicWorld: PhysicWorld = World.inject(),
     private val audioService: AudioService = World.inject()
-): IteratingSystem(family = family { all(Jump) }) , GameEventListener{
+): IteratingSystem(family = family { all(Jump) }) {
 
+    private var fireAppleEventOnce : Boolean = true
 
     override fun onTickEntity(entity: Entity) {
         val jumpComps = entity[Jump]
@@ -43,6 +46,7 @@ class JumpSystem(
         var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpFruitTimer,jumpCounter) = entity[Jump]
 
         if (jumpFruitTimer > 0f ){
+            if (jumpFruitTimer == 4f) fireAppleEventOnce = true
             jumpFruitTimer = (jumpFruitTimer - deltaTime).coerceAtLeast(0f)
             jumpComps.jumpFruitTimer = jumpFruitTimer
             if (jumpCounter <2 && jump){
@@ -55,6 +59,11 @@ class JumpSystem(
                 audioService.play(SoundAsset.JUMP)
                 jumpComps.jumpCounter = jumpCounter
             }
+            if (fireAppleEventOnce && jumpFruitTimer < 1.25f) {
+                GameEventDispatcher.fireEvent(EndAppleEffectEvent)
+                fireAppleEventOnce = false
+            }
+
             return
         }
 
@@ -102,38 +111,5 @@ class JumpSystem(
         jumpComp.jump = false
     }
 
-    override fun onEvent(gameEvent: GameEvent) {
-        when(gameEvent){
-            is CollectItemEvent->{
-                val collectableEntity = gameEvent.collectEntity
-                collectableEntity.configure {
-                    it -= EntityTag.COLLECTABLE
-                }
-                collectableEntity[State].stateMachine.changeState(FruitState.HIT_RESPAWN)
-                when(collectableEntity[Collectable].name){
-                    GameObject.CHERRY.name -> gameEvent.playerEntity[Jump].doubleJump = true
-                    GameObject.BANANA.name -> gameEvent.playerEntity[Move].max += 1f
-                    GameObject.MELON.name -> gameEvent.playerEntity[Jump].jumpOnGround = true
-                    GameObject.PINEAPPLE.name -> gameEvent.playerEntity.configure {
-                        it += Fly(2f)
-                    }
-                    GameObject.KIWI.name ->{
-                        gameEvent.playerEntity.configure {
-                            if (it hasNo  Invulnarable && it hasNo  Blink){
-                                it += Invulnarable(3.5f)
-                                it += Blink(3.5f,0.075f)
-                            }
-                        }
-                    }
-                    GameObject.APPLE.name -> {
-                        gameEvent.playerEntity[Jump].jumpFruitTimer = 4f
-                    }
-
-                    else -> Unit
-                }
-            }
-            else -> Unit
-        }
-    }
 
 }

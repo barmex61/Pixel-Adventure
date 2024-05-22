@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="358">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="360">
  <properties>
   <property name="musicAsset" value="MUSIC5"/>
   <property name="name" value="Are you invincible ?"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="2" name="ground" width="45" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt2FsOQDAQBdBugX5gBVgE3f+ujI8m0vQRo6NVd5L704ge41EohUKhUO1XR+kFoikDZaRMmc2LUFbPXLmO4U1zripp5vYdfYa5RjPnOasLm2fmfmGGGWaYYYb5L2Z3ff/C2u1uU7rPsXck28/azLE+W1sN5uv3FNeceoflXvOSfU7dB9xzAXO7Zol/YlrYzFlX7/YeZphzmzfK7klo/EmMY47NYQKOc/wAF/2yAQ==
+   eJzt2FsOQDAQBdDugn5gBVgE3f+WjI8m0vQRo6NVd5L704ge41EohUKhUO1XR+kFoikDZaRMmc2LUFbPXLmO4U1zripp5vYdfYa5RjPnOasLm2fmfmGGGWaYYYb5L2Z3ff/C2u1uU7rPsXck28/azLE+W1sN5uv3FNeceoflXvOSfU7dB9xzAXO7Zol/YlrYzFlX7/YeZphzmzfK7klo/EmMY47NYQKOc/wASpnNTw==
   </data>
  </layer>
  <layer id="1" name="decoration" width="45" height="40">
   <data encoding="base64" compression="zlib">
-   eJzt1LEJACAQA0BnUvefTRsH0CKC3kH6Jw8pBQDgH3WmzfTbhxDj53k6z9N5ns7zdA6wZ+3mSWwtwPsGby8Gxw==
+   eJzt1LEJACAQA0DHUvcfTBsH0CKC3kH6Jw8pBQDgH3WmzfTbhxDj53k6z9N5ns7zdA6wZ+3mSWwtwPsGD54Hkw==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
@@ -93,6 +93,8 @@
   </object>
   <object id="356" gid="5" x="160" y="114" width="64" height="64"/>
   <object id="357" gid="3" x="112" y="118" width="42" height="42"/>
+  <object id="358" gid="10" x="112" y="480" width="32" height="32"/>
+  <object id="359" gid="10" x="64" y="480" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="330" x="171" y="546">

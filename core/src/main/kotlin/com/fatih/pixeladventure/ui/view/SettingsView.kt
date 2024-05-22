@@ -39,7 +39,6 @@ class SettingsView(
         align(Align.top)
         setFillParent(true)
         table {tableCell ->
-            background = skin.getDrawable("frame")
             tableCell.expand()
             val typingLabel = TypingLabel("{RAINBOW}{WAVE}Settings",skin, defaultStyle).apply{
                 setAlignment(Align.center)

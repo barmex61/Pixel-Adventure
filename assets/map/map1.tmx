@@ -106,9 +106,21 @@
   <object id="274" gid="4" x="80" y="368" width="32" height="32"/>
   <object id="275" gid="4" x="48" y="336" width="32" height="32"/>
   <object id="276" gid="4" x="208" y="240" width="32" height="32"/>
-  <object id="280" gid="2" x="128" y="80" width="38" height="38"/>
-  <object id="281" gid="2" x="208" y="80" width="38" height="38"/>
-  <object id="282" gid="2" x="272" y="80" width="38" height="38"/>
+  <object id="280" gid="2" x="128" y="80" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="281" gid="2" x="208" y="80" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="282" gid="2" x="272" y="80" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="230" x="161" y="578">

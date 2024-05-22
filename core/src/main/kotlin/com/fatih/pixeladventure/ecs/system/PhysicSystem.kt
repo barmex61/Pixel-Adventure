@@ -177,9 +177,7 @@ class PhysicSystem(
         return entity has EntityTag.PLAYER && fixtureB.isBottomMapBoundary()
     }
 
-    private fun handlePlayerOutOfMap(playerEntity: Entity) = with(world){
-        GameEventDispatcher.fireEvent(PlayerOutOfMapEvent(playerEntity))
-    }
+    private fun handlePlayerOutOfMap(playerEntity: Entity) = GameEventDispatcher.fireEvent(PlayerOutOfMapEvent(playerEntity))
 
     private fun isCollectableCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB: Fixture) : Boolean{
         return entityA has EntityTag.PLAYER && entityB has EntityTag.COLLECTABLE && ((fixtureA.isPlayerFoot() && fixtureB.isCherry()) || (!fixtureB.isCherry() && fixtureA.isHitBox() ))

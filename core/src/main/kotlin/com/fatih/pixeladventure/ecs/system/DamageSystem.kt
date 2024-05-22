@@ -17,18 +17,19 @@ import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
 
-class DamageSystem : IteratingSystem(family = family{all(Life,DamageTaken).none(Invulnarable)}) {
+class DamageSystem : IteratingSystem(family = family{all(Life,DamageTaken).none(Invulnarable,Blink)}) {
 
     override fun onTickEntity(entity: Entity) {
         val damageTaken = entity[DamageTaken]
         val lifeComp = entity[Life]
         val (damageAmount) = damageTaken
+        if (entity has Invulnarable) return
         lifeComp.current = (lifeComp.current - damageAmount).coerceAtLeast(0)
         GameEventDispatcher.fireEvent(EntityLifeChangeEvent(lifeComp.current))
         if (entity has EntityTag.PLAYER){
             entity.configure {
                 it += Invulnarable(1.5f)
-                it += Blink(1.5f,0.075f)
+                it += Blink(1.3f,0.075f)
                 it += Flash(color = Color.RED, weight = 0.75f, amount = 1, delay = 0.15f)
             }
             entity[State].stateMachine.changeState(PlayerState.HIT)

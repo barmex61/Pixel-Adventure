@@ -15,6 +15,9 @@ data class PlayerOutOfMapEvent(val playerEntity : Entity) : GameEvent
 data object MainMenuEvent : GameEvent
 data class MuteAudioEvent(val mute : Boolean) : GameEvent
 data class PlaySoundEvent(val soundAsset: SoundAsset) : GameEvent
+data class EndBananaEffectEvent(val count : Int) : GameEvent
+data object EndAppleEffectEvent : GameEvent
+data object EndKiwiEffectEvent : GameEvent
 
 interface GameEventListener{
 

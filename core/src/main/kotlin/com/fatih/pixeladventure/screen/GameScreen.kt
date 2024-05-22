@@ -1,5 +1,7 @@
 package com.fatih.pixeladventure.screen
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.Body
@@ -8,7 +10,16 @@ import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
 import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.utils.viewport.Viewport
+import com.fatih.pixeladventure.ai.FruitState
 import com.fatih.pixeladventure.audio.AudioService
+import com.fatih.pixeladventure.ecs.component.Blink
+import com.fatih.pixeladventure.ecs.component.Collectable
+import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.component.Fly
+import com.fatih.pixeladventure.ecs.component.Invulnarable
+import com.fatih.pixeladventure.ecs.component.Jump
+import com.fatih.pixeladventure.ecs.component.Move
+import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.system.AnimationSystem
 import com.fatih.pixeladventure.ecs.system.BlinkSystem
 import com.fatih.pixeladventure.ecs.system.CameraSystem
@@ -31,9 +42,14 @@ import com.fatih.pixeladventure.ecs.system.RenderSystem
 import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.ecs.system.TeleportSystem
 import com.fatih.pixeladventure.ecs.system.TextSystem
+import com.fatih.pixeladventure.event.CollectItemEvent
+import com.fatih.pixeladventure.event.EndAppleEffectEvent
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.MainMenuEvent
+import com.fatih.pixeladventure.event.PlayerOutOfMapEvent
+import com.fatih.pixeladventure.event.EndBananaEffectEvent
+import com.fatih.pixeladventure.event.EndKiwiEffectEvent
 import com.fatih.pixeladventure.event.RestartLevelEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
@@ -46,6 +62,8 @@ import com.fatih.pixeladventure.ui.view.GameView
 import com.fatih.pixeladventure.ui.view.SettingsView
 import com.fatih.pixeladventure.ui.view.gameView
 import com.fatih.pixeladventure.ui.view.settingsView
+import com.fatih.pixeladventure.util.FruitDrawable
+import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.GamePreferences
 import com.fatih.pixeladventure.util.GameProperties
 import com.fatih.pixeladventure.util.SoundAsset
@@ -154,6 +172,11 @@ class GameScreen(
     }
 
     override fun render(delta: Float) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
+            gameView?.addFruit(FruitDrawable.entries.random())
+        }else if (Gdx.input.isKeyJustPressed(Input.Keys.N)){
+            gameView?.deleteFruit(FruitDrawable.entries.random())
+        }
         world.update(if (stopGame) 0f else delta)
         if (delayToMenu > 0f){
             delayToMenu -= delta
@@ -221,7 +244,71 @@ class GameScreen(
             }
             is RestartLevelEvent ->{
                 restartLevel()
+                //gameView?.clearFruitTable()
             }
+
+            is CollectItemEvent->{
+                with(world){
+                    val collectableEntity = gameEvent.collectEntity
+                    collectableEntity.configure {
+                        it -= EntityTag.COLLECTABLE
+                    }
+                    collectableEntity[State].stateMachine.changeState(FruitState.HIT_RESPAWN)
+                    when(collectableEntity[Collectable].name){
+                        GameObject.CHERRY.name -> {
+                            gameEvent.playerEntity[Jump].doubleJump = true
+                            gameView?.addFruit(FruitDrawable.CHERRY)
+                        }
+                        GameObject.BANANA.name -> {
+                            gameEvent.playerEntity[Move].max += 1f
+                            gameView?.addFruit(FruitDrawable.BANANA)
+                        }
+                        GameObject.MELON.name -> {
+                            gameEvent.playerEntity[Jump].jumpOnGround = true
+                            gameView?.addFruit(FruitDrawable.MELON)
+                        }
+                        GameObject.PINEAPPLE.name -> {
+                            gameEvent.playerEntity.configure {
+                                it += Fly(2f)
+                            }
+                            gameView?.addFruit(FruitDrawable.PINEAPPLE)
+                        }
+                        GameObject.KIWI.name ->{
+                            gameEvent.playerEntity.configure {
+                                /*val invComp = it.getOrNull(Invulnarable)
+                                if (invComp != null) {
+                                    invComp.isFruitEffect = true
+                                    invComp.time = 3.5f
+                                } else {
+                                    it += Invulnarable(3.5f,true)
+                                } */
+                                it += Invulnarable(3.5f,true)
+                                it += Blink(3.3f,0.075f)
+                            }
+                            gameView?.addFruit(FruitDrawable.KIWI)
+                        }
+                        GameObject.APPLE.name -> {
+                            gameEvent.playerEntity[Jump].jumpFruitTimer = 4f
+                            gameView?.addFruit(FruitDrawable.APPLE)
+                        }
+
+                        else -> Unit
+                    }
+                }
+            }
+            is EndBananaEffectEvent ->{
+                gameView?.deleteFruit(FruitDrawable.BANANA,true,gameEvent.count)
+            }
+            is EndAppleEffectEvent -> {
+                gameView?.deleteFruit(FruitDrawable.APPLE,true,0)
+            }
+            is EndKiwiEffectEvent -> {
+                gameView?.deleteFruit(FruitDrawable.KIWI,true,0)
+            }
+            is PlayerOutOfMapEvent ->{
+                gameView?.deleteFruit(FruitDrawable.BANANA,true,0)
+            }
+
             else -> Unit
         }
     }
@@ -232,3 +319,4 @@ class GameScreen(
         uiStage.disposeSafely()
     }
 }
+

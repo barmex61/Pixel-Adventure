@@ -8,11 +8,12 @@ import com.github.quillraven.fleks.World
 import kotlin.experimental.or
 import kotlin.experimental.xor
 
-data class Invulnarable(var time : Float) : Component <Invulnarable> {
+data class Invulnarable(var time : Float,var isFruitEffect : Boolean = false,var fireKiwiEventOnce: Boolean = true) : Component <Invulnarable> {
 
     override fun type() = Invulnarable
 
     override fun World.onAdd(entity: Entity) {
+        fireKiwiEventOnce = true
         entity[Physic].body.fixtureList
             .filterNot{ it.userData == "hitbox" }
             .forEach { it.filterData.maskBits = it.filterData.maskBits xor ROCK_HEAD_BIT }

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="90" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="284">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="90" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="287">
  <properties>
   <property name="musicAsset" value="MUSIC2"/>
   <property name="name" value="Run faster"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="2" name="ground" width="90" height="15">
   <data encoding="base64" compression="zlib">
-   eJztlcENgDAMA7sCdAjgAxNAP7D/SqQb2G0QauST7pkosiwlJSGEEEIIIcQoTOYMmImdu3mQd7TMjMRiroAbsfM2H/KOlpm/QLuJdLcn5+ig3US6Gy1nrw4y3YySM/NbvDrIZBYlZ+a3nOb1ocVpprgm5AOaXb39BfaWJQ0=
+   eJztlcENgDAMA7sFdAjgAxNAP7D/PqQb2G0QauST7pkosiwlJSGEEEIIIcQoTOYMmImdu3mQd7TMjMRiroAbsfM2H/KOlpm/QLuJdLcn5+ig3US6Gy1nrw4y3YySM/NbvDrIZBYlZ+a3nOb1ocVpprgm5AOaXb39BS0IKq0=
   </data>
  </layer>
  <layer id="1" name="decoration" width="90" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAIRUHm0f330wUw+RUWdwk1NI8qAAAA+M+6s6ePAFpdo692067THf4GiQMfDQJU
+   eJzt1LENACAIRUFG0v2X0wUw+RUWdwk1NI8qAAAA+M+6s6ePAFpdo692067THf4GiQMddAKo
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
@@ -50,6 +50,21 @@
   </object>
   <object id="282" gid="7" x="624" y="128" width="32" height="32"/>
   <object id="283" gid="2" x="667" y="149" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="284" gid="2" x="859" y="148" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="285" gid="2" x="1068" y="148" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="286" gid="2" x="1248" y="213" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>
