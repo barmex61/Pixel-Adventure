@@ -1,6 +1,8 @@
 package com.fatih.pixeladventure.ui.view
 
+import com.badlogic.gdx.Application
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Event
 import com.badlogic.gdx.scenes.scene2d.EventListener
@@ -26,6 +28,7 @@ import ktx.scene2d.actor
 import ktx.scene2d.checkBox
 import ktx.scene2d.defaultStyle
 import ktx.scene2d.image
+import ktx.scene2d.label
 import ktx.scene2d.table
 import ktx.scene2d.textButton
 
@@ -40,12 +43,10 @@ class SettingsView(
         setFillParent(true)
         table {tableCell ->
             tableCell.expand()
-            val typingLabel = TypingLabel("{RAINBOW}{WAVE}Settings",skin, defaultStyle).apply{
+            label("Settings", "settings_label"){
                 setAlignment(Align.center)
-                color = skin.getColor("white")
+                it.padLeft(30.0f).padRight(30.0f).padTop(20.0f).padBottom(10.0f).prefWidth(120.0f).prefHeight(35.0f).colspan(2)
             }
-            add(typingLabel).padLeft(30.0f).padRight(30.0f).padTop(20.0f).padBottom(10.0f).prefWidth(120.0f).prefHeight(35.0f).colspan(2)
-
             row()
             textButton("Resume","menu_txt_button"){
                 it.padBottom(10.0f).prefWidth(80.0f).colspan(2)

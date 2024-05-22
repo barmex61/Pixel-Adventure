@@ -149,7 +149,7 @@ class GameScreen(
         GameEventDispatcher.register(tiledService)
         GameEventDispatcher.register(this)
         uiStage.actors {
-            gameView = gameView(gameModel, game = game)
+            gameView = gameView(gameModel, game = game, keyboardInputProcessor = keyboardInputProcessor)
             settingsView = settingsView(game = game){
                 isVisible = false
             }
@@ -182,12 +182,14 @@ class GameScreen(
                 onFinishMap()
             }
         }
-        settingsView?.act(delta)
+        if (stopGame) {
+            gameView?.act(delta)
+            settingsView?.act(delta)
+        }
     }
 
     fun stopGame(stop : Boolean){
         stopGame = stop
-        keyboardInputProcessor.stop = stop
         keyboardInputProcessor.resetMoveX()
         audioService.play(SoundAsset.PAUSE)
         settingsView?.isVisible = stop

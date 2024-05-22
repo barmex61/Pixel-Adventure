@@ -1,28 +1,34 @@
 package com.fatih.pixeladventure.input
 
 import com.badlogic.gdx.Input
+import com.badlogic.gdx.scenes.scene2d.Event
+import com.badlogic.gdx.scenes.scene2d.EventListener
+import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
+import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.TouchpadAlphaEvent
 import com.github.quillraven.fleks.World
+import ktx.actors.KtxInputListener
 import ktx.app.KtxInputAdapter
 
-class KeyboardInputProcessor(world: World) : KtxInputAdapter {
+class KeyboardInputProcessor(world: World) : KtxInputAdapter , KtxInputListener() {
 
     private var moveX = 0
     private var playerEntities = with(world) {
         family { all(EntityTag.PLAYER) }
     }
-    var stop : Boolean = false
 
     fun resetMoveX() {
-        moveX = 0
+        updatePlayerMovement(0,true)
     }
 
-    private fun updatePlayerMovement(moveValue : Int){
-        if (stop) return
+    private fun updatePlayerMovement(moveValue : Int,reset : Boolean = false){
+        if ((reset && moveX == 0) || moveX == moveValue) return
         moveX = (moveX + moveValue).coerceIn(-1,1)
+        if (reset) moveX = 0
         playerEntities.forEach { it[Move].direction = MoveDirection.horizontalValueOf(moveX) }
     }
 
@@ -44,4 +50,26 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter {
         }
         return false
     }
+
+
+    override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+        GameEventDispatcher.fireEvent(TouchpadAlphaEvent(1f))
+        return true
+    }
+
+    override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+        GameEventDispatcher.fireEvent(TouchpadAlphaEvent(0.2f))
+        resetMoveX()
+    }
+
+    override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
+        if (x < 20f){
+            updatePlayerMovement(-1)
+        }else if (x > 44f){
+            updatePlayerMovement(1)
+        }else{
+            resetMoveX()
+        }
+    }
 }
+

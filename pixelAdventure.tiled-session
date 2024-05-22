@@ -14,14 +14,14 @@
         },
         "assets/map/map1.tmx": {
             "expandedObjectLayers": [
-                3,
-                10
+                10,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 146,
-                "y": 48.333333333333314
+                "x": 199.66666666666666,
+                "y": 479.66666666666663
             }
         },
         "assets/map/map1.tmx#terrain-extruded": {
@@ -31,14 +31,14 @@
         },
         "assets/map/map2.tmx": {
             "expandedObjectLayers": [
-                3,
-                10
+                10,
+                3
             ],
             "scale": 1.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1164,
-                "y": 142.99999999999997
+                "x": 719.6666666666666,
+                "y": 120.33333333333334
             }
         },
         "assets/map/map2.tmx#terrain-extruded": {
@@ -46,8 +46,8 @@
         },
         "assets/map/map3.tmx": {
             "expandedObjectLayers": [
-                3,
-                10
+                10,
+                3
             ],
             "scale": 1,
             "selectedLayer": 2,
@@ -61,34 +61,34 @@
         },
         "assets/map/map4.tmx": {
             "expandedObjectLayers": [
-                3,
-                10
+                10,
+                3
             ],
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 278.66666666666663,
-                "y": 477.99999999999994
+                "x": 280.66666666666663,
+                "y": 479.33333333333326
             }
         },
         "assets/map/map5.tmx": {
             "expandedObjectLayers": [
-                3,
-                10
+                10,
+                3
             ],
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 239.5,
-                "y": 361.75
+                "x": 359.75,
+                "y": 319.75
             }
         },
         "assets/map/map6.tmx": {
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 381,
-                "y": 340.5
+                "x": 639.5,
+                "y": 240.5
             }
         },
         "assets/map/object.tmx": {
@@ -127,14 +127,14 @@
         },
         "assets/map/tutorial.tmx": {
             "expandedObjectLayers": [
-                3,
-                10
+                10,
+                3
             ],
             "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1202,
-                "y": 121.5
+                "x": 1599.5,
+                "y": 119.5
             }
         },
         "assets/map/tutorial.tmx#terrain-extruded": {

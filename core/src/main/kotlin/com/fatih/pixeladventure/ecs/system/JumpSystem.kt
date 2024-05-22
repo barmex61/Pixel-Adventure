@@ -36,6 +36,13 @@ class JumpSystem(
         val (body,_) = entity[Physic]
         var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpFruitTimer,jumpCounter) = entity[Jump]
 
+        if (doubleJump){
+            applyJumpForce(jumpComps,body,maxHeight * 0.85f)
+            jumpComps.doubleJump = false
+            entity[State].stateMachine.changeState(PlayerState.DOUBLE_JUMP)
+            return
+        }
+
         if (jumpFruitTimer > 0f ){
             if (jumpFruitTimer == 4f) fireFruitEventOnce = true
             jumpFruitTimer = (jumpFruitTimer - deltaTime).coerceAtLeast(0f)
@@ -55,13 +62,6 @@ class JumpSystem(
                 fireFruitEventOnce = false
             }
 
-            return
-        }
-
-        if (doubleJump){
-            applyJumpForce(jumpComps,body,maxHeight * 0.85f)
-            jumpComps.doubleJump = false
-            entity[State].stateMachine.changeState(PlayerState.DOUBLE_JUMP)
             return
         }
 

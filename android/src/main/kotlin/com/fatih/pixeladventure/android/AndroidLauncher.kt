@@ -14,5 +14,6 @@ class AndroidLauncher : AndroidApplication() {
             // Configure your application here.
             useImmersiveMode = true // Recommended, but not required.
         })
+
     }
 }

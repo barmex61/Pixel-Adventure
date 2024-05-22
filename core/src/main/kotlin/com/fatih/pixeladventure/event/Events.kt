@@ -17,6 +17,7 @@ data object MainMenuEvent : GameEvent
 data class MuteAudioEvent(val mute : Boolean) : GameEvent
 data class PlaySoundEvent(val soundAsset: SoundAsset) : GameEvent
 data class EndFruitEffectEvent(val fruitDrawable: FruitDrawable,val count : Int) : GameEvent
+data class TouchpadAlphaEvent(val alpha : Float) : GameEvent
 
 
 interface GameEventListener{

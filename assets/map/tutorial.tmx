@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="242">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="248">
  <properties>
   <property name="musicAsset" value="MUSIC3"/>
   <property name="name" value="Tutorial"/>
@@ -89,6 +89,12 @@
   <object id="233" gid="16" x="536" y="173" width="54" height="52"/>
   <object id="240" gid="12" x="288" y="80" width="32" height="10"/>
   <object id="241" gid="12" x="320" y="58" width="32" height="10"/>
+  <object id="242" gid="9" x="201" y="184" width="32" height="32"/>
+  <object id="243" gid="10" x="169" y="183" width="32" height="32"/>
+  <object id="244" gid="11" x="137" y="186" width="32" height="32"/>
+  <object id="245" gid="8" x="201" y="160" width="32" height="32"/>
+  <object id="246" gid="4" x="168" y="159" width="32" height="32"/>
+  <object id="247" gid="7" x="135" y="161" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="218" x="2240" y="194">
