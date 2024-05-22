@@ -12,7 +12,7 @@ import com.github.quillraven.fleks.Entity
 
 interface EntityState : State<AiEntity>{
     companion object{
-        const val TOLERANCE_X = 0.1f
+        const val TOLERANCE_X = 0.25f
         const val TOLERANCE_Y = 1f
         const val ZERO = 0f
     }

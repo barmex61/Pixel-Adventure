@@ -10,6 +10,7 @@ import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.Fan
 import com.fatih.pixeladventure.ecs.component.Graphic
+import com.fatih.pixeladventure.ecs.component.Life
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.fatih.pixeladventure.ecs.component.Physic
@@ -37,6 +38,10 @@ data class AiEntity(
     val physicWorld: PhysicWorld,
 ) {
 
+    val isNotDead : Boolean
+        get() {
+            return get(Life).current != 0
+        }
     var changeTrackPosition : Boolean = false
     var fruitRespawnDuration : Float = 3f
     var entityRemoveDuration : Float = 1f

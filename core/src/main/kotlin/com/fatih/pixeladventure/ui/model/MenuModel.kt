@@ -14,8 +14,8 @@ class MenuModel(val game : PixelAdventure,val preferences: GamePreferences){
         get() = preferences.loadUnlockedMaps()
 
     fun startGame(mapAsset: MapAsset){
-        game.setScreen<GameScreen>()
-        game.getScreen<GameScreen>().loadMap(mapAsset)
+        game.getScreen<MenuScreen>().mapAsset  = mapAsset
+
     }
 
     fun addActionToView(actions : Action, menuViewType: MenuViewType){

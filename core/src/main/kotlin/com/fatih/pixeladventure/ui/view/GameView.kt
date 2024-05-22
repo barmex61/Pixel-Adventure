@@ -95,7 +95,7 @@ class GameView(
             }
 
         }
-        if (Gdx.app.type == Application.ApplicationType.Android || Gdx.app.type == Application.ApplicationType.iOS || true){
+        if (Gdx.app.type == Application.ApplicationType.Android || Gdx.app.type == Application.ApplicationType.iOS ){
             row()
             this.touchpad = touchpad(0f){
                 this.alpha = 0.2f
@@ -140,7 +140,7 @@ class GameView(
         row()
         val playerLife = image("health_4"){
             name = "player_life"
-            it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,25f)
+            it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,if (Gdx.app.type == Application.ApplicationType.Android || Gdx.app.type == Application.ApplicationType.iOS) 25f else 12f)
         }
 
         gameModel.onPropertyChange(GameModel::mapName){

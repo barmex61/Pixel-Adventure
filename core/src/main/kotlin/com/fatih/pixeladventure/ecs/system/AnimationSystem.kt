@@ -46,9 +46,9 @@ class AnimationSystem(
     }
 
     fun entityAnimation(entity: Entity, animationType: AnimationType,playMode: PlayMode) {
+
         val (_,gameObject) = entity[Tiled]
         val animationAtlasKey = "${gameObject.atlasKey}/${animationType.atlasKey}"
-
         val gdxAnimation = gdxAnimationCache.getOrPut(animationAtlasKey){
             val regions = objectAtlas.findRegions(animationAtlasKey)
 
@@ -65,7 +65,13 @@ class AnimationSystem(
         animationComp.gdxAnimation = gdxAnimation
         animationComp.playMode = playMode
         animationComp.animationType = animationType
-        entity[Graphic].sprite.setRegion(gdxAnimation.getKeyFrame(0f))
+        entity[Graphic].sprite.setRegion(gdxAnimation.getKeyFrame(0f).apply {
+            entity.getOrNull(Move)?.let { moveComp ->
+                if (moveComp.flipX != isFlipX){
+                    flip(true,false)
+                }
+            }
+        })
     }
 
     companion object{

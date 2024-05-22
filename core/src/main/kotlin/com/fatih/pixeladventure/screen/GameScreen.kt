@@ -5,6 +5,7 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.Body
+import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
@@ -79,7 +80,8 @@ class GameScreen(
     gameProperties: GameProperties,
     private val game : PixelAdventure,
     private val gamePreferences: GamePreferences,
-): KtxScreen , GameEventListener{
+): KtxScreen , GameEventListener {
+
 
     private var settingsView: SettingsView ?= null
     private var gameView : GameView ?= null
@@ -89,8 +91,8 @@ class GameScreen(
     private val uiViewPort : Viewport = StretchViewport(480f,270f)
     private val uiStage : Stage = Stage(uiViewPort,spriteBatch)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
-    private var delayToMenu = 0f
     private var isPlayerDeath = false
+    private var changeScreen : Boolean = false
     private lateinit var currentMapAsset: MapAsset
     private val world = configureWorld {
         injectables {
@@ -140,6 +142,7 @@ class GameScreen(
     }
 
     override fun show() {
+        keyboardInputProcessor.stopMovement = false
         inputMultiplexer.addProcessor(keyboardInputProcessor)
         inputMultiplexer.addProcessor(uiStage)
         world.systems
@@ -176,9 +179,10 @@ class GameScreen(
             gameView?.deleteFruit(FruitDrawable.entries.random())
         }
         world.update(if (stopGame) 0f else delta)
-        if (delayToMenu > 0f){
-            delayToMenu -= delta
-            if (delayToMenu < 0f){
+        if (changeScreen){
+            gameCamera.zoom -= delta
+            if (gameCamera.zoom <= 0f) {
+                changeScreen = false
                 onFinishMap()
             }
         }
@@ -198,7 +202,8 @@ class GameScreen(
 
 
     private fun onFinishMap(){
-        delayToMenu = 0f
+        println("finish")
+        changeScreen = false
         if (!isPlayerDeath) currentMapAsset.unlocksMap?.let { mapAsset -> gamePreferences.storeUnlockedMap(mapAsset) }
         isPlayerDeath = false
         world.removeAll()
@@ -207,6 +212,7 @@ class GameScreen(
         bodyList.forEach { physicWorld.destroyBody(it) }
         game.setScreen<MenuScreen>()
         game.getScreen<MenuScreen>().addAction(fadeIn(0.75f),menuViewType)
+        gameCamera.zoom = 1f
     }
 
     private fun restartLevel(){
@@ -225,21 +231,24 @@ class GameScreen(
     override fun onEvent(gameEvent: GameEvent) {
         when(gameEvent){
             is VictoryEvent ->{
+                keyboardInputProcessor.stopMovement = true
                 menuViewType = MenuScreen.MenuViewType.LEVEL_VIEW
-                delayToMenu = 2f
+                changeScreen = true
                 gameView?.touchable = Touchable.disabled
             }
             is EntityLifeChangeEvent ->{
                 menuViewType = MenuScreen.MenuViewType.LEVEL_VIEW
                 if (gameEvent.currentLife == 0){
-                    delayToMenu = 0.00001f
+                    keyboardInputProcessor.stopMovement = true
+                    changeScreen = true
                     isPlayerDeath = true
                 }
             }
             is MainMenuEvent ->{
+                keyboardInputProcessor.stopMovement = true
                 menuViewType = MenuScreen.MenuViewType.MENU_VIEW
                 stopGame(false)
-                delayToMenu = 0.00001f
+                changeScreen = true
                 gameView?.touchable = Touchable.disabled
             }
             is RestartLevelEvent ->{

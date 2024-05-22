@@ -6,6 +6,7 @@ import com.fatih.pixeladventure.ai.EntityState.Companion.TOLERANCE_X
 import com.fatih.pixeladventure.ai.EntityState.Companion.TOLERANCE_Y
 import com.fatih.pixeladventure.ai.EntityState.Companion.ZERO
 import com.fatih.pixeladventure.ecs.component.AnimationType
+import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import ktx.math.component1
 import ktx.math.component2
@@ -108,7 +109,9 @@ enum class PlayerState : EntityState{
         }
 
         override fun update(entity: AiEntity) {
-            if (entity.isAnimationDone()) entity.state(IDLE)
+            if (entity.isAnimationDone() && entity.isNotDead) entity.state(IDLE)
         }
-    },
+    }
+
+
 }

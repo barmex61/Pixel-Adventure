@@ -22,6 +22,7 @@ class CameraSystem (
     private val mapBoundaries = Vector2(0f,0f)
 
     override fun onTickEntity(entity: Entity) {
+
         val (sprite) = entity[Graphic]
 
         var camX = sprite.x + sprite.width * 0.5f

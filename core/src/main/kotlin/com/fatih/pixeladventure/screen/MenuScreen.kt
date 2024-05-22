@@ -1,5 +1,6 @@
 package com.fatih.pixeladventure.screen
 
+import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.scenes.scene2d.Action
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -17,6 +18,7 @@ import com.fatih.pixeladventure.ui.view.levelView
 import com.fatih.pixeladventure.ui.view.menuView
 import com.fatih.pixeladventure.ui.view.stageView
 import com.fatih.pixeladventure.util.GamePreferences
+import com.fatih.pixeladventure.util.MapAsset
 import com.fatih.pixeladventure.util.MusicAsset
 import ktx.actors.alpha
 import ktx.actors.plusAssign
@@ -26,13 +28,14 @@ import ktx.graphics.use
 import ktx.math.vec2
 import ktx.scene2d.actors
 
-class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService,game : PixelAdventure,preferences: GamePreferences) : KtxScreen{
+class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService,private val game : PixelAdventure,preferences: GamePreferences) : KtxScreen{
 
     enum class MenuViewType{
         MENU_VIEW,LEVEL_VIEW,STAGE_VIEW
     }
 
     private val viewPort = StretchViewport(480f,270f)
+    private val camera : OrthographicCamera = viewPort.camera as OrthographicCamera
     private val menuStage = Stage(viewPort,spriteBatch)
     private val menuModel = MenuModel(game,preferences)
     private val parallaxBgd = ParallaxBackground(viewPort,"graphics/brown.png", vec2(1f,1f),1f)
@@ -40,9 +43,9 @@ class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService
     private lateinit var levelView: LevelView
     private lateinit var stageView: StageView
     private var firstLaunch = true
+    var mapAsset : MapAsset? = null
 
     fun addAction(actions: Action, menuViewType: MenuViewType){
-        println("action")
         when(menuViewType){
             MenuViewType.LEVEL_VIEW -> {
                 levelView += actions
@@ -85,9 +88,18 @@ class MenuScreen(spriteBatch: SpriteBatch,private val audioService: AudioService
     }
 
     override fun render(delta: Float) {
+        if (mapAsset != null){
+            camera.zoom -= delta
+            if (camera.zoom <= 0f){
+                game.setScreen<GameScreen>()
+                game.getScreen<GameScreen>().loadMap(mapAsset!!)
+                mapAsset = null
+                camera.zoom = 1f
+            }
+        }
         viewPort.apply()
         parallaxBgd.scrollBy(-0.5f * delta,-0.5f * delta)
-        menuStage.batch.use(viewPort.camera){
+        menuStage.batch.use(camera){
             parallaxBgd.draw(0f,0f,it)
         }
         menuStage.act(delta)

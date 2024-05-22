@@ -49,6 +49,5 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
 
     companion object{
         val pow50outInterpolation: Interpolation.PowOut = Interpolation.pow5Out
-        val interpolation = Interpolation.linear
     }
 }

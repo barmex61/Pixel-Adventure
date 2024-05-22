@@ -86,7 +86,7 @@
    </properties>
   </object>
   <object id="232" gid="15" x="240" y="192" width="28" height="28"/>
-  <object id="233" gid="16" x="536" y="173" width="54" height="52"/>
+  <object id="233" gid="16" x="508" y="171" width="54" height="52"/>
   <object id="240" gid="12" x="288" y="80" width="32" height="10"/>
   <object id="241" gid="12" x="320" y="58" width="32" height="10"/>
   <object id="242" gid="9" x="201" y="184" width="32" height="32"/>

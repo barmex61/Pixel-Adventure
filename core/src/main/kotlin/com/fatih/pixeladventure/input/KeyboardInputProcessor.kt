@@ -20,16 +20,34 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter {
     private var playerEntities = with(world) {
         family { all(EntityTag.PLAYER) }
     }
+    var stopMovement : Boolean = false
 
     fun resetMoveX() {
         updatePlayerMovement(0,true)
     }
 
     fun updatePlayerMovement(moveValue : Int,reset : Boolean = false){
+        if (stopMovement) {
+            stopMovement()
+            return
+        }
         if ((reset && moveX == 0) || moveX == moveValue) return
         moveX = (moveX + moveValue).coerceIn(-1,1)
         if (reset) moveX = 0
-        playerEntities.forEach { it[Move].direction = MoveDirection.horizontalValueOf(moveX) }
+        playerEntities.forEach {
+            it.getOrNull(Move)?.let {
+                it.direction = MoveDirection.horizontalValueOf(moveX)
+            }
+        }
+    }
+
+    private fun stopMovement(){
+        moveX = 0
+        playerEntities.forEach {
+            it.getOrNull(Move)?.let {
+                it.direction = MoveDirection.horizontalValueOf(moveX)
+            }
+        }
     }
 
     fun updatePlayerJump(jump : Boolean){
