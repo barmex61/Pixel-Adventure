@@ -6,10 +6,12 @@ import com.badlogic.gdx.Preferences
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.FixtureDef
 import com.badlogic.gdx.physics.box2d.World
+import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ObjectMap
 import com.badlogic.gdx.utils.PropertiesUtils
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.screen.GameScreen
 import com.fatih.pixeladventure.screen.LoadingScreen
 import com.fatih.pixeladventure.tiled.TiledService.Companion.FixtureDefUserData
 import com.fatih.pixeladventure.util.Assets
@@ -56,6 +58,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     }
 
     override fun create() {
+        Gdx.graphics.setVSync(false)
         Gdx.input.inputProcessor = InputMultiplexer()
         addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets,audioService,gameProperties, gamePreferences ))
         setScreen<LoadingScreen>()

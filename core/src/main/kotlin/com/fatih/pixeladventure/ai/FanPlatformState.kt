@@ -1,5 +1,6 @@
 package com.fatih.pixeladventure.ai
 
+import com.badlogic.gdx.Gdx
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Physic
 
@@ -13,7 +14,8 @@ enum class FanPlatformState : EntityState {
             entity.hasFanTarget()?.let {
                 with(entity.world){
                     val playerBody = it[Physic].body
-                    playerBody.setLinearVelocity(playerBody.linearVelocity.x,playerBody.linearVelocity.y + 0.045f)
+                    println(playerBody.linearVelocity.y)
+                    playerBody.setLinearVelocity(playerBody.linearVelocity.x,playerBody.linearVelocity.y + 60f/ Gdx.graphics.framesPerSecond)
                 }
             }
         }

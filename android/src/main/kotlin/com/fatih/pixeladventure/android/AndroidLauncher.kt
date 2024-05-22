@@ -13,6 +13,7 @@ class AndroidLauncher : AndroidApplication() {
         initialize(PixelAdventure(), AndroidApplicationConfiguration().apply {
             // Configure your application here.
             useImmersiveMode = true // Recommended, but not required.
+            useGL30 = true
         })
 
     }

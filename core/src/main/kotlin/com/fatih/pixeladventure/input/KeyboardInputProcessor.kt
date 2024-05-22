@@ -14,7 +14,7 @@ import com.github.quillraven.fleks.World
 import ktx.actors.KtxInputListener
 import ktx.app.KtxInputAdapter
 
-class KeyboardInputProcessor(world: World) : KtxInputAdapter , KtxInputListener() {
+class KeyboardInputProcessor(world: World) : KtxInputAdapter {
 
     private var moveX = 0
     private var playerEntities = with(world) {
@@ -25,18 +25,22 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter , KtxInputListener(
         updatePlayerMovement(0,true)
     }
 
-    private fun updatePlayerMovement(moveValue : Int,reset : Boolean = false){
+    fun updatePlayerMovement(moveValue : Int,reset : Boolean = false){
         if ((reset && moveX == 0) || moveX == moveValue) return
         moveX = (moveX + moveValue).coerceIn(-1,1)
         if (reset) moveX = 0
         playerEntities.forEach { it[Move].direction = MoveDirection.horizontalValueOf(moveX) }
     }
 
+    fun updatePlayerJump(jump : Boolean){
+        playerEntities.forEach { it[Jump].jump = jump}
+    }
+
     override fun keyDown(keycode: Int): Boolean {
         when(keycode){
             Input.Keys.D -> updatePlayerMovement(1)
             Input.Keys.A -> updatePlayerMovement(-1)
-            Input.Keys.SPACE -> playerEntities.forEach { it[Jump].jump = true}
+            Input.Keys.SPACE -> updatePlayerJump(true)
         }
 
         return false
@@ -46,30 +50,9 @@ class KeyboardInputProcessor(world: World) : KtxInputAdapter , KtxInputListener(
         when(keycode){
             Input.Keys.D -> updatePlayerMovement(-1)
             Input.Keys.A -> updatePlayerMovement(1)
-            Input.Keys.SPACE -> playerEntities.forEach { it[Jump].jump = false }
+            Input.Keys.SPACE -> updatePlayerJump(false)
         }
         return false
-    }
-
-
-    override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-        GameEventDispatcher.fireEvent(TouchpadAlphaEvent(1f))
-        return true
-    }
-
-    override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-        GameEventDispatcher.fireEvent(TouchpadAlphaEvent(0.2f))
-        resetMoveX()
-    }
-
-    override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-        if (x < 20f){
-            updatePlayerMovement(-1)
-        }else if (x > 44f){
-            updatePlayerMovement(1)
-        }else{
-            resetMoveX()
-        }
     }
 }
 

@@ -4,6 +4,7 @@ import com.badlogic.gdx.Application
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
+import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.actions.Actions
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.delay
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
@@ -20,6 +21,7 @@ import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.fatih.pixeladventure.event.GameEventDispatcher
 import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.event.RestartLevelEvent
+import com.fatih.pixeladventure.event.TouchpadAlphaEvent
 import com.fatih.pixeladventure.game.PixelAdventure
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
 import com.fatih.pixeladventure.screen.GameScreen
@@ -98,20 +100,47 @@ class GameView(
             this.touchpad = touchpad(0f){
                 this.alpha = 0.2f
                 it.expandX().maxSize(64f)
-                this.addListener(keyboardInputProcessor)
+                listeners.add(object  : InputListener() {
+                    override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                        GameEventDispatcher.fireEvent(TouchpadAlphaEvent(1f))
+                        return true
+                    }
+
+                    override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                        GameEventDispatcher.fireEvent(TouchpadAlphaEvent(0.2f))
+                        keyboardInputProcessor.resetMoveX()
+                    }
+
+                    override fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
+                        if (x < 20f){
+                            keyboardInputProcessor.updatePlayerMovement(-1)
+                        }else if (x > 44f){
+                            keyboardInputProcessor.updatePlayerMovement(1)
+                        }else{
+                            keyboardInputProcessor.resetMoveX()
+                        }
+                    }
+                })
             }
             add().expandX()
             imageButton("jump_img_button"){
                 it.expandX().maxSize(48f)
-                onClick {
-                    println("yessirr")
-                }
+                listeners.add(object  : InputListener() {
+                    override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                        keyboardInputProcessor.updatePlayerJump(true)
+                        return true
+                    }
+
+                    override fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
+                        keyboardInputProcessor.updatePlayerJump(false)
+                    }
+                })
             }
         }
         row()
         val playerLife = image("health_4"){
             name = "player_life"
-            it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,12f)
+            it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,25f)
         }
 
         gameModel.onPropertyChange(GameModel::mapName){

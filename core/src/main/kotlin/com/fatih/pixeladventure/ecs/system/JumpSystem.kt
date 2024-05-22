@@ -84,10 +84,9 @@ class JumpSystem(
             if ((categoryBit == GROUND_BIT && userData == "cantJump" && jumpOnGround) ||
                 (categoryBit == GROUND_BIT && userData == "canJump") ||
                 (categoryBit == ROCK_HEAD_BIT && userData == "hitbox") ||
-                categoryBit == PLATFORM_BIT){
+                (categoryBit == PLATFORM_BIT && !fixture.isSensor)){
                 if (jumpOnGround && categoryBit == GROUND_BIT && userData == "cantJump" ){
                     jumpComps.jumpOnGround = false
-                    println("yes")
                     GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.MELON,0))
                 }
                 applyJumpForce(jumpComps,body,maxHeight)
