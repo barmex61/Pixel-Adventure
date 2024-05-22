@@ -43,13 +43,11 @@ import com.fatih.pixeladventure.ecs.system.StateSystem
 import com.fatih.pixeladventure.ecs.system.TeleportSystem
 import com.fatih.pixeladventure.ecs.system.TextSystem
 import com.fatih.pixeladventure.event.CollectItemEvent
-import com.fatih.pixeladventure.event.EndAppleEffectEvent
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
 import com.fatih.pixeladventure.event.MainMenuEvent
 import com.fatih.pixeladventure.event.PlayerOutOfMapEvent
-import com.fatih.pixeladventure.event.EndBananaEffectEvent
-import com.fatih.pixeladventure.event.EndKiwiEffectEvent
+import com.fatih.pixeladventure.event.EndFruitEffectEvent
 import com.fatih.pixeladventure.event.RestartLevelEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
@@ -257,7 +255,7 @@ class GameScreen(
                     when(collectableEntity[Collectable].name){
                         GameObject.CHERRY.name -> {
                             gameEvent.playerEntity[Jump].doubleJump = true
-                            gameView?.addFruit(FruitDrawable.CHERRY)
+                            //gameView?.addFruit(FruitDrawable.CHERRY)
                         }
                         GameObject.BANANA.name -> {
                             gameEvent.playerEntity[Move].max += 1f
@@ -275,13 +273,6 @@ class GameScreen(
                         }
                         GameObject.KIWI.name ->{
                             gameEvent.playerEntity.configure {
-                                /*val invComp = it.getOrNull(Invulnarable)
-                                if (invComp != null) {
-                                    invComp.isFruitEffect = true
-                                    invComp.time = 3.5f
-                                } else {
-                                    it += Invulnarable(3.5f,true)
-                                } */
                                 it += Invulnarable(3.5f,true)
                                 it += Blink(3.3f,0.075f)
                             }
@@ -296,15 +287,10 @@ class GameScreen(
                     }
                 }
             }
-            is EndBananaEffectEvent ->{
-                gameView?.deleteFruit(FruitDrawable.BANANA,true,gameEvent.count)
+            is EndFruitEffectEvent ->{
+                gameView?.deleteFruit(gameEvent.fruitDrawable,true,gameEvent.count)
             }
-            is EndAppleEffectEvent -> {
-                gameView?.deleteFruit(FruitDrawable.APPLE,true,0)
-            }
-            is EndKiwiEffectEvent -> {
-                gameView?.deleteFruit(FruitDrawable.KIWI,true,0)
-            }
+
             is PlayerOutOfMapEvent ->{
                 gameView?.deleteFruit(FruitDrawable.BANANA,true,0)
             }

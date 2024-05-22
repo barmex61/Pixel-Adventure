@@ -4,8 +4,9 @@ import com.badlogic.gdx.math.Interpolation
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.fatih.pixeladventure.ecs.component.Track
+import com.fatih.pixeladventure.event.EndFruitEffectEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
-import com.fatih.pixeladventure.event.EndBananaEffectEvent
+import com.fatih.pixeladventure.util.FruitDrawable
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World.Companion.family
@@ -22,7 +23,7 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
             if (maxReduceTimer >= 0.5f){
                 moveComp.max -= 0.5f
                 maxReduceTimer = 0f
-                GameEventDispatcher.fireEvent(EndBananaEffectEvent((max - defaultMax).toInt()))
+                GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.BANANA,(max - defaultMax).toInt()))
             }
             moveComp.maxReduceTimer = maxReduceTimer
             println(max)

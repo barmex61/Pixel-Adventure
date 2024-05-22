@@ -2,27 +2,18 @@ package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.math.MathUtils
 import com.badlogic.gdx.physics.box2d.Body
-import com.fatih.pixeladventure.ai.FruitState
 import com.fatih.pixeladventure.ai.PlayerState
 import com.fatih.pixeladventure.audio.AudioService
-import com.fatih.pixeladventure.ecs.component.Blink
-import com.fatih.pixeladventure.ecs.component.Collectable
-import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Fly
-import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Jump
-import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.system.PhysicDebugRenderSystem.Companion.DEBUG_RECT
-import com.fatih.pixeladventure.event.CollectItemEvent
-import com.fatih.pixeladventure.event.EndAppleEffectEvent
-import com.fatih.pixeladventure.event.GameEvent
+import com.fatih.pixeladventure.event.EndFruitEffectEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
-import com.fatih.pixeladventure.event.GameEventListener
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.util.FruitDrawable
 import com.fatih.pixeladventure.util.GROUND_BIT
-import com.fatih.pixeladventure.util.GameObject
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
 import com.fatih.pixeladventure.util.SoundAsset
@@ -38,7 +29,7 @@ class JumpSystem(
     private val audioService: AudioService = World.inject()
 ): IteratingSystem(family = family { all(Jump) }) {
 
-    private var fireAppleEventOnce : Boolean = true
+    private var fireFruitEventOnce : Boolean = true
 
     override fun onTickEntity(entity: Entity) {
         val jumpComps = entity[Jump]
@@ -46,7 +37,7 @@ class JumpSystem(
         var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpFruitTimer,jumpCounter) = entity[Jump]
 
         if (jumpFruitTimer > 0f ){
-            if (jumpFruitTimer == 4f) fireAppleEventOnce = true
+            if (jumpFruitTimer == 4f) fireFruitEventOnce = true
             jumpFruitTimer = (jumpFruitTimer - deltaTime).coerceAtLeast(0f)
             jumpComps.jumpFruitTimer = jumpFruitTimer
             if (jumpCounter <2 && jump){
@@ -59,9 +50,9 @@ class JumpSystem(
                 audioService.play(SoundAsset.JUMP)
                 jumpComps.jumpCounter = jumpCounter
             }
-            if (fireAppleEventOnce && jumpFruitTimer < 1.25f) {
-                GameEventDispatcher.fireEvent(EndAppleEffectEvent)
-                fireAppleEventOnce = false
+            if (fireFruitEventOnce && jumpFruitTimer < 1.25f) {
+                GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.APPLE,0))
+                fireFruitEventOnce = false
             }
 
             return
@@ -96,6 +87,8 @@ class JumpSystem(
                 categoryBit == PLATFORM_BIT){
                 if (jumpOnGround && categoryBit == GROUND_BIT && userData == "cantJump" ){
                     jumpComps.jumpOnGround = false
+                    println("yes")
+                    GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.MELON,0))
                 }
                 applyJumpForce(jumpComps,body,maxHeight)
                 audioService.play(SoundAsset.JUMP)

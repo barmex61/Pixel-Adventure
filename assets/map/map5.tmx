@@ -93,8 +93,6 @@
   </object>
   <object id="356" gid="5" x="160" y="114" width="64" height="64"/>
   <object id="357" gid="3" x="112" y="118" width="42" height="42"/>
-  <object id="358" gid="10" x="112" y="480" width="32" height="32"/>
-  <object id="359" gid="10" x="64" y="480" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="330" x="171" y="546">

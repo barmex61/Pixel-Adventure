@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "assets/map/map1.tmx",
+    "activeFile": "assets/map/tutorial.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tüm Dosyalar (*)",
@@ -67,7 +67,7 @@
             "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 280,
+                "x": 278.66666666666663,
                 "y": 477.99999999999994
             }
         },
@@ -79,8 +79,8 @@
             "scale": 2,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 240,
-                "y": 362.25
+                "x": 239.5,
+                "y": 361.75
             }
         },
         "assets/map/map6.tmx": {
@@ -130,11 +130,11 @@
                 3,
                 10
             ],
-            "scale": 2,
+            "scale": 1,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 1857.5,
-                "y": 157.75
+                "x": 1202,
+                "y": 121.5
             }
         },
         "assets/map/tutorial.tmx#terrain-extruded": {
@@ -164,7 +164,6 @@
     "project": "pixelAdventure.tiled-project",
     "property.type": "AnimType",
     "recentFiles": [
-        "assets/map/tutorial.tmx",
         "assets/map/object.tmx",
         "assets/map/terrain-extruded.tsx",
         "assets/map/objects.tsx",
@@ -174,6 +173,7 @@
         "assets/map/map3.tmx",
         "assets/map/map2.tmx",
         "assets/map/map1.tmx",
+        "assets/map/tutorial.tmx",
         "assets/map/test.tmx"
     ]
 }
