@@ -3,6 +3,7 @@ package com.fatih.pixeladventure.ai
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Fan
 import com.fatih.pixeladventure.ecs.component.Physic
+import com.fatih.pixeladventure.ecs.system.StateSystem
 import kotlin.math.cos
 import kotlin.math.sin
 
@@ -17,7 +18,8 @@ enum class FanPlatformState : EntityState {
                 val rotation = 90 - entity[Fan].rotation
                 with(entity.world){
                     val playerBody = it[Physic].body
-                    playerBody.setLinearVelocity(playerBody.linearVelocity.x + ((deltaTime * 10f) * cos(rotation)),playerBody.linearVelocity.y + ((deltaTime*55f) * sin(rotation)))
+                    println(((StateSystem.STATE_DELTA_TIME*200f) * sin(rotation)))
+                    playerBody.setLinearVelocity(playerBody.linearVelocity.x,playerBody.linearVelocity.y + ((StateSystem.STATE_DELTA_TIME*48f) * sin(rotation)))
                 }
             }
         }

@@ -1,5 +1,7 @@
 package com.fatih.pixeladventure.game
 
+import com.badlogic.gdx.Application
+import com.badlogic.gdx.Application.ApplicationType
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.Preferences
@@ -77,5 +79,9 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     companion object{
         const val UNIT_SCALE = 1/16f
         val OBJECT_FIXTURES = mutableMapOf<GameObject,List<FixtureDefUserData>>()
+        val isPhone : Boolean by lazy{
+            Gdx.app.type == ApplicationType.iOS || Gdx.app.type == ApplicationType.Android
+        }
+
     }
 }

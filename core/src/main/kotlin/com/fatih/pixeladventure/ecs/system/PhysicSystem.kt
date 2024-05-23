@@ -83,10 +83,6 @@ class PhysicSystem(
                 }
                 return
             }
-            if (entity has EntityTag.FAN_EFFECT){
-                body.setLinearVelocity(body.linearVelocity.x + moveComp.current * 0.002f, body.linearVelocity.y)
-                return
-            }
             body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
         }
     }

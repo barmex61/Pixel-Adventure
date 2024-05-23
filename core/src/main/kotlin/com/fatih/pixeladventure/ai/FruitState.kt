@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.EntityTag
+import com.fatih.pixeladventure.ecs.system.StateSystem
 
 
 enum class FruitState : EntityState{
@@ -26,7 +27,7 @@ enum class FruitState : EntityState{
         }
 
         override fun update(entity: AiEntity) {
-            entity.fruitRespawnDuration -= Gdx.graphics.deltaTime
+            entity.fruitRespawnDuration -= StateSystem.STATE_DELTA_TIME
             if (entity.isAnimationDone() && entity.fruitRespawnDuration <= 0f) entity.state(RESPAWN)
         }
     },

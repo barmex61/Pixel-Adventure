@@ -30,14 +30,14 @@
     </properties>
     <ellipse/>
    </object>
-   <object id="25" type="FixtureDef" x="11" y="26">
+   <object id="25" type="FixtureDef" x="11" y="28">
     <properties>
      <property name="friction" type="float" value="0"/>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
      <property name="restitution" type="float" value="0"/>
      <property name="userData" value="bodyFixture"/>
     </properties>
-    <polygon points="0,0 11,0 11,-11 0,-11"/>
+    <polygon points="0,0 11,0 11,-13 0,-13"/>
    </object>
    <object id="30" type="FixtureDef" x="10" y="32">
     <properties>

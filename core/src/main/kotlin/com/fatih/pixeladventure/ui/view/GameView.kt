@@ -23,6 +23,7 @@ import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.event.RestartLevelEvent
 import com.fatih.pixeladventure.event.TouchpadAlphaEvent
 import com.fatih.pixeladventure.game.PixelAdventure
+import com.fatih.pixeladventure.game.PixelAdventure.Companion.isPhone
 import com.fatih.pixeladventure.input.KeyboardInputProcessor
 import com.fatih.pixeladventure.screen.GameScreen
 import com.fatih.pixeladventure.ui.model.GameModel
@@ -140,7 +141,7 @@ class GameView(
         row()
         val playerLife = image("health_4"){
             name = "player_life"
-            it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,if (Gdx.app.type == Application.ApplicationType.Android || Gdx.app.type == Application.ApplicationType.iOS) 25f else 12f)
+            it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,if(isPhone) 25f else 12f)
             if (Gdx.app.type == Application.ApplicationType.iOS || Gdx.app.type == Application.ApplicationType.Android) {
                 it.align(Align.center).padLeft(0f)
             }
@@ -149,7 +150,7 @@ class GameView(
         gameModel.onPropertyChange(GameModel::mapName){
             typingLabel.clearActions()
             val mapNameLength = it.length
-            typingLabelCell.prefWidth(mapNameLength * 15f)
+            typingLabelCell.prefWidth(mapNameLength * if (isPhone) 18f else 15f)
             typingLabel += Actions.sequence(
                 fadeIn(2f),
                 delay(1f),
