@@ -24,6 +24,7 @@ import com.fatih.pixeladventure.ecs.component.State
 import com.fatih.pixeladventure.ecs.component.Track
 import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.GameEventDispatcher
+import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.event.PlayerOutOfMapEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
@@ -82,6 +83,10 @@ class PhysicSystem(
                 }
                 return
             }
+            if (entity has EntityTag.FAN_EFFECT){
+                body.setLinearVelocity(body.linearVelocity.x + moveComp.current * 0.002f, body.linearVelocity.y)
+                return
+            }
             body.setLinearVelocity(moveComp.current , body.linearVelocity.y)
         }
     }
@@ -111,6 +116,7 @@ class PhysicSystem(
     private val Contact.entityB : Entity?
         get() = fixtureB.entity
 
+    private fun Fixture.isPlayerHead() = this.userData == "headFixture"
     private fun Fixture.isFanSensor() = this.userData == "fan_sensor"
     private fun Fixture.isHitBox() = this.userData == "hitbox"
     private fun Fixture.isCherry() = this.userData == "cherry"
@@ -143,7 +149,7 @@ class PhysicSystem(
         val (damageAmount) = damageSource[Damage]
         damageTarget.configure {
             val damageTakenComp = it.getOrAdd(DamageTaken){ DamageTaken(0) }
-            damageTakenComp.damageAmount += damageAmount
+            damageTakenComp.damageAmount = (damageTakenComp.damageAmount + damageAmount).coerceAtMost(damageAmount)
         }
     }
 
@@ -225,14 +231,20 @@ class PhysicSystem(
     }
 
     private fun isPlayerAndFanCollision(fixtureA: Fixture,fixtureB: Fixture,isBeginContact: Boolean = false) : Boolean {
-        return fixtureA.isPlayer() && (fixtureB.isFanSensor() || if (isBeginContact) fixtureB.isFanPlatform() else false)
+        return fixtureA.isPlayerHead() && (fixtureB.isFanSensor() || if (isBeginContact) fixtureB.isFanPlatform() else false)
     }
 
     private fun handlePlayerAndFanBeginCollision(playerEntity: Entity, fanEntity: Entity) = with(world){
         fanEntity[Fan].collideEntity = playerEntity
+        playerEntity.configure {
+            it += EntityTag.FAN_EFFECT
+        }
     }
 
-    private fun handlePlayerAndFanEndCollision(fanEntity: Entity) = with(world){
+    private fun handlePlayerAndFanEndCollision(playerEntity: Entity,fanEntity: Entity) = with(world){
+        playerEntity.configure {
+            it -= EntityTag.FAN_EFFECT
+        }
         fanEntity[Fan].collideEntity = null
     }
 
@@ -241,6 +253,7 @@ class PhysicSystem(
     }
 
     private fun handlePlayerAndTrambolineCollision(playerEntity: Entity,trambolineEntity : Entity){
+        GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.FLAG))
         val playerBody = playerEntity[Physic].body
         playerBody.setLinearVelocity(playerBody.linearVelocity.x, 20f)
         trambolineEntity[State].stateMachine.changeState(TrambolineState.ON)
@@ -289,8 +302,8 @@ class PhysicSystem(
             return
         }
         when {
-            isPlayerAndFanCollision(fixtureA,fixtureB) -> handlePlayerAndFanEndCollision(entityB)
-            isPlayerAndFanCollision(fixtureB,fixtureA) -> handlePlayerAndFanEndCollision(entityA)
+            isPlayerAndFanCollision(fixtureA,fixtureB) -> handlePlayerAndFanEndCollision(entityA,entityB)
+            isPlayerAndFanCollision(fixtureB,fixtureA) -> handlePlayerAndFanEndCollision(entityB,entityA)
             isDamageCollision(entityA,entityB,fixtureA,fixtureB) ->  handleDamageEndContact(entityA,entityB)
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageEndContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,false) ->  handleAggroEndContact(entityA,entityB)

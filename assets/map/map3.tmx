@@ -2,18 +2,18 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="35" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="302">
  <properties>
   <property name="musicAsset" value="MUSIC3"/>
-  <property name="name" value="Let`s Climb"/>
+  <property name="name" value="Like a Spidey"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="11" source="terrain-extruded.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="2" name="ground" width="45" height="35">
   <data encoding="base64" compression="zlib">
-   eJztmEsKwlAMRbsFdeBnA9WBnw2ok+r+l2QcCCUkXCHJ80Vy4FIoJT28fh7cYSiK/2FBWTpkBe6zc3QeKXuHHMB9Lh068+fF171HZz6Hr7un85Vycwifcw90bsXz1wJFUZjw3Ee9OSrnM/4rszjP1zzaOeLdi3aOmJ/ROXrvtzqvKRslW+NsjSzf+BzkfKKchWMk6L+AnCfKQzhGgpx6fDfKuQ3l3IaMzmgfjd5nLX2d1tFJM1Gf963fe46lR9I6Omkm6vM0pH7K0iPxruiDNFO7FiH1Uy/pFiek
+   eJztmE0KwkAMhXsLdaHOBdSFPxeobtT7n8e4EEpIfEKS6Yzkg0ehlszHqB14w5Ak/8OCsnTICqxTHJ13lL1DDmCdS4PO/Pvi+96iM5/D993TeaRcHcLn3AKda/GcWyBJEhNlboEvHJX7Pb4re3Ge7nm0cwmYGe0cMb9H5+iz3+q8pmyUbI2zNXr5j09BzifKWbhGUsDnyPlOeQjXSJBTi7+NdK5DOtehR2d0jkafs5a+TuvopJmoz/vV7z3H0iNpHZ00E/V5GlI/ZemReFf0QZqpPYuQ+qkXEcQtYg==
   </data>
  </layer>
  <layer id="1" name="decoration" width="45" height="35">
   <data encoding="base64" compression="zlib">
-   eJzt1DEOgCAMBVDOo5t4/7PZzcWBxNgSeS/5Ewt8mrYGALcj0iNn9UV+Rq/5dJ5P5wDfGNmvdvBc/EWeVWe/6t2r9l1F3/PYIvuLc55dK3QHDA==
+   eJzt1DEOgCAMBVCOpJt4/4PZzcWBxNgSeS/5Ewt8mrYGALcj0iNn9UV+Rq/5dJ5P5wDfGNmvdvBc/EWeVWe/6t2r9l1F3/PYIvuLc55duXUH5A==
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">

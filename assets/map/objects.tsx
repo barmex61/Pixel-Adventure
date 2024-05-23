@@ -39,12 +39,12 @@
     </properties>
     <polygon points="0,0 11,0 11,-11 0,-11"/>
    </object>
-   <object id="29" type="FixtureDef" x="22" y="24">
+   <object id="30" type="FixtureDef" x="10" y="32">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
      <property name="userData" value="footFixture"/>
     </properties>
-    <polygon points="0,0 0,8 -11,8 -11,0"/>
+    <polyline points="0,0 12,0"/>
    </object>
   </objectgroup>
  </tile>
@@ -291,6 +291,7 @@
    <object id="1" type="FixtureDef" x="1" y="0" width="23" height="4">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="FAN_PLATFORM"/>
+     <property name="isSensor" type="bool" value="true"/>
      <property name="userData" value="fan_platform"/>
     </properties>
    </object>
@@ -314,18 +315,20 @@
   </properties>
   <image width="16" height="32" source="../graphics/fire.png"/>
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="3" y="1" width="10" height="15">
+   <object id="2" type="FixtureDef" x="0" y="18" width="16" height="14">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+     <property name="isSensor" type="bool" value="false"/>
+     <property name="userData" value=""/>
+    </properties>
+   </object>
+   <object id="3" type="FixtureDef" x="13" y="7">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="FIRE_TRAP"/>
      <property name="isSensor" type="bool" value="true"/>
      <property name="userData" value="hitbox"/>
     </properties>
-   </object>
-   <object id="2" type="FixtureDef" x="0" y="16" width="16" height="16">
-    <properties>
-     <property name="isSensor" type="bool" value="false"/>
-     <property name="userData" value="canJump"/>
-    </properties>
+    <polygon points="0,0 -4,-6 -6,-6 -10,0 -10,6 -8,8 -2,8 0,6"/>
    </object>
   </objectgroup>
  </tile>
@@ -354,7 +357,7 @@
    <property name="damage" type="int" value="1"/>
    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
    <property name="gameObject" propertytype="GameObject" value="SPIKE_HEAD"/>
-   <property name="speed" type="float" value="8"/>
+   <property name="speed" type="float" value="10"/>
    <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
    <property name="timeToMax" type="float" value="0"/>
   </properties>

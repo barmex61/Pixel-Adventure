@@ -202,7 +202,6 @@ class GameScreen(
 
 
     private fun onFinishMap(){
-        println("finish")
         changeScreen = false
         if (!isPlayerDeath) currentMapAsset.unlocksMap?.let { mapAsset -> gamePreferences.storeUnlockedMap(mapAsset) }
         isPlayerDeath = false
@@ -249,6 +248,7 @@ class GameScreen(
                 menuViewType = MenuScreen.MenuViewType.MENU_VIEW
                 stopGame(false)
                 changeScreen = true
+                isPlayerDeath = true
                 gameView?.touchable = Touchable.disabled
             }
             is RestartLevelEvent ->{

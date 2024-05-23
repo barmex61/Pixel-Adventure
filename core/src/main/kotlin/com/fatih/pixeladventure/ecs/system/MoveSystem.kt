@@ -26,7 +26,6 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
                 GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.BANANA,(max - defaultMax).toInt()))
             }
             moveComp.maxReduceTimer = maxReduceTimer
-            println(max)
         }
 
         if (direction != MoveDirection.NONE){

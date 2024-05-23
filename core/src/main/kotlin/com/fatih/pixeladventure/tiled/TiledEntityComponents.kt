@@ -56,7 +56,7 @@ import ktx.tiled.propertyOrNull
 import ktx.tiled.width
 
 
-private fun sprite(gameObject: GameObject, animationType: AnimationType, startPosition : Vector2,assets: Assets): Sprite {
+private fun sprite(gameObject: GameObject, animationType: AnimationType, startPosition : Vector2,assets: Assets , rotation : Float = 0f): Sprite {
     val animationPath = "${gameObject.atlasKey}/${animationType.atlasKey}"
     val atlas = assets[TextureAtlasAsset.GAMEOBJECT]
     val regions = atlas.findRegions(animationPath) ?:
@@ -67,13 +67,16 @@ private fun sprite(gameObject: GameObject, animationType: AnimationType, startPo
     return Sprite(firstFrame).apply {
         setPosition(startPosition.x,startPosition.y)
         setSize(w,h)
+        setOrigin(0f,0f)
+        this.rotation = -rotation
     }
 }
 
-fun EntityCreateContext.configureEntityGraphic(entity: Entity,tile: TiledMapTile,body: Body,gameObject: GameObject,assets: Assets,world: World){
+
+fun EntityCreateContext.configureEntityGraphic(entity: Entity,tile: TiledMapTile,body: Body,gameObject: GameObject,assets: Assets,world: World,rotation : Float ){
     val startAnimType = AnimationType.valueOf(tile.property("startAnimType","NONE"))
     if (startAnimType != AnimationType.NONE){
-        entity += Graphic(sprite(gameObject,startAnimType,body.position,assets))
+        entity += Graphic(sprite(gameObject,startAnimType,body.position,assets,rotation))
         configureAnimation(entity,tile,world,startAnimType)
     }
 }
@@ -82,7 +85,8 @@ fun EntityCreateContext.configureEntityTags(
     entity: Entity,
     mapObject: TiledMapTileMapObject,
     tile: TiledMapTile,
-    trackLayer : MapLayer
+    trackLayer : MapLayer,
+    rotation: Float
 ){
     val entityTags = mapObject.propertyOrNull<String>("entityTags")?:tile.property("entityTags","")
     if (entityTags.isNotBlank()){
@@ -102,8 +106,8 @@ fun EntityCreateContext.configureEntityTags(
         val gameObject = GameObject.valueOf(tile.propertyOrNull<String>("gameObject")?: gdxError("gameObject is null $tile"))
         entity += Collectable(gameObject.name)
     }
-    if (entity has EntityTag.FAN){
-        entity += Fan()
+    if (entity has EntityTag.FAN ){
+        entity += Fan(rotation = rotation)
     }
 }
 

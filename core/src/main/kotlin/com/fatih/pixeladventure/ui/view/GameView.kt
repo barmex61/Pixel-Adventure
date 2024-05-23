@@ -99,7 +99,7 @@ class GameView(
             row()
             this.touchpad = touchpad(0f){
                 this.alpha = 0.2f
-                it.expandX().maxSize(64f)
+                it.expandX().maxSize(64f).align(Align.left).padLeft(35f)
                 listeners.add(object  : InputListener() {
                     override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                         GameEventDispatcher.fireEvent(TouchpadAlphaEvent(1f))
@@ -124,7 +124,7 @@ class GameView(
             }
             add().expandX()
             imageButton("jump_img_button"){
-                it.expandX().maxSize(48f)
+                it.expandX().maxSize(52f).align(Align.right).padRight(35f)
                 listeners.add(object  : InputListener() {
                     override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                         keyboardInputProcessor.updatePlayerJump(true)
@@ -141,6 +141,9 @@ class GameView(
         val playerLife = image("health_4"){
             name = "player_life"
             it.padLeft(20.0f).padBottom(20.0f).align(Align.left).colspan(3).prefSize(75f,if (Gdx.app.type == Application.ApplicationType.Android || Gdx.app.type == Application.ApplicationType.iOS) 25f else 12f)
+            if (Gdx.app.type == Application.ApplicationType.iOS || Gdx.app.type == Application.ApplicationType.Android) {
+                it.align(Align.center).padLeft(0f)
+            }
         }
 
         gameModel.onPropertyChange(GameModel::mapName){

@@ -32,16 +32,16 @@ enum class MapAsset(val path : String, val unlocksMap : MapAsset? = null, val pa
     MAP13("map/map6.tmx",MAP14, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
     MAP12("map/map6.tmx",MAP13,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
     MAP11("map/map6.tmx",MAP12, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
-    MAP10("map/map6.tmx",MAP11, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
-    MAP9("map/map6.tmx",MAP10,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
-    MAP8("map/map6.tmx",MAP9, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
-    MAP7("map/map6.tmx",MAP8,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
-    MAP6("map/map6.tmx",MAP6, parallaxBgdTexture = "graphics/green.png","Double Jumper"),
-    MAP5("map/map5.tmx",MAP6, parallaxBgdTexture = "graphics/gray.png","Are You Invincible ?"),
+    MAP10("map/map10.tmx",MAP11, parallaxBgdTexture = "graphics/purple.png","Tramp"),
+    MAP9("map/map9.tmx",MAP10,parallaxBgdTexture = "graphics/yellow.png","It Smells Like Burning"),
+    MAP8("map/map8.tmx",MAP9, parallaxBgdTexture = "graphics/brown.png","Death is Like The Wind"),
+    MAP7("map/map7.tmx",MAP8,parallaxBgdTexture = "graphics/blue.png","The Platform"),
+    MAP6("map/map6.tmx",MAP7, parallaxBgdTexture = "graphics/green.png","Double Jumper"),
+    MAP5("map/map5.tmx",MAP6, parallaxBgdTexture = "graphics/gray.png","Undisputed!"),
     MAP4("map/map4.tmx",MAP5, parallaxBgdTexture = "graphics/purple.png","Fly Like a Butterfly"),
-    MAP3("map/map3.tmx",MAP4,parallaxBgdTexture = "graphics/yellow.png","Let`s Climb"),
-    MAP2("map/map2.tmx",MAP3, parallaxBgdTexture = "graphics/brown.png","Run Faster"),
-    MAP1("map/map1.tmx",MAP2,parallaxBgdTexture = "graphics/blue.png","Jump Higher"),
+    MAP3("map/map3.tmx",MAP4,parallaxBgdTexture = "graphics/yellow.png","Like a Spidey"),
+    MAP2("map/map2.tmx",MAP3, parallaxBgdTexture = "graphics/brown.png","Run Forrest!"),
+    MAP1("map/map1.tmx",MAP2,parallaxBgdTexture = "graphics/blue.png","The Jumper"),
     TUTORIAL("map/tutorial.tmx",MAP1,parallaxBgdTexture = "graphics/pink.png","Tutorial"),
     OBJECT("map/object.tmx", mapName = "Object");
 }
@@ -57,7 +57,16 @@ enum class MusicAsset(val path : String){
     MUSIC4("audio/music4.wav"),
     MUSIC5("audio/music5.wav"),
     MUSIC6("audio/music6.wav"),
-    MUSIC7("audio/music7.wav");
+    MUSIC7("audio/music7.wav"),
+    MUSIC8("audio/music8.wav"),
+    MUSIC9("audio/music9.wav"),
+    MUSIC10("audio/music10.wav"),
+    MUSIC11("audio/music11.wav"),
+    MUSIC12("audio/music12.wav"),
+    MUSIC13("audio/music13.wav"),
+    MUSIC14("audio/music14.wav"),
+    MUSIC15("audio/music15.wav"),
+    MUSIC16("audio/music16.wav");
 }
 
 enum class SoundAsset(val path : String){

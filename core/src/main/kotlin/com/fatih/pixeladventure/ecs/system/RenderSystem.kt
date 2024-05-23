@@ -3,6 +3,7 @@ package com.fatih.pixeladventure.ecs.system
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.maps.MapLayer
 import com.badlogic.gdx.maps.tiled.TiledMap
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer
@@ -22,8 +23,12 @@ import com.github.quillraven.fleks.IntervalSystem
 import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
 import com.github.quillraven.fleks.collection.compareEntityBy
+import ktx.app.gdxError
 import ktx.assets.disposeSafely
 import ktx.graphics.use
+import ktx.tiled.propertyOrNull
+import ktx.tiled.rotation
+import ktx.tiled.shape
 
 class RenderSystem(
     private val batch: SpriteBatch = inject(),

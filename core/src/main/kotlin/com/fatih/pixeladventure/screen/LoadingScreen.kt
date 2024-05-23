@@ -84,17 +84,20 @@ class LoadingScreen(
         loadingStage.viewport.update(width,height)
     }
 
-    private fun parseObjectCollisionShapes(tiledMap: TiledMap){
-        val tileset = tiledMap.tileSets.getTileSet(0) ?: gdxError("There is no tileset in the ${MapAsset.OBJECT} tiledMap")
-        val firstGid = tileset.propertyOrNull<Int>("firstgid")?: gdxError("Tileset $tileset does not have 'firstgid' property" )
-        for (i in 0 until  tileset.size()){
-            val tileId = firstGid + i
-            val tile = tileset.getTile(tileId)
-            val objectFixtureDefinitions = tile.objects.map { fixtureDefinitionOf(it) }
-            if (objectFixtureDefinitions.isEmpty()) gdxError("No collision shapes defined for tile ${tile.id}")
-            val gameObjectStr : String = tile.propertyOrNull("gameObject") ?: gdxError("Missing property 'GameObject' on tile ${tile.id} ")
-            OBJECT_FIXTURES[GameObject.valueOf(gameObjectStr)] = objectFixtureDefinitions
+    companion object{
+        fun parseObjectCollisionShapes(tiledMap: TiledMap){
+            val tileset = tiledMap.tileSets.getTileSet(0) ?: gdxError("There is no tileset in the ${MapAsset.OBJECT} tiledMap")
+            val firstGid = tileset.propertyOrNull<Int>("firstgid")?: gdxError("Tileset $tileset does not have 'firstgid' property" )
+            for (i in 0 until  tileset.size()){
+                val tileId = firstGid + i
+                val tile = tileset.getTile(tileId)
+                val gameObjectStr : String = tile.propertyOrNull("gameObject") ?: gdxError("Missing property 'GameObject' on tile ${tile.id} ")
+                val objectFixtureDefinitions = tile.objects.map { fixtureDefinitionOf(it) }
+                if (objectFixtureDefinitions.isEmpty()) gdxError("No collision shapes defined for tile ${tile.id}")
+                OBJECT_FIXTURES[GameObject.valueOf(gameObjectStr)] = objectFixtureDefinitions
+            }
         }
     }
+
 
 }

@@ -18,7 +18,7 @@ enum class ChainsawState : EntityState{
         }
 
         override fun update(entity: AiEntity) {
-            if (entity.hasTrack) entity.followTrack()
+            if (entity.hasTrack) entity.followTrack(fixedVelocity = true)
         }
     },
 

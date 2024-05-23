@@ -66,7 +66,7 @@ enum class RockHeadState : EntityState{
         }
 
         override fun update(entity: AiEntity) {
-            if (entity.inRange(entity[Aggro].sourceLocation,0.05f)) entity.state(ROCK_HEAD_IDLE)
+            if (entity.inRange(entity[Aggro].sourceLocation,0.2f)) entity.state(ROCK_HEAD_IDLE)
         }
     };
 }

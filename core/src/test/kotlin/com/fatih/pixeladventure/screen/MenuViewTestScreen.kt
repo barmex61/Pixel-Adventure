@@ -23,7 +23,7 @@ class MenuViewTestScreen : KtxScreen {
         assets.loadAll()
         Scene2DSkin.defaultSkin = assets[SkinAsset.DEFAULT]
         menuStage.actors {
-            levelView()
+            //levelView()
         }
     }
 

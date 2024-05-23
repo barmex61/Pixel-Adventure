@@ -14,8 +14,10 @@ enum class SpikeHeadState : EntityState {
         }
 
         override fun update(entity: AiEntity) {
-            if (entity.hasTrack) entity.followTrack(fixedVelocity = true, stopOnTrackChange = true,0.05f)
-            if (entity.changeTrackPosition) entity.state(HIT)
+            if (entity.isAnimationDone()){
+                if (entity.hasTrack) entity.followTrack(fixedVelocity = true, stopOnTrackChange = true)
+                if (entity.changeTrackPosition) entity.state(HIT)
+            }
 
         }
 

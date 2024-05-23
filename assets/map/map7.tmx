@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="480">
+ <properties>
+  <property name="musicAsset" value="MUSIC7"/>
+  <property name="name" value="The Platform"/>
+ </properties>
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="80" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztmVEOgjAQBXsL9RDQQ6j3v5LypYmW1/YhdcNM8r7o0jKUQJY5pTSL5ATvTOnlRbnD3yf488CfB/488OeBP49Wf6dnziu57Lv84bT6m8Txo+1P/NWhnrsl+CtTc934K4M/D/x54M8Dfx41163ez1sk6vf1VvvPTdT9iT8P/HngzwN/HvjzwJ8H/jyO5q+mX9f63X8kf2q/9Kwbf/ir5fqDdf+Dvz16FC3/I6L5ixr84Q9/cYM//OEvbvCHP/zFDf7wF9VfqRepeoq9dSPmVHVZjF07f6mXpu5Jb92IOVVdFmPXzr/00m5fchdr6q0bMaeqy2LsMu4BZnF4cA==
+  </data>
+ </layer>
+ <layer id="1" name="decoration" width="80" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzt1lsKhDAMQFGXNO5/czPfAyrBJH1wDvgnpL2t4HEAAMC1z+85Ry9iE1oygnvHCO5dDh1z6AgA7MS/TZxmcZrFaRanWZxmcZrFaZans2XWrFnPv2pdlfvduWX33nZp+f9+9b66571xt7andWfvq3telbf3c/Z5VVbrMEvH1b/Djo6znNVqdAOAfF+D4BHQ
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="377" gid="12" x="251" y="666" width="32" height="10"/>
+  <object id="378" gid="12" x="484" y="666" width="32" height="10"/>
+  <object id="379" gid="12" x="716" y="666" width="32" height="10"/>
+  <object id="380" gid="12" x="942" y="666" width="32" height="10"/>
+  <object id="381" gid="3" x="163" y="677" width="42" height="42"/>
+  <object id="382" gid="3" x="1179" y="677" width="42" height="42"/>
+  <object id="383" gid="12" x="1056" y="656" width="32" height="10"/>
+  <object id="388" gid="12" x="90" y="663" width="32" height="10"/>
+  <object id="389" gid="12" x="206" y="603" width="32" height="10"/>
+  <object id="390" gid="12" x="1084" y="628" width="32" height="10"/>
+  <object id="392" gid="5" x="1216" y="146" width="64" height="64"/>
+  <object id="393" gid="6" x="608" y="672" width="19" height="36"/>
+  <object id="394" gid="2" x="801" y="692" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="395" gid="2" x="1097" y="693" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   </properties>
+  </object>
+  <object id="396" gid="3" x="1231" y="677" width="42" height="42"/>
+  <object id="397" gid="12" x="1152" y="640" width="32" height="10"/>
+  <object id="398" gid="12" x="1184" y="624" width="32" height="10"/>
+  <object id="399" gid="12" x="1216" y="608" width="32" height="10"/>
+  <object id="400" gid="12" x="1184" y="592" width="32" height="10"/>
+  <object id="401" gid="12" x="1152" y="576" width="32" height="10"/>
+  <object id="402" gid="12" x="1184" y="560" width="32" height="10"/>
+  <object id="403" gid="12" x="1216" y="544" width="32" height="10"/>
+  <object id="404" gid="12" x="1184" y="528" width="32" height="10"/>
+  <object id="405" gid="12" x="1152" y="512" width="32" height="10"/>
+  <object id="406" gid="12" x="1184" y="496" width="32" height="10"/>
+  <object id="407" gid="12" x="1216" y="480" width="32" height="10"/>
+  <object id="408" gid="12" x="1184" y="464" width="32" height="10"/>
+  <object id="409" gid="12" x="1152" y="448" width="32" height="10"/>
+  <object id="410" gid="12" x="1120" y="432" width="32" height="10"/>
+  <object id="411" gid="3" x="320" y="496" width="42" height="42"/>
+  <object id="412" gid="3" x="112" y="496" width="42" height="42"/>
+  <object id="413" gid="3" x="208" y="368" width="42" height="42"/>
+  <object id="414" gid="3" x="432" y="576" width="42" height="42"/>
+  <object id="415" gid="3" x="656" y="560" width="42" height="42"/>
+  <object id="416" gid="3" x="848" y="608" width="42" height="42"/>
+  <object id="417" gid="3" x="1080" y="557" width="42" height="42"/>
+  <object id="418" gid="3" x="496" y="403" width="42" height="42"/>
+  <object id="420" gid="3" x="656" y="403" width="42" height="42"/>
+  <object id="438" gid="2" x="352" y="272" width="38" height="38"/>
+  <object id="439" gid="2" x="16" y="272" width="38" height="38"/>
+  <object id="442" gid="2" x="265" y="132" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="443" gid="2" x="862" y="421" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="444" gid="2" x="1167" y="165" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="446" gid="1" x="576" y="672" width="32" height="32"/>
+  <object id="448" gid="12" x="784" y="448" width="32" height="10"/>
+  <object id="449" gid="12" x="784" y="416" width="32" height="10"/>
+  <object id="450" gid="12" x="1147" y="393" width="32" height="10"/>
+  <object id="451" gid="12" x="1136" y="368" width="32" height="10"/>
+  <object id="452" gid="12" x="1104" y="352" width="32" height="10"/>
+  <object id="453" gid="12" x="1136" y="336" width="32" height="10"/>
+  <object id="454" gid="12" x="1104" y="320" width="32" height="10"/>
+  <object id="455" gid="12" x="1136" y="304" width="32" height="10"/>
+  <object id="456" gid="12" x="1168" y="288" width="32" height="10"/>
+  <object id="457" gid="12" x="1200" y="272" width="32" height="10"/>
+  <object id="458" gid="12" x="1232" y="256" width="32" height="10"/>
+  <object id="459" gid="12" x="1216" y="240" width="32" height="10"/>
+  <object id="460" gid="12" x="1136" y="240" width="32" height="10"/>
+  <object id="461" gid="12" x="1104" y="288" width="32" height="10"/>
+  <object id="462" gid="12" x="1136" y="272" width="32" height="10"/>
+  <object id="463" gid="12" x="1104" y="256" width="32" height="10"/>
+  <object id="464" gid="12" x="1104" y="224" width="32" height="10"/>
+  <object id="465" gid="12" x="1136" y="208" width="32" height="10"/>
+  <object id="466" gid="12" x="416" y="448" width="32" height="10"/>
+  <object id="467" gid="12" x="384" y="432" width="32" height="10"/>
+  <object id="468" gid="12" x="416" y="416" width="32" height="10"/>
+  <object id="469" gid="12" x="384" y="400" width="32" height="10"/>
+  <object id="470" gid="12" x="416" y="384" width="32" height="10"/>
+  <object id="471" gid="12" x="384" y="368" width="32" height="10"/>
+  <object id="472" gid="12" x="416" y="352" width="32" height="10"/>
+  <object id="473" gid="12" x="384" y="336" width="32" height="10"/>
+  <object id="474" gid="12" x="416" y="320" width="32" height="10"/>
+  <object id="475" gid="12" x="384" y="304" width="32" height="10"/>
+  <object id="476" gid="12" x="416" y="288" width="32" height="10"/>
+  <object id="477" gid="12" x="1104" y="192" width="32" height="10"/>
+  <object id="478" gid="12" x="1136" y="176" width="32" height="10"/>
+  <object id="479" gid="12" x="1104" y="160" width="32" height="10"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks">
+  <object id="440" x="27" y="257">
+   <polyline points="0,0 351,0"/>
+  </object>
+  <object id="441" x="287" y="242">
+   <polyline points="0,0 -1,-130 -143,-129"/>
+  </object>
+  <object id="447" x="1241" y="145">
+   <polyline points="0,0 -104,0 -105,127 -105,254 -249,255 -424,255"/>
+  </object>
+ </objectgroup>
+</map>

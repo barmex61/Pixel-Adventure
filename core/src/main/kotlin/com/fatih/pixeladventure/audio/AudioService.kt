@@ -63,7 +63,9 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
 
     fun update(){
         soundQueue.forEach { soundAsset ->
-            assets[soundAsset].play(soundVolume)
+            val asset = assets[soundAsset]
+            asset.stop()
+            asset.play(soundVolume)
         }
         soundQueue.clear()
     }

@@ -2,18 +2,18 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="80" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="375">
  <properties>
   <property name="musicAsset" value="MUSIC6"/>
-  <property name="name" value="Are you invincible ?"/>
+  <property name="name" value="Double Jumper"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="12" source="terrain-extruded.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="2" name="ground" width="80" height="30">
   <data encoding="base64" compression="zlib">
-   eJztlkEOgjAQRXsGZOcFkI16AWUj3v9G1mgikpR25gPtNP8nP2HRdqYvMx2co0LqvE8L7vOlZkLkhymFX+N9WMntPtfaTSn8Ymskrq2eyS9d2j4kv480HFh/P5EfphL4IbM8t0rgZ7luyQ8T+WEiP0zkh82vVpl3A55REj+kFnrlng48g/zs8jt7X8hPze/hPWbmJ31zt3gja+nfreKsxW/er+Qn4zfvV/KT8YvJGr8jkC/5OXcF8p16aYaRX9yhHKR1aY3fk/z+Yub6F6yFX65ZbJnfzfv+9fQ7xYNwfcihuIOQnzR/9C7vPS9YT/A6
+   eJztlkEOgjAQRXsLZOcFkI16AWUj3v881mgikpR25gPtNP8nP2HRdqYvMx2co0LqvE8L7vOlZkLkhymFX+N9WMntPtfaTSn8Ymskrq2eyS9d2j4kv480HFh/P5EfphL4IbM8t0rgZ7luyQ8T+WEiP0zkh82vVpl3A55REj+kFnrlng48g/zs8jt7X8hPze/hPWbmJ31zt3gja+nfreKsxW/er+Qn4zfvV/KT8YvJGr8jkC/5OXcF8p16aYaRX9yhHKR1aY3fk/z+Yub6F6yFX65ZbJnfzfv+9fQ7xYNwfcihuIOQnzR/9C7vPS9eoA3W
   </data>
  </layer>
  <layer id="1" name="decoration" width="80" height="30">
   <data encoding="base64" compression="zlib">
-   eJzt1LENACAMAzB+Av5/DRYuQIUhttS9ldK0BgD/9T1jz/y9CJHkj6MyC3IGd178UPKfJt8OZNN/QCr9B6TSfwBUWZJfBhk=
+   eJzt1LENACAMAzDOAv4/DBYuQIUhttS9ldK0BgD/9T1jz/y9CJHkj6MyC3IGd178UPKfJt8OZNN/QCr9B6TSfwBUWQRKBq8=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">

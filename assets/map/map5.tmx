@@ -2,7 +2,7 @@
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="40" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="360">
  <properties>
   <property name="musicAsset" value="MUSIC5"/>
-  <property name="name" value="Are you invincible ?"/>
+  <property name="name" value="Undisputed !"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
  <tileset firstgid="17" source="terrain-extruded.tsx"/>

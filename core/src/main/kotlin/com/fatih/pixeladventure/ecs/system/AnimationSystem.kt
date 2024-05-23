@@ -1,5 +1,6 @@
 package com.fatih.pixeladventure.ecs.system
 
+import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.fatih.pixeladventure.ecs.component.Animation
 import com.fatih.pixeladventure.ecs.component.AnimationType
@@ -11,7 +12,10 @@ import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.Tiled
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.TextureAtlasAsset
+import com.github.quillraven.fleks.EachFrame
 import com.github.quillraven.fleks.Entity
+import com.github.quillraven.fleks.Fixed
+import com.github.quillraven.fleks.Interval
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World
 import com.github.quillraven.fleks.World.Companion.family
@@ -22,7 +26,7 @@ import kotlin.math.max
 
 class AnimationSystem(
     assets: Assets = World.inject()
-) : IteratingSystem(family = family { all(Animation,Graphic) }) {
+) : IteratingSystem(family = family { all(Animation,Graphic) }, interval = if (Gdx.graphics.deltaTime < 1/300f) EachFrame else Fixed(1/300f)) {
 
     private val objectAtlas = assets[TextureAtlasAsset.GAMEOBJECT]
     private val gdxAnimationCache = mutableMapOf<String,GdxAnimation>()
@@ -32,7 +36,6 @@ class AnimationSystem(
         if (animationComp.gdxAnimation == null) return
         val (gdxAnimation,timer,_,_) = animationComp
         val (sprite) = entity[Graphic]
-
         sprite.setRegion(gdxAnimation!!.getKeyFrame(timer).apply {
             entity.getOrNull(Move)?.let { moveComp ->
                 if (moveComp.flipX != isFlipX){

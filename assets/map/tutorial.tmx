@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="248">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="250">
  <properties>
   <property name="musicAsset" value="MUSIC3"/>
   <property name="name" value="Tutorial"/>
@@ -8,7 +8,7 @@
  <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="1" name="ground" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJztlcsNwjAQRN0FcHMDwI0GgFsaAYoAigDaxb7bkj+zWSc7TxrJQs7sBGcS58iIeNCe0utr14RocgLtKb2+dk1w3ILuhXooZRwN9sMOz6BXod6zJpPBAzzYDztY6wfiOZoSv3nwHPZjDNgPGV/2Yx2wHzK+qW9Mqx/7oQf7MaYv+zEG7Ec9Xsg356fdDy+0dwmwHxgP9PM5dazR1Nzb2r5jn6BvoX5KGZEspR8jYbkf1kC8Z1Meku9vbWrubc7/YRO07dAO4JvzkMjbMhs9szWXRg7LimewDzp06Jg4R1fpm/Po9UXNRs9szaWRw7LiGZyDLh26Js7RVfrmPHp9UbPRM1tzaeSwrHgGf74mpnU=
+   eJztlUEOwyAMBPlF2xsfaHvrB5Le8v/3FK6VkWK8YAg7kiUUwdqJvSQEMiIRtOfsee2aEE8+oD1nz2vXhHhCf5CrEgEa9Ae5Kog5OoRnEZyH/iAetJqjf136g8xIL39I/5haPfqD9KKXP5B69AfpBWKOYiPdkp63P2KjvWQ8EHMkaaDn8zCs0Wjejf+xuZnFHyNBf6wD4p6VNFre395o3q3nd7iluBviAdAtabSotyY3OmdtXR51rBy5B88UL0O8hT4GpW5Jw6qLyo3OWVuXRx0rR+7BlmI3xFfoY1DqljSsuqjc6Jy1dXnUsXLkHvwALb1wdQ==
   </data>
  </layer>
  <layer id="2" name="decoration" width="200" height="15">
@@ -78,30 +78,14 @@
   <object id="222" name="TEXT" x="2368" y="80" width="188" height="94">
    <text fontfamily="Masaaki" pixelsize="17" wrap="1" halign="center" valign="center">Collect [#ff00ff]Apples[] to gain temporary double jump</text>
   </object>
-  <object id="229" gid="12" x="258" y="107" width="32" height="10"/>
-  <object id="230" gid="13" x="352" y="192" width="24" height="8"/>
-  <object id="231" gid="14" x="112" y="192" width="16" height="32">
-   <properties>
-    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
-   </properties>
-  </object>
-  <object id="232" gid="15" x="240" y="192" width="28" height="28"/>
-  <object id="233" gid="16" x="508" y="171" width="54" height="52"/>
-  <object id="240" gid="12" x="288" y="80" width="32" height="10"/>
-  <object id="241" gid="12" x="320" y="58" width="32" height="10"/>
-  <object id="242" gid="9" x="201" y="184" width="32" height="32"/>
-  <object id="243" gid="10" x="169" y="183" width="32" height="32"/>
-  <object id="244" gid="11" x="137" y="186" width="32" height="32"/>
-  <object id="245" gid="8" x="201" y="160" width="32" height="32"/>
-  <object id="246" gid="4" x="168" y="159" width="32" height="32"/>
-  <object id="247" gid="7" x="135" y="161" width="32" height="32"/>
+  <object id="249" gid="2" x="144" y="208" width="38" height="38"/>
  </objectgroup>
  <objectgroup id="10" name="tracks">
   <object id="218" x="2240" y="194">
    <polyline points="0,0 -208,0"/>
   </object>
-  <object id="239" x="427" y="57">
-   <polygon points="0,0 0,92 139,92 139,0"/>
+  <object id="248" x="128" y="192">
+   <polyline points="0,0 144,0 144,-96 0,-96"/>
   </object>
  </objectgroup>
 </map>

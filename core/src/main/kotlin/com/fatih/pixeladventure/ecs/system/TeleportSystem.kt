@@ -60,3 +60,4 @@ class TeleportSystem : IteratingSystem(family = family { all(Teleport) }) , Game
         }
     }
 }
+

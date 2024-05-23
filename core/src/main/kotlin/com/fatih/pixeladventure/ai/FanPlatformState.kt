@@ -1,8 +1,10 @@
 package com.fatih.pixeladventure.ai
 
-import com.badlogic.gdx.Gdx
 import com.fatih.pixeladventure.ecs.component.AnimationType
+import com.fatih.pixeladventure.ecs.component.Fan
 import com.fatih.pixeladventure.ecs.component.Physic
+import kotlin.math.cos
+import kotlin.math.sin
 
 enum class FanPlatformState : EntityState {
     ON{
@@ -12,10 +14,10 @@ enum class FanPlatformState : EntityState {
 
         override fun update(entity: AiEntity) {
             entity.hasFanTarget()?.let {
+                val rotation = 90 - entity[Fan].rotation
                 with(entity.world){
                     val playerBody = it[Physic].body
-                    println(playerBody.linearVelocity.y)
-                    playerBody.setLinearVelocity(playerBody.linearVelocity.x,playerBody.linearVelocity.y + 60f/ Gdx.graphics.framesPerSecond)
+                    playerBody.setLinearVelocity(playerBody.linearVelocity.x + ((deltaTime * 10f) * cos(rotation)),playerBody.linearVelocity.y + ((deltaTime*55f) * sin(rotation)))
                 }
             }
         }

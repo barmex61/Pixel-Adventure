@@ -143,8 +143,7 @@ data class AiEntity(
 
 
     //-------------------------TRACK FEATURE-------------------------//
-    fun followTrack(fixedVelocity : Boolean = false,stopOnTrackChange : Boolean = false,tolerance: Float = 0.1f) = with(world){
-
+    fun followTrack(fixedVelocity : Boolean = false,stopOnTrackChange : Boolean = false,tolerance: Float = 0.25f) = with(world){
         val trackComp = entity[Track]
         val moveComp = entity[Move]
         val (trackPoints,currentTrackIx) = trackComp
@@ -155,7 +154,8 @@ data class AiEntity(
         val currentY = sprite.y + sprite.height / 2f
         if (currentTrackIx == -1 || trackPoints[currentTrackIx].inRange(currentX,currentY,tolerance)) {
             // entity reached current track point go to next point
-            trackComp.currentTrackIx = (currentTrackIx + 1) % trackPoints.size
+            trackComp.direction = if (currentTrackIx == trackPoints.size -1) -1 else if (currentTrackIx == 0) 1 else trackComp.direction
+            trackComp.currentTrackIx = currentTrackIx + trackComp.direction
             val nextTrackPoint = trackPoints[trackComp.currentTrackIx]
             val diffY = nextTrackPoint.y - currentY
             val diffX = nextTrackPoint.x - currentX

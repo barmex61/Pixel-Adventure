@@ -58,7 +58,6 @@ class PixelAdventure : KtxGame<KtxScreen>() {
     }
 
     override fun create() {
-        Gdx.graphics.setVSync(false)
         Gdx.input.inputProcessor = InputMultiplexer()
         addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets,audioService,gameProperties, gamePreferences ))
         setScreen<LoadingScreen>()

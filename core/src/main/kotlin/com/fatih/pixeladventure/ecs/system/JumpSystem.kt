@@ -73,9 +73,9 @@ class JumpSystem(
         }
 
         val lowerX = body.position.x + lowerFeet.x - 0.2f
-        val lowerY = body.position.y + lowerFeet.y - 0.05f
+        val lowerY = body.position.y + lowerFeet.y - 0.1f
         val upperX = body.position.x + upperFeet.x + 0.2f
-        val upperY = body.position.y + upperFeet.y - 0.2f
+        val upperY = body.position.y + upperFeet.y + 0.1f
 
         DEBUG_RECT.set(lowerX,lowerY,upperX-lowerX,upperY-lowerY)
         physicWorld.query(lowerX,lowerY,upperX,upperY){fixture ->

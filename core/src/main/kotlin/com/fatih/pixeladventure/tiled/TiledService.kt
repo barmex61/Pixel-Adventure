@@ -129,7 +129,7 @@ class TiledService (
     }
 
     private fun spawnGroundObject(x:Int, y:Int, collObj : MapObject){
-        val body = createBody(BodyType.StaticBody, vec2(x.toFloat(),y.toFloat()),true)
+        val body = createBody(BodyType.StaticBody, vec2(x.toFloat(),y.toFloat()))
         val fixtureDefUserData = fixtureDefinitionOf(collObj)
         body.createFixtures(listOf(fixtureDefUserData))
     }
@@ -146,20 +146,25 @@ class TiledService (
         val bodyType = tile.property<String>("bodyType","StaticBody")
         val gravityScale = tile.property<Float>("gravityScale",0f)
         val gameObjectStr = tile.property<String>("gameObject")
+        val rotation = mapObject.rotation
         val gameObject = GameObject.valueOf(gameObjectStr)
         val fixtureDefUserData = OBJECT_FIXTURES[gameObject]?: gdxError("No fixture definitions for ${gameObject.atlasKey}")
         val x = mapObject.x * UNIT_SCALE
         val y = mapObject.y * UNIT_SCALE
 
-        val body = createBody(BodyType.valueOf(bodyType), vec2(x,y),true).apply { this.gravityScale = gravityScale }
+        val body = createBody(BodyType.valueOf(bodyType), vec2(x,y),rotation).apply {
+            this.gravityScale = gravityScale
+            this.setTransform(this.position,-rotation * MathUtils.degreesToRadians)
+
+       }
         body.createFixtures(fixtureDefUserData)
 
         world.entity {
             body.userData = it
             it += Tiled(mapObject.id,gameObject)
             it += Physic(body)
-            configureEntityGraphic(it,tile,body,gameObject,assets,world)
-            configureEntityTags(it,mapObject,tile,trackLayer)
+            configureEntityGraphic(it,tile,body,gameObject,assets,world,rotation)
+            configureEntityTags(it,mapObject,tile,trackLayer,rotation)
             configureJump(it,tile)
             configureSpeed(it,tile)
             configureDamage(it,tile)
@@ -169,10 +174,12 @@ class TiledService (
         }
     }
 
-    private fun createBody(bodyType: BodyType,position : Vector2,fixedRotation : Boolean) : Body{
+    private fun createBody(bodyType: BodyType,position : Vector2,rotation : Float = 0f) : Body{
         return physicWorld.body(bodyType){
             this.position.set(position)
-            this.fixedRotation = fixedRotation
+            if (rotation != 0f){
+                this.fixedRotation = false
+            }
         }
     }
 
