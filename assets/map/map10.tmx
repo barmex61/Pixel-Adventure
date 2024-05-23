@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="524">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="40" height="80" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="528">
  <properties>
   <property name="musicAsset" value="MUSIC10"/>
   <property name="name" value="Trap Boline"/>
@@ -163,6 +163,26 @@
    </properties>
   </object>
   <object id="523" gid="2" x="222" y="552" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="524" gid="2" x="221" y="737" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="525" gid="2" x="525" y="480" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="526" gid="2" x="381" y="178" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
+   </properties>
+  </object>
+  <object id="527" gid="2" x="189" y="175" width="38" height="38">
    <properties>
     <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    </properties>

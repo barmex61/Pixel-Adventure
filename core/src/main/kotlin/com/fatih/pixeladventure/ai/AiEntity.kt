@@ -43,7 +43,7 @@ data class AiEntity(
             return get(Life).current != 0
         }
     var changeTrackPosition : Boolean = false
-    var fruitRespawnDuration : Float = 3f
+    var fruitRespawnDuration : Float = 2f
     var entityRemoveDuration : Float = 1f
     var nextAnimType = AnimationType.HIT_LEFT
     var currentAnimType = AnimationType.IDLE
@@ -162,6 +162,7 @@ data class AiEntity(
             trackComp.angleRad = MathUtils.atan2( diffY ,diffX )
             nextAnimType = setNextAnimationForSpikeHead(abs(diffX) , abs(diffY) , nextTrackPoint, currentX, currentY)
             changeTrackPosition = true
+            moveComp.flipX = if (diffX > 0f) true else false
         }
         val velMultiplexerX = if (!fixedVelocity) (abs(trackPoints[trackComp.currentTrackIx].x - currentX) * 0.2f ) else 1f
         val velMultiplexerY = if (!fixedVelocity) (abs(trackPoints[trackComp.currentTrackIx].y - currentY) * 0.2f ) else 1f

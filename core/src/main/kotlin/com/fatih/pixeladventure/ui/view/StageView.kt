@@ -50,7 +50,7 @@ class StageView(
             textButton("Tutorial","menu_txt_button"){
                 it.padBottom(15.0f).minSize(20.0f).prefWidth(100.0f).prefHeight(40.0f)
                 onClick {
-                    menuModel.startGame(MapAsset.TUTORIAL)
+                    menuModel.startGame(MapAsset.MAP13)
                     GameEventDispatcher.fireEvent(PlaySoundEvent(SoundAsset.PAUSE))
                 }
             }

@@ -5,7 +5,6 @@ import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.OrthographicCamera
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.physics.box2d.Body
-import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.scenes.scene2d.actions.Actions.fadeIn
@@ -87,7 +86,7 @@ class GameScreen(
     private var gameView : GameView ?= null
     private var stopGame : Boolean = false
     private var menuViewType = MenuScreen.MenuViewType.STAGE_VIEW
-    private val gameViewPort : Viewport = StretchViewport(18f,11f)
+    private val gameViewPort : Viewport = StretchViewport(21f,13f)
     private val uiViewPort : Viewport = StretchViewport(480f,270f)
     private val uiStage : Stage = Stage(uiViewPort,spriteBatch)
     private val gameCamera = gameViewPort.camera as OrthographicCamera
@@ -273,7 +272,7 @@ class GameScreen(
                             gameView?.addFruit(FruitDrawable.BANANA)
                         }
                         GameObject.MELON.name -> {
-                            gameEvent.playerEntity[Jump].jumpOnGround = true
+                            gameEvent.playerEntity[Jump].wallJumpFruitTimer = 2.5f
                             gameView?.addFruit(FruitDrawable.MELON)
                         }
                         GameObject.PINEAPPLE.name -> {
@@ -290,7 +289,7 @@ class GameScreen(
                             gameView?.addFruit(FruitDrawable.KIWI)
                         }
                         GameObject.APPLE.name -> {
-                            gameEvent.playerEntity[Jump].jumpFruitTimer = 4f
+                            gameEvent.playerEntity[Jump].doubleJumpFruitTimer = 4f
                             gameView?.addFruit(FruitDrawable.APPLE)
                         }
 

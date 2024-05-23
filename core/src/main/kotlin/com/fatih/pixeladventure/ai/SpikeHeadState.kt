@@ -9,9 +9,7 @@ enum class SpikeHeadState : EntityState {
 
 
     AGGRO{
-        override fun enter(entity: AiEntity) {
-            entity.animation(AnimationType.AGGRO,Animation.PlayMode.NORMAL)
-        }
+
 
         override fun update(entity: AiEntity) {
             if (entity.isAnimationDone()){
@@ -32,6 +30,7 @@ enum class SpikeHeadState : EntityState {
             if (entity.isAnimationDone()) {
                 entity.currentAnimType = entity.nextAnimType
                 entity.state(AGGRO)
+                entity.animation(AnimationType.AGGRO,Animation.PlayMode.NORMAL)
                 entity.changeTrackPosition = false
             }
         }

@@ -8,7 +8,7 @@
  <tileset firstgid="17" source="terrain-extruded.tsx"/>
  <layer id="2" name="ground" width="45" height="35">
   <data encoding="base64" compression="zlib">
-   eJztmE0KwkAMhXsLdaHOBdSFPxeobtT7n8e4EEpIfEKS6Yzkg0ehlszHqB14w5Ak/8OCsnTICqxTHJ13lL1DDmCdS4PO/Pvi+96iM5/D993TeaRcHcLn3AKda/GcWyBJEhNlboEvHJX7Pb4re3Ge7nm0cwmYGe0cMb9H5+iz3+q8pmyUbI2zNXr5j09BzifKWbhGUsDnyPlOeQjXSJBTi7+NdK5DOtehR2d0jkafs5a+TuvopJmoz/vV7z3H0iNpHZ00E/V5GlI/ZemReFf0QZqpPYuQ+qkXEcQtYg==
+   eJzt2FEOgjAMBmBuoTyouwDwoO4Cygty//NYfFqaNsOtjUXa5A/JSMpHCZCsaby8/qcOkKNA2sx1gqC5g/QCGTLXiQbN+HnhuVs04z547ns3S7yDLXEP2DwLmqXm/O076WY379kcDJuvzHr6rbRm5mor5nTm2uYgZE5L2xzd/Kn032/RfIKcmVyMmnP1C/MNcieOmuZQaZ4gL+KoaY6V5tpys5vdvD3zvOK8prlmr4DaI+iZnrn9vLW+pU/Nf3Bg1qmepXOn9noekGdhRsZM9RwLzbjX0ucNPw2HqQ==
   </data>
  </layer>
  <layer id="1" name="decoration" width="45" height="35">

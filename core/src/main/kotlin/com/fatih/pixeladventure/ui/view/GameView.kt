@@ -171,7 +171,7 @@ class GameView(
         fruitTable.cells.firstOrNull {
             (it.actor is Image) && ((it.actor as Image).drawable == skin.getDrawable(fruitDrawable.drawablePath))
         }?.let {
-            setFruitCount(it,1)
+            if (fruitDrawable == FruitDrawable.BANANA) setFruitCount(it,1)
             val fruImage = (it.actor as Image)
             if (fruImage.hasActions() && fruImage.name == "remove"){
                 val (fruitImage,fruitTextField) = getFruitCells(it)

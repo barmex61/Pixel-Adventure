@@ -20,7 +20,8 @@
                 "IDLE",
                 "ON",
                 "NONE",
-                "START"
+                "START",
+                "APPEARING"
             ],
             "valuesAsFlags": false
         },
@@ -194,7 +195,9 @@
                 "FAN_PLATFORM",
                 "FIRE_TRAP",
                 "TRAMBOLINE",
-                "SPIKE_HEAD"
+                "SPIKE_HEAD",
+                "SPIKE",
+                "BOSS"
             ],
             "valuesAsFlags": false
         },

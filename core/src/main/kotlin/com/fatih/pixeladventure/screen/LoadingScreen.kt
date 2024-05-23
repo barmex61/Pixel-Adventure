@@ -42,13 +42,18 @@ class LoadingScreen(
     private val physicWorld: PhysicWorld,
     private val pixelAdventure: PixelAdventure,
     private val assets: Assets,
-    private val audioService: AudioService,
     private val gameProperties: GameProperties,
     private val gamePreferences: GamePreferences
 ) : KtxScreen {
 
     private val viewPort = StretchViewport(480f,270f)
     private val loadingStage = Stage(viewPort,spriteBatch)
+    private val audioService : AudioService by lazy {
+        AudioService(
+            assets,
+            soundVolume = gameProperties.soundVolume,
+            musicVolume = gameProperties.musicVolume)
+    }
 
     override fun show() {
         assets.loadAll()

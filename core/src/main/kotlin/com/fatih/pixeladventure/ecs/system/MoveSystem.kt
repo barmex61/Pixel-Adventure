@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.math.Interpolation
+import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Move
 import com.fatih.pixeladventure.ecs.component.MoveDirection
 import com.fatih.pixeladventure.ecs.component.Track
@@ -15,7 +16,8 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
 
     override fun onTickEntity(entity: Entity) {
         val moveComp = entity[Move]
-        var (isFlipX,direction,current,max,timer,timeToMax,_,defaultMax,maxReduceTimer) = moveComp
+        var (isFlipX,direction,current,max,timer,timeToMax,_,defaultMax,maxReduceTimer,stop) = moveComp
+        if (stop) return
 
         //max speed reducer
         if (max > defaultMax ) {
@@ -37,6 +39,9 @@ class MoveSystem : IteratingSystem(family = family{all(Move).none(Track)}) {
             current = pow50outInterpolation.apply(1.5f,max,timer)
             current *= direction.valueX
             isFlipX = direction == MoveDirection.LEFT
+            if(entity has EntityTag.HAS_TRACK){
+                println(direction)
+            }
         }else{
             current = 0f
             timer = 0f

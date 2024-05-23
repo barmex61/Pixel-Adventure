@@ -4152,7 +4152,7 @@ sceneComposer: {
 					minHeight: -1
 					maxWidth: -1
 					maxHeight: -1
-					preferredWidth: 200
+					preferredWidth: 150
 					preferredHeight: 40
 					uniformX: false
 					uniformY: false
@@ -4880,7 +4880,7 @@ sceneComposer: {
 					}
 					row: 2
 					column: 0
-					padLeft: 0
+					padLeft: 50
 					padRight: 0
 					padTop: 0
 					padBottom: 0
@@ -4894,11 +4894,11 @@ sceneComposer: {
 					fillY: false
 					growX: false
 					growY: false
-					alignment: 1
+					alignment: 8
 					minWidth: -1
 					minHeight: -1
-					maxWidth: 48
-					maxHeight: 48
+					maxWidth: 64
+					maxHeight: 64
 					preferredWidth: -1
 					preferredHeight: -1
 					uniformX: false
@@ -5091,7 +5091,7 @@ sceneComposer: {
 					row: 2
 					column: 2
 					padLeft: 0
-					padRight: 0
+					padRight: 50
 					padTop: 0
 					padBottom: 0
 					spaceLeft: 0
@@ -5104,11 +5104,11 @@ sceneComposer: {
 					fillY: false
 					growX: false
 					growY: false
-					alignment: 1
+					alignment: 16
 					minWidth: -1
 					minHeight: -1
-					maxWidth: 48
-					maxHeight: 48
+					maxWidth: 64
+					maxHeight: 64
 					preferredWidth: -1
 					preferredHeight: -1
 					uniformX: false

@@ -66,7 +66,7 @@ private fun sprite(gameObject: GameObject, animationType: AnimationType, startPo
     val h = firstFrame.regionHeight * UNIT_SCALE
     return Sprite(firstFrame).apply {
         setPosition(startPosition.x,startPosition.y)
-        setSize(w,h)
+        if (animationType == AnimationType.APPEARING) setSize(2f,2f) else setSize(w,h)
         setOrigin(0f,0f)
         this.rotation = -rotation
     }
@@ -112,6 +112,7 @@ fun EntityCreateContext.configureEntityTags(
 }
 
 fun EntityCreateContext.configureAnimation(entity: Entity, tile: TiledMapTile, world: World,startAnimType : AnimationType) {
+    if ( tile.property<Float>("animFrameDuration") == 0f) return
     entity += Animation(frameDuration = tile.property<Float>("animFrameDuration"))
     world.animation(entity,startAnimType)
 }
@@ -158,7 +159,7 @@ fun EntityCreateContext.configureDamage(entity: Entity, tile: TiledMapTile){
 fun EntityCreateContext.configureState(entity: Entity, tile: TiledMapTile,world: World,physicWorld : PhysicWorld){
     val gameObjectStr = tile.property<String>("gameObject","")
     val state : EntityState = when(gameObjectStr){
-        GameObject.FROG.name -> PlayerState.IDLE
+        GameObject.FROG.name -> PlayerState.APPEARING
         GameObject.CHERRY.name -> FruitState.IDLE
         GameObject.BANANA.name -> FruitState.IDLE
         GameObject.MELON.name -> FruitState.IDLE

@@ -12,6 +12,18 @@ import ktx.math.component1
 import ktx.math.component2
 
 enum class PlayerState : EntityState{
+    APPEARING{
+        override fun enter(entity: AiEntity) {
+            entity[Move].stop = true
+        }
+        override fun update(entity: AiEntity) {
+            if (entity.isAnimationDone()) {
+                entity[Move].stop = false
+                entity.state(IDLE)
+            }
+
+        }
+    },
     IDLE{
         override fun enter(entity: AiEntity) {
             val body = entity[Physic].body

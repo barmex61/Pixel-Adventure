@@ -7,7 +7,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener
 import com.badlogic.gdx.physics.box2d.Fixture
 import com.badlogic.gdx.physics.box2d.Manifold
 import com.fatih.pixeladventure.ai.FallingPlatformState
-import com.fatih.pixeladventure.ai.FireTrapState
 import com.fatih.pixeladventure.ai.FlagState
 import com.fatih.pixeladventure.ai.TrambolineState
 import com.fatih.pixeladventure.ecs.component.Aggro
@@ -31,7 +30,6 @@ import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.PLATFORM_BIT
 import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.SoundAsset
-import com.fatih.pixeladventure.util.TRAP_BIT
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
 import com.github.quillraven.fleks.Interval
@@ -69,6 +67,10 @@ class PhysicSystem(
 
         previousPosition.set(body.position)
         entity.getOrNull(Move)?.let {moveComp ->
+            if (entity has EntityTag.SPIKE) {
+                println("yes")
+                return
+            }
             val trackComp = entity.getOrNull(Track)
             if (trackComp != null) {
                 body.setLinearVelocity(trackComp.moveX,trackComp.moveY)
@@ -96,6 +98,7 @@ class PhysicSystem(
             MathUtils.lerp(prevX,bodyX,alpha),
             MathUtils.lerp(prevY,bodyY,alpha)
         )
+
     }
 
     private val Fixture.entity : Entity?
@@ -213,7 +216,7 @@ class PhysicSystem(
     }
 
     private fun handleGroundAndFootCollision(playerEntity: Entity){
-        playerEntity[Jump].jumpCounter = 0
+        playerEntity[Jump].doubleJumpCounter = 0
     }
 
     private fun isPlayerAndFallingPlatformCollision(fixtureA: Fixture,fixtureB: Fixture): Boolean{

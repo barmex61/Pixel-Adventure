@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.audio
 
 import com.badlogic.gdx.audio.Music
+import com.badlogic.gdx.audio.Sound
 import com.fatih.pixeladventure.event.CollectItemEvent
 import com.fatih.pixeladventure.event.EntityLifeChangeEvent
 import com.fatih.pixeladventure.event.GameEvent
@@ -22,18 +23,25 @@ private data class MusicResource(val music: Music, val musicAsset: MusicAsset)
 class AudioService(private val assets: Assets,private var soundVolume : Float = 1f , private var musicVolume : Float = 1f)
     : GameEventListener{
 
+    private val soundCache = mutableMapOf<SoundAsset,Sound>()
+    private var currentMusicResource : MusicResource? = null
+
     companion object{
         var mute : Boolean = false
     }
     init {
         GameEventDispatcher.register(this)
+        SoundAsset.entries.forEach {
+            soundCache[it] = assets[it]
+        }
     }
 
-    private val soundQueue = mutableSetOf<SoundAsset>()
-    private var currentMusicResource : MusicResource? = null
+
 
     fun play(soundAsset: SoundAsset){
-        soundQueue += soundAsset
+        val sound = soundCache[soundAsset]!!
+        sound.stop()
+        sound.play(soundVolume)
     }
 
     fun play(musicAsset: MusicAsset){
@@ -61,14 +69,6 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
         currentMusicResource!!.music.stop()
     }
 
-    fun update(){
-        soundQueue.forEach { soundAsset ->
-            val asset = assets[soundAsset]
-            asset.stop()
-            asset.play(soundVolume)
-        }
-        soundQueue.clear()
-    }
 
     override fun onEvent(gameEvent: GameEvent) {
         when(gameEvent){

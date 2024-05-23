@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="252">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="200" height="15" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="258">
  <properties>
   <property name="musicAsset" value="MUSIC3"/>
   <property name="name" value="Tutorial"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="17" source="terrain-extruded.tsx"/>
+ <tileset firstgid="18" source="terrain-extruded.tsx"/>
  <layer id="1" name="ground" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJztlUEOwyAMBPlF2xsfaHvrB5Le8v/3FK6VkWK8YAg7kiUUwdqJvSQEMiIRtOfsee2aEE8+oD1nz2vXhHhCf5CrEgEa9Ae5Kog5OoRnEZyH/iAetJqjf136g8xIL39I/5haPfqD9KKXP5B69AfpBWKOYiPdkp63P2KjvWQ8EHMkaaDn8zCs0Wjejf+xuZnFHyNBf6wD4p6VNFre395o3q3nd7iluBviAdAtabSotyY3OmdtXR51rBy5B88UL0O8hT4GpW5Jw6qLyo3OWVuXRx0rR+7BlmI3xFfoY1DqljSsuqjc6Jy1dXnUsXLkHvwALb1wdQ==
+   eJztmUEOwjAMBPMM4MYHgBsfAG79/3dIrpUj1fEmrpMdyVKE2rWLvU0LKZEzcgcdc/R87ZoQT96gY46er10T4gn9QWYF8RxCf5BZQczRJny29x39QSLSa472uvQHicgof0h7TKse/UFGMcofSD36g4wCMUfSO/7M/tD8psH/YWKDmCNJAz2fm2GNRnNt3MdiE8UfZ4L+WAfEfVbS6Hn/9kZzbSO/h0uOqyFuAN2aRo96W3Kjc7bW5VHHylF68MjxNMRL6GNS6tY0rLqo3OicrXV51LFylB58cnwN8RP6mJS6NQ2rLio3OmdrXR51rBylB39t6nLX
   </data>
  </layer>
  <layer id="2" name="decoration" width="200" height="15">
   <data encoding="base64" compression="zlib">
-   eJzt17ENwCAMBEBGIl1g/8HiPhWSLQS6k76Dt1u3BgAAwAneyIjM3YsAAADXc38AAABQoUeehDeZ/7J6q+avzMjYoXpGZf+p3cDfB5f2BwY=
+   eJzt17ENwCAMBEBWIl1g/73iPhWSLQS6k76Dt1u3BgAAwAneyIjM3YsAAADXc38AAABQoUeehDeZ/7J6q+avzMjYoXpGZf+p3cDfB8UhByo=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">

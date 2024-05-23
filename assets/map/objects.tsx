@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="64" tileheight="64" tilecount="16" columns="0">
+<tileset version="1.10" tiledversion="1.10.2" name="objects" tilewidth="192" tileheight="112" tilecount="17" columns="0">
  <grid orientation="orthogonal" width="1" height="1"/>
  <tile id="0" type="EntityDef">
   <properties>
@@ -11,7 +11,7 @@
    <property name="jumpHeight" type="float" value="2.4"/>
    <property name="life" type="int" value="4"/>
    <property name="speed" type="float" value="7"/>
-   <property name="startAnimType" propertytype="AnimType" value="IDLE"/>
+   <property name="startAnimType" propertytype="AnimType" value="APPEARING"/>
    <property name="timeToMax" type="float" value="2.5"/>
   </properties>
   <image width="32" height="32" source="../graphics/frog.png"/>
@@ -42,6 +42,7 @@
    <object id="30" type="FixtureDef" x="10" y="32">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLAYER"/>
+     <property name="restitution" type="float" value="0"/>
      <property name="userData" value="footFixture"/>
     </properties>
     <polyline points="0,0 12,0"/>
@@ -50,7 +51,7 @@
  </tile>
  <tile id="1" type="EntityDef">
   <properties>
-   <property name="animFrameDuration" type="float" value="0.06"/>
+   <property name="animFrameDuration" type="float" value="0.08"/>
    <property name="bodyType" propertytype="BodyType" value="KinematicBody"/>
    <property name="damage" type="int" value="1"/>
    <property name="entityTags" propertytype="EntityTags" value="HAS_TRACK"/>
@@ -369,6 +370,22 @@
      <property name="isSensor" type="bool" value="false"/>
      <property name="userData" value="hitbox"/>
     </properties>
+   </object>
+  </objectgroup>
+ </tile>
+ <tile id="17">
+  <image width="192" height="112" source="../graphics/boss.png"/>
+  <objectgroup draworder="index" id="2">
+   <object id="2" type="FixtureDef" x="92" y="43" width="10" height="9">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="BOSS"/>
+     <property name="restitution" type="float" value="1"/>
+     <property name="userData" value="hitbox"/>
+    </properties>
+    <ellipse/>
+   </object>
+   <object id="3" x="-81" y="-95" width="366" height="315">
+    <ellipse/>
    </object>
   </objectgroup>
  </tile>

@@ -3,6 +3,7 @@ package com.fatih.pixeladventure.ai
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.system.StateSystem
+import com.fatih.pixeladventure.game.PixelAdventure
 import kotlin.math.abs
 
 enum class FallingPlatformState : EntityState {
@@ -18,7 +19,7 @@ enum class FallingPlatformState : EntityState {
         }
 
         override fun update(entity: AiEntity) {
-            entity.entityRemoveDuration -= StateSystem.STATE_DELTA_TIME
+            entity.entityRemoveDuration -= entity.world.deltaTime
             if (entity.entityRemoveDuration <= 0.75f ){
                 if (entity.animationType != AnimationType.OFF) entity.animation(AnimationType.OFF)
                 with(entity.world){

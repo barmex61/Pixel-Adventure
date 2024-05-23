@@ -1,6 +1,7 @@
 package com.fatih.pixeladventure.ecs.system
 
 import com.badlogic.gdx.graphics.OrthographicCamera
+import com.badlogic.gdx.math.Interpolation
 import com.badlogic.gdx.math.Vector2
 import com.fatih.pixeladventure.ecs.component.EntityTag
 import com.fatih.pixeladventure.ecs.component.Graphic
@@ -34,7 +35,6 @@ class CameraSystem (
             camY = camY.coerceIn(viewportH, max(mapBoundaries.y - viewportH,viewportH) )
         }
         gameCamera.position.set(camX,camY,0f)
-        gameCamera.update()
     }
 
     override fun onEvent(gameEvent: GameEvent) {
@@ -46,5 +46,9 @@ class CameraSystem (
             }
             else -> Unit
         }
+    }
+
+    companion object{
+        private val camInterpolation = Interpolation.pow3OutInverse
     }
 }

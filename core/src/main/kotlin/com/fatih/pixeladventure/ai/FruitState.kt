@@ -1,10 +1,8 @@
 package com.fatih.pixeladventure.ai
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Animation.PlayMode
 import com.fatih.pixeladventure.ecs.component.AnimationType
 import com.fatih.pixeladventure.ecs.component.EntityTag
-import com.fatih.pixeladventure.ecs.system.StateSystem
 
 
 enum class FruitState : EntityState{
@@ -22,12 +20,12 @@ enum class FruitState : EntityState{
     HIT_RESPAWN {
 
         override fun enter(entity: AiEntity) {
-            entity.fruitRespawnDuration = 3f
+            entity.fruitRespawnDuration = 2f
             entity.animation(AnimationType.HIT, PlayMode.NORMAL)
         }
 
         override fun update(entity: AiEntity) {
-            entity.fruitRespawnDuration -= StateSystem.STATE_DELTA_TIME
+            entity.fruitRespawnDuration -= entity.world.deltaTime
             if (entity.isAnimationDone() && entity.fruitRespawnDuration <= 0f) entity.state(RESPAWN)
         }
     },

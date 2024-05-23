@@ -15,7 +15,9 @@ import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.util.FruitDrawable
 import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.PLATFORM_BIT
+import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.ROCK_HEAD_BIT
+import com.fatih.pixeladventure.util.SPIKE_HEAD_BIT
 import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
@@ -34,7 +36,15 @@ class JumpSystem(
     override fun onTickEntity(entity: Entity) {
         val jumpComps = entity[Jump]
         val (body,_) = entity[Physic]
-        var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,jumpOnGround,jumpFruitTimer,jumpCounter) = entity[Jump]
+        var (maxHeight , lowerFeet,upperFeet,jump,doubleJump,wallJumpFruitTimer,doubleJumpFruitTimer,jumpCounter) = entity[Jump]
+
+        if (wallJumpFruitTimer > 0f){
+            wallJumpFruitTimer = (wallJumpFruitTimer - deltaTime).coerceAtLeast(0f)
+            jumpComps.wallJumpFruitTimer = wallJumpFruitTimer
+            if (wallJumpFruitTimer == 0f){
+                GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.MELON,0))
+            }
+        }
 
         if (doubleJump){
             applyJumpForce(jumpComps,body,maxHeight * 0.85f)
@@ -43,10 +53,10 @@ class JumpSystem(
             return
         }
 
-        if (jumpFruitTimer > 0f ){
-            if (jumpFruitTimer == 4f) fireFruitEventOnce = true
-            jumpFruitTimer = (jumpFruitTimer - deltaTime).coerceAtLeast(0f)
-            jumpComps.jumpFruitTimer = jumpFruitTimer
+        if (doubleJumpFruitTimer > 0f ){
+            if (doubleJumpFruitTimer == 4f) fireFruitEventOnce = true
+            doubleJumpFruitTimer = (doubleJumpFruitTimer - deltaTime).coerceAtLeast(0f)
+            jumpComps.doubleJumpFruitTimer = doubleJumpFruitTimer
             if (jumpCounter <2 && jump){
                 jumpCounter += 1
                 if (jumpCounter == 1)  applyJumpForce(jumpComps,body,maxHeight)
@@ -55,9 +65,9 @@ class JumpSystem(
                     entity[State].stateMachine.changeState(PlayerState.DOUBLE_JUMP)
                 }
                 audioService.play(SoundAsset.JUMP)
-                jumpComps.jumpCounter = jumpCounter
+                jumpComps.doubleJumpCounter = jumpCounter
             }
-            if (fireFruitEventOnce && jumpFruitTimer < 1.25f) {
+            if (fireFruitEventOnce && doubleJumpFruitTimer < 1.25f) {
                 GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.APPLE,0))
                 fireFruitEventOnce = false
             }
@@ -72,23 +82,19 @@ class JumpSystem(
             return
         }
 
-        val lowerX = body.position.x + lowerFeet.x - 0.2f
+        val lowerX = body.position.x + lowerFeet.x - 0.1f
         val lowerY = body.position.y + lowerFeet.y - 0.1f
-        val upperX = body.position.x + upperFeet.x + 0.2f
+        val upperX = body.position.x + upperFeet.x + 0.1f
         val upperY = body.position.y + upperFeet.y + 0.1f
 
         DEBUG_RECT.set(lowerX,lowerY,upperX-lowerX,upperY-lowerY)
         physicWorld.query(lowerX,lowerY,upperX,upperY){fixture ->
             val categoryBit = fixture.filterData.categoryBits
             val userData = fixture.userData
-            if ((categoryBit == GROUND_BIT && userData == "cantJump" && jumpOnGround) ||
-                (categoryBit == GROUND_BIT && userData == "canJump") ||
-                (categoryBit == ROCK_HEAD_BIT && userData == "hitbox") ||
-                (categoryBit == PLATFORM_BIT && !fixture.isSensor)){
-                if (jumpOnGround && categoryBit == GROUND_BIT && userData == "cantJump" ){
-                    jumpComps.jumpOnGround = false
-                    GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.MELON,0))
-                }
+            if (fixture.filterData.categoryBits == PLAYER_BIT) return@query true
+            if ((categoryBit == GROUND_BIT && userData == "canJump") ||
+                ((categoryBit == ROCK_HEAD_BIT || categoryBit == SPIKE_HEAD_BIT ) && userData == "hitbox") ||
+                ((categoryBit == PLATFORM_BIT || wallJumpFruitTimer > 0f) && !fixture.isSensor) ){
                 applyJumpForce(jumpComps,body,maxHeight)
                 audioService.play(SoundAsset.JUMP)
                 return@query false

@@ -43,12 +43,7 @@ class PixelAdventure : KtxGame<KtxScreen>() {
         }
         propertiesMap.toGameProperties()
     }
-    private val audioService : AudioService by lazy {
-        AudioService(
-            assets,
-            soundVolume = gameProperties.soundVolume,
-            musicVolume = gameProperties.musicVolume)
-    }
+
     private val physicWorld : PhysicWorld by lazy {
         World(vec2(0f,-30f),true).apply { autoClearForces = false }
     }
@@ -56,19 +51,19 @@ class PixelAdventure : KtxGame<KtxScreen>() {
         Gdx.app.getPreferences("pixel_adventure")
     }
     private val gamePreferences : GamePreferences by lazy {
+        preferences.clear()
         GamePreferences(preferences)
     }
 
     override fun create() {
         Gdx.input.inputProcessor = InputMultiplexer()
-        addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets,audioService,gameProperties, gamePreferences ))
+        addScreen(LoadingScreen(spriteBatch, physicWorld ,this,assets,gameProperties, gamePreferences ))
         setScreen<LoadingScreen>()
     }
 
     override fun render() {
         clearScreen(0f,0f,0f,0f)
         currentScreen.render(Gdx.graphics.deltaTime.coerceAtMost(1/30f))
-        audioService.update()
     }
 
     override fun dispose() {

@@ -26,7 +26,7 @@ import kotlin.math.max
 
 class AnimationSystem(
     assets: Assets = World.inject()
-) : IteratingSystem(family = family { all(Animation,Graphic) }, interval = if (Gdx.graphics.deltaTime < 1/300f) EachFrame else Fixed(1/300f)) {
+) : IteratingSystem(family = family { all(Animation,Graphic) }) {
 
     private val objectAtlas = assets[TextureAtlasAsset.GAMEOBJECT]
     private val gdxAnimationCache = mutableMapOf<String,GdxAnimation>()

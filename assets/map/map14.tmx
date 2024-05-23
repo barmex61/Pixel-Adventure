@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="752">
+ <properties>
+  <property name="musicAsset" value="MUSIC13"/>
+  <property name="name" value="The Flash"/>
+ </properties>
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="19" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztlssNgCAQRKnd1vzVQNQa1A6cBgifWdkVObzbJi/MDoTROTcpMQMPBiW27jftX8Cq6N/B8eP8LftTuhGbYfwp3YjNfDn/7rfvZ/ov8fYy/X/77ZXIn82I9bMZtd5/1t/K/yN0jlr5h84h7c/dl7Q/d1+lfqlelvqlemn9/tfwn+BS4gYPBCk/Kw==
+  </data>
+ </layer>
+ <layer id="1" name="decoration" width="32" height="32">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="749" gid="1" x="64" y="464" width="32" height="32"/>
+  <object id="750" gid="18" x="32" y="480" width="192" height="112"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks"/>
+</map>
