@@ -31,6 +31,6 @@ class GamePreferences(private val preferences: Preferences) {
     }
 
     companion object{
-        private val UNLOCKED_MAPS = "unlocked-maps"
+        private const val UNLOCKED_MAPS = "unlocked-maps"
     }
 }

@@ -36,12 +36,10 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
         }
     }
 
-
-
-    fun play(soundAsset: SoundAsset){
+    fun play(soundAsset: SoundAsset,loop : Boolean = false){
         val sound = soundCache[soundAsset]!!
         sound.stop()
-        sound.play(soundVolume)
+        if (!loop) sound.play(soundVolume) else sound.loop(soundVolume)
     }
 
     fun play(musicAsset: MusicAsset){
@@ -69,19 +67,34 @@ class AudioService(private val assets: Assets,private var soundVolume : Float = 
         currentMusicResource!!.music.stop()
     }
 
+    private fun stopSounds(){
+        soundCache.forEach { (soundAsset, sound) ->
+            if (soundAsset != SoundAsset.FLAG){
+                sound.stop()
+            }
+        }
+    }
+
+    fun stopSound(soundAsset: SoundAsset){
+        soundCache[soundAsset]?.stop()
+    }
+
 
     override fun onEvent(gameEvent: GameEvent) {
         when(gameEvent){
             is MapChangeEvent ->{
+                stopSounds()
                 gameEvent.tiledMap.propertyOrNull<String>("musicAsset")?.let {
                     play(MusicAsset.valueOf(it))
                 }
             }
             is VictoryEvent ->{
                 stopMusic()
+                stopSounds()
                 play(gameEvent.soundAsset)
             }
             is MainMenuEvent ->{
+                stopSounds()
                 play(MusicAsset.MUSIC6)
             }
             is CollectItemEvent -> {

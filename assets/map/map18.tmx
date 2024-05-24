@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="1099">
+ <properties>
+  <property name="musicAsset" value="MUSIC2"/>
+  <property name="name" value="Like a Maze"/>
+ </properties>
+ <tileset firstgid="1" source="objects.tsx"/>
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="45" height="45">
+  <data encoding="base64" compression="zlib">
+   eJzt2LENgDAMAEEvAtki+48G6WiNlDcW/5L7kxsHRkScjWbcM6NXMzQTaWbSzKSZaXmPqLtnb80d96x5f5qZNDNpZtLMlDVXvU2e84c9fyHNTJqZNDNpZupqrn5DZP9zdN2z5v1pZtLMpJlpedcdqv6Wzt7NCxiiJ6Y=
+  </data>
+ </layer>
+ <layer id="1" name="decoration" width="45" height="45">
+  <data encoding="base64" compression="zlib">
+   eJztzjENAAAIwDC0AP41ggsO2mT/IuCf3Grr6xEAAAAAAADglQHhKQBq
+  </data>
+ </layer>
+ <objectgroup color="#ff0000" id="3" name="objects">
+  <object id="1013" gid="6" x="112" y="704" width="19" height="36"/>
+  <object id="1015" gid="3" x="160" y="656" width="42" height="42"/>
+  <object id="1017" gid="3" x="288" y="656" width="42" height="42"/>
+  <object id="1019" gid="3" x="416" y="656" width="42" height="42"/>
+  <object id="1023" gid="2" x="152" y="724" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="1024" gid="2" x="626" y="725" width="38" height="38"/>
+  <object id="1027" gid="2" x="23" y="564" width="38" height="38"/>
+  <object id="1028" gid="2" x="502" y="563" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="BACKGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="1029" gid="16" x="416" y="448" width="54" height="52"/>
+  <object id="1030" gid="16" x="336" y="496" width="54" height="52"/>
+  <object id="1031" gid="16" x="256" y="464" width="54" height="52"/>
+  <object id="1032" gid="16" x="216" y="660" width="54" height="52"/>
+  <object id="1033" gid="16" x="346" y="659" width="54" height="52"/>
+  <object id="1034" gid="16" x="473" y="660" width="54" height="52"/>
+  <object id="1038" gid="16" x="176" y="528" width="54" height="52"/>
+  <object id="1043" gid="14" x="400" y="560" width="16" height="32"/>
+  <object id="1044" gid="14" x="320" y="560" width="16" height="32"/>
+  <object id="1045" gid="14" x="240" y="560" width="16" height="32"/>
+  <object id="1046" gid="14" x="352" y="368" width="16" height="32"/>
+  <object id="1047" gid="14" x="384" y="368" width="16" height="32"/>
+  <object id="1048" gid="14" x="368" y="368" width="16" height="32"/>
+  <object id="1049" gid="14" x="336" y="368" width="16" height="32"/>
+  <object id="1050" gid="14" x="464" y="368" width="16" height="32"/>
+  <object id="1051" gid="14" x="400" y="368" width="16" height="32"/>
+  <object id="1052" gid="14" x="416" y="368" width="16" height="32"/>
+  <object id="1053" gid="14" x="432" y="368" width="16" height="32"/>
+  <object id="1054" gid="14" x="448" y="368" width="16" height="32"/>
+  <object id="1055" gid="14" x="480" y="368" width="16" height="32"/>
+  <object id="1056" gid="14" x="496" y="368" width="16" height="32"/>
+  <object id="1057" gid="14" x="512" y="368" width="16" height="32"/>
+  <object id="1058" gid="14" x="528" y="368" width="16" height="32"/>
+  <object id="1059" gid="14" x="544" y="368" width="16" height="32"/>
+  <object id="1060" gid="7" x="288" y="352" width="32" height="32"/>
+  <object id="1061" gid="7" x="256" y="352" width="32" height="32"/>
+  <object id="1062" gid="7" x="224" y="352" width="32" height="32"/>
+  <object id="1063" gid="7" x="192" y="352" width="32" height="32"/>
+  <object id="1065" gid="3" x="342" y="291" width="42" height="42"/>
+  <object id="1066" gid="3" x="436" y="292" width="42" height="42"/>
+  <object id="1067" gid="3" x="525" y="292" width="42" height="42"/>
+  <object id="1068" gid="16" x="30" y="138" width="54" height="52"/>
+  <object id="1069" gid="16" x="30" y="74" width="54" height="52"/>
+  <object id="1072" gid="5" x="160" y="64" width="64" height="64"/>
+  <object id="1073" gid="9" x="666" y="707" width="32" height="32"/>
+  <object id="1074" gid="4" x="144" y="544" width="32" height="32"/>
+  <object id="1077" gid="4" x="121" y="519" width="32" height="32"/>
+  <object id="1078" gid="4" x="98" y="495" width="32" height="32"/>
+  <object id="1079" gid="4" x="72" y="468" width="32" height="32"/>
+  <object id="1080" gid="4" x="49" y="442" width="32" height="32"/>
+  <object id="1081" gid="4" x="29" y="418" width="32" height="32"/>
+  <object id="1082" gid="8" x="13" y="395" width="32" height="32"/>
+  <object id="1083" gid="13" x="624" y="352" width="24" height="8"/>
+  <object id="1085" gid="11" x="575" y="203" width="32" height="32"/>
+  <object id="1086" gid="9" x="416" y="101" width="32" height="32"/>
+  <object id="1087" gid="10" x="400" y="704" width="32" height="32"/>
+  <object id="1088" gid="4" x="112" y="384" width="32" height="32"/>
+  <object id="1090" gid="4" x="144" y="368" width="32" height="32"/>
+  <object id="1091" gid="12" x="576" y="208" width="32" height="10"/>
+  <object id="1092" gid="1" x="656" y="336" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="10" name="tracks">
+  <object id="1025" x="640" y="704">
+   <polyline points="0,0 -472,0"/>
+  </object>
+  <object id="1026" x="528" y="544">
+   <polyline points="0,0 -493,0"/>
+  </object>
+  <object id="1035" x="245" y="573">
+   <polyline points="0,0 0,121"/>
+  </object>
+  <object id="1036" x="373" y="572">
+   <polyline points="0,0 1,121"/>
+  </object>
+  <object id="1037" x="499" y="576">
+   <polyline points="0,0 1,117"/>
+  </object>
+  <object id="1039" x="444" y="528">
+   <polyline points="0,0 -1,-146"/>
+  </object>
+  <object id="1040" x="365" y="528">
+   <polyline points="0,0 -1,-146"/>
+  </object>
+  <object id="1041" x="284" y="527">
+   <polyline points="0,0 -1,-146"/>
+  </object>
+  <object id="1042" x="205" y="528">
+   <polyline points="0,0 -1,-146"/>
+  </object>
+  <object id="1070" x="32" y="119">
+   <polyline points="0,-7 655,-7"/>
+  </object>
+  <object id="1071" x="32" y="55">
+   <polyline points="0,-7 655,-7"/>
+  </object>
+ </objectgroup>
+</map>

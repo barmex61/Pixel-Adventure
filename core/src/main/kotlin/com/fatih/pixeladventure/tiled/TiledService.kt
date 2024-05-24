@@ -214,7 +214,8 @@ class TiledService (
                 val gameObject = GameObject.valueOf(mapObject.property<String>("gameObject","GROUND"))
                 filter.categoryBits = gameObject.categoryBit
                 filter.maskBits = gameObject.maskBits
-                if (userData == "footFixture") filter.maskBits = filter.maskBits or PLATFORM_BIT
+                if (userData == "falling_platform") println(gameObject.categoryBit)
+                if (userData == "footFixture") filter.maskBits = gameObject.maskBits or PLATFORM_BIT
             }
             return FixtureDefUserData(fixtureDef,userData)
         }

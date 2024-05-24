@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.Body
 import com.fatih.pixeladventure.ai.PlayerState
 import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Fly
+import com.fatih.pixeladventure.ecs.component.Invulnarable
 import com.fatih.pixeladventure.ecs.component.Jump
 import com.fatih.pixeladventure.ecs.component.Physic
 import com.fatih.pixeladventure.ecs.component.State
@@ -58,6 +59,7 @@ class JumpSystem(
             doubleJumpFruitTimer = (doubleJumpFruitTimer - deltaTime).coerceAtLeast(0f)
             jumpComps.doubleJumpFruitTimer = doubleJumpFruitTimer
             if (jumpCounter <2 && jump){
+                println("hello")
                 jumpCounter += 1
                 if (jumpCounter == 1)  applyJumpForce(jumpComps,body,maxHeight)
                 if (jumpCounter == 2)  {
@@ -71,8 +73,6 @@ class JumpSystem(
                 GameEventDispatcher.fireEvent(EndFruitEffectEvent(FruitDrawable.APPLE,0))
                 fireFruitEventOnce = false
             }
-
-            return
         }
 
         if (entity has Fly) return
@@ -93,8 +93,8 @@ class JumpSystem(
             val userData = fixture.userData
             if (fixture.filterData.categoryBits == PLAYER_BIT) return@query true
             if ((categoryBit == GROUND_BIT && userData == "canJump") ||
-                ((categoryBit == ROCK_HEAD_BIT || categoryBit == SPIKE_HEAD_BIT ) && userData == "hitbox") ||
-                ((categoryBit == PLATFORM_BIT || wallJumpFruitTimer > 0f) && !fixture.isSensor) ){
+                ((categoryBit == ROCK_HEAD_BIT || categoryBit == SPIKE_HEAD_BIT ) && userData == "hitbox" && entity hasNo Invulnarable) ||
+                ((categoryBit == PLATFORM_BIT || wallJumpFruitTimer > 0f) && (!fixture.isSensor && fixture.userData != "mapBoundary")) ){
                 applyJumpForce(jumpComps,body,maxHeight)
                 audioService.play(SoundAsset.JUMP)
                 return@query false

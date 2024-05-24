@@ -17,16 +17,11 @@ import ktx.assets.getAsset
 import ktx.assets.load
 
 enum class MapAsset(val path : String, val unlocksMap : MapAsset? = null, val parallaxBgdTexture : String = "graphics/green.png"){
-    MAP25("map/map6.tmx",MAP25, parallaxBgdTexture = "graphics/purple.png"),
-    MAP24("map/map6.tmx",MAP25,parallaxBgdTexture = "graphics/yellow.png"),
-    MAP23("map/map6.tmx",MAP24, parallaxBgdTexture = "graphics/brown.png"),
-    MAP22("map/map6.tmx",MAP23,parallaxBgdTexture = "graphics/blue.png"),
-    MAP21("map/map6.tmx",MAP22, parallaxBgdTexture = "graphics/gray.png"),
-    MAP20("map/map6.tmx",MAP21, parallaxBgdTexture = "graphics/purple.png"),
+    MAP20("map/map6.tmx",MAP20, parallaxBgdTexture = "graphics/purple.png"),
     MAP19("map/map6.tmx",MAP20,parallaxBgdTexture = "graphics/yellow.png"),
-    MAP18("map/map6.tmx",MAP19, parallaxBgdTexture = "graphics/brown.png"),
-    MAP17("map/map6.tmx",MAP18,parallaxBgdTexture = "graphics/blue.png"),
-    MAP16("map/map6.tmx",MAP17, parallaxBgdTexture = "graphics/gray.png"),
+    MAP18("map/map18.tmx",MAP19, parallaxBgdTexture = "graphics/brown.png"),
+    MAP17("map/map17.tmx",MAP18,parallaxBgdTexture = "graphics/blue.png"),
+    MAP16("map/map16.tmx",MAP17, parallaxBgdTexture = "graphics/gray.png"),
     MAP15("map/map15.tmx",MAP16, parallaxBgdTexture = "graphics/purple.png"),
     MAP14("map/map14.tmx",MAP15,parallaxBgdTexture = "graphics/yellow.png"),
     MAP13("map/map13.tmx",MAP14, parallaxBgdTexture = "graphics/brown.png"),
@@ -73,6 +68,7 @@ enum class SoundAsset(val path : String){
     JUMP("audio/jump.mp3"),
     HURT("audio/hurt.wav"),
     FLAG("audio/flag.wav"),
+    WIND("audio/wind.ogg"),
     COLLECT("audio/collect.wav"),
     PAUSE("audio/pause.wav"),
     DEATH("audio/death.wav")

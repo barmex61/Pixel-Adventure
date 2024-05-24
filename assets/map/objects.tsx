@@ -51,10 +51,10 @@
  </tile>
  <tile id="1" type="EntityDef">
   <properties>
-   <property name="animFrameDuration" type="float" value="0.08"/>
+   <property name="animFrameDuration" type="float" value="0.065"/>
    <property name="bodyType" propertytype="BodyType" value="KinematicBody"/>
    <property name="damage" type="int" value="1"/>
-   <property name="entityTags" propertytype="EntityTags" value="HAS_TRACK"/>
+   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
    <property name="gameObject" propertytype="GameObject" value="CHAINSAW"/>
    <property name="speed" type="float" value="7"/>
    <property name="startAnimType" propertytype="AnimType" value="ON"/>
@@ -85,7 +85,7 @@
   </properties>
   <image width="42" height="42" source="../graphics/rock_head.png"/>
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="4" y="4" width="34" height="34">
+   <object id="1" type="FixtureDef" x="6" y="6" width="30" height="30">
     <properties>
      <property name="density" type="float" value="20"/>
      <property name="gameObject" propertytype="GameObject" value="ROCK_HEAD"/>
@@ -271,7 +271,7 @@
   </properties>
   <image width="32" height="10" source="../graphics/falling_platform.png"/>
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="1" width="32" height="1">
+   <object id="2" type="FixtureDef" x="0" y="2" width="32">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="FALLING_PLATFORM"/>
      <property name="userData" value="falling_platform"/>
@@ -310,7 +310,7 @@
    <property name="animFrameDuration" type="float" value="0.2"/>
    <property name="bodyType" propertytype="BodyType" value="StaticBody"/>
    <property name="damage" type="int" value="1"/>
-   <property name="entityTags" propertytype="EntityTags" value="FOREGROUND"/>
+   <property name="entityTags" propertytype="EntityTags" value="BACKGROUND"/>
    <property name="gameObject" propertytype="GameObject" value="FIRE_TRAP"/>
    <property name="startAnimType" propertytype="AnimType" value="OFF"/>
   </properties>

@@ -5,7 +5,7 @@ import com.github.quillraven.fleks.Component
 import com.github.quillraven.fleks.ComponentType
 import com.github.quillraven.fleks.Entity
 
-data class Aggro(var aggroEntities : Set<Entity> = setOf(), val sourceLocation : Vector2, var targetEntity : Entity = Entity.NONE, var verticalCollision : Boolean = false, var horizontalCollision : Boolean = false) : Component <Aggro> {
+data class Aggro(var aggroEntities : MutableSet<Entity> = mutableSetOf(), val sourceLocation : Vector2, var targetEntity : Entity = Entity.NONE, var verticalCollision : Boolean = false, var horizontalCollision : Boolean = false) : Component <Aggro> {
 
     override fun type() = Aggro
 

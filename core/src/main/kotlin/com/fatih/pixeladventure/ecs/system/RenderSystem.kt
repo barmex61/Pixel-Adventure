@@ -68,7 +68,6 @@ class RenderSystem(
 
     private fun Family.renderEntities() {
         sort(entityComparator)
-        forEach { it[Graphic].sprite.draw(batch) }
         forEach { entity ->
             val flashCmp = entity.getOrNull(Flash)
             if (flashCmp != null && flashCmp.doFlash) {
@@ -82,7 +81,6 @@ class RenderSystem(
             } else {
                 batch.resetShader()
             }
-
             entity[Graphic].sprite.draw(batch)
         }
 

@@ -42,6 +42,7 @@
    </object>
    <object id="3" type="FixtureDef" x="4" y="0" width="12" height="1">
     <properties>
+     <property name="gameObject" propertytype="GameObject" value="GROUND"/>
      <property name="userData" value="canJump"/>
     </properties>
    </object>
@@ -86,7 +87,7 @@
  </tile>
  <tile id="17">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="1" y="0" width="15" height="5">
+   <object id="1" type="FixtureDef" x="1" y="1" width="15">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -95,7 +96,7 @@
  </tile>
  <tile id="18">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="16" height="5">
+   <object id="1" type="FixtureDef" x="0" y="1" width="16">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -104,7 +105,7 @@
  </tile>
  <tile id="19">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="15" height="5">
+   <object id="1" type="FixtureDef" x="0" y="1" width="15">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -188,7 +189,7 @@
  </tile>
  <tile id="39">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="1" y="1" width="15" height="1">
+   <object id="1" type="FixtureDef" x="1" y="1" width="15">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -197,7 +198,7 @@
  </tile>
  <tile id="40">
   <objectgroup draworder="index" id="2">
-   <object id="3" type="FixtureDef" x="0" y="1" width="16" height="1">
+   <object id="3" type="FixtureDef" x="0" y="1" width="16">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -206,7 +207,7 @@
  </tile>
  <tile id="41">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="1" width="15" height="1">
+   <object id="1" type="FixtureDef" x="0" y="1" width="15">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -251,7 +252,7 @@
  </tile>
  <tile id="61">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="1" y="1" width="15" height="1">
+   <object id="1" type="FixtureDef" x="1" y="1" width="15">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
      <property name="userData" value=""/>
@@ -261,7 +262,7 @@
  </tile>
  <tile id="62">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="1" width="16" height="1">
+   <object id="1" type="FixtureDef" x="0" y="1" width="16">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -270,7 +271,7 @@
  </tile>
  <tile id="63">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="1" width="15" height="1">
+   <object id="1" type="FixtureDef" x="0" y="1" width="15">
     <properties>
      <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
     </properties>
@@ -660,12 +661,20 @@
  </tile>
  <tile id="207">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="8" y="0" width="8" height="14"/>
+   <object id="1" type="FixtureDef" x="8" y="0" width="8" height="14">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="208">
   <objectgroup draworder="index" id="2">
-   <object id="1" type="FixtureDef" x="0" y="0" width="8" height="14"/>
+   <object id="1" type="FixtureDef" x="0" y="0" width="8" height="14">
+    <properties>
+     <property name="gameObject" propertytype="GameObject" value="PLATFORM"/>
+    </properties>
+   </object>
   </objectgroup>
  </tile>
  <tile id="210">

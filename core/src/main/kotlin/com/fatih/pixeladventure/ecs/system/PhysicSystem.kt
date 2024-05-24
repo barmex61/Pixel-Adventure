@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold
 import com.fatih.pixeladventure.ai.FallingPlatformState
 import com.fatih.pixeladventure.ai.FlagState
 import com.fatih.pixeladventure.ai.TrambolineState
+import com.fatih.pixeladventure.audio.AudioService
 import com.fatih.pixeladventure.ecs.component.Aggro
 import com.fatih.pixeladventure.ecs.component.Damage
 import com.fatih.pixeladventure.ecs.component.DamageTaken
@@ -27,12 +28,11 @@ import com.fatih.pixeladventure.event.PlaySoundEvent
 import com.fatih.pixeladventure.event.PlayerOutOfMapEvent
 import com.fatih.pixeladventure.event.VictoryEvent
 import com.fatih.pixeladventure.game.PhysicWorld
+import com.fatih.pixeladventure.util.GROUND_BIT
 import com.fatih.pixeladventure.util.PLATFORM_BIT
-import com.fatih.pixeladventure.util.PLAYER_BIT
 import com.fatih.pixeladventure.util.SoundAsset
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.Fixed
-import com.github.quillraven.fleks.Interval
 import com.github.quillraven.fleks.IteratingSystem
 import com.github.quillraven.fleks.World.Companion.family
 import com.github.quillraven.fleks.World.Companion.inject
@@ -41,8 +41,8 @@ import ktx.math.component2
 
 class PhysicSystem(
     private val physicWorld: PhysicWorld = inject(),
-    interval : Interval = Fixed(1/300f)
-) : IteratingSystem(family = family {all(Physic,Graphic)}, interval = interval) , ContactListener {
+    private val audioService: AudioService = inject()
+) : IteratingSystem(family = family {all(Physic,Graphic)}, interval = Fixed(1/300f)) , ContactListener {
 
     init {
         physicWorld.setContactListener(this)
@@ -67,10 +67,6 @@ class PhysicSystem(
 
         previousPosition.set(body.position)
         entity.getOrNull(Move)?.let {moveComp ->
-            if (entity has EntityTag.SPIKE) {
-                println("yes")
-                return
-            }
             val trackComp = entity.getOrNull(Track)
             if (trackComp != null) {
                 body.setLinearVelocity(trackComp.moveX,trackComp.moveY)
@@ -123,7 +119,8 @@ class PhysicSystem(
     private fun Fixture.isFallingPlatform() = this.userData == "falling_platform"
     private fun Fixture.isTramboline() = this.userData == "tramboline"
     private fun Fixture.isFanPlatform() = this.userData == "fan_platform"
-    private fun Fixture.isPlayer() = this.filterData.categoryBits == PLAYER_BIT
+    private fun Fixture.isBottomMapBoundary() = this.userData == "bottomMapBoundary"
+    private fun Fixture.isPlayerFoot() = this.userData == "footFixture"
     private fun Fixture.isAggro(entity: Entity,isBeginContact : Boolean) : Boolean {
         return when(this.userData){
             "horizontalAggroSensor" -> {
@@ -137,8 +134,7 @@ class PhysicSystem(
             else -> false
         }
     }
-    private fun Fixture.isBottomMapBoundary() = this.userData == "bottomMapBoundary"
-    private fun Fixture.isPlayerFoot() = this.userData == "footFixture"
+
 
     private fun isDamageCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB:Fixture) : Boolean{
         return  entityA has Damage && entityB has Life && fixtureB.isSensor && fixtureA.isHitBox() && fixtureB.isHitBox()
@@ -162,8 +158,9 @@ class PhysicSystem(
         }
     }
 
+
     private fun isAggroSensorCollision(entityA:Entity,fixtureA : Fixture,fixtureB: Fixture,isBeginContact: Boolean): Boolean{
-        return entityA has Aggro && fixtureA.isAggro(entityA,isBeginContact) && fixtureB.isHitBox()
+        return entityA has Aggro && fixtureB.isHitBox() && fixtureA.isAggro(entityA,isBeginContact)
     }
 
     private fun handleAggroBeginContact(aggroEntity: Entity,triggerEntity: Entity){
@@ -177,15 +174,15 @@ class PhysicSystem(
         }
     }
 
-    private fun isPlayerBottomMapBoundaryCollision(entity: Entity?,fixtureB: Fixture): Boolean{
-        if (entity == null) return false
-        return entity has EntityTag.PLAYER && fixtureB.isBottomMapBoundary()
+    private fun isPlayerBottomMapBoundaryCollision(entityA: Entity?,fixtureA: Fixture,fixtureB: Fixture): Boolean{
+        if (entityA == null) return false
+        return fixtureA.isHitBox() && entityA has EntityTag.PLAYER && fixtureB.isBottomMapBoundary()
     }
 
     private fun handlePlayerOutOfMap(playerEntity: Entity) = GameEventDispatcher.fireEvent(PlayerOutOfMapEvent(playerEntity))
 
-    private fun isCollectableCollision(entityA: Entity,entityB: Entity,fixtureA: Fixture,fixtureB: Fixture) : Boolean{
-        return entityA has EntityTag.PLAYER && entityB has EntityTag.COLLECTABLE && ((fixtureA.isPlayerFoot() && fixtureB.isCherry()) || (!fixtureB.isCherry() && fixtureA.isHitBox() ))
+    private fun isCollectableCollision(entityB: Entity,fixtureA: Fixture,fixtureB: Fixture) : Boolean{
+        return  entityB has EntityTag.COLLECTABLE && ((fixtureA.isPlayerFoot() && fixtureB.isCherry()) || (!fixtureB.isCherry() && fixtureA.isHitBox() ))
     }
 
     private fun handleCollectableBeginContact(playerEntity : Entity,collectableEntity : Entity) {
@@ -211,17 +208,21 @@ class PhysicSystem(
         flagFixture.userData = ""
     }
 
-    private fun isGroundAndFootCollision(fixtureA: Fixture,fixtureB: Fixture) : Boolean {
-        return fixtureA.isPlayerFoot() && fixtureB.filterData.categoryBits == PLATFORM_BIT
-    }
-
-    private fun handleGroundAndFootCollision(playerEntity: Entity){
+    private fun handleGroundOrPlatformAndFootCollision(playerEntity: Entity){
         playerEntity[Jump].doubleJumpCounter = 0
     }
 
-    private fun isPlayerAndFallingPlatformCollision(fixtureA: Fixture,fixtureB: Fixture): Boolean{
-        val isCollisionSuccess = fixtureA.isPlayer() && fixtureB.isPlatform() && fixtureB.isFallingPlatform()
-        if (isCollisionSuccess) fixtureB.userData = "off"
+    private fun isGroundAndFootCollision(fixtureA: Fixture,fixtureB: Fixture ) : Boolean {
+        return fixtureA.isPlayerFoot() && (fixtureB.filterData.categoryBits == GROUND_BIT && fixtureB.userData == "canJump")
+     }
+
+    private fun isPlayerAndFallingPlatformCollision(playerEntity: Entity,fixtureA: Fixture,fixtureB: Fixture): Boolean{
+        val isCollisionSuccess = fixtureA.isPlayerFoot() && fixtureB.isPlatform() && fixtureB.isFallingPlatform()
+        if (isCollisionSuccess) {
+            fixtureB.userData = "off"
+            handleGroundOrPlatformAndFootCollision(playerEntity)
+
+        }
         return isCollisionSuccess
     }
 
@@ -234,16 +235,12 @@ class PhysicSystem(
     }
 
     private fun handlePlayerAndFanBeginCollision(playerEntity: Entity, fanEntity: Entity) = with(world){
+        audioService.play(SoundAsset.WIND,true)
         fanEntity[Fan].collideEntity = playerEntity
-        playerEntity.configure {
-            it += EntityTag.FAN_EFFECT
-        }
     }
 
-    private fun handlePlayerAndFanEndCollision(playerEntity: Entity,fanEntity: Entity) = with(world){
-        playerEntity.configure {
-            it -= EntityTag.FAN_EFFECT
-        }
+    private fun handlePlayerAndFanEndCollision(fanEntity: Entity) = with(world){
+        audioService.stopSound(SoundAsset.WIND)
         fanEntity[Fan].collideEntity = null
     }
 
@@ -266,26 +263,26 @@ class PhysicSystem(
 
         if (entityA == null || entityB == null){
             when{
-                isPlayerBottomMapBoundaryCollision(entityA,fixtureB) -> handlePlayerOutOfMap(entityA!!)
-                isPlayerBottomMapBoundaryCollision(entityB,fixtureA) -> handlePlayerOutOfMap(entityB!!)
-                isGroundAndFootCollision(fixtureA,fixtureB) && entityA != null -> handleGroundAndFootCollision(entityA)
-                isGroundAndFootCollision(fixtureB,fixtureA) && entityB != null-> handleGroundAndFootCollision(entityB)
+                isPlayerBottomMapBoundaryCollision(entityA,fixtureA,fixtureB) -> handlePlayerOutOfMap(entityA!!)
+                isPlayerBottomMapBoundaryCollision(entityB,fixtureB,fixtureA) -> handlePlayerOutOfMap(entityB!!)
+                isGroundAndFootCollision(fixtureA,fixtureB) && entityA != null -> handleGroundOrPlatformAndFootCollision(entityA)
+                isGroundAndFootCollision(fixtureB,fixtureA) && entityB != null-> handleGroundOrPlatformAndFootCollision(entityB)
             }
             return
         }
         when {
             isPlayerAndFanCollision(fixtureA,fixtureB,true) -> handlePlayerAndFanBeginCollision(entityA,entityB)
             isPlayerAndFanCollision(fixtureB,fixtureA,true) -> handlePlayerAndFanBeginCollision(entityB,entityA)
-            isPlayerAndFallingPlatformCollision(fixtureA,fixtureB) -> handlePlayerAndFallingPlatformCollision(entityB)
-            isPlayerAndFallingPlatformCollision(fixtureB,fixtureA) -> handlePlayerAndFallingPlatformCollision(entityA)
+            isPlayerAndFallingPlatformCollision(entityA,fixtureA,fixtureB) -> handlePlayerAndFallingPlatformCollision(entityB)
+            isPlayerAndFallingPlatformCollision(entityB,fixtureB,fixtureA) -> handlePlayerAndFallingPlatformCollision(entityA)
             isPlayerAndTrambolineCollision(fixtureA,fixtureB) -> handlePlayerAndTrambolineCollision(entityA,entityB)
             isPlayerAndTrambolineCollision(fixtureB,fixtureA) -> handlePlayerAndTrambolineCollision(entityB,entityA)
             isDamageCollision(entityA,entityB,fixtureA,fixtureB) -> handleDamageBeginContact(entityA,entityB)
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageBeginContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,true) ->  handleAggroBeginContact(entityA,entityB)
             isAggroSensorCollision(entityB,fixtureB,fixtureA,true) -> handleAggroBeginContact(entityB,entityA)
-            isCollectableCollision(entityA,entityB,fixtureA,fixtureB) -> handleCollectableBeginContact(entityA,entityB)
-            isCollectableCollision(entityB,entityA,fixtureB,fixtureA) -> handleCollectableBeginContact(entityB,entityA)
+            isCollectableCollision(entityB,fixtureA,fixtureB) -> handleCollectableBeginContact(entityA,entityB)
+            isCollectableCollision(entityA,fixtureB,fixtureA) -> handleCollectableBeginContact(entityB,entityA)
             isFinishFlagCollision(entityA,fixtureA,fixtureB) -> handleFinishFlagCollision(entityA,entityB,fixtureB)
             isFinishFlagCollision(entityB,fixtureB,fixtureA) -> handleFinishFlagCollision(entityB,entityA,fixtureA)
 
@@ -301,8 +298,8 @@ class PhysicSystem(
             return
         }
         when {
-            isPlayerAndFanCollision(fixtureA,fixtureB) -> handlePlayerAndFanEndCollision(entityA,entityB)
-            isPlayerAndFanCollision(fixtureB,fixtureA) -> handlePlayerAndFanEndCollision(entityB,entityA)
+            isPlayerAndFanCollision(fixtureA,fixtureB) -> handlePlayerAndFanEndCollision(entityB)
+            isPlayerAndFanCollision(fixtureB,fixtureA) -> handlePlayerAndFanEndCollision(entityA)
             isDamageCollision(entityA,entityB,fixtureA,fixtureB) ->  handleDamageEndContact(entityA,entityB)
             isDamageCollision(entityB,entityA,fixtureB,fixtureA) -> handleDamageEndContact(entityB,entityA)
             isAggroSensorCollision(entityA,fixtureA,fixtureB,false) ->  handleAggroEndContact(entityA,entityB)

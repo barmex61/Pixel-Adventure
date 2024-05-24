@@ -17,10 +17,13 @@ data class Invulnarable(var time : Float,var isFruitEffect : Boolean = false,var
     override fun type() = Invulnarable
 
     override fun World.onAdd(entity: Entity) {
+        println("hey")
         fireFruitEventOnce = true
         entity[Physic].body.fixtureList
-            .filterNot{ it.userData == "hitbox" }
-            .forEach { it.filterData.maskBits = GROUND_BIT or PLATFORM_BIT or FRUIT_BIT}
+            .filterNot{ it.userData == "hitbox"  }
+            .forEach {
+                it.filterData.maskBits =  if (it.userData == "footFixture") GROUND_BIT or FRUIT_BIT or PLATFORM_BIT else GROUND_BIT or FRUIT_BIT
+            }
     }
 
     override fun World.onRemove(entity: Entity) {
@@ -29,7 +32,6 @@ data class Invulnarable(var time : Float,var isFruitEffect : Boolean = false,var
                 it.userData == "hitbox"
             }.forEach {
                 it.filterData.maskBits = if (it.userData == "footFixture") GameObject.PLAYER.maskBits or PLATFORM_BIT else GameObject.PLAYER.maskBits
-
             }
     }
 

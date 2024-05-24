@@ -49,7 +49,7 @@ class LevelView (
         }
         table {
             it.expandX().padBottom(25f)
-            (1..25).forEach {index ->
+            (1..20).forEach {index ->
                 val assetStr = "MAP$index"
                 textButton("$index","menu_txt_button",skin){textButtonCell->
                     textButtonCell.minSize(35f).prefSize(35f).pad(5f)

@@ -16,7 +16,7 @@ data class GameProperties(
     val soundVolume : Float
 )
 
-private inline fun <reified T> ObjectMap<String,String>.getOrDefault(key:String,defaultValue : T) : T {
+private inline fun <reified T> ObjectMap<String,String>.getOrDefault(key:String, defaultValue : T) : T {
     val strValue = this.get(key) ?: return defaultValue
     return when(T::class){
         Int::class -> strValue.toInt() as T

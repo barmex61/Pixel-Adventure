@@ -33,8 +33,8 @@ class TeleportSystem : IteratingSystem(family = family { all(Teleport) }) , Game
         val physicComp = entity[Physic]
         entity.configure {
             if (it hasNo Invulnarable && it hasNo Blink){
-                it += Invulnarable(1.5f)
-                it += Blink(1.3f,0.075f)
+                it += Invulnarable(1f)
+                it += Blink(0.75f,0.075f)
             }
         }
         physicComp.body.setTransform(spawnLocation,0f)

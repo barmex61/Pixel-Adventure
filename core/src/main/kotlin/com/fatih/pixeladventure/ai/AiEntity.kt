@@ -94,7 +94,7 @@ data class AiEntity(
 
         val diffX = (center.x - targetCenter.x)
         val diffY = (center.y - targetCenter.y)
-
+        println(targetCenter)
         entity[Move].direction = when{
             entity[Aggro].verticalCollision -> {
                 when{

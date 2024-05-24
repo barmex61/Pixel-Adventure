@@ -41,6 +41,7 @@ import com.fatih.pixeladventure.game.PhysicWorld
 import com.fatih.pixeladventure.game.PixelAdventure.Companion.UNIT_SCALE
 import com.fatih.pixeladventure.util.Assets
 import com.fatih.pixeladventure.util.GameObject
+import com.fatih.pixeladventure.util.SoundAsset
 import com.fatih.pixeladventure.util.TextureAtlasAsset
 import com.fatih.pixeladventure.util.animation
 import com.github.quillraven.fleks.Entity
@@ -102,6 +103,7 @@ fun EntityCreateContext.configureEntityTags(
     if (entity has EntityTag.PLAYER){
         entity += Teleport(Vector2(mapObject.x * UNIT_SCALE,mapObject.y * UNIT_SCALE))
     }
+
     if (entity has EntityTag.COLLECTABLE){
         val gameObject = GameObject.valueOf(tile.propertyOrNull<String>("gameObject")?: gdxError("gameObject is null $tile"))
         entity += Collectable(gameObject.name)
