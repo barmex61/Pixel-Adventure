@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "assets/map/map11.tmx",
+    "activeFile": "assets/map/objects.tsx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "Tüm Dosyalar (*)",
@@ -61,8 +61,8 @@
             "scale": 2,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 215.5,
-                "y": 704.75
+                "x": 319.75,
+                "y": 399.75
             }
         },
         "assets/map/map13.tmx": {
@@ -70,22 +70,23 @@
                 3,
                 10
             ],
-            "scale": 1,
+            "scale": 0.75,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 884,
-                "y": 273.5
+                "x": 901.3333333333333,
+                "y": 329.99999999999994
             }
         },
         "assets/map/map14.tmx": {
             "expandedObjectLayers": [
-                3
+                3,
+                10
             ],
-            "scale": 3,
-            "selectedLayer": 0,
+            "scale": 1.5,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 119.66666666666666,
-                "y": 425.49999999999994
+                "x": 342.66666666666663,
+                "y": 474.99999999999994
             }
         },
         "assets/map/map2.tmx": {
@@ -193,19 +194,19 @@
             "scale": 1.5,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 159.33333333333331,
-                "y": 159.66666666666663
+                "x": 155.33333333333331,
+                "y": 158.99999999999997
             }
         },
         "assets/map/objects.tsx": {
             "dynamicWrapping": true,
-            "scaleInDock": 1,
+            "scaleInDock": 0.5,
             "scaleInEditor": 0.75
         },
         "assets/map/terrain-extruded.tsx": {
             "dynamicWrapping": false,
-            "scaleInDock": 1.5,
-            "scaleInEditor": 4
+            "scaleInDock": 1,
+            "scaleInEditor": 0.75
         },
         "assets/map/test.tmx": {
             "expandedObjectLayers": [
@@ -248,18 +249,8 @@
     "map.layerDataFormat": null,
     "map.width": 20,
     "openFiles": [
-        "assets/map/tutorial.tmx",
-        "assets/map/map1.tmx",
-        "assets/map/map2.tmx",
-        "assets/map/map3.tmx",
-        "assets/map/map4.tmx",
-        "assets/map/map5.tmx",
-        "assets/map/map6.tmx",
-        "assets/map/map7.tmx",
-        "assets/map/map8.tmx",
-        "assets/map/map9.tmx",
-        "assets/map/map10.tmx",
-        "assets/map/map11.tmx",
+        "assets/map/map12.tmx",
+        "assets/map/map13.tmx",
         "assets/map/objects.tsx",
         "assets/map/terrain-extruded.tsx",
         "assets/map/object.tmx"
@@ -267,17 +258,17 @@
     "project": "pixelAdventure.tiled-project",
     "property.type": "AnimType",
     "recentFiles": [
+        "assets/map/map12.tmx",
+        "assets/map/map13.tmx",
+        "assets/map/object.tmx",
+        "assets/map/terrain-extruded.tsx",
+        "assets/map/objects.tsx",
+        "assets/map/map14.tmx",
         "assets/map/map11.tmx",
         "assets/map/map10.tmx",
         "assets/map/map9.tmx",
         "assets/map/map8.tmx",
         "assets/map/map7.tmx",
-        "assets/map/map6.tmx",
-        "assets/map/map5.tmx",
-        "assets/map/map4.tmx",
-        "assets/map/map3.tmx",
-        "assets/map/map2.tmx",
-        "assets/map/tutorial.tmx",
-        "assets/map/map1.tmx"
+        "assets/map/map6.tmx"
     ]
 }

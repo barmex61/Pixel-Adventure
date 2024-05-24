@@ -241,6 +241,17 @@ class GameView(
         return fruitCount != 0
     }
 
+    fun clearFruitTable(){
+        fruitTable.cells.forEach {
+            if (it.actor is Image){
+                (it.actor as Image).drawable = blankDrawable
+            }
+            if (it.actor is TextField){
+                (it.actor as TextField).text = ""
+            }
+        }
+    }
+
 }
 
 @Scene2dDsl

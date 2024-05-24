@@ -1,24 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="752">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="45" height="45" tilewidth="16" tileheight="16" infinite="0" nextlayerid="12" nextobjectid="807">
  <properties>
-  <property name="musicAsset" value="MUSIC13"/>
-  <property name="name" value="The Flash"/>
+  <property name="musicAsset" value="MUSIC14"/>
+  <property name="name" value="Gandalf said `Mellon`"/>
  </properties>
  <tileset firstgid="1" source="objects.tsx"/>
- <tileset firstgid="19" source="terrain-extruded.tsx"/>
- <layer id="2" name="ground" width="32" height="32">
+ <tileset firstgid="17" source="terrain-extruded.tsx"/>
+ <layer id="2" name="ground" width="45" height="45">
   <data encoding="base64" compression="zlib">
-   eJztlssNgCAQRKnd1vzVQNQa1A6cBgifWdkVObzbJi/MDoTROTcpMQMPBiW27jftX8Cq6N/B8eP8LftTuhGbYfwp3YjNfDn/7rfvZ/ov8fYy/X/77ZXIn82I9bMZtd5/1t/K/yN0jlr5h84h7c/dl7Q/d1+lfqlelvqlemn9/tfwn+BS4gYPBCk/Kw==
+   eJzt1rENgCAQhWHGdgqncBe1cwGlcwG1s/AcgFhwnHD5X/Iqmi9HchACIYT4zyidjKqVVboZNDo3Lw2ad8yYE7k/zi13ndZetJqz5p1gxoy5bfMfuzLXbH1PETNmZ+Za/0hv50JzLj1TzJgx57dr0NxjxpzooGyu+e1Ovec177rU7DFj9mQ+pGdDvaQPatIq2g==
   </data>
  </layer>
- <layer id="1" name="decoration" width="32" height="32">
+ <layer id="1" name="decoration" width="45" height="45">
   <data encoding="base64" compression="zlib">
-   eJztwQENAAAAwqD3T20PBxQAAADwbhAAAAE=
+   eJzt1MENgDAMA0DvP2XYBDYAUqRS9U7KK/GrqhMAYHV1zdHYPdkD/FnlvsOe3Ly5g51V/BOA1VT63T2SZb7KnLcfyQLsptLrzG5uNMt3TsF1GlA=
   </data>
  </layer>
  <objectgroup color="#ff0000" id="3" name="objects">
-  <object id="749" gid="1" x="64" y="464" width="32" height="32"/>
-  <object id="750" gid="18" x="32" y="480" width="192" height="112"/>
+  <object id="750" gid="1" x="16" y="112" width="32" height="32"/>
+  <object id="751" gid="2" x="-13" y="244" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="752" gid="2" x="585" y="246" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="755" gid="2" x="241" y="356" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="757" gid="2" x="696" y="356" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="758" gid="2" x="618" y="452" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="759" gid="2" x="-13" y="453" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="760" gid="2" x="696" y="630" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="761" gid="2" x="327" y="629" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="762" gid="2" x="-13" y="630" width="38" height="38">
+   <properties>
+    <property name="entityTags" propertytype="EntityTags" value="FOREGROUND,HAS_TRACK"/>
+   </properties>
+  </object>
+  <object id="768" gid="16" x="352" y="208" width="54" height="52"/>
+  <object id="769" gid="16" x="256" y="208" width="54" height="52"/>
+  <object id="770" gid="16" x="128" y="208" width="54" height="52"/>
+  <object id="771" gid="16" x="528" y="320" width="54" height="52"/>
+  <object id="772" gid="16" x="368" y="320" width="54" height="52"/>
+  <object id="774" gid="3" x="151" y="371" width="42" height="42"/>
+  <object id="775" gid="3" x="128" y="544" width="42" height="42"/>
+  <object id="776" gid="3" x="288" y="544" width="42" height="42"/>
+  <object id="777" gid="3" x="448" y="544" width="42" height="42"/>
+  <object id="778" gid="3" x="608" y="544" width="42" height="42"/>
+  <object id="779" gid="7" x="352" y="112" width="32" height="32"/>
+  <object id="780" gid="7" x="288" y="112" width="32" height="32"/>
+  <object id="781" gid="7" x="224" y="112" width="32" height="32"/>
+  <object id="782" gid="7" x="160" y="112" width="32" height="32"/>
+  <object id="785" gid="8" x="176" y="224" width="32" height="32"/>
+  <object id="788" gid="8" x="536" y="502" width="32" height="32"/>
+  <object id="789" gid="9" x="608" y="608" width="32" height="32"/>
+  <object id="790" gid="5" x="16" y="610" width="64" height="64"/>
+  <object id="799" gid="7" x="400" y="112" width="32" height="32"/>
+  <object id="804" gid="10" x="433" y="209" width="32" height="32"/>
+  <object id="806" gid="10" x="432" y="336" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="10" name="tracks"/>
+ <objectgroup id="10" name="tracks">
+  <object id="764" x="4" y="226">
+   <polyline points="0,0 602,0"/>
+  </object>
+  <object id="765" x="716" y="338">
+   <polyline points="0,0 -457,0"/>
+  </object>
+  <object id="766" x="638" y="434">
+   <polyline points="0,0 -634,0"/>
+  </object>
+  <object id="767" x="2" y="610">
+   <polyline points="0,0 714,0"/>
+  </object>
+  <object id="791" x="554" y="237">
+   <polyline points="0,0 1,92"/>
+  </object>
+  <object id="792" x="395" y="325">
+   <polyline points="0,0 0,-87"/>
+  </object>
+  <object id="793" x="379" y="213">
+   <polyline points="0,0 0,-90"/>
+  </object>
+  <object id="794" x="283" y="212">
+   <polyline points="0,0 0,-86"/>
+  </object>
+  <object id="795" x="155" y="211">
+   <polyline points="0,0 0,-87"/>
+  </object>
+ </objectgroup>
 </map>

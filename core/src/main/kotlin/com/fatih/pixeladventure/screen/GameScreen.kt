@@ -252,7 +252,7 @@ class GameScreen(
             }
             is RestartLevelEvent ->{
                 restartLevel()
-                //gameView?.clearFruitTable()
+                gameView?.clearFruitTable()
             }
 
             is CollectItemEvent->{
