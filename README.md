@@ -40,3 +40,16 @@ Useful Gradle tasks and flags:
 
 Note that most tasks that are not specific to a single project can be run with `name:` prefix, where the `name` should be replaced with the ID of a specific project.
 For example, `core:clean` removes `build` folder only from the `core` project.
+
+// In app screenshots //
+
+![ninja4](https://github.com/user-attachments/assets/5e351420-f594-4c4d-a6a4-4e485c61310b)
+![ninja3](https://github.com/user-attachments/assets/7be506f8-ac93-4313-a6c0-8aa03face9c1)
+![ninja2](https://github.com/user-attachments/assets/163529c9-e683-4335-ab40-4aad609f3d43)
+![ninja1](https://github.com/user-attachments/assets/2b426e93-1877-42ea-ace0-ec1596f45ea6)
+![ninja10](https://github.com/user-attachments/assets/1dd7f473-65b9-4d08-9410-7e5451b48d60)
+![ninja9](https://github.com/user-attachments/assets/9faf04e7-6fd2-40f4-b538-f118d4452625)
+![ninja8](https://github.com/user-attachments/assets/623f9350-8e4e-41f5-8117-bf59fe935d0c)
+![ninja7](https://github.com/user-attachments/assets/1930456b-80fe-45c7-a3e2-aa8b699fe92a)
+![ninja6](https://github.com/user-attachments/assets/85c30b4d-51a9-4f4b-a152-80be626d9f9d)
+![ninja5](https://github.com/user-attachments/assets/158e4afc-26c4-47a5-82e6-20b3f224b782)
